@@ -26,7 +26,7 @@ public class NrlmberAct
 	NrlmberBiz mBiz;
 
 	@RequestMapping(value = { "/ListPagingData.do" })
-	public String ListPagingData(Model model)
+	public String ListPagingDatas(Model model)
 	{
 	    MyMap           paramMap    = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
             BasicBean       resultBean  = null;
