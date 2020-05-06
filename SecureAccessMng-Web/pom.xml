@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.inbiznetcorp.SecureAccess.SecureAccessMng.Web</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>SecureAccessMng-Web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SecureAccessMng-Web</name>
 	<description>Demo project for Spring Boot</description>
