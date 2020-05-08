@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 수신입금계좌정보 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.idcinfo.IdcInfoMapper">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcId)">
+			AND IDC_ID 	=  #{idcId}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">
+			AND IDC_NAME 	= CONCAT('%',#{idcName},'%')
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			IDCINFO
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IDC_ID 													as idcId	 				<!--IDC 고유ID-->
+			,IDC_NAME 													as idcName	 				<!--IDC 이름 -->
+			,IDC_ADDR 			                                        as idcAddr 					<!--IDC 주소-->
+			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
+			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 IDCINFO T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.LAST_UPDUSR_PNTTM DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IDC_ID 													as idcId	 				<!--IDC 고유ID-->
+			,IDC_NAME 													as idcName	 				<!--IDC 이름 -->
+			,IDC_ADDR 			                                        as idcAddr 					<!--IDC 주소-->
+			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
+			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 IDCINFO T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+		INSERT INTO IDCINFO
+			(
+				 IDC_NAME 								<!-- IDC명			-->
+				,IDC_ADDR 								<!-- IDC주소		-->
+				,FRST_REGISTER_ID 						<!-- 최초등록 ID	-->
+				,LAST_UPDUSR_ID 						<!-- 최종등록일 ID	-->
+				,FRST_REGISTER_PNTTM 					<!-- 최초등록일 	-->
+				,LAST_UPDUSR_PNTTM 						<!-- 최종등록일 	-->
+			)
+			 VALUES
+			(
+				 #{idcName}				<!--IDC명 -->
+				,#{idcAddr}				<!--IDC주소 -->
+				,#{frstRegisterId}		<!--최초등록 ID -->
+				,#{lastUpdusrId}		<!--최종등록일 ID -->
+				,now()					<!-- 최초등록일 -->
+				,now()					<!-- 최종등록일 -->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE IDCINFO
+			 SET
+				LAST_UPDUSR_PNTTM  =  now()
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">   ,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">  		,IDC_NAME = #{idcName}    			</if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcAddr)"> 		,IDC_ADDR = #{idcAddr}  			</if>  	 <!-- 서버명 -->
+		WHERE IDC_ID = #{idcId}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		UPDATE IDCINFO WHERE IDC_ID = #{idcId}
+	</update>
+
+</mapper>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 수신입금계좌정보 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqlist.EqListMapper">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
+			AND SEQ 	=  #{seq}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refEqIdc)">
+			AND REF_EQ_IDC 	=  #{refEqIdc}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">
+			AND NAME 	= CONCAT('%',#{name},'%')
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			EQ_LIST
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ														as seq				    <!--서버고유ID-->
+			,REF_EQ_IDC 												as refEqIdc	 		    <!--IDC 고유ID-->
+			,NAME 														as name	 		    	<!--서버명-->
+			,MODEL 														as model	 			<!--기종-->
+			,MANUFACTURE 												as manufacture	 		<!--제조업체-->
+			,`USAGE` 													as `usage`	 		    <!--사용용도-->
+			,POSITION 													as position	 	    	<!--상면-->
+			,STTUS 														as sttus	 	    	<!--상태-->
+			,PROPERTY_NAME												as propertyName		    <!-- 자산명 -->
+			,PROPERTY_NUM												as propertyNum		    <!-- 자산번호 -->
+			,SEPEC_CPU													as sepecCpu			    <!-- 스펙 씨피유 -->
+			,SEPEC_MM													as sepecMm			    <!-- 스펙 메모리 -->
+			,SEPEC_DISK													as sepecDisk			<!-- 스펙 디스크 -->
+			,SEPEC_NIC													as sepecNic				<!-- 스펙 랜카드 -->
+			,OS_TYPE													as osType				<!-- OS타입 -->
+			,SV_IP1 			                                        as svIp1 				<!--서버 IP-->
+			,SV_IP2 			                                        as svIp2 				<!--서버 IP-->
+			,SV_IP3 			                                        as svIp3 				<!--서버 IP-->
+			,SV_IP4 			                                        as svIp4 				<!--서버 IP-->
+			,SV_PORT 			                                    	as svPort 				<!--서버 SSH PORT-->
+			,MANAGER_ID 			                                    as managerId 			<!--관리자ID-->
+			,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 				as receivingPnttm 		<!--입고일-->
+			,FRST_REGISTER_ID											as frstRegisterId
+			,LAST_UPDUSR_ID 											as lastUpdusrId
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 EQ_LIST T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.LAST_UPDUSR_PNTTM DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ														as seq				    <!--서버고유ID-->
+			,REF_EQ_IDC 												as refEqIdc	 		    <!--IDC 고유ID-->
+			,NAME 														as name	 		    	<!--서버명-->
+			,MODEL 														as model	 			<!--기종-->
+			,MANUFACTURE 												as manufacture	 		<!--제조업체-->
+			,`USAGE` 													as `usage`	 		    <!--사용용도-->
+			,POSITION 													as position	 	    	<!--상면-->
+			,STTUS 														as sttus	 	    	<!--상태-->
+			,PROPERTY_NAME												as propertyName		    <!-- 자산명 -->
+			,PROPERTY_NUM												as propertyNum		    <!-- 자산번호 -->
+			,SEPEC_CPU													as sepecCpu			    <!-- 스펙 씨피유 -->
+			,SEPEC_MM													as sepecMm			    <!-- 스펙 메모리 -->
+			,SEPEC_DISK													as sepecDisk			<!-- 스펙 디스크 -->
+			,SEPEC_NIC													as sepecNic				<!-- 스펙 랜카드 -->
+			,OS_TYPE													as osType				<!-- OS타입 -->
+			,SV_IP1 			                                        as svIp1 				<!--서버 IP-->
+			,SV_IP2 			                                        as svIp2 				<!--서버 IP-->
+			,SV_IP3 			                                        as svIp3 				<!--서버 IP-->
+			,SV_IP4 			                                        as svIp4 				<!--서버 IP-->
+			,SV_PORT 			                                    	as svPort 				<!--서버 SSH PORT-->
+			,MANAGER_ID 			                                    as managerId 			<!--관리자ID-->
+			,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 				as receivingPnttm 		<!--입고일-->
+			,FRST_REGISTER_ID											as frstRegisterId
+			,LAST_UPDUSR_ID 											as lastUpdusrId
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 EQ_LIST T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+		INSERT INTO EQ_LIST
+			(
+				 IDC_ID 													    	<!--IDC 고유ID-->
+				,SV_MODEL 															<!--기종-->
+				,SV_MANUFACTURE														<!-- 제조업체 -->
+				,SV_NAME 														    <!--서버명-->
+				,SV_USAGE 															<!--사용용도-->
+				,SV_POSITION 												 	    <!--상면-->
+				,SV_STTUS 												 	   	 	<!--상태-->
+				,PROPERTY_NAME														<!-- 자산명 -->
+				,PROPERTY_NUM														<!-- 자산번호 -->
+				,SEPEC_CPU															<!-- 스펙 씨피유 -->
+				,SEPEC_MM														    <!-- 스펙 메모리 -->
+				,SEPEC_DISK															<!-- 스펙 디스크 -->
+				,SEPEC_NIC															<!-- 스펙 랜카드 -->
+				,OS_TYPE															<!-- OS타입 -->
+				,SV_IP 			                                            		<!--서버 IP-->
+				,SV_PORT 			                                    			<!--서버 SSH PORT-->
+				,MANAGER_ID 			                                    		<!--관리자ID-->
+				,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 						<!--입고일-->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	 		<!--최초등록일-->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	 		<!--최종등록일-->
+			)
+			 VALUES
+			(
+				 #{idcId}	 		    <!--IDC 고유ID-->
+				,#{svModel}	 		    <!--기종-->
+				,#{svManufacture}	 	<!--제조업체-->
+				,#{svName}	 		    <!--서버명-->
+				,#{svUsage}	 		    <!--사용용도-->
+				,#{svPosition}	 	    <!--상면-->
+				,#{svSttus}	 	    	<!--상태-->
+				,#{propertyName}		<!-- 자산명 -->
+				,#{propertyNum}		    <!-- 자산번호 -->
+				,#{sepecCpu}			<!-- 스펙 씨피유 -->
+				,#{sepecMm}			    <!-- 스펙 메모리 -->
+				,#{sepecDisk}			<!-- 스펙 디스크 -->
+				,#{sepecNic}			<!-- 스펙 랜카드 -->
+				,#{osType}				<!-- OS타입 -->
+				,#{svIp} 				<!--서버 IP-->
+				,#{svPort} 				<!--서버 SSH PORT-->
+				,#{managerId}			<!--관리자ID-->
+				,#{receivingPnttm} 		<!--입고일-->
+				,now() 					<!--최초등록일-->
+				,now() 					<!--최종등록일-->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE EQ_LIST
+			 SET
+				LAST_UPDUSR_PNTTM  =  now()
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcId)">   	   ,IDC_ID = #{idcId}    			        </if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svModel)">  	   ,SV_MODEL = #{svModel}  			    	</if>  	 <!-- 기종 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svManufacture)"> ,SV_MANUFACTURE = #{svManufacture}  	    </if>  	 <!-- 제조업체 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svName)">  	   ,SV_NAME = #{svName}  			        </if>  	 <!-- 서버명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svUsage)"> 	   ,SV_USAGE = #{svUsage}  			        </if>  	 <!-- 사용용도 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svPosition)">    ,SV_POSITION = #{svPosition}  	        </if>  	 <!-- 서버 IP -->
+
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyName)"> ,PROPERTY_NAME = #{propertyName}          </if>  	 <!-- 자산명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyNum)">  ,PROPERTY_NUM = #{propertyNum}  	        </if>   <!-- 자산번호 -->
+
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecCpu)">     ,PROPERTY_NUM = #{sepecCpu}  		        </if>  	 <!-- 스펙 씨피유 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecMm)">   	  ,SEPEC_MM = #{sepecMm}  			        </if>  	 <!-- 스펙 메모리 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecDisk)">    ,SEPEC_DISK = #{sepecDisk}  		        </if>  	 <!-- 스펙 디스크 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecNic)">     ,SEPEC_NIC = #{sepecNic}  		        </if>  	 <!-- 스펙 랜카드 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(osType)">        ,OS_TYPE = #{osType}  			        </if>  	 <!-- OS타입 -->
+
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svIp)">     	   ,SV_IP = #{svIp}  						</if>  	 <!-- 서버 IP -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svPort)">        ,SV_PORT = #{svPort}  					</if>  	 <!-- 서버 SSH PORT -->
+
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(managerId)">     ,MANAGER_ID = #{managerId}  				</if>  	 <!-- 관리자ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(receivingPnttm)">,RECEIVING_PNTTM = #{receivingPnttm}  	</if>  	 <!-- 입고일 -->
+		WHERE SV_ID = #{svId}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		UPDATE EQ_LIST WHERE SV_ID = #{svId}
+
+	</update>
+
+</mapper>

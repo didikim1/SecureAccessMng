@@ -61,8 +61,16 @@ public class HttpServletBean
 			mmClientRequestParameter.put(key,this.getStringParams(key).length>1||key.indexOf("[]")!=-1?this.getStringParams(key):this.getStringParam(key));
 		}
 
-		mmClientRequestParameter.put("frstRegisterId", "admin");
-		mmClientRequestParameter.put("lastUpdusrId",   "admin");
+//		mmClientRequestParameter.put("mberSeq",               FrameworkBeans.findSessionBean().mberSeq);
+//		mmClientRequestParameter.put("dpamentId",             FrameworkBeans.findSessionBean().dpamentId);
+//		mmClientRequestParameter.put("positionId",            FrameworkBeans.findSessionBean().positionId);
+//		mmClientRequestParameter.put("uniqId",                FrameworkBeans.findSessionBean().uniqId);
+//		mmClientRequestParameter.put("mberName",              FrameworkBeans.findSessionBean().mberName);
+//		mmClientRequestParameter.put("mberSttus",             FrameworkBeans.findSessionBean().mberSttus);
+//		mmClientRequestParameter.put("moblphonNo",            FrameworkBeans.findSessionBean().moblphonNo);
+//		mmClientRequestParameter.put("emailAddress",          FrameworkBeans.findSessionBean().emailAddress);
+		mmClientRequestParameter.put("frstRegisterId",        FrameworkBeans.findSessionBean().uniqId);
+		mmClientRequestParameter.put("lastUpdusrId",          FrameworkBeans.findSessionBean().uniqId);
 
 		return mmClientRequestParameter;
 	}

@@ -5,16 +5,15 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct;
-import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
-import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.biz.LoginBiz;
 
 @Controller
@@ -64,29 +63,30 @@ public class LoginAct
     }
 
     @RequestMapping(value = { "/ProcSelectOneData.do" })
-    public ResultMessage ProcSelectOneData(Model model)
+    public @ResponseBody ResultMessage ProcSelectOneData(Model model)
     {
         MyMap           paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         MyCamelMap      resultMap       = new MyCamelMap();
         String          resultCode      = ResultCode.RESULT_OK;
 
         resultMap                         = mBiz.SelectOneData(paramMap);
-
+        
         if ( resultMap == null )
         {
                 resultCode = ResultCode.RESULT_EMPTY;
         }
         else
         {
-                FrameworkBeans.findSessionBean().mberId                 = resultMap.getStr("mberId");
-                FrameworkBeans.findSessionBean().uniqId                 = resultMap.getStr("uniqId");
-                FrameworkBeans.findSessionBean().mberName               = resultMap.getStr("mberName");
-                FrameworkBeans.findSessionBean().mberSttus              = resultMap.getStr("mberSttus");
-                FrameworkBeans.findSessionBean().mberRole               = resultMap.getStr("mberRole");
+                FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
+                FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
+                FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
+                FrameworkBeans.findSessionBean().uniqId         = resultMap.getStr("uniqId");
+                FrameworkBeans.findSessionBean().mberName       = resultMap.getStr("mberName");
+                FrameworkBeans.findSessionBean().mberSttus      = resultMap.getStr("mberSttus");
                 FrameworkBeans.findSessionBean().moblphonNo     = resultMap.getStr("moblphonNo");
                 FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
         }
-
+        
         return new ResultMessage(resultCode, "success");
     }
 
