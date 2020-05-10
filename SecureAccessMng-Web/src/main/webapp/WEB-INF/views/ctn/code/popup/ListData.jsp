@@ -15,7 +15,10 @@
 
 		<div class="border_sub">
 			<form action="" name="RegisterForm">
-			<input type="hidden" name="pid" value="${parentMap.pid}"/>
+<%-- 			<input type="hidden" name="pid" value="${parentMap.pid}"/> --%>
+			<input type="hidden" name="refCode" value="1"/>					<!-- 상위CODEID		: 지금은 1로 고정.. -->
+			<input type="hidden" name="title" 	value="${paramMap.title}"/>	<!-- 분류코드명			: SEPEC_CPU -->
+			<input type="hidden" name="type" 	value="${paramMap.type}"/>	<!-- 부모(P),자식(C) 	: 일단은 B.. -->
 			<table class="htable">
 				<tr>
 					<th scope="col">명칭</th>
@@ -70,13 +73,13 @@ function fnParentPageSetup(cellvalue){
 	$.fun.ajax({
 		type:'get',
 		datatype:'json',
-		url:"/ctn/code/SelectOneData.do?codeid="+cellvalue,
+		url:"/ctn/code/SelectOneData.do?codeSeq="+cellvalue,
 		success:function(data){
 			var obj = JSON.parse(data);
 			console.log(obj);
 
-			$("#"+_id).val( obj.result.codenameEng);
-			$("#"+_id+"Name").val( obj.result.codenameKor);
+			$("#"+_id).val( obj.result.codeSeq);
+			$("#"+_id+"Name").val( obj.result.name);
 			$("#RegisterSvModelPageEquipment").dialog('destroy').remove();
 		}
 	});

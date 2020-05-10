@@ -38,6 +38,7 @@ public class CtnCodeAction
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
 //		model.addAttribute("IdcInfoList", mIdcInfoBiz.ListData(new MyMap()));
+		model.addAttribute("parentMap", paramMap);
 
         return pagePrefix + "/ListPagingData";
     }
@@ -74,11 +75,12 @@ public class CtnCodeAction
 
     @RequestMapping(value =
     { "/SelectOneData.do" })
-    public String SelectOneData(Model model)
+    public @ResponseBody ResultMessage SelectOneData(Model model)
     {
-        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap paramMap 	= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap resultMap = mBiz.SelectOneData(paramMap);
 
-        return null;
+        return new ResultMessage("200", resultMap);
     }
 
     @RequestMapping(value =
