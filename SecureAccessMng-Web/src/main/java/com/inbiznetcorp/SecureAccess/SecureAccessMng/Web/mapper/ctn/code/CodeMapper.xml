@@ -48,7 +48,7 @@
 		WHERE 1=1
 			<include refid="addWhere"/>
 <!-- 		ORDER BY CODE_SEQ DESC -->
-		ORDER BY #{sidx} #{sord}
+		ORDER BY ${sidx} ${sord}
 		LIMIT #{start}, #{end}
 	</select>
 

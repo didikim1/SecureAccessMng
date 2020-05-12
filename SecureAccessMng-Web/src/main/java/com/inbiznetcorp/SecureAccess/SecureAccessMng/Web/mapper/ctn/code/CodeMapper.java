@@ -22,7 +22,7 @@ public interface CodeMapper
 	* @param paramMap
 	* @return
 	*/
-	public java.util.List ListPagingData(MyMap paramMap);
+	public java.util.List<MyCamelMap> ListPagingData(MyMap paramMap);
 
 	/**
 	* 상세

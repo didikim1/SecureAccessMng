@@ -1,5 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.biz;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -65,8 +67,41 @@ public class CtnCodeBiz
 	* @param paramMap
 	* @return
 	*/
-	public int RegisterData(MyMap paramMap) {
-		return mMapper.RegisterData(paramMap);
+	public int RegisterData(MyMap paramMap)
+	{
+	    // 가장 최근에 등록된 장비의 정보를 가져옴.
+	    paramMap.put("sidx",       "id");
+	    paramMap.put("sord",       "desc");
+	    paramMap.put("start",      0);
+	    paramMap.put("end",        1);
+	    List<MyCamelMap> codeList = mMapper.ListPagingData(paramMap);
+	    
+	    // id값 1증가.
+	    String title = paramMap.getStr("title");
+	    if(0 < codeList.size())
+	    {
+	        String ctnCodeId       = codeList.get(0).getStr("id");
+	        String resultCodeId    = null;
+	        
+	        int idx = -1;
+	        for(int i=0; i<ctnCodeId.length(); i++)
+	        {
+	            if(('0' < ctnCodeId.charAt(i)) && (ctnCodeId.charAt(i) < '9'))
+	            {
+	                idx = i-1;
+	                break;
+	            }
+	        }
+	        
+	        resultCodeId = title + "_" + String.format("%03d", (Integer.parseInt(ctnCodeId.substring(idx)) + 1));
+	        paramMap.put("id", resultCodeId);
+	    }
+	    else
+	    {
+	        paramMap.put("id", title + "_001");
+	    }
+	    
+	    return mMapper.RegisterData(paramMap);
 	}
 
 	/**

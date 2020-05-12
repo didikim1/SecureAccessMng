@@ -21,7 +21,7 @@
 						<tr>
 							<th scope="col" width="120px">서버기종</th>
 							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_CPU', 'svModel')" id="svModelName" name="svModelName" autocomplete="off" value="${Info.svModelName}" readonly="readonly" />
+								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('MODEL', 'svModel')" id="svModelName" name="svModelName" autocomplete="off" value="${Info.svModelName}" readonly="readonly" />
 								<input type="hidden" id="svModel" name="svModel" autocomplete="off" value="${Info.svModelName}" readonly="readonly" />
 							</td>
 						</tr>
@@ -31,10 +31,12 @@
 						<tr>
 							<th scope="col" width="120px">제조사</th>
 							<td>
-								<select class="userManageSelect2" name="dpamentId">
-									<option>선택</option>
-								</select>
-								<button type="button" style="height: 30px" class="common_button2" ><i class="fa" aria-hidden="true"></i>&nbsp;추가</button>
+								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('MANUFACTURE', 'svManufacture')" id="svManufactureName" name="svManufactureName" autocomplete="off" value="${Info.svManufactureName}" readonly="readonly" />
+								<input type="hidden" id="svManufacture" name="svManufacture" autocomplete="off" value="${Info.svManufactureName}" readonly="readonly" />
+<!-- 								<select class="userManageSelect2" name="dpamentId"> -->
+<!-- 									<option>선택</option> -->
+<!-- 								</select> -->
+<!-- 								<button type="button" style="height: 30px" class="common_button2" ><i class="fa" aria-hidden="true"></i>&nbsp;추가</button> -->
 							</td>
 						</tr>
 						<!-- //제조사 -->
@@ -50,10 +52,12 @@
 						<tr>
 							<th scope="col" width="120px">스펙 CPU</th>
 							<td>
-								<select class="userManageSelect2" name="dpamentId">
-									<option>선택</option>
-								</select>
-								<button type="button" style="height: 30px" class="common_button2" ><i class="fa" aria-hidden="true"></i>&nbsp;추가</button>
+								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_CPU', 'svSepecCpu')" id="svSepecCpuName" name="svSepecCpuName" autocomplete="off" value="${Info.svSepecCpuName}" readonly="readonly" />
+								<input type="hidden" id="svSepecCpu" name="svSepecCpu" autocomplete="off" value="${Info.svSepecCpuName}" readonly="readonly" />
+<!-- 								<select class="userManageSelect2" name="dpamentId"> -->
+<!-- 									<option>선택</option> -->
+<!-- 								</select> -->
+<!-- 								<button type="button" style="height: 30px" class="common_button2" ><i class="fa" aria-hidden="true"></i>&nbsp;추가</button> -->
 							</td>
 						</tr>
 						<!-- //스펙 CPU -->

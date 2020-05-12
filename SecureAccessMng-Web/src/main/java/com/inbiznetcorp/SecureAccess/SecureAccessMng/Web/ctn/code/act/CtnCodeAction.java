@@ -14,6 +14,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBe
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
@@ -50,8 +51,8 @@ public class CtnCodeAction
 
             MyCamelMap  resultParentMap     = null;
 
-            searchParentMap.put("ptitle",    paramMap.getStr("ptitle"));
-            searchParentMap.put("type",      "A");
+            searchParentMap.put("title",    paramMap.getStr("title"));
+            searchParentMap.put("type",     "A");
 
             resultParentMap = mBiz.SelectOneData( searchParentMap );
 
@@ -110,7 +111,7 @@ public class CtnCodeAction
         
         int result = mBiz.RegisterData(paramMap);
 
-        return new ResultMessage("", null);
+        return new ResultMessage(ResultCode.RESULT_OK, "Success!!", null);
     }
 
     @RequestMapping(value =

@@ -16,9 +16,9 @@
 		<div class="border_sub">
 			<form action="" name="RegisterForm">
 <%-- 			<input type="hidden" name="pid" value="${parentMap.pid}"/> --%>
-			<input type="hidden" name="refCode" value="1"/>					<!-- 상위CODEID		: 지금은 1로 고정.. -->
-			<input type="hidden" name="title" 	value="${paramMap.title}"/>	<!-- 분류코드명			: SEPEC_CPU -->
-			<input type="hidden" name="type" 	value="${paramMap.type}"/>	<!-- 부모(P),자식(C) 	: 일단은 B.. -->
+			<input type="hidden" name="refCode" value="${parentMap.refCode}"/>	<!-- 상위CODEID -->
+			<input type="hidden" name="title" 	value="${parentMap.title}"/>	<!-- 분류코드명 -->
+			<input type="hidden" name="type" 	value="${paramMap.type}"/>		<!-- 부모(A),자식(B) -->
 			<table class="htable">
 				<tr>
 					<th scope="col">명칭</th>
@@ -95,6 +95,26 @@ function fnCodeRegister(){
 		url:"/ctn/code/RegisterData.do",
 		success:function(data){
 			var obj = JSON.parse(data);
+			
+			$("[name=name]").val("");
+			
+			setTimeout(function(){
+				var ptitle  = "${paramMap.ptitle}";
+				var type    = "${paramMap.type}";
+				var url 	= "/ctn/code/ListData.do";
+
+				var paramMap = {};
+				paramMap["page"] 	= 0;
+				paramMap["ptitle"] 	= ptitle;
+				paramMap["type"] 	= type;
+
+				jqGridUtils.searchProc({
+				     gridId:"#grid"
+					,postData:paramMap
+					,url:url
+				});
+
+			}, 500);
 		}
 	});
 }
@@ -129,13 +149,13 @@ $(document).ready(function() {
 	}));
 
 	setTimeout(function(){
-		var ptitle  = "${paramMap.ptitle}";
+		var title  = "${paramMap.title}";
 		var type    = "${paramMap.type}";
 		var url 	= "/comtn/code/ListData.do";
 
 		var paramMap = {};
 		paramMap["page"] 	= 0;
-		paramMap["ptitle"] 	= ptitle;
+		paramMap["title"] 	= title;
 		paramMap["type"] 	= type;
 
 		jqGridUtils.searchProc({
