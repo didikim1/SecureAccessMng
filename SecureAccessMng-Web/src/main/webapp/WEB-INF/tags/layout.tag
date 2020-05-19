@@ -79,6 +79,8 @@
 				    <li class="top border_right" id="m2"><a href="/nrlmber/ListPagingData.do" id="gnb_0" class="top_link">직원 조회</a></li>
 
 				    <li class="top border_right" id="m2"><a href="/eqlist/" id="gnb_0" class="top_link">자산관리</a></li>
+
+				     <li class="top border_right" id="m2"><a href="/ctn/code/" id="gnb_0" class="top_link">코드등록</a></li>
 				</ul>
 			</div>
 		</div>

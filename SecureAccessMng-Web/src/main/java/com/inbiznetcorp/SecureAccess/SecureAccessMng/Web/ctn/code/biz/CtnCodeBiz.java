@@ -27,7 +27,7 @@ public class CtnCodeBiz
 	 */
 	public BasicBean ListData(MyMap paramMap) {
 		BasicBean resultBean = null;
-		
+
 		paramMap.put("sidx", paramMap.getStr("sidx", "codeSeq"));
 		paramMap.put("sord", paramMap.getStr("sord", "desc"));
 
@@ -45,6 +45,9 @@ public class CtnCodeBiz
 	*/
 	public BasicBean ListPagingData(MyMap paramMap) {
 		BasicBean resultBean = null;
+
+		paramMap.put("sidx", paramMap.getStr("sidx", "codeSeq"));
+                paramMap.put("sord", paramMap.getStr("sord", "desc"));
 
 		FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 10));
 		resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10),
@@ -75,32 +78,23 @@ public class CtnCodeBiz
 	    paramMap.put("start",      0);
 	    paramMap.put("end",        1);
 	    List<MyCamelMap> codeList = mMapper.ListPagingData(paramMap);
-	    
+
 	    // id값 1증가.
 	    String title = paramMap.getStr("title");
 	    if(0 < codeList.size())
 	    {
 	        String ctnCodeId       = codeList.get(0).getStr("id");
 	        String resultCodeId    = null;
-	        
-	        int idx = -1;
-	        for(int i=0; i<ctnCodeId.length(); i++)
-	        {
-	            if(('0' < ctnCodeId.charAt(i)) && (ctnCodeId.charAt(i) < '9'))
-	            {
-	                idx = i-1;
-	                break;
-	            }
-	        }
-	        
-	        resultCodeId = title + "_" + String.format("%03d", (Integer.parseInt(ctnCodeId.substring(idx)) + 1));
+	        String _StrOnlyNumber = ctnCodeId.replaceAll("[^\\d]", "");
+
+	        resultCodeId = title + "_" + String.format("%03d", (Integer.parseInt( _StrOnlyNumber ) + 1));
 	        paramMap.put("id", resultCodeId);
 	    }
 	    else
 	    {
 	        paramMap.put("id", title + "_001");
 	    }
-	    
+
 	    return mMapper.RegisterData(paramMap);
 	}
 

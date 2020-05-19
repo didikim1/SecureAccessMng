@@ -25,25 +25,29 @@ public class CtnCodeAction
     final String pagePrefix = "ctn/code";
 
     private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(CtnCodeAction.class.getName());
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
     CtnCodeBiz mBiz;
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
     EqListBiz mEqListBiz;
 
-    @RequestMapping(value =
-    { "/", "/ListPagingData.do" })
+    @RequestMapping(value ={ "/", "/ListPagingData.do" })
     public String ListPagingData(Model model)
     {
-        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap           paramMap    = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        BasicBean       resultBean  = null;
 
-//		model.addAttribute("IdcInfoList", mIdcInfoBiz.ListData(new MyMap()));
-		model.addAttribute("parentMap", paramMap);
+        paramMap.put("type", "A");      // 부모(A) 자식(C)
+
+        resultBean = mBiz.ListPagingData( paramMap );
+
+        model.addAttribute("paramMap",          paramMap);
+        model.addAttribute("Data",              resultBean);
 
         return pagePrefix + "/ListPagingData";
     }
-    
+
     @RequestMapping(value = { "/PopupListData.do" })
     public String PopupListPagingData(Model model) {
             MyMap           paramMap                = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -62,8 +66,7 @@ public class CtnCodeAction
             return pagePrefix + "/popup/ListData";
     }
 
-    @RequestMapping(value =
-    { "/ListData.do" })
+    @RequestMapping(value = { "/ListData.do" })
     public @ResponseBody ResultMessage ListData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -74,8 +77,7 @@ public class CtnCodeAction
         return new ResultMessage("200", resultBean);
     }
 
-    @RequestMapping(value =
-    { "/SelectOneData.do" })
+    @RequestMapping(value ={ "/SelectOneData.do" })
     public @ResponseBody ResultMessage SelectOneData(Model model)
     {
         MyMap paramMap 	= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -84,8 +86,7 @@ public class CtnCodeAction
         return new ResultMessage("200", resultMap);
     }
 
-    @RequestMapping(value =
-    { "/Register.do" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/Register.do" }, method = RequestMethod.GET)
     public String Register(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -108,14 +109,13 @@ public class CtnCodeAction
     public @ResponseBody ResultMessage RegisterData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        
+
         int result = mBiz.RegisterData(paramMap);
 
         return new ResultMessage(ResultCode.RESULT_OK, "Success!!", null);
     }
 
-    @RequestMapping(value =
-    { "/ModifyData.do" })
+    @RequestMapping(value = { "/ModifyData.do" })
     public @ResponseBody ResultMessage ModifyData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -123,8 +123,7 @@ public class CtnCodeAction
         return new ResultMessage("", null);
     }
 
-    @RequestMapping(value =
-    { "/DeleteData.do" })
+    @RequestMapping(value = { "/DeleteData.do" })
     public @ResponseBody ResultMessage DeleteData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
