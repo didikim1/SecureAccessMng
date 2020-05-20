@@ -244,6 +244,17 @@ table.htable td {
   border: 1px solid #eee;
   float: left;
 }
+#layout_content_popup_sub table.htable input.userManageInput2{
+  width: 255px;
+  height: 30px;
+  line-height:24px;
+  margin-left:10px;
+  padding: 2px;
+  font-size: 14px;
+  color: #1b1b1b;
+  border: 1px solid #eee;
+  float: left;
+}
 #layout_content_popup_sub table.htable select.userManageInput{
   width: 300px;
   height: 30px;
@@ -384,3 +395,9 @@ table.htable td {
   width: 200px;
   height: 20px;
 }
+
+
+.ui-datepicker-trigger {
+	height:30px;
+}
+

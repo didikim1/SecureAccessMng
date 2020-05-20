@@ -1,4 +1,4 @@
-package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.idcinfo;
+package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqidc;
 
 import org.springframework.stereotype.Repository;
 
@@ -7,8 +7,8 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 
 @Master
-@Repository("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.idcinfo.IdcInfoMapper")
-public interface IdcInfoMapper
+@Repository("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqidc.EqIdcMapper")
+public interface EqIdcMapper
 {
 	/**
 	* 페이징 갯수

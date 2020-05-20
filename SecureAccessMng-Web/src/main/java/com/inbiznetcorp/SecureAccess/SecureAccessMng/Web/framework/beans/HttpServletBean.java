@@ -69,8 +69,12 @@ public class HttpServletBean
 //		mmClientRequestParameter.put("mberSttus",             FrameworkBeans.findSessionBean().mberSttus);
 //		mmClientRequestParameter.put("moblphonNo",            FrameworkBeans.findSessionBean().moblphonNo);
 //		mmClientRequestParameter.put("emailAddress",          FrameworkBeans.findSessionBean().emailAddress);
-		mmClientRequestParameter.put("frstRegisterId",        FrameworkBeans.findSessionBean().uniqId);
-		mmClientRequestParameter.put("lastUpdusrId",          FrameworkBeans.findSessionBean().uniqId);
+//		mmClientRequestParameter.put("frstRegisterId",        FrameworkBeans.findSessionBean().uniqId);
+//		mmClientRequestParameter.put("lastUpdusrId",          FrameworkBeans.findSessionBean().uniqId);
+		
+		mmClientRequestParameter.put("mberSeq",               "5");
+		mmClientRequestParameter.put("frstRegisterId",        "1020jhs");
+		mmClientRequestParameter.put("lastUpdusrId",          "1020jhs");
 
 		return mmClientRequestParameter;
 	}

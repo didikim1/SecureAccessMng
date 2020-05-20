@@ -41,7 +41,7 @@ function fnOpenRegisterPage(svId){
 			$.fun.layout({
 				id:"induacaAdd",
 				"content":data,
-				"title":"계정생성",
+				"title":"자산 등록",
 				"width":475,
 				"buttons":{}
 			});

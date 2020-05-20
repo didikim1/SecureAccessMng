@@ -1,4 +1,4 @@
-package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.idcinfo.service;
+package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service;
 
 import javax.annotation.Resource;
 
@@ -8,15 +8,15 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBe
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkPagingUtils;
-import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.idcinfo.IdcInfoMapper;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqidc.EqIdcMapper;
 
-@Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.idcinfo.service.IdcInfoBiz")
-public class IdcInfoBiz
+@Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz")
+public class EqIdcBiz
 {
-	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(IdcInfoBiz.class.getName());
+	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(EqIdcBiz.class.getName());
 
-	@Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.idcinfo.IdcInfoMapper")
-	IdcInfoMapper mMapper;
+	@Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqidc.EqIdcMapper")
+	EqIdcMapper mMapper;
 
 
 	/**

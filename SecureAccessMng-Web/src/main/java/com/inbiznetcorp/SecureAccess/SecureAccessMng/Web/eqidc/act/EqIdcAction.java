@@ -1,4 +1,4 @@
-package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.idcinfo.act;
+package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act;
 
 import javax.annotation.Resource;
 
@@ -6,21 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
-import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.idcinfo.service.IdcInfoBiz;
 
 @Controller
 @RequestMapping("/idcinfo")
-public class IdcInfoAction
+public class EqIdcAction
 {
 	final String pagePrefix = "comtn/bbs";
 
-	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(IdcInfoAction.class.getName());
+	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(EqIdcAction.class.getName());
 	
-	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.idcinfo.service.IdcInfoBiz")
-        IdcInfoBiz mBiz;
+	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz")
+        EqIdcBiz mBiz;
 
 	@RequestMapping(value = { "/ListPagingData.do" })
 	public String ListPagingData(Model model)

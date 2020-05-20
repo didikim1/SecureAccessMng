@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 회원관리 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.entrprsmber.EntrprsmberMapper">
+
+	<sql id="addWhere">
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
+			AND SEQ 	=  #{seq}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(dpamentId)">
+			AND DPAMENT_ID 	=  #{dpamentId}
+		</if>
+
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_ENTRPRSMBER
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 T1.SEQ															as seq					<!-- 관리회원고유 SEQ -->
+				,T1.DPAMENT_ID													as dpamentId			<!-- 부서명 고유ID -->
+				,T1.POSITION_ID													as positionId			<!-- 직위고유ID -->
+				,T1.UNIQ_ID														as uniqId				<!-- 고유ID -->
+				,T1.PASSWORD													as password				<!-- 비밀번호 -->
+				,T1.MBER_NAME													as mberName				<!-- 이름 -->
+				,T1.MBER_STTUS													as mberSttus			<!-- 상태 -->
+				,T1.MOBLPHON_NO													as moblphonNo			<!-- 휴대폰번호 -->
+				,T1.EMAIL_ADDRESS												as emailAddress			<!-- Email 주소 -->
+				,T1.FRST_REGISTER_ID											as frstRegisterId		<!-- 최초등록ID -->
+				,T1.LAST_UPDUSR_ID												as lastUpdusrId			<!-- 최종등록ID -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		as frstRegisterPnttm 	<!-- 최초등록일 -->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm 		<!-- 최종등록일 -->
+		FROM
+			 CTN_ENTRPRSMBER T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY ${sidx} ${sord}
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 T1.SEQ															as seq					<!-- 관리회원고유 SEQ -->
+				,T1.DPAMENT_ID													as dpamentId			<!-- 부서명 고유ID -->
+				,T1.POSITION_ID													as positionId			<!-- 직위고유ID -->
+				,T1.UNIQ_ID														as uniqId				<!-- 고유ID -->
+				,T1.PASSWORD													as password				<!-- 비밀번호 -->
+				,T1.MBER_NAME													as mberName				<!-- 이름 -->
+				,T1.MBER_STTUS													as mberSttus			<!-- 상태 -->
+				,T1.MOBLPHON_NO													as moblphonNo			<!-- 휴대폰번호 -->
+				,T1.EMAIL_ADDRESS												as emailAddress			<!-- Email 주소 -->
+				,T1.FRST_REGISTER_ID											as frstRegisterId		<!-- 최초등록ID -->
+				,T1.LAST_UPDUSR_ID												as lastUpdusrId			<!-- 최종등록ID -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		as frstRegisterPnttm 	<!-- 최초등록일 -->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm 		<!-- 최종등록일 -->
+		FROM
+			 CTN_ENTRPRSMBER T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+		INSERT INTO CTN_ENTRPRSMBER
+			(
+				 DPAMENT_ID					<!-- 부서명 고유ID -->
+				,POSITION_ID				<!-- 직위고유ID -->
+				,UNIQ_ID					<!-- 고유ID -->
+				,PASSWORD					<!-- 비밀번호 -->
+				,MBER_NAME					<!-- 이름 -->
+				,MBER_STTUS					<!-- 상태 -->
+				,MOBLPHON_NO				<!-- 휴대폰번호 -->
+				,EMAIL_ADDRESS				<!-- Email 주소 -->
+				,FRST_REGISTER_ID			<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID				<!-- 최종등록ID -->
+				,FRST_REGISTER_PNTTM 		<!-- 최초등록일 -->
+				,LAST_UPDUSR_PNTTM 			<!-- 최종등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{dpamentId}				<!-- 부서명 고유ID -->
+				,#{positionId}				<!-- 직위고유ID -->
+				,#{uniqId}					<!-- 고유ID -->
+				,#{password}				<!-- 비밀번호 -->
+				,#{mberName}				<!-- 이름 -->
+				,#{mberSttus}				<!-- 상태 -->
+				,#{moblphonNo}				<!-- 휴대폰번호 -->
+				,#{emailAddress}			<!-- Email 주소 -->
+				,#{frstRegisterId}			<!-- 최초등록ID -->
+				,#{lastUpdusrId}			<!-- 최종등록ID -->
+				,now() 						<!-- 최초등록일 -->
+				,now() 						<!-- 최종등록일 -->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_ENTRPRSMBER
+			 SET
+				 LAST_UPDUSR_ID 	=  #{lastUpdusrId}
+				,LAST_UPDUSR_PNTTM  =  now()
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(dpamentId)">   	,DPAMENT_ID 	= #{dpamentId} 		</if>  <!-- 부서ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">   	,POSITION_ID 	= #{positionId} 	</if>  <!-- 직위ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">   		,UNIQ_ID 		= #{uniqId}  		</if>  <!-- 고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)">   	,PASSWORD 		= #{password}		</if>  <!-- 비밀번호 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">   	,MBER_NAME 		= #{mberName}   	</if>  <!-- 비밀번호 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">   	,MBER_STTUS 	= #{mberSttus}  	</if>  <!-- 상태 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">    ,MOBLPHON_NO 	= #{moblphonNo} 	</if>  <!-- 휴대폰번호 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(emailAddress)">  ,EMAIL_ADDRESS 	= #{emailAddress}  	</if>  <!-- Email 주소 -->
+
+		WHERE SEQ = #{seq}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_ENTRPRSMBER WHERE SEQ = #{seq}
+	</update>
+
+</mapper>

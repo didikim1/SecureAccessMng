@@ -62,8 +62,15 @@ public class EqListBiz
 	* @param paramMap
 	* @return
 	*/
-	public int RegisterData(MyMap paramMap) {
-		return mMapper.RegisterData(paramMap);
+	public int RegisterData(MyMap paramMap)
+	{
+	    // port 번호 미기재 시 null이 삽입 되도록
+	    if(paramMap.getStr("svPort", "").equals(""))
+	    {
+	        paramMap.remove("svPort");
+	    }
+	    
+	    return mMapper.RegisterData(paramMap);
 	}
 
 	/**

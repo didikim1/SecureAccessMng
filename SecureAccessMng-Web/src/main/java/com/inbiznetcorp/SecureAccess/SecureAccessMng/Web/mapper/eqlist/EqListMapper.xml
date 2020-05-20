@@ -101,13 +101,13 @@
 	<update id="RegisterData" parameterType="myMap" >
 		INSERT INTO EQ_LIST
 			(
-				 IDC_ID 													    	<!--IDC 고유ID-->
-				,SV_MODEL 															<!--기종-->
-				,SV_MANUFACTURE														<!-- 제조업체 -->
-				,SV_NAME 														    <!--서버명-->
-				,SV_USAGE 															<!--사용용도-->
-				,SV_POSITION 												 	    <!--상면-->
-				,SV_STTUS 												 	   	 	<!--상태-->
+				 REF_EQ_IDC 													    <!--IDC 고유ID-->
+				,`NAME` 														    <!--서버명-->
+				,MODEL 																<!--기종-->
+				,MANUFACTURE														<!-- 제조업체 -->
+				,`USAGE` 															<!--사용용도-->
+				,`POSITION` 												 	    <!--상면-->
+				,STTUS 												 	   	 		<!--상태-->
 				,PROPERTY_NAME														<!-- 자산명 -->
 				,PROPERTY_NUM														<!-- 자산번호 -->
 				,SEPEC_CPU															<!-- 스펙 씨피유 -->
@@ -115,35 +115,45 @@
 				,SEPEC_DISK															<!-- 스펙 디스크 -->
 				,SEPEC_NIC															<!-- 스펙 랜카드 -->
 				,OS_TYPE															<!-- OS타입 -->
-				,SV_IP 			                                            		<!--서버 IP-->
+				,SV_IP1 			                                            	<!--서버 IP1-->
+				,SV_IP2 			                                            	<!--서버 IP2-->
+				,SV_IP3 			                                            	<!--서버 IP3-->
+				,SV_IP4 			                                            	<!--서버 IP4-->
 				,SV_PORT 			                                    			<!--서버 SSH PORT-->
 				,MANAGER_ID 			                                    		<!--관리자ID-->
-				,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 						<!--입고일-->
-				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	 		<!--최초등록일-->
-				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	 		<!--최종등록일-->
+				,RECEIVING_PNTTM 													<!--입고일-->
+				,FRST_REGISTER_PNTTM 	 											<!--최초등록일-->
+				,LAST_UPDUSR_PNTTM 	 												<!--최종등록일-->
+				,FRST_REGISTER_ID 	 												<!--최초등록ID-->
+				,LAST_UPDUSR_ID 	 												<!--최종등록ID-->
 			)
 			 VALUES
 			(
-				 #{idcId}	 		    <!--IDC 고유ID-->
-				,#{svModel}	 		    <!--기종-->
-				,#{svManufacture}	 	<!--제조업체-->
+				 #{idcSeq}	 		    <!--IDC 고유ID-->
 				,#{svName}	 		    <!--서버명-->
+				,#{svModelName}	 		<!--기종-->
+				,#{svManufactureName}	<!--제조업체-->
 				,#{svUsage}	 		    <!--사용용도-->
 				,#{svPosition}	 	    <!--상면-->
 				,#{svSttus}	 	    	<!--상태-->
 				,#{propertyName}		<!-- 자산명 -->
 				,#{propertyNum}		    <!-- 자산번호 -->
-				,#{sepecCpu}			<!-- 스펙 씨피유 -->
-				,#{sepecMm}			    <!-- 스펙 메모리 -->
-				,#{sepecDisk}			<!-- 스펙 디스크 -->
-				,#{sepecNic}			<!-- 스펙 랜카드 -->
-				,#{osType}				<!-- OS타입 -->
-				,#{svIp} 				<!--서버 IP-->
+				,#{svSepecCpuName}		<!-- 스펙 씨피유 -->
+				,#{svSepecMmName}		<!-- 스펙 메모리 -->
+				,#{svSepecDiskName}		<!-- 스펙 디스크 -->
+				,#{svSepecNicName}		<!-- 스펙 랜카드 -->
+				,#{svOsTypeName}		<!-- OS타입 -->
+				,#{svIp1} 				<!--서버 IP-->
+				,#{svIp2} 				<!--서버 IP-->
+				,#{svIp3} 				<!--서버 IP-->
+				,#{svIp4} 				<!--서버 IP-->
 				,#{svPort} 				<!--서버 SSH PORT-->
-				,#{managerId}			<!--관리자ID-->
+				,#{entrprsmberSeq}		<!--관리자ID-->
 				,#{receivingPnttm} 		<!--입고일-->
 				,now() 					<!--최초등록일-->
 				,now() 					<!--최종등록일-->
+				,#{frstRegisterId} 		<!--최초등록ID-->
+				,#{lastUpdusrId} 		<!--최종등록ID-->
 			)
 	</update>
 
