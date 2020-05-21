@@ -70,7 +70,7 @@ public class LoginAct
         String          resultCode      = ResultCode.RESULT_OK;
 
         resultMap                         = mBiz.SelectOneData(paramMap);
-        
+
         if ( resultMap == null )
         {
                 resultCode = ResultCode.RESULT_EMPTY;
@@ -86,80 +86,80 @@ public class LoginAct
                 FrameworkBeans.findSessionBean().moblphonNo     = resultMap.getStr("moblphonNo");
                 FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
         }
-        
+
         return new ResultMessage(resultCode, "success");
     }
+//
+//    @RequestMapping(value = { "/RegisterData.do" })
+//    public String RegisterData(Model model)
+//    {
+//            MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//            MyMap resultMap       = null;
+//
+//             model.addAttribute("paramMap",      paramMap);
+//
+//            return pagePrefix + "/RegisterData";
+//    }
+//
+//    @RequestMapping(value = { "/ProcRegisterData.do" })
+//    public ResultMessage ProcRegisterData(Model model)
+//    {
+//        MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//        MyCamelMap         resultMap                       = new MyCamelMap();
+//        int                resultRegisterDataCount         = 0;
+//
+//        resultRegisterDataCount = mBiz.RegisterData( paramMap );
+//
+//        return new ResultMessage("", null);
+//    }
+//
+//    @RequestMapping(value = { "/ModifyData.do" })
+//    public String ModifyData(Model model)
+//    {
+//            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//
+//             model.addAttribute("paramMap",      paramMap);
+//
+//            return pagePrefix + "/ModifyData";
+//    }
+//
+//    @RequestMapping(value = { "/ProcModifyData.do" })
+//    public ResultMessage ProcModifyData(Model model)
+//    {
+//        MyMap              paramMap                = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//        MyCamelMap         resultMap               = new MyCamelMap();
+//        int                resultRegisterDataCount = 0;
+//
+//        resultRegisterDataCount = mBiz.ModifyData( paramMap );
+//
+//        return new ResultMessage(ResultCode.RESULT_OK, null);
+//    }
 
-    @RequestMapping(value = { "/RegisterData.do" })
-    public String RegisterData(Model model)
-    {
-            MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-            MyMap resultMap       = null;
+//    @RequestMapping(value = { "/DeleteData.do" })
+//    public String DeleteData(Model model)
+//    {
+//            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//
+//             model.addAttribute("paramMap",      paramMap);
+//
+//            return pagePrefix + "/ModifyData";
+//    }
 
-             model.addAttribute("paramMap",      paramMap);
-
-            return pagePrefix + "/RegisterData";
-    }
-
-    @RequestMapping(value = { "/ProcRegisterData.do" })
-    public ResultMessage ProcRegisterData(Model model)
-    {
-        MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        MyCamelMap         resultMap                       = new MyCamelMap();
-        int                resultRegisterDataCount         = 0;
-
-        resultRegisterDataCount = mBiz.RegisterData( paramMap );
-
-        return new ResultMessage("", null);
-    }
-
-    @RequestMapping(value = { "/ModifyData.do" })
-    public String ModifyData(Model model)
-    {
-            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
-             model.addAttribute("paramMap",      paramMap);
-
-            return pagePrefix + "/ModifyData";
-    }
-
-    @RequestMapping(value = { "/ProcModifyData.do" })
-    public ResultMessage ProcModifyData(Model model)
-    {
-        MyMap              paramMap                = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        MyCamelMap         resultMap               = new MyCamelMap();
-        int                resultRegisterDataCount = 0;
-
-        resultRegisterDataCount = mBiz.ModifyData( paramMap );
-
-        return new ResultMessage(ResultCode.RESULT_OK, null);
-    }
-
-    @RequestMapping(value = { "/DeleteData.do" })
-    public String DeleteData(Model model)
-    {
-            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
-             model.addAttribute("paramMap",      paramMap);
-
-            return pagePrefix + "/ModifyData";
-    }
-
-    @RequestMapping(value = { "/ProcDeleteData.do" })
-    public ResultMessage ProcDeleteData(Model model)
-    {
-        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        MyCamelMap         resultMap                     = new MyCamelMap();
-        int                resultDeleteDataCount         = 0;
-        String              resultCode                   = ResultCode.RESULT_EMPTY;
-
-        resultDeleteDataCount = mBiz.DeleteData( paramMap );
-
-        if ( resultDeleteDataCount > 0 )
-        {
-                resultCode = ResultCode.RESULT_OK;
-        }
-
-        return new ResultMessage(resultCode, resultMap);
-    }
+//    @RequestMapping(value = { "/ProcDeleteData.do" })
+//    public ResultMessage ProcDeleteData(Model model)
+//    {
+//        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//        MyCamelMap         resultMap                     = new MyCamelMap();
+//        int                resultDeleteDataCount         = 0;
+//        String              resultCode                   = ResultCode.RESULT_EMPTY;
+//
+//        resultDeleteDataCount = mBiz.DeleteData( paramMap );
+//
+//        if ( resultDeleteDataCount > 0 )
+//        {
+//                resultCode = ResultCode.RESULT_OK;
+//        }
+//
+//        return new ResultMessage(resultCode, resultMap);
+//    }
 }

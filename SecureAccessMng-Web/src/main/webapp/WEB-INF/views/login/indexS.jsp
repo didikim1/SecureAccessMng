@@ -29,7 +29,8 @@ function fnLogin(){
 	        	console.log(result);
 	        	if ( "200" == result.code ){
 // 	        		location.href="/recordPlay/";
-	        		location.href="/eqlist/";
+// 	        		location.href="/eqlist/";
+	        		location.href="/eqacclog/ListPagingData.do";
 	        	} else if ( "100" == result.code ){
 	        		alert("[아이디/비밀번호] 확인해주세요.");
 	        	} else {

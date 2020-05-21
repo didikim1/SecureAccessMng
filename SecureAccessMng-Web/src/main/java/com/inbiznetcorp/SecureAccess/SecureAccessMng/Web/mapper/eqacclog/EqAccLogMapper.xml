@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 수신입금계좌정보 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqacclog.EqAccLogMapper">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
+			AND (
+				DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') BETWEEN #{sDate} AND #{eDate}
+			)
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			EQ_ACCLOG
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 SEQ														as seq				    <!--서버고유ID-->
+			 	,WORKTYPECODE_ID 											as worktypecodeId		<!-- 업무코드 ID -->
+
+				,REF_EQ_IDC 									  			as refEqIdc				<!-- IDC고유 SEQ -->
+			    ,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 		as eqIdcName  			<!-- IDC 명칭 -->
+
+				,REF_EQ_LIST 										  		as refEqList			<!-- 서버고유SEQ -->
+				,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 	as eqListSvIp1  		<!-- 서버명칭 -->
+				,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 		as eqListName  			<!-- 서버명칭 -->
+
+				,REF_EQ_IDPWD 										  		as refEqIdpwd			<!-- 모듈고유SEQ -->
+				,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 		as eqIdpwdID  			<!-- 모듈명칭 -->
+
+
+				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
+				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
+				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
+
+				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
+				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
+				,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName  	 	<!-- 허용IP 이름 -->
+
+				,PROCESSID													as processid			<!-- 프로세스 ID -->
+				,STTUS														as sttus				<!-- 처리상태(A) -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
+		FROM
+			 EQ_ACCLOG T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 SEQ					as seq				    <!--서버고유ID-->
+			 	 WORKTYPECODE_ID 		as worktypecodeId		<!-- 업무코드 ID -->
+				,REF_EQ_IDC 			as refEqIdc				<!-- IDC고유 SEQ -->
+				,REF_EQ_LIST 			as refEqList			<!-- 서버고유SEQ -->
+				,REF_EQ_IDPWD 			as refEqIdpwd			<!-- 모듈고유SEQ -->
+				,REF_NRLMBER			as refNrlmber			<!-- 회원고유번호 SEQ -->
+				,REF_ALLOW_IP			as refAllowIp			<!-- 허용IP SEQ -->
+				,PROCESSID				as processid			<!-- 프로세스 ID -->
+				,STTUS					as sttus				<!-- 처리상태(A) -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
+		FROM
+			 EQ_LIST T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+
+	</update>
+
+</mapper>
