@@ -11,7 +11,7 @@
 			<div class="border">
 				<h1 class="tit01">검색조건</h1>
 				<form name="FormSearchEqAcclog" action="/eqacclog/ListPagingData.do" method="get">
-					<input type="hidden" name="excelResult"/>
+					<input type="hidden" name="page"/>
 					<table class="wtable_sub">
 						<tr>
 							<td>
@@ -72,7 +72,7 @@
 
 			<c:if test="${Data.paginationInfo.totalRecordCount > 0 }">
 				<div class="border">
-					<tag:Page formName="recordSearchForm" pageing="${Data.paginationInfo}"/>
+					<tag:Page formName="FormSearchEqAcclog" pageing="${Data.paginationInfo}"/>
 				</div>
 			</c:if>
 		</div>

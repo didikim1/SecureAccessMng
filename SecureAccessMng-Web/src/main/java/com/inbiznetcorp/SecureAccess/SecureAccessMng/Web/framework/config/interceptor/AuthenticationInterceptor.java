@@ -61,7 +61,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
         	{
         		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-        		return false;
+        		return true;
         	}
         	else
         	{

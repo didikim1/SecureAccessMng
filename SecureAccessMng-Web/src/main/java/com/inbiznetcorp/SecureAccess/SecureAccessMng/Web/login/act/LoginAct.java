@@ -1,6 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -135,15 +136,14 @@ public class LoginAct
 //        return new ResultMessage(ResultCode.RESULT_OK, null);
 //    }
 
-//    @RequestMapping(value = { "/DeleteData.do" })
-//    public String DeleteData(Model model)
-//    {
-//            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-//
-//             model.addAttribute("paramMap",      paramMap);
-//
-//            return pagePrefix + "/ModifyData";
-//    }
+    // 로그아웃
+    @RequestMapping(value = { "/DeleteData.do" })
+    public String DeleteData(Model model, HttpServletRequest request)
+    {
+            request.getSession().invalidate();
+
+            return "redirect:/login/";
+    }
 
 //    @RequestMapping(value = { "/ProcDeleteData.do" })
 //    public ResultMessage ProcDeleteData(Model model)
