@@ -5,197 +5,17 @@
 <div id="layout_content_popup_sub">
 	<div class="content">
 		<div class="border_sub">
-			<form name="FormEqList">
-<%-- 				<input type="hidden" name="mberId" value="${Info.mberId}" /> --%>
-				<div align="center" >
-					<table class="htable">
-
-						<!-- 자산명 -->
-						<tr>
-							<th scope="col" width="120px">자산명</th>
-							<td><input type="text" class="userManageInput" id="propertyName" name="propertyName" autocomplete="off" value="${Info.propertyName}" /></td>
-						</tr>
-						<!-- //자산명 -->
-						
-						<!-- 자산번호 -->
-						<tr>
-							<th scope="col" width="120px">자산번호</th>
-							<td><input type="text" class="userManageInput" id="propertyNum" name="propertyNum" autocomplete="off" value="${Info.propertyNum}" /></td>
-						</tr>
-						<!-- //자산번호 -->
-						
-						<!-- 사용용도 -->
-						<tr>
-							<th scope="col" width="120px">사용용도</th>
-							<td><input type="text" class="userManageInput" id="svUsage" name="svUsage" autocomplete="off" value="${Info.svUsage}" /></td>
-						</tr>
-						<!-- //사용용도 -->
-
-						<!-- 서버명 -->
-						<tr>
-							<th scope="col" width="120px">서버명</th>
-							<td><input type="text" class="userManageInput" id="svName" name="svName" autocomplete="off" value="${Info.svName}" /></td>
-						</tr>
-						<!-- //서버명 -->
-
-						<!-- 서버기종 -->
-						<tr>
-							<th scope="col" width="120px">서버기종</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('MODEL', 'svModel')" id="svModelName" name="svModelName" autocomplete="off" value="${Info.svModelName}" readonly="readonly" />
-								<input type="hidden" id="svModel" name="svModel" autocomplete="off" value="${Info.svModelName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //서버기종 -->
-
-						<!-- 제조사 -->
-						<tr>
-							<th scope="col" width="120px">제조사</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('MANUFACTURE', 'svManufacture')" id="svManufactureName" name="svManufactureName" autocomplete="off" value="${Info.svManufactureName}" readonly="readonly" />
-								<input type="hidden" id="svManufacture" name="svManufacture" autocomplete="off" value="${Info.svManufactureName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //제조사 -->
-
-						<!-- 입고일 -->
-						<tr>
-							<th scope="col" width="120px">입고일</th>
-							<td><input type="text" class="userManageInput2" id="receivingPnttm" name="receivingPnttm" autocomplete="off" value="${paramMap.receivingPnttm}" /></td>
-						</tr>
-						<!-- //입고일 -->
-
-						<!-- 스펙 CPU-->
-						<tr>
-							<th scope="col" width="120px">스펙 CPU</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_CPU', 'svSepecCpu')" id="svSepecCpuName" name="svSepecCpuName" autocomplete="off" value="${Info.svSepecCpuName}" readonly="readonly" />
-								<input type="hidden" id="svSepecCpu" name="svSepecCpu" autocomplete="off" value="${Info.svSepecCpuName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //스펙 CPU -->
-
-						<!-- 스펙 MM -->
-						<tr>
-							<th scope="col" width="120px">스펙 MM</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_MM', 'svSepecMm')" id="svSepecMmName" name="svSepecMmName" autocomplete="off" value="${Info.svSepecMmName}" readonly="readonly" />
-								<input type="hidden" id="svSepecMm" name="svSepecMm" autocomplete="off" value="${Info.svSepecMmName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //스펙 MM -->
-
-						<!-- 스펙 DISK -->
-						<tr>
-							<th scope="col" width="120px">스펙 DISK</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_DISK', 'svSepecDisk')" id="svSepecDiskName" name="svSepecDiskName" autocomplete="off" value="${Info.svSepecDiskName}" readonly="readonly" />
-								<input type="hidden" id="svSepecDisk" name="svSepecDisk" autocomplete="off" value="${Info.svSepecDiskName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //스펙 DISK -->
-
-						<!-- 스펙 NIC -->
-						<tr>
-							<th scope="col" width="120px">스펙 NIC</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('SEPEC_NIC', 'svSepecNic')" id="svSepecNicName" name="svSepecNicName" autocomplete="off" value="${Info.svSepecNicName}" readonly="readonly" />
-								<input type="hidden" id="svSepecNic" name="svSepecNic" autocomplete="off" value="${Info.svSepecNicName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //스펙 NIC -->
-
-
-						<!-- IP #1 -->
-						<tr>
-							<th scope="col" width="120px">IP #1</th>
-							<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
-						</tr>
-						<!-- //IP #1 -->
-
-						<!-- IP #2 -->
-						<tr>
-							<th scope="col" width="120px">IP #2</th>
-							<td><input type="text" class="userManageInput" id="svIp2" name="svIp2" autocomplete="off" value="${Info.svIp2}" /></td>
-						</tr>
-						<!-- //IP #2 -->
-
-						<!-- IP #3 -->
-						<tr>
-							<th scope="col" width="120px">IP #3</th>
-							<td><input type="text" class="userManageInput" id="svIp3" name="svIp3" autocomplete="off" value="${Info.svIp3}" /></td>
-						</tr>
-						<!-- //IP #3 -->
-
-						<!-- IP #4 -->
-						<tr>
-							<th scope="col" width="120px">IP #4</th>
-							<td><input type="text" class="userManageInput" id="svIp4" name="svIp4" autocomplete="off" value="${Info.svIp4}" /></td>
-						</tr>
-						<!-- //IP #4 -->
-
-						<!-- port -->
-						<tr>
-							<th scope="col" width="120px">PORT</th>
-							<td><input type="text" class="userManageInput" id="svPort" name="svPort" autocomplete="off" value="${Info.svPort}" /></td>
-						</tr>
-						<!-- //port -->
-
-						<!-- OSType -->
-						<tr>
-							<th scope="col" width="120px">OSType</th>
-							<td>
-								<input type="text" style="cursor: pointer;" class="userManageInput" onclick="fnOpenRegisterEquipmentPage('OS_TYPE', 'svOsType')" id="svOsTypeName" name="svOsTypeName" autocomplete="off" value="${Info.svOsTypeName}" readonly="readonly" />
-								<input type="hidden" id="svOsType" name="svOsType" autocomplete="off" value="${Info.svOsTypeName}" readonly="readonly" />
-							</td>
-						</tr>
-						<!-- //OSType -->
-						
-						<!-- 서버상태 -->
-						<tr>
-							<th scope="col" width="120px">서버상태</th>
-							<td><input type="text" class="userManageInput" id="svSttus" name="svSttus" autocomplete="off" value="${Info.svSttus}" /></td>
-						</tr>
-						<!-- //서버상태 -->
-
-						<!-- IDC -->
-						<tr>
-							<th scope="col" width="120px">IDC</th>
-							<td>
-								<select class="userManageInput" name="idcSeq">
-									<option value="">선택</option>
-									<c:forEach items="${IdcInfoList}" var="idcInfo">
-										<option value="${idcInfo.idcSeq}">${idcInfo.idcName}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<!-- //IDC -->
-
-						<!-- 상면 -->
-						<tr>
-							<th scope="col" width="120px">상면</th>
-							<td><input type="text" class="userManageInput" id="svPosition" name="svPosition" autocomplete="off" value="${Info.svPosition}" /></td>
-						</tr>
-						<!-- //상면 -->
-
-						<!-- 관리자 -->
-						<tr>
-							<th scope="col" width="120px">관리자</th>
-							<td>
-								<select class="userManageInput" name="entrprsmberSeq">
-									<option value="">선택</option>
-									<c:forEach items="${EntrprsmberList}" var="entrprsmber">
-										<option value="${entrprsmber.seq}">${entrprsmber.mberName}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<!-- //관리자 -->
-
-					</table>
-				</div>
-			</form>
+			
+			<!-- A:자산등록, B:계정등록 -->
+			<c:choose>
+				<c:when test="${paramMap.registType eq 'A'}">
+					<jsp:include page="register/Equip.jsp" flush="false" />
+				</c:when>
+				<c:when test="${paramMap.registType eq 'B'}">
+					<jsp:include page="register/Account.jsp" flush="false" />
+				</c:when>
+			</c:choose>
+			
 		</div>
 
 		<div class="border margin_l7">
@@ -215,8 +35,25 @@
 	</div>
 </div>
 <script type="text/javascript">
-function fnProcRegisterData(){
+function fnProcRegisterData()
+{
+	var registType = "${paramMap.registType}";
 	
+	// 장비등록
+	if(registType == "A")
+	{
+		fnProcRegisterEquipCodeData();
+	}
+	// 계정등록
+	else if(registType == "B")
+	{
+		fnProcRegisterAccountData();
+	}
+
+}
+
+function fnProcRegisterEquipCodeData()
+{
 	// 관리자, IDC 선택하지 않은 경우 체크.
 	if(!$("[name=idcSeq]").val())
 	{
@@ -240,28 +77,64 @@ function fnProcRegisterData(){
 			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
 				location.reload();
 			}});
-// 			$.fun.layout({
-// 				id:"induacaAdd",
-// 				"content":data,
-// 				"title":"자산 등록",
-// 				"width":475,
-// 				"buttons":{}
-// 			});
 		}
 	});
-
 }
 
-function fnOpenRegisterEquipmentPage(title,inputName){
+function fnProcRegisterAccountData()
+{
+	var inputText = $("form[name=FormEqList] input[type=text]");
+	for(var i=0; i<inputText.length; i++)
+	{
+		if(!inputText.eq(i).val())
+		{
+			$.fun.alert({content:"비어있는 항목이 있습니다."});
+			return false;
+		}
+	}
+	
+	// 계정 등록
 	$.fun.ajax({
 		type:'get',
-		url:"/ctn/code/PopupListData.do?title="+title+"&type=B&inputName="+inputName,
+		url:"/eqidpwd/RegisterData.do",
+		data:$("form[name=FormEqList]").serialize(),
+		success:function(data){
+			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+				location.reload();
+			}});
+		}
+	});
+}
+
+// 장비등록
+function fnOpenRegisterEquipCodePage(title,inputName){
+	$.fun.ajax({
+		type:'get',
+		url:"/ctn/code/PopupListData.do?title="+title+"&registType=A&type=B&inputName="+inputName,
 		success:function(data){
 			console.log(data)
 			$.fun.layout({
 				id:"RegisterSvModelPageEquipment",
 				"content":data,
 				"title":"장비등록",
+				"width":600,
+				"buttons":{}
+			});
+		}
+	});
+}
+
+// 계정등록
+function fnOpenRegisterAccountPage(title,inputName){
+	$.fun.ajax({
+		type:'get',
+		url:"/ctn/code/PopupListData.do?title="+title+"&registType=B&type=B&inputName="+inputName,
+		success:function(data){
+			console.log(data)
+			$.fun.layout({
+				id:"RegisterSvModelPageEquipment",
+				"content":data,
+				"title":"계정등록",
 				"width":600,
 				"buttons":{}
 			});

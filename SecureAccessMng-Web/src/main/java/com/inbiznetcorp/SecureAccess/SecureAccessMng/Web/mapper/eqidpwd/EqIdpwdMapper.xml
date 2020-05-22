@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 수신입금계좌정보 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqidpwd.EqIdpwdMapper">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
+			AND SEQ 	=  #{seq}
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			EQ_IDPWD
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ 														as seq	 					<!--장비접속ID 고유값-->
+			,REF_EQ_LIST 			                                    as refEqList 				<!--EQ_LIST 고유값-->
+			,NAME 														as name	 					<!--명칭 -->
+			,ID 														as id	 					<!--장비접속ID -->
+			,PWD 														as pwd	 					<!--장비접속패스워드 -->
+			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
+			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 EQ_IDPWD T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.LAST_UPDUSR_PNTTM DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ 														as seq	 					<!--장비접속ID 고유값-->
+			,REF_EQ_LIST 			                                    as refEqList 				<!--EQ_LIST 고유값-->
+			,NAME 														as name	 					<!--명칭 -->
+			,ID 														as id	 					<!--장비접속ID -->
+			,PWD 														as pwd	 					<!--장비접속패스워드 -->
+			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
+			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+		FROM
+			 EQ_IDPWD T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+		INSERT INTO EQ_IDPWD
+			(
+				 REF_EQ_LIST 							<!-- EQ_LIST 고유값 -->
+				,NAME 									<!-- 명칭 		-->
+				,ID 									<!-- 장비접속ID	-->
+				,PWD 									<!-- 장비접속패스워드	-->
+				,FRST_REGISTER_ID 						<!-- 최초등록 ID	-->
+				,LAST_UPDUSR_ID 						<!-- 최종등록일 ID	-->
+				,FRST_REGISTER_PNTTM 					<!-- 최초등록일 	-->
+				,LAST_UPDUSR_PNTTM 						<!-- 최종등록일 	-->
+			)
+			 VALUES
+			(
+				 #{refEqList}			<!--장비접속ID 고유값 -->
+				,#{name}				<!--명칭 -->
+				,#{id}					<!--장비접속ID -->
+				,#{pwd}					<!--장비접속PWD -->
+				,#{frstRegisterId}		<!--최초등록 ID -->
+				,#{lastUpdusrId}		<!--최종등록일 ID -->
+				,now()					<!-- 최초등록일 -->
+				,now()					<!-- 최종등록일 -->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE EQ_IDPWD
+			 SET
+				LAST_UPDUSR_PNTTM  =  now()
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">  ,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">  		,NAME = #{name}    			</if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(id)"> 			,ID = #{id}  			</if>  	 <!-- 서버명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(pwd)"> 			,PWD = #{pwd}  			</if>  	 <!-- 서버명 -->
+		WHERE SEQ = #{seq}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		UPDATE EQ_IDPWD WHERE SEQ = #{seq}
+	</update>
+
+</mapper>

@@ -32,16 +32,49 @@ $(function(){
 function fnProcSearch(){
 	$("[name=FormSearchGnrlmber]").submit();
 }
-//`\ 자산등록페이지
-function fnOpenRegisterPage(svId){
+// 자산등록페이지
+function fnOpenRegisterPage(registType)
+{
+	// A:자산등록, B:계정등록
+	if(registType == "A")
+	{
+		fnEquipRegister(registType);
+	}
+	else if(registType == "B")
+	{
+		fnAccountRegister(registType);
+	}
+}
+
+// 자산등록
+function fnEquipRegister(registType)
+{
 	$.fun.ajax({
 		type:'get',
-		url:"/eqlist/Register.do?svId="+svId,
+		url:"/eqlist/Register.do?registType="+registType,
 		success:function(data){
 			$.fun.layout({
 				id:"induacaAdd",
 				"content":data,
 				"title":"자산 등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
+// 계정등록
+function fnAccountRegister(registType)
+{
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/Register.do?registType="+registType,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"계정 등록",
 				"width":475,
 				"buttons":{}
 			});

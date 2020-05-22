@@ -68,21 +68,41 @@ function fn_loadGrid(gridId, searchDataUrl, searchData){
 
 function fnParentPageSetup(cellvalue){
 	console.log(cellvalue)
-	var _id ="${paramMap.inputName}"
+	var _id ="${paramMap.inputName}";
+	var registType = "${paramMap.registType}";
 
-	$.fun.ajax({
-		type:'get',
-		datatype:'json',
-		url:"/ctn/code/SelectOneData.do?codeSeq="+cellvalue,
-		success:function(data){
-			var obj = JSON.parse(data);
-			console.log(obj);
+	if(registType == "A")
+	{
+		$.fun.ajax({
+			type:'get',
+			datatype:'json',
+			url:"/ctn/code/SelectOneData.do?codeSeq="+cellvalue,
+			success:function(data){
+				var obj = JSON.parse(data);
+				console.log(obj);
 
-			$("#"+_id).val( obj.result.codeSeq);
-			$("#"+_id+"Name").val( obj.result.name);
-			$("#RegisterSvModelPageEquipment").dialog('destroy').remove();
-		}
-	});
+				$("#"+_id).val( obj.result.codeSeq);
+				$("#"+_id+"Name").val( obj.result.name);
+				$("#RegisterSvModelPageEquipment").dialog('destroy').remove();
+			}
+		});
+	}
+	else if(registType == "B")
+	{
+		$.fun.ajax({
+			type:'get',
+			datatype:'json',
+			url:"/eqlist/SelectOneData.do?seq="+cellvalue,
+			success:function(data){
+				var obj = JSON.parse(data);
+				console.log(obj);
+
+				$("#"+_id).val( obj.result.seq);
+				$("#"+_id+"Name").val( obj.result.name);
+				$("#RegisterSvModelPageEquipment").dialog('destroy').remove();
+			}
+		});
+	}
 
 }
 
@@ -126,37 +146,66 @@ function selButton (cellvalue, options, rowObject) {
 
 $(document).ready(function() {
 
-
-	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
-		datatype:'json',
-		url:'/jqGrid/init',
-		colNames: [
-		           	 '명칭'
-		           	,'최종등록ID'
-		           	,''
-		           ],
-		colModel:[
-				 {name:'name', 				index:'NAME',				width:35,	align:'center', search:false,  sortable:true}
-				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
-				,{name:'codeSeq', 			index:'CODE_SEQ',			width:10,	align:'center', search:false,  sortable:false, formatter: selButton}
-		],
-		pager:"#pager",
-		rowNum:10,
-		width:"579px",
-		height:"400px",
-		sortname:"lastUpdusrPnttm",
-   		sortorder:"desc"
-	}));
+	var registType = "${paramMap.registType}";
+	if(registType == "A")
+	{
+		$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
+			datatype:'json',
+			url:'/jqGrid/init',
+			colNames: [
+			           	 '명칭'
+			           	,'최종등록ID'
+			           	,''
+			           ],
+			colModel:[
+					 {name:'name', 				index:'NAME',				width:35,	align:'center', search:false,  sortable:true}
+					,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
+					,{name:'codeSeq', 			index:'CODE_SEQ',			width:10,	align:'center', search:false,  sortable:false, formatter: selButton}
+			],
+			pager:"#pager",
+			rowNum:10,
+			width:"579px",
+			height:"400px",
+			sortname:"lastUpdusrPnttm",
+	   		sortorder:"desc"
+		}));
+	}
+	else if(registType == "B")
+	{
+		$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
+			datatype:'json',
+			url:'/jqGrid/init',
+			colNames: [
+			           	 '명칭'
+			           	,'최종등록ID'
+			           	,''
+			           ],
+			colModel:[
+					 {name:'name', 				index:'NAME',				width:35,	align:'center', search:false,  sortable:true}
+					,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
+					,{name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:false, formatter: selButton}
+			],
+			pager:"#pager",
+			rowNum:10,
+			width:"579px",
+			height:"400px",
+			sortname:"lastUpdusrPnttm",
+	   		sortorder:"desc"
+		}));
+	}
+	
 
 	setTimeout(function(){
-		var title  = "${paramMap.title}";
-		var type    = "${paramMap.type}";
-		var url 	= "/comtn/code/ListData.do";
+		var title  		= "${paramMap.title}";
+		var registType  = "${paramMap.registType}";
+		var type    	= "${paramMap.type}";
+		var url 		= "/comtn/code/ListData.do";
 
 		var paramMap = {};
-		paramMap["page"] 	= 0;
-		paramMap["title"] 	= title;
-		paramMap["type"] 	= type;
+		paramMap["page"] 		= 0;
+		paramMap["title"] 		= title;
+		paramMap["registType"] 	= registType;
+		paramMap["type"] 		= type;
 
 		jqGridUtils.searchProc({
 		     gridId:"#grid"

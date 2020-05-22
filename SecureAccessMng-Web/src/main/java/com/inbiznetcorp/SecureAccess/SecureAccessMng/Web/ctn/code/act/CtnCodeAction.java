@@ -72,7 +72,18 @@ public class CtnCodeAction
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         BasicBean resultBean = null;
 
-        resultBean = mBiz.ListData(paramMap);
+        String registType = paramMap.getStr("registType");      // A:자산등록, B:계정등록
+        
+        // CTN_CODE 테이블에서 장비정보 SELECT
+        if(registType.equals("A"))
+        {
+            resultBean = mBiz.ListPagingData(paramMap);
+        }
+        // EQ_LIST 테이블에서 서버정보 SELECT
+        else if(registType.equals("B"))
+        {
+            resultBean = mEqListBiz.ListPagingData(paramMap);
+        }
 
         return new ResultMessage("200", resultBean);
     }

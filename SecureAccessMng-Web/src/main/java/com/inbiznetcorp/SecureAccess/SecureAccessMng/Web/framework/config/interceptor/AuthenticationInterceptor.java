@@ -57,16 +57,16 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         }
         else
         {
-//        	return true;
-        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
-        	{
-        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-        		return true;
-        	}
-        	else
-        	{
-        		return true;
-        	}
+        	return true;
+//        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
+//        	{
+//        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
+//        		return true;
+//        	}
+//        	else
+//        	{
+//        		return true;
+//        	}
         }
     }
 

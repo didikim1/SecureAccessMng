@@ -56,13 +56,13 @@ public class EqListAction
         return pagePrefix + "/ListPagingData";
     }
 
-    @RequestMapping(value =
-    { "/SelectOneData.do" })
-    public String SelectOneData(Model model)
+    @RequestMapping(value ={ "/SelectOneData.do" })
+    public @ResponseBody ResultMessage SelectOneData(Model model)
     {
-        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap paramMap  = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap resultMap = mBiz.SelectOneData(paramMap);
 
-        return null;
+        return new ResultMessage("200", resultMap);
     }
 
     @RequestMapping(value =

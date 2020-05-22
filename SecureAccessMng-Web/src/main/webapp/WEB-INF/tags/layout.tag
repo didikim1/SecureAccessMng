@@ -4,7 +4,7 @@
 <%@ attribute name="activePageIndex" required="false"%>
 <%@ attribute name="bodyClass" required="false"%>
 <c:set var="_url" value="${pageContext.request.contextPath == '/' ? '' : pageContext.request.contextPath }" scope="application"/>
-<c:set var="Ver"  value="20200522_001" scope="application"/>
+<c:set var="Ver"  value="20200522_003" scope="application"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -73,15 +73,15 @@
 			<div id="layout_menu">
 				<ul id="nav">
 				   <li class="top border_right" id="m0"><a href="/eqacclog/ListPagingData.do" id="gnb_0" class="top_link">접속로그</a></li>
-<!-- 				    <li class="top" id="m0"><a href="/recordPlay/ListPagingData.do" id="gnb_0" class="top_link">권한등록이력</a></li> -->
+				    <li class="top" id="m0"><a href="/recordPlay/ListPagingData.do" id="gnb_0" class="top_link">권한등록이력</a></li>
 
-<!-- 				    <li class="top" id="m1"><a href="/playHistory/ListPagingData.do" id="gnb_0" class="top_link">서버접속이력</a></li> -->
+				    <li class="top" id="m1"><a href="/playHistory/ListPagingData.do" id="gnb_0" class="top_link">서버접속이력</a></li>
 
-<!-- 				    <li class="top border_right" id="m2"><a href="/nrlmber/ListPagingData.do" id="gnb_0" class="top_link">직원 조회</a></li> -->
+				    <li class="top border_right" id="m2"><a href="/nrlmber/ListPagingData.do" id="gnb_0" class="top_link">직원 조회</a></li>
 
-<!-- 				    <li class="top border_right" id="m2"><a href="/eqlist/" id="gnb_0" class="top_link">자산관리</a></li> -->
+				    <li class="top border_right" id="m2"><a href="/eqlist/" id="gnb_0" class="top_link">자산관리</a></li>
 
-<!-- 				     <li class="top border_right" id="m2"><a href="/ctn/code/" id="gnb_0" class="top_link">코드등록</a></li> -->
+				     <li class="top border_right" id="m2"><a href="/ctn/code/" id="gnb_0" class="top_link">코드등록</a></li>
 				</ul>
 			</div>
 		</div>

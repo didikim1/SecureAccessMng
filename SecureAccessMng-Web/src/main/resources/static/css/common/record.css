@@ -347,6 +347,25 @@ table.htable td {
 	background-color:#848484;
 }
 
+.btn_it03 {
+	width: 180px;
+	height: 30px;
+	background-color:#464646;
+	border:solid 1px transparent;
+	font-size:14px;
+	color:#fff;
+	cursor:pointer;
+	margin-top: 4px;
+	border-radius: 3px;
+	margin-left : 15px;
+	float: right;
+	behavior: url(/r2pRecordStreaming/static/lib/PIE/PIE.htc);
+	}
+
+.btn_it03:hover{
+	background-color:#848484;
+}
+
 
 .left{
 	border-top-left-radius: 3px;
