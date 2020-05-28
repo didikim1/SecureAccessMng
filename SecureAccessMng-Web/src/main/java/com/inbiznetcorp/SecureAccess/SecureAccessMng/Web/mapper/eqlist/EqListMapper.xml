@@ -13,6 +13,12 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">
 			AND NAME 	= CONCAT('%',#{name},'%')
 		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
+			<![CDATA[AND DATE_FORMAT(RECEIVING_PNTTM, '%Y-%m-%d') 	>= CONCAT('%', #{sDate}, '%')]]>
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
+			<![CDATA[AND DATE_FORMAT(RECEIVING_PNTTM, '%Y-%m-%d') 	<= CONCAT('%', #{eDate}, '%')]]>
+		</if>
 	</sql>
 
 	<!-- 페이징 갯수 -->

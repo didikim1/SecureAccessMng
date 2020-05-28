@@ -61,7 +61,7 @@ public class HttpServletBean
 			mmClientRequestParameter.put(key,this.getStringParams(key).length>1||key.indexOf("[]")!=-1?this.getStringParams(key):this.getStringParam(key));
 		}
 
-//		mmClientRequestParameter.put("mberSeq",               FrameworkBeans.findSessionBean().mberSeq);
+		mmClientRequestParameter.put("mberSeq",               FrameworkBeans.findSessionBean().mberSeq);
 //		mmClientRequestParameter.put("dpamentId",             FrameworkBeans.findSessionBean().dpamentId);
 //		mmClientRequestParameter.put("positionId",            FrameworkBeans.findSessionBean().positionId);
 //		mmClientRequestParameter.put("uniqId",                FrameworkBeans.findSessionBean().uniqId);
@@ -69,12 +69,12 @@ public class HttpServletBean
 //		mmClientRequestParameter.put("mberSttus",             FrameworkBeans.findSessionBean().mberSttus);
 //		mmClientRequestParameter.put("moblphonNo",            FrameworkBeans.findSessionBean().moblphonNo);
 //		mmClientRequestParameter.put("emailAddress",          FrameworkBeans.findSessionBean().emailAddress);
-//		mmClientRequestParameter.put("frstRegisterId",        FrameworkBeans.findSessionBean().uniqId);
-//		mmClientRequestParameter.put("lastUpdusrId",          FrameworkBeans.findSessionBean().uniqId);
+		mmClientRequestParameter.put("frstRegisterId",        FrameworkBeans.findSessionBean().uniqId);
+		mmClientRequestParameter.put("lastUpdusrId",          FrameworkBeans.findSessionBean().uniqId);
 		
-		mmClientRequestParameter.put("mberSeq",               "5");
-		mmClientRequestParameter.put("frstRegisterId",        "1020jhs");
-		mmClientRequestParameter.put("lastUpdusrId",          "1020jhs");
+//		mmClientRequestParameter.put("mberSeq",               "5");
+//		mmClientRequestParameter.put("frstRegisterId",        "1020jhs");
+//		mmClientRequestParameter.put("lastUpdusrId",          "1020jhs");
 
 		return mmClientRequestParameter;
 	}
