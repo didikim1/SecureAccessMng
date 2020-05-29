@@ -51,6 +51,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         		|| 	url.indexOf("/login/index.do") >= 0
         		|| 	url.indexOf("/login/SelectOneData.do") >= 0
         		|| 	url.indexOf("/login/DeleteData.do") >= 0
+        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
         	)
         {
         	return true;
