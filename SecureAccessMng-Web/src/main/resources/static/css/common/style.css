@@ -38,7 +38,8 @@ html #content { height:100%;}
 
 #footer {
 	height:130px;
-	position: absolute;
+	position: fixed;
+/* 	position: absolute; */
 	bottom: 0;
 	left: 0;
 	right: 0;

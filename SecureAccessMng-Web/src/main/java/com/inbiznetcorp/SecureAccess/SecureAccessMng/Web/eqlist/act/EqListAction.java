@@ -47,9 +47,12 @@ public class EqListAction
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         
-        BasicBean resultBean = mBiz.ListPagingData(paramMap);
+        BasicBean resultBean    = mBiz.ListPagingData(paramMap);
+        BasicBean eqIdcBean     = mEqIdcBiz.ListData(new MyMap());
         
-        model.addAttribute("Data", resultBean);
+        model.addAttribute("Data",              resultBean);
+        model.addAttribute("IdcInfoList",       eqIdcBean);
+        model.addAttribute("paramMap",          paramMap);
 
 //		model.addAttribute("IdcInfoList", mIdcInfoBiz.ListData(new MyMap()));
 

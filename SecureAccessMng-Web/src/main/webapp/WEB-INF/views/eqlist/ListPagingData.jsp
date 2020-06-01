@@ -10,7 +10,8 @@
 
 			<div class="border">
 				<h1 class="tit01">검색조건</h1>
-				<form name="FormSearchGnrlmber" action="/gnrlmber/ListPagingData.do" method="get">
+				<form name="FormSearchEqList" action="/eqlist/ListPagingData.do" method="get">
+					<input type="hidden" name="page"/>
 					<input type="hidden" name="excelResult"/>
 					<table class="wtable_sub">
 						<tr>
@@ -24,17 +25,17 @@
 
 								<!-- IDC -->
 								<div class="common_div left margin_l2">IDC</div>
-								<select class="common_select" name="idcId">
+								<select class="common_select" name="refEqIdc">
 									<option value="" <c:if test="${paramMap.idcId  != '' || paramMap.idcId  ne null}">selected</c:if> >선택</option>
 									<c:forEach var="data" items="${IdcInfoList.list}" varStatus="status">
-										<option value="${data.idcId}" <c:if test="${paramMap.idcId eq data.idcId}">selected</c:if> >${data.idcName}</option>
+										<option value="${data.idcSeq}" <c:if test="${paramMap.refEqIdc eq data.idcSeq}">selected</c:if> >${data.idcName}</option>
 									</c:forEach>
 								</select>
 								<!-- // IDC -->
 
 								<!-- 자산명 -->
 								<div class="common_div left margin_l2">자산명</div>
-								<input type="text" class="common_input2 right" name="uniqId" id="propertyName" placeholder="자산명" value="${paramMap.propertyName}" autocomplete="off"/>
+								<input type="text" class="common_input2 right" name="propertyName" id="propertyName" placeholder="자산명" value="${paramMap.propertyName}" autocomplete="off"/>
 								<!-- //자산명 -->
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
@@ -69,11 +70,11 @@
 						<tr>
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 							<td>${board.propertyName}</td>				<!-- 자산명 -->
-							<td>${board.svModel}</td>					<!-- 기종 -->
-							<td>${board.svManufacture}</td>				<!-- 제조사 -->
+							<td>${board.model}</td>					<!-- 기종 -->
+							<td>${board.manufacture}</td>				<!-- 제조사 -->
 							<td>${board.sepecCpu} / ${board.sepecMm} / ${board.sepecDisk} / ${board.sepecNic} </td>			<!-- 스펙 -->
 							<td>${board.osType}</td>						<!-- OS종류 -->
-							<td>${board.idcId}</td>							<!-- IDC -->
+							<td>${board.refEqIdc}</td>							<!-- IDC -->
 							<td>${board.receivingPnttm}</td>				<!-- 입고일 -->
 							<td>${board.managerId}</td>						<!-- 관리자 -->
 							<td>${board.svSttus}</td>						<!-- 상태 -->
@@ -90,7 +91,7 @@
 
 			<c:if test="${Data.paginationInfo.totalRecordCount > 0 }">
 				<div class="border">
-					<tag:Page formName="recordSearchForm" pageing="${Data.paginationInfo}"/>
+					<tag:Page formName="FormSearchEqList" pageing="${Data.paginationInfo}"/>
 				</div>
 			</c:if>
 		</div>
