@@ -7,6 +7,9 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
 			AND SEQ 	=  #{seq}
 		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refEqList)">
+			AND REF_EQ_LIST 	=  #{refEqList}
+		</if>
 	</sql>
 
 	<!-- 페이징 갯수 -->
@@ -89,7 +92,7 @@
 			 SET
 				LAST_UPDUSR_PNTTM  =  now()
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">  ,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">  		,NAME = #{name}    			</if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(id)">  		,NAME = #{id}    			</if>  	 <!-- 서버고유ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(id)"> 			,ID = #{id}  			</if>  	 <!-- 서버명 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(pwd)"> 			,PWD = #{pwd}  			</if>  	 <!-- 서버명 -->
 		WHERE SEQ = #{seq}
@@ -97,7 +100,7 @@
 
 	<!-- 삭제 -->
 	<update id="DeleteData" parameterType="myMap">
-		UPDATE EQ_IDPWD WHERE SEQ = #{seq}
+		DELETE FROM EQ_IDPWD WHERE SEQ = #{seq}
 	</update>
 
 </mapper>

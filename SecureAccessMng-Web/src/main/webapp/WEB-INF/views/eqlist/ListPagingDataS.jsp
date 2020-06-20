@@ -64,12 +64,41 @@ function fnEquipRegister(registType)
 	});
 }
 
+// 자산 삭제
+function fnDeleteData(seq, name){
+
+	var title = "["+name+"][삭제] 하시겠습니까?"
+	$.fun.alert({
+		content:title,
+		action:function(){
+
+					$.fun.ajax({
+						type:'get',
+						dataType:"JSON",
+						url:"/eqlist/DeleteData.do?seq="+seq,
+						success:function(data){
+
+							if( "200" == data.code ) {
+								$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+									location.reload();
+								}});
+							} else {
+								$.fun.alert({content:"Error!!!!!", action:function(){
+									location.reload();
+								}});
+							}
+						}
+					});
+
+		} // action function
+	}) // alert
+}
+
 // 계정등록
-function fnAccountRegister(registType)
-{
+function fnAccountRegister(eqlistSeq){
 	$.fun.ajax({
 		type:'get',
-		url:"/eqlist/Register.do?registType="+registType,
+		url:"/eqidpwd/Register.do?seq="+eqlistSeq,
 		success:function(data){
 			$.fun.layout({
 				id:"induacaAdd",
@@ -82,39 +111,40 @@ function fnAccountRegister(registType)
 	});
 }
 
-function fnProcDelete(mberId, uniqId, mberName){
-	var _mberId		= mberId;
-	var _uniqId		= uniqId;
-	var _mberName	= mberName;
-	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정을 삭제 하시겠습니까? "
-	$.fun.alert({
-		content:_txt,
-		"buttons":{
-			"확인": function() {
-				$(this).dialog('destroy').remove();
-				$.fun.ajax({
-					type:'get',
-					dataType:"JSON",
-					url:"./ProcDeleteData.do?mberId="+_mberId,
-					success:function(data){
-						if( "200" == data.code ) {
-							$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-								location.reload();
-							}});
-						} else {
-							$.fun.alert({content:"Error!!!!!", action:function(){
-								location.reload();
-							}});
-						}
-					}
-				});
-			},
-			"닫기": function() {
-				$(this).dialog('destroy').remove();
-			}
-		}
-	});
-}
+
+// function fnProcDelete(mberId, uniqId, mberName){
+// 	var _mberId		= mberId;
+// 	var _uniqId		= uniqId;
+// 	var _mberName	= mberName;
+// 	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정을 삭제 하시겠습니까? "
+// 	$.fun.alert({
+// 		content:_txt,
+// 		"buttons":{
+// 			"확인": function() {
+// 				$(this).dialog('destroy').remove();
+// 				$.fun.ajax({
+// 					type:'get',
+// 					dataType:"JSON",
+// 					url:"./ProcDeleteData.do?mberId="+_mberId,
+// 					success:function(data){
+// 						if( "200" == data.code ) {
+// 							$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+// 								location.reload();
+// 							}});
+// 						} else {
+// 							$.fun.alert({content:"Error!!!!!", action:function(){
+// 								location.reload();
+// 							}});
+// 						}
+// 					}
+// 				});
+// 			},
+// 			"닫기": function() {
+// 				$(this).dialog('destroy').remove();
+// 			}
+// 		}
+// 	});
+// }
 
 $(document).ready(function(){
 	$("[name=sDate]").datepicker({

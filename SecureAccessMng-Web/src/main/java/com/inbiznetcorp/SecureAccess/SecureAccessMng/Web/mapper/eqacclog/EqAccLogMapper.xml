@@ -9,6 +9,15 @@
 				DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') BETWEEN #{sDate} AND #{eDate}
 			)
 		</if>
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcSeq)">
+			AND REF_EQ_IDC 	=  #{idcSeq}
+		</if>
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eQListSeq)">
+			AND REF_EQ_LIST 	=  #{eQListSeq}
+		</if>
+
 	</sql>
 
 	<!-- 페이징 갯수 -->

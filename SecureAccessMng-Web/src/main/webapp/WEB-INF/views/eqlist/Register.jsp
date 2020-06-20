@@ -5,7 +5,7 @@
 <div id="layout_content_popup_sub">
 	<div class="content">
 		<div class="border_sub">
-			
+
 			<!-- A:자산등록, B:계정등록 -->
 			<c:choose>
 				<c:when test="${paramMap.registType eq 'A'}">
@@ -15,7 +15,7 @@
 					<jsp:include page="register/Account.jsp" flush="false" />
 				</c:when>
 			</c:choose>
-			
+
 		</div>
 
 		<div class="border margin_l7">
@@ -38,7 +38,7 @@
 function fnProcRegisterData()
 {
 	var registType = "${paramMap.registType}";
-	
+
 	// 장비등록
 	if(registType == "A")
 	{
@@ -61,13 +61,13 @@ function fnProcRegisterEquipCodeData()
 		$("[name=idcSeq]").focus();
 		return;
 	}
-	if(!$("[name=entrprsmberSeq]").val())
-	{
-		$.fun.alert({content:"관리자를 선택하세요."});
-		$("[name=entrprsmberSeq]").focus();
-		return;
-	}
-	
+// 	if(!$("[name=entrprsmberSeq]").val())
+// 	{
+// 		$.fun.alert({content:"관리자를 선택하세요."});
+// 		$("[name=entrprsmberSeq]").focus();
+// 		return;
+// 	}
+
 	// 자산 등록
 	$.fun.ajax({
 		type:'get',
@@ -92,7 +92,7 @@ function fnProcRegisterAccountData()
 			return false;
 		}
 	}
-	
+
 	// 계정 등록
 	$.fun.ajax({
 		type:'get',

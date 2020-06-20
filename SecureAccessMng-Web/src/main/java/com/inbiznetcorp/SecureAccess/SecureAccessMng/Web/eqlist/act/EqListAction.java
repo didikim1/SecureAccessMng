@@ -34,7 +34,7 @@ public class EqListAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
     CtnCodeBiz mCtnCodeBiz;
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz")
     EqIdcBiz mEqIdcBiz;
 
@@ -46,10 +46,10 @@ public class EqListAction
     public String ListPagingData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        
+
         BasicBean resultBean    = mBiz.ListPagingData(paramMap);
         BasicBean eqIdcBean     = mEqIdcBiz.ListData(new MyMap());
-        
+
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       eqIdcBean);
         model.addAttribute("paramMap",          paramMap);
@@ -80,10 +80,10 @@ public class EqListAction
 //            resultMap = mBiz.SelectOneData(paramMap);
 //            model.addAttribute("Info", resultMap);
 //        }
-        
+
         String receivingPnttm = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         paramMap.put("receivingPnttm", receivingPnttm);
-        
+
         BasicBean entrprsmberBean       = mEntrprsmberBiz.ListData(new MyMap());        // 관리자 List
         BasicBean idcInfoBean           = mEqIdcBiz.ListData(new MyMap());              // IDC List
 
@@ -94,20 +94,18 @@ public class EqListAction
         return pagePrefix + "/Register";
     }
 
-    @RequestMapping(value =
-    { "/RegisterData.do" })
+    @RequestMapping(value = { "/RegisterData.do" })
     public @ResponseBody ResultMessage RegisterData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        
+
         // 자산 등록
         mBiz.RegisterData(paramMap);
 
         return new ResultMessage(ResultCode.RESULT_OK, null);
     }
 
-    @RequestMapping(value =
-    { "/ModifyData.do" })
+    @RequestMapping(value = { "/ModifyData.do" })
     public ResultMessage ModifyData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
@@ -115,12 +113,21 @@ public class EqListAction
         return new ResultMessage("", null);
     }
 
-    @RequestMapping(value =
-    { "/DeleteData.do" })
-    public ResultMessage DeleteData(Model model)
+    @RequestMapping(value = { "/DeleteData.do" })
+    public @ResponseBody ResultMessage DeleteData(Model model)
     {
-        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap paramMap  = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        int   iRtnValue = 0;
 
-        return new ResultMessage("", null);
+        iRtnValue = mBiz.DeleteData(paramMap);
+
+        if ( iRtnValue > 0 )
+        {
+            return new ResultMessage(ResultCode.RESULT_OK, null);
+        }
+        else
+        {
+            return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
+        }
     }
 }

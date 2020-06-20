@@ -17,8 +17,8 @@
 						<tr>
 							<td>
 
-								<!-- 입고일 -->
-								<div class="common_div left">입고일</div>
+								<!-- 등록일 -->
+								<div class="common_div left">등록일</div>
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 								<!-- // 입고일 -->
@@ -34,8 +34,8 @@
 								<!-- // IDC -->
 
 								<!-- 자산명 -->
-								<div class="common_div left margin_l2">자산명</div>
-								<input type="text" class="common_input2 right" name="propertyName" id="propertyName" placeholder="자산명" value="${paramMap.propertyName}" autocomplete="off"/>
+								<div class="common_div left margin_l2">IP</div>
+								<input type="text" class="common_input2 right" name="svIp1" id="svIp1" placeholder="자산명" value="${paramMap.svIp1}" autocomplete="off"/>
 								<!-- //자산명 -->
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
@@ -54,37 +54,33 @@
 				<thead>
 						<tr>
 							<th scope="col" width="8%"></th>
-							<th scope="col" width="8%">자산명</th>
-							<th scope="col" width="8%">기종</th>
-							<th scope="col" width="7%">제조사</th>
-							<th scope="col" width="7%">스펙</th>
-							<th scope="col" width="7%">OS종류</th>
-							<th scope="col" width="7%">IDC</th>
-							<th scope="col" width="7%">입고일</th>
-							<th scope="col" width="7%">관리자</th>
-							<th scope="col" width="7%">상태</th>
+							<th scope="col" width="8%">IDC</th>
+							<th scope="col" width="8%">서버</th>
+							<th scope="col" width="7%">IP</th>
+							<th scope="col" width="7%">Port(SSH)</th>
+							<th scope="col" width="7%">등록일</th>
+							<th scope="col" width="7%">계정등록</th>
+							<th scope="col" width="7%">삭제</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="board" items="${Data.list}" varStatus="status">
 						<tr>
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
-							<td>${board.propertyName}</td>				<!-- 자산명 -->
-							<td>${board.model}</td>					<!-- 기종 -->
-							<td>${board.manufacture}</td>				<!-- 제조사 -->
-							<td>${board.sepecCpu} / ${board.sepecMm} / ${board.sepecDisk} / ${board.sepecNic} </td>			<!-- 스펙 -->
-							<td>${board.osType}</td>						<!-- OS종류 -->
-							<td>${board.refEqIdc}</td>							<!-- IDC -->
-							<td>${board.receivingPnttm}</td>				<!-- 입고일 -->
-							<td>${board.managerId}</td>						<!-- 관리자 -->
-							<td>${board.svSttus}</td>						<!-- 상태 -->
+							<td>${board.idcName}</td>				<!-- IDC -->
+							<td>${board.name}</td>					<!-- 서버 -->
+							<td>${board.svIp1}</td>					<!-- IP -->
+							<td>${board.svPort}</td>				<!-- Port(SSH) -->
+							<td>${board.frstRegisterPnttm}</td>		<!-- 등록일 -->
+							<td><input type="button" class="btn_it01" value="등록" onclick="fnAccountRegister('${board.seq}')"/></td>
+							<td><input type="button" class="btn_it01" value="삭제" onclick="fnDeleteData('${board.seq}', '${board.name}')"/></td>
 						</tr>
 					</c:forEach>
 					</tbody>
 
 				<c:if test="${Data.paginationInfo.totalRecordCount == 0 }">
 					<tr>
-						<td colspan="10">데이터가 존재하지 않습니다.</td>
+						<td colspan="6">데이터가 존재하지 않습니다.</td>
 					</tr>
 				</c:if>
 			</table>

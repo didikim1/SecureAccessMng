@@ -5,13 +5,13 @@
 
 	<sql id="addWhere">
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
-			AND SEQ 	=  #{seq}
+			AND T1.SEQ 	=  #{seq}
 		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refEqIdc)">
-			AND REF_EQ_IDC 	=  #{refEqIdc}
+			AND T1.REF_EQ_IDC 	=  #{refEqIdc}
 		</if>
-		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyName)">
-			AND PROPERTY_NAME 	LIKE CONCAT('%',#{propertyName},'%')
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svIp1)">
+			AND T1.SV_IP1 	LIKE CONCAT('%',#{svIp1},'%')
 		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
 			<![CDATA[AND DATE_FORMAT(RECEIVING_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]>
@@ -26,7 +26,9 @@
 		SELECT
 			COUNT(0)
 		FROM
-			EQ_LIST
+			EQ_LIST AS T1
+		LEFT OUTER JOIN EQ_IDC AS T2
+			ON T1.REF_EQ_IDC = T2.SEQ
 		WHERE 1=1
 		<include refid="addWhere"/>
 	</select>
@@ -34,34 +36,21 @@
 	<!-- 페이징 목록 -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 SEQ														as seq				    <!--서버고유ID-->
-			,REF_EQ_IDC 												as refEqIdc	 		    <!--IDC 고유ID-->
-			,NAME 														as name	 		    	<!--서버명-->
-			,MODEL 														as model	 			<!--기종-->
-			,MANUFACTURE 												as manufacture	 		<!--제조업체-->
-			,`USAGE` 													as `usage`	 		    <!--사용용도-->
-			,POSITION 													as position	 	    	<!--상면-->
-			,STTUS 														as sttus	 	    	<!--상태-->
-			,PROPERTY_NAME												as propertyName		    <!-- 자산명 -->
-			,PROPERTY_NUM												as propertyNum		    <!-- 자산번호 -->
-			,SEPEC_CPU													as sepecCpu			    <!-- 스펙 씨피유 -->
-			,SEPEC_MM													as sepecMm			    <!-- 스펙 메모리 -->
-			,SEPEC_DISK													as sepecDisk			<!-- 스펙 디스크 -->
-			,SEPEC_NIC													as sepecNic				<!-- 스펙 랜카드 -->
-			,OS_TYPE													as osType				<!-- OS타입 -->
-			,SV_IP1 			                                        as svIp1 				<!--서버 IP-->
-			,SV_IP2 			                                        as svIp2 				<!--서버 IP-->
-			,SV_IP3 			                                        as svIp3 				<!--서버 IP-->
-			,SV_IP4 			                                        as svIp4 				<!--서버 IP-->
-			,SV_PORT 			                                    	as svPort 				<!--서버 SSH PORT-->
-			,MANAGER_ID 			                                    as managerId 			<!--관리자ID-->
-			,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 				as receivingPnttm 		<!--입고일-->
-			,FRST_REGISTER_ID											as frstRegisterId
-			,LAST_UPDUSR_ID 											as lastUpdusrId
-			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--최초등록일-->
-			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--최종등록일-->
+			T1.SEQ as seq ,																	<!--서버고유ID-->
+			T1.REF_EQ_IDC as refEqIdc ,						 								<!--IDC 고유ID-->
+			T2.NAME as idcName,																<!-- IDC NAME -->
+			T1.NAME as name ,																<!--서버명-->
+			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
+			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
+			T1.FRST_REGISTER_ID as frstRegisterId ,
+			T1.LAST_UPDUSR_ID as lastUpdusrId ,
+			DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') as frstRegisterPnttm ,	<!--최초등록일-->
+			DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, 	'%Y-%m-%d %H:%i:%s') as lastUpdusrPnttm		<!--최종등록일-->
 		FROM
-			 EQ_LIST T1
+			EQ_LIST AS T1
+		LEFT OUTER JOIN EQ_IDC AS T2
+			ON T1.REF_EQ_IDC = T2.SEQ
 		WHERE 1=1
 			<include refid="addWhere"/>
 		ORDER BY T1.LAST_UPDUSR_PNTTM DESC
@@ -71,34 +60,21 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 SEQ														as seq				    <!--서버고유ID-->
-			,REF_EQ_IDC 												as refEqIdc	 		    <!--IDC 고유ID-->
-			,NAME 														as name	 		    	<!--서버명-->
-			,MODEL 														as model	 			<!--기종-->
-			,MANUFACTURE 												as manufacture	 		<!--제조업체-->
-			,`USAGE` 													as `usage`	 		    <!--사용용도-->
-			,POSITION 													as position	 	    	<!--상면-->
-			,STTUS 														as sttus	 	    	<!--상태-->
-			,PROPERTY_NAME												as propertyName		    <!-- 자산명 -->
-			,PROPERTY_NUM												as propertyNum		    <!-- 자산번호 -->
-			,SEPEC_CPU													as sepecCpu			    <!-- 스펙 씨피유 -->
-			,SEPEC_MM													as sepecMm			    <!-- 스펙 메모리 -->
-			,SEPEC_DISK													as sepecDisk			<!-- 스펙 디스크 -->
-			,SEPEC_NIC													as sepecNic				<!-- 스펙 랜카드 -->
-			,OS_TYPE													as osType				<!-- OS타입 -->
-			,SV_IP1 			                                        as svIp1 				<!--서버 IP-->
-			,SV_IP2 			                                        as svIp2 				<!--서버 IP-->
-			,SV_IP3 			                                        as svIp3 				<!--서버 IP-->
-			,SV_IP4 			                                        as svIp4 				<!--서버 IP-->
-			,SV_PORT 			                                    	as svPort 				<!--서버 SSH PORT-->
-			,MANAGER_ID 			                                    as managerId 			<!--관리자ID-->
-			,DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') 				as receivingPnttm 		<!--입고일-->
-			,FRST_REGISTER_ID											as frstRegisterId
-			,LAST_UPDUSR_ID 											as lastUpdusrId
-			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--최초등록일-->
-			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--최종등록일-->
+			T1.SEQ as seq ,																	<!--서버고유ID-->
+			T1.REF_EQ_IDC as refEqIdc ,						 								<!--IDC 고유ID-->
+			T2.NAME as idcName,																<!-- IDC NAME -->
+			T1.NAME as name ,																<!--서버명-->
+			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
+			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
+			T1.FRST_REGISTER_ID as frstRegisterId ,
+			T1.LAST_UPDUSR_ID as lastUpdusrId ,
+			DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') as frstRegisterPnttm ,	<!--최초등록일-->
+			DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, 	'%Y-%m-%d %H:%i:%s') as lastUpdusrPnttm		<!--최종등록일-->
 		FROM
-			 EQ_LIST T1
+			EQ_LIST AS T1
+		LEFT OUTER JOIN EQ_IDC AS T2
+			ON T1.REF_EQ_IDC = T2.SEQ
 		WHERE 1=1
 			<include refid="addWhere"/>
 	</select>
@@ -194,7 +170,7 @@
 
 	<!-- 삭제 -->
 	<update id="DeleteData" parameterType="myMap">
-		UPDATE EQ_LIST WHERE SV_ID = #{svId}
+		DELETE FROM EQ_LIST WHERE SEQ = #{seq}
 
 	</update>
 

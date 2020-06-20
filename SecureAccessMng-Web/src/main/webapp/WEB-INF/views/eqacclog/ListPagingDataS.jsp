@@ -26,6 +26,37 @@ $(function(){
 	});
 
 
+	$("[name=idcSeq]").change(function(){
+		var idcSeq = $("select[name=idcSeq]").val();
+
+
+
+		$.fun.ajax({
+			type:'get',
+			dataType:"JSON",
+			url:"/eqacclog/EqList/ListData.do?idcSeq="+idcSeq,
+			success:function(data){
+
+				$("select[name=eQListSeq]").empty();
+				$('#eQListSeq').empty();
+				$('#eQListSeq').children('option').remove();
+				$("select[name='eQListSeq'] option").remove();
+				$("#eQListSeq").find("option").remove();
+
+
+				var option = $("<option value=''>선택</option>");
+	 	        $('select[name=eQListSeq]').append(option);
+
+	 	       for(var i=0;i < data.result.list.length; i++){
+	 	    	  var option = $("<option value="+data.result.list[i].seq+">"+data.result.list[i].name+"</option>");
+	 	            $('select[name=eQListSeq]').append(option);
+
+	 	        }
+			}
+		});
+
+	});
+
 	 $.datepicker.setDefaults({
 	        dateFormat: 'yy-mm-dd',
 	        firstDay: 0,

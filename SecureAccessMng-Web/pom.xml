@@ -12,7 +12,7 @@
 
 	<groupId>com.inbiznetcorp.SecureAccess.SecureAccessMng.Web</groupId>
 	<artifactId>SecureAccessMng-Web</artifactId>
-	<version>20200601_001</version>
+	<version>20200621_001</version>
 	<packaging>war</packaging>
 	<name>SecureAccessMng-Web</name>
 	<description>Demo project for Spring Boot</description>

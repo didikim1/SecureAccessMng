@@ -19,8 +19,29 @@
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
+
+								<div class="common_div left margin_l2">IDC</div>
+								<select class="common_select" name="idcSeq" style="width: 160px;">
+									<option value="" <c:if test="${paramMap.idcSeq  != '' || paramMap.idcSeq  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${IdcInfoList}" varStatus="status">
+										<option value="${data.idcSeq}" <c:if test="${paramMap.idcSeq eq data.idcSeq}">selected</c:if> >${data.idcName}</option>
+									</c:forEach>
+								</select>
+
+								<div class="common_div left margin_l2">서버</div>
+								<select class="common_select" id="eQListSeq" name="eQListSeq" style="width: 170px;">
+									<option value="" <c:if test="${paramMap.eQListSeq  != '' || paramMap.eQListSeq  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${EqListInfoList}" varStatus="status">
+										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}">selected</c:if> >${data.name}</option>
+									</c:forEach>
+								</select>
+
+
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
+
+
 							</td>
+
 						</tr>
 					</table>
 				</form>
