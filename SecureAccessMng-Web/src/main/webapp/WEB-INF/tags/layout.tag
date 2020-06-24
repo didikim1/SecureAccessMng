@@ -43,6 +43,9 @@
 <script type="text/javascript" src="${_url}/lib/jqGrid/js/jquery.jqGrid.min.js"></script>
 <script type="text/javascript" src="${_url}/lib/jqGrid/inbiznetcorp.jqGrid.js"></script>
 
+
+<title>[INBIZNET] 접속관리</title>
+
 <script type="text/javascript">
 	function btnLogout(){
 		location.href="/login/DeleteData.do";

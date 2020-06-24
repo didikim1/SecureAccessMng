@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>[INBIZNET] ARS 녹취재생 페이지</title>
+<title>[INBIZNET] 접속관리</title>
 <tag:header_comm_stylesheet/>
 <tag:header_comm_script/>
 </head>
