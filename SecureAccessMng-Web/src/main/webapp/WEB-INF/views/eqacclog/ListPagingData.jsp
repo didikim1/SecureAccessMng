@@ -64,7 +64,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="board" items="${Data.list}" varStatus="status">
-						<tr>
+						<tr onclick="fnPopSelectOneData('${board.seq}')"  style="cursor: pointer;">
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 							<td>${board.eqIdcName}</td>											<!-- IDC -->
 							<td>${board.eqListName}</td>										<!-- 서버 -->

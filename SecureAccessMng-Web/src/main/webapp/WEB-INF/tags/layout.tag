@@ -62,8 +62,7 @@
 		   </div>
 
 		    <div class="rbtn">
-<!-- 		    	<font class="rbtn_font1"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>&nbsp;관리자 그룹 </font> -->
-<%-- 		  	    <font class="rbtn_font2">${session_emp_nm}</font> --%>
+		  	    <font class="rbtn_font2"> ${SessionBean_mberName}</font>
 		  	    <button type="button" class="header_button" onclick="btnLogout();">로그아웃</button>
 		    </div>
 

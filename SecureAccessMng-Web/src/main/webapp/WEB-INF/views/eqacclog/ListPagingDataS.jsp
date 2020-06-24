@@ -29,8 +29,6 @@ $(function(){
 	$("[name=idcSeq]").change(function(){
 		var idcSeq = $("select[name=idcSeq]").val();
 
-
-
 		$.fun.ajax({
 			type:'get',
 			dataType:"JSON",
@@ -91,5 +89,26 @@ $(function(){
 function fnProcSearch(){
 	$("[name=FormSearchEqAcclog]").submit();
 }
+
+function fnPopSelectOneData(seq){
+	$.fun.ajax({
+		type:'get',
+		url:"/eqacclog/pop/SelectOneData.do?seq="+seq,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"상세정보",
+				"width":475,
+				"buttons":{
+		 			"닫기": function() {
+	 					$(this).dialog('destroy').remove();
+	 				}
+				}
+			});
+		}
+	});
+}
+
 
 </script>

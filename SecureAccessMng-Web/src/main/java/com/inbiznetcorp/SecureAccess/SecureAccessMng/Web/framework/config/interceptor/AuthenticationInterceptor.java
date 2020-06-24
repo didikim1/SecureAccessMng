@@ -58,17 +58,17 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         }
         else
         {
-        	return true;
+//        	return true;
 
-//        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
-//        	{
-//        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-//        		return true;
-//        	}
-//        	else
-//        	{
-//        		return true;
-//        	}
+        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
+        	{
+        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
+        		return true;
+        	}
+        	else
+        	{
+        		return true;
+        	}
 
         }
     }
@@ -77,13 +77,14 @@ public class AuthenticationInterceptor implements HandlerInterceptor
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception
     {
-
+    	request.setAttribute("SessionBean_dpamentId", FrameworkBeans.findSessionBean().dpamentId);
+    	request.setAttribute("SessionBean_mberName", FrameworkBeans.findSessionBean().mberName);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception
     {
-
+    	
     }
 
     public static final Logger Logger = LoggerFactory.getLogger(AuthenticationInterceptor.class);

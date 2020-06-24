@@ -80,6 +80,17 @@ public class EqAccLogAction
 
         return null;
     }
+    
+    @RequestMapping(value ={ "/pop/SelectOneData.do" })
+    public String popSelectOneData(Model model)
+    {
+        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap rtnMap   = mBiz.SelectOneData(paramMap);
+        
+        model.addAttribute("info",          rtnMap);
+        
+        return pagePrefix + "/pop/SelectOneData";
+    }
 
     @RequestMapping(value = { "/RegisterData.do" })
     public ResultMessage RegisterData(Model model)
