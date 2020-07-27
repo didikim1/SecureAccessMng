@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.service.EqIdpwdBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.biz.EqListBiz;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.ManagerPWAES256;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
@@ -82,22 +83,39 @@ public class EqIdpwdAction
         return "eqidpwd/Register";
     }
 
-    @RequestMapping(value = { "/RegisterData.do" })
+    @SuppressWarnings("static-access")
+	@RequestMapping(value = { "/RegisterData.do" })
     public @ResponseBody ResultMessage RegisterData(Model model)
     {
         MyMap paramMap  = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         int   iRtnValue = 0;
-        // 계정 등록
-        iRtnValue = mBiz.RegisterData(paramMap);
-
-        if ( iRtnValue > 0 )
+        
+        String strPWD	 = null;
+        String strEncPWD = null;
+        
+        strPWD    = paramMap.getStr("pwd");
+        try 
         {
-            return new ResultMessage(ResultCode.RESULT_OK, null);
-        }
-        else
+			strEncPWD = ManagerPWAES256.getInstance().AES_Encode( strPWD );
+			paramMap.put("pwd", strEncPWD);
+			// 계정 등록
+			iRtnValue = mBiz.RegisterData(paramMap);
+			
+			if ( iRtnValue > 0 )
+			{
+				return new ResultMessage(ResultCode.RESULT_OK, null);
+			}
+			else
+			{
+				return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
+			}
+		} 
+        catch (Exception e) 
         {
-            return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
-        }
+			e.printStackTrace();
+		} 
+        return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
+        
     }
 
     @RequestMapping(value = { "/ModifyData.do" })
