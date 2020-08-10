@@ -21,21 +21,21 @@ table.htable td {
 			<!-- 현재 비밀번호 -->
 			<tr>
 				<th scope="col" width="148px">현재 비밀번호</th>
-				<td><input type="password" style="width: 100%" class="password" id="id" name="password" autocomplete="off" value="3417" /></td>
+				<td><input type="password" style="width: 100%" class="password" id="id" name="password" autocomplete="off" value="" /></td>
 			</tr>
 			<!-- //현재 비밀번호 -->
 
 			<!-- 새로운 비밀번호-->
 			<tr>
 				<th scope="col" width="148px">새로운 비밀번호</th>
-				<td><input type="password" style="width: 100%"  class="newpassword" id="pwd" name="newpassword" autocomplete="off" value="2008hyo3!*" /></td>
+				<td><input type="password" style="width: 100%"  class="newpassword" id="pwd" name="newpassword" autocomplete="off" value="" /></td>
 			</tr>
 			<!-- //새로운 비밀번호 -->
 			
 			<!-- 새로운 비밀번호 확인-->
 			<tr>
 				<th scope="col" width="148px">새로운 비밀번호 확인</th>
-				<td><input type="password" style="width: 100%"  class="newpassword2" id="pwd" name="newpassword2" autocomplete="off" value="2008hyo3!*" /></td>
+				<td><input type="password" style="width: 100%"  class="newpassword2" id="pwd" name="newpassword2" autocomplete="off" value="" /></td>
 			</tr>
 			<!-- //새로운 비밀번호 확인 -->
 		</table>

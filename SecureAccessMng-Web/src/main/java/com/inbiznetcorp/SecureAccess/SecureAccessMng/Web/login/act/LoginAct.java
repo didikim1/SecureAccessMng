@@ -92,8 +92,6 @@ public class LoginAct
         }
         else
         {	
-        	
-        	
         		if( "0".equals( checkPw( paramMap.getStr("password", "") ) ) == false )
         		{
         			// RESULT_NOT_MODIFIED 패스워드 변경이 필요(현재 정책에 맞지않는 패스워드 사용중)
@@ -123,7 +121,7 @@ public class LoginAct
         String          resultCode      = ResultCode.RESULT_OK;
         
         int				resultInt		= 0;
-        String			resultCheckPw   = "0";
+        String			resultCheckPw   = "99";
         
         if ( FrameworkUtils.isNull( paramMap.getStr("password") ) ) 	{ return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, "error"); }
         if ( FrameworkUtils.isNull( paramMap.getStr("uniqId") ) ) 		{ return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, "error"); }
