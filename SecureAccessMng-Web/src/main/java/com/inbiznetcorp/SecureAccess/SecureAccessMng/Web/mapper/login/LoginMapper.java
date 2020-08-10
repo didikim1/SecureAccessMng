@@ -44,6 +44,8 @@ public interface LoginMapper
 	* @return
 	*/
 	public int ModifyData(MyMap paramMap);
+	
+	public int ModifyDataPassword(MyMap paramMap);
 
 	/**
 	* 삭제

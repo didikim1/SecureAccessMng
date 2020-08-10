@@ -62,6 +62,17 @@ public class LoginBiz
     {
         return mMapper.ModifyData(paramMap);
     }
+    
+    /**
+     * 패스워드변경
+     * @param paramMap
+     * @return
+     */
+    public int ModifyDataPassword(MyMap paramMap)
+    {
+    	return mMapper.ModifyDataPassword(paramMap);
+    }
+    
 
     /**
     * 삭제

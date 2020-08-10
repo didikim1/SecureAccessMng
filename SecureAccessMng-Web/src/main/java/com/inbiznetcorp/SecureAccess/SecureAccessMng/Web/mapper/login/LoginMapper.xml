@@ -44,7 +44,20 @@
 	</update>
 
 	<!-- 수정 -->
+	<update id="ModifyDataPassword" parameterType="myMap">
+		UPDATE CTN_NRLMBER
+			SET
+				 PASSWORD = password(#{newpassword})
+				,LAST_UPDUSR_PWD = now()
+			WHERE
+				UNIQ_ID = #{uniqid}
+			AND
+				PASSWORD = password(#{password})
+	</update>
+
+	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
+		
 	</update>
 
 	<!-- 삭제 -->
