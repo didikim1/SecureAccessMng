@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.biz.AccesslogBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
@@ -25,14 +26,14 @@ public class AccesslogAct
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.biz.AccesslogBiz")
     AccesslogBiz mBiz;
     
-    @RequestMapping(value =
-    { "/ListPagingData.do" })
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
+    ExcelWrite mExcelWrite;
+    
+    @RequestMapping(value = { "/ListPagingData.do" })
     public String ListPagingData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         BasicBean resultBean = null;
-    
-//        resultBean = mBiz.ListPagingData(paramMap);
     
         model.addAttribute("paramMap", paramMap);
         model.addAttribute("Data", resultBean);

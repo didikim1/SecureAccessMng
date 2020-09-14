@@ -1,6 +1,11 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +17,13 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.biz.EqListBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
+
+import jxl.write.WriteException;
 
 @Controller
 @RequestMapping("/eqacclog")
@@ -32,6 +41,9 @@ public class EqAccLogAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
     EqListBiz mEqListBiz;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
+    ExcelWrite mExcelWrite;
 
     @RequestMapping(value ={ "/ListPagingData.do" })
     public String ListPagingData(Model model)
@@ -58,7 +70,23 @@ public class EqAccLogAction
 
         return pagePrefix + "/ListPagingData";
     }
-
+    
+    @RequestMapping(value = {"/ListExcelData" })
+	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException 
+	{
+		List<MyCamelMap> resultS03Excel    = null;
+        MyMap            paramMap          = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        
+        String      strFileName      = "접속로그 상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
+        String[]    arrTitle		 = new String[]{"IDC", 			  "서버", 	   "접속ID", 		"접속IP", 		"프로세스ID", 	"로그인일자",    "로그아웃일자"};
+        String[]    arrExcelColum  	 = new String[]{"eqIdcName", 	  "eqListName", "eqIdpwdID", "eqAllowIpName",  "processid", "frstRegisterPnttm", "lastUpdusrPnttm"};
+        
+        resultS03Excel = mBiz.ListData(paramMap);
+        
+        mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultS03Excel, strFileName);
+	}
+    
+    // IDC별 조회시
     @RequestMapping(value ={ "/EqList/ListData.do" })
     public @ResponseBody ResultMessage EqListListData(Model model)
     {
@@ -72,6 +100,9 @@ public class EqAccLogAction
 
         return new ResultMessage(ResultCode.RESULT_OK, mEqListBiz.ListPagingData(eqListParamMap) );
     }
+    
+    
+    
 
     @RequestMapping(value ={ "/SelectOneData.do" })
     public String SelectOneData(Model model)

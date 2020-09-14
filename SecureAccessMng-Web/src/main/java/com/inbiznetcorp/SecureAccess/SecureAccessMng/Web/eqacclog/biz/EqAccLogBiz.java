@@ -1,5 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,6 +33,16 @@ public class EqAccLogBiz
         resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10), mMapper.SelectOnePagingCount(paramMap), mMapper.ListPagingData(paramMap));
 
         return resultBean;
+    }
+    
+    /**
+     * 데이터(목록)
+     * @param paramMap
+     * @return
+     */
+    public List<MyCamelMap> ListData(MyMap paramMap)
+    {
+    	return mMapper.ListData(paramMap);
     }
 
     /**

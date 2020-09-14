@@ -12,7 +12,7 @@
 
 	<groupId>com.inbiznetcorp.SecureAccess.SecureAccessMng.Web</groupId>
 	<artifactId>SecureAccessMng-Web</artifactId>
-	<version>20200810_002</version>
+	<version>20200914_001</version>
 	<packaging>war</packaging>
 	<name>SecureAccessMng-Web</name>
 	<description>Demo project for Spring Boot</description>
@@ -133,6 +133,17 @@
 		   <artifactId>httpclient</artifactId>
 		   <version>4.3.1</version>
 		</dependency>
+		
+				<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.16</version>
+		 </dependency>
 
 	</dependencies>
 

@@ -38,7 +38,7 @@
 
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
-
+								<button type="button" class="common_button2 margin_l2" onclick="fnProcExcel();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;엑셀다운로드</button>
 
 							</td>
 

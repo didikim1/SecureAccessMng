@@ -23,6 +23,13 @@ public interface EqAccLogMapper
 	* @return
 	*/
 	public java.util.List ListPagingData(MyMap paramMap);
+	
+	/**
+	 * 목록
+	 * @param paramMap
+	 * @return
+	 */
+	public java.util.List ListData(MyMap paramMap);
 
 	/**
 	* 상세
