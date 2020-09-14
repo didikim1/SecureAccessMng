@@ -5,7 +5,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -26,12 +30,27 @@ public class ExcelWrite {
 
 	    	Row row = sheet.createRow(0);
             Cell cell = null;
-
+            
+            CellStyle style = wb.createCellStyle();
+            Font font = wb.createFont();
+            font.setFontHeightInPoints((short) 9);
+            style.setFont(font);
+            
+            for (int i = 0; i < cols.length; i++) 
+            {
+            	sheet.setColumnWidth(i, (short) 1000 * 5);
+			}
+            
+            style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+            style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+            style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+            style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
            
             for (int i = 0; i < title.length; i++) 
             {
             	cell = row.createCell(i);
             	cell.setCellValue(title[i]);
+            	cell.setCellStyle(style);
 			}
             
 	    	for (int i = 0; i < list.size(); i++)
@@ -44,6 +63,7 @@ public class ExcelWrite {
 	    		 {
 	    			 cell = row.createCell(j);
 	    			 cell.setCellValue(vo.getStr(cols[j], ""));
+	    			 cell.setCellStyle(style);
 				 }
 			}
 	    try {

@@ -362,6 +362,18 @@ public class FrameworkUtils extends StringUtils{
 		SimpleDateFormat dayTime = new SimpleDateFormat(strFormat);
 		return dayTime.format(new Date());
 	}
+	
+	public static String aGoDate(int aGo, String strFormat)
+	{
+		SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
+		Calendar cal = Calendar.getInstance();
+		
+		cal.setTime(new Date());
+		cal.add(Calendar.HOUR, aGo);
+		
+		return sdformat.format(cal.getTime());
+	}
 
 	private     static int      mSequenceNumber = 0;
+
 }

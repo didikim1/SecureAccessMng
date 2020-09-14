@@ -22,6 +22,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
 import jxl.write.WriteException;
 
@@ -52,8 +53,13 @@ public class EqAccLogAction
         BasicBean       resultBean  = null;
         BasicBean       idcInfoBean = mEqIdcBiz.ListData(new MyMap());              // IDC List
 
+        if ("".equals(paramMap.getStr("sDate", ""))) {
+        	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
+        	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
+        }
+        
         resultBean = mBiz.ListPagingData( paramMap );
-
+        
         model.addAttribute("paramMap",          paramMap);
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       idcInfoBean.getList());
@@ -78,8 +84,8 @@ public class EqAccLogAction
         MyMap            paramMap          = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         
         String      strFileName      = "접속로그 상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-        String[]    arrTitle		 = new String[]{"IDC", 			  "서버", 	   "접속ID", 		"접속IP", 		"프로세스ID", 	"로그인일자",    "로그아웃일자"};
-        String[]    arrExcelColum  	 = new String[]{"eqIdcName", 	  "eqListName", "eqIdpwdID", "eqAllowIpName",  "processid", "frstRegisterPnttm", "lastUpdusrPnttm"};
+        String[]    arrTitle		 = new String[]{"IDC", 			  "서버", 	   "접속ID", 		"접속IP", 		"접속자",   		   "프로세스ID", 	"로그인일자",    	 "로그아웃일자"};
+        String[]    arrExcelColum  	 = new String[]{"eqIdcName", 	  "eqListName", "eqIdpwdID", "eqAllowIpName",  "ctnNrlmberName", "processid", 	"frstRegisterPnttm", "lastUpdusrPnttm"};
         
         resultS03Excel = mBiz.ListData(paramMap);
         
