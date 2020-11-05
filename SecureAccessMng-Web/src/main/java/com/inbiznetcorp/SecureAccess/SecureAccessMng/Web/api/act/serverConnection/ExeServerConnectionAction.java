@@ -21,6 +21,8 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
 
+import net.minidev.json.JSONArray;
+
 @Controller
 @RequestMapping("/exe/api/ServerConnection")
 public class ExeServerConnectionAction 
@@ -47,7 +49,7 @@ public class ExeServerConnectionAction
 			JSONObject requestMessage  = FrameworkUtils.getBody( request );
 			
 			List<MyCamelMap> responseList	    = null;
-			JSONObject responseMessage 			= null;
+			JSONArray      responseArrayMessage = null;
 			
 			MyMap paramMap = new MyMap();
 			paramMap.put("title", 			requestMessage.getOrDefault("title", "WORK_TYPE"));
@@ -55,16 +57,17 @@ public class ExeServerConnectionAction
 			
 			responseList = mCodeMapper.ListPagingData(paramMap);
 			
-//			for (MyCamelMap info : responseList) 
-//			{
-//				info.to
-//			}
+			responseArrayMessage = new JSONArray();
 			
+			for (MyCamelMap info : responseList) 
+			{
+				responseArrayMessage.add(new JSONObject(info));
+			}
 			
 			HttpHeaders resHeaders = new HttpHeaders();
 		    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
 			
-			return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
+			return new ResponseEntity<String>(responseArrayMessage.toString(), resHeaders, HttpStatus.OK);
 	 }
 	 
 	 // IDC

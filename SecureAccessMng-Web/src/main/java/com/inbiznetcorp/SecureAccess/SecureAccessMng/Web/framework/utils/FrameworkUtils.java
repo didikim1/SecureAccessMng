@@ -416,18 +416,6 @@ public class FrameworkUtils extends StringUtils{
 		return dayTime.format(new Date());
 	}
 	
-	
-//	 public static JSONObject getJsonStringFromMap( Map map )
-//	 {
-//	        JSONObject jsonObject = new JSONObject();
-//	        for( Map.Entry entry : map.entrySet() ) {
-//	            String key = (String) entry.getKey();
-//	            Object value = entry.getValue();
-//	            jsonObject.put(key, value);
-//	        }
-//	        return jsonObject;
-//	    }
-	
 	public static String aGoDate(int aGo, String strFormat)
 	{
 		SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
