@@ -1,4 +1,8 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -10,11 +14,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.util.StringUtils;
+
 /**
  * @FileName : FrameworkUtils.java
  * @Project  : o2o-ui-auth-request
@@ -356,12 +365,68 @@ public class FrameworkUtils extends StringUtils{
 
 	    return ip;
 	}
+	
+	public static JSONObject getBody(HttpServletRequest request)
+    {
+        StringBuilder   stringBuilder   = new StringBuilder();
+        BufferedReader  bufferedReader  = null;
+        InputStream     inputStream     = null;
+        JSONObject      jsonObject      = null;
+        try
+        {
+            inputStream = request.getInputStream();
 
+            if (inputStream != null)
+            {
+                bufferedReader          = new BufferedReader(new InputStreamReader(inputStream));
+                char[]  charBuffer      = new char[128];
+                int     bytesRead       = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) > 0)
+                {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+            }
+            jsonObject = (JSONObject) new JSONParser().parse(stringBuilder.toString());
+
+            bufferedReader.close();
+            inputStream.close();
+        }
+        catch (IOException | ParseException ex)
+        {
+                ex.printStackTrace();
+                jsonObject = null;
+        }
+        catch ( Exception e)
+        {
+            e.printStackTrace();
+            jsonObject = null;
+        }
+        finally
+        {
+            if (bufferedReader != null){try{bufferedReader.close();} catch (IOException ex) {ex.printStackTrace();}}
+            if (inputStream    != null){try{inputStream.close();}        catch (IOException ex) {ex.printStackTrace();}}
+        }
+
+        return jsonObject;
+    }
+	
 	public static String getCurrentDate(String strFormat)
 	{
 		SimpleDateFormat dayTime = new SimpleDateFormat(strFormat);
 		return dayTime.format(new Date());
 	}
+	
+	
+//	 public static JSONObject getJsonStringFromMap( Map map )
+//	 {
+//	        JSONObject jsonObject = new JSONObject();
+//	        for( Map.Entry entry : map.entrySet() ) {
+//	            String key = (String) entry.getKey();
+//	            Object value = entry.getValue();
+//	            jsonObject.put(key, value);
+//	        }
+//	        return jsonObject;
+//	    }
 	
 	public static String aGoDate(int aGo, String strFormat)
 	{

@@ -21,7 +21,9 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
 			AND SEQ 	=  #{seq}
 		</if>
-
+<!-- 		AND REF_EQ_IDPWD = 40  -->
+<!-- 		AND REF_ALLOW_IP = 3 -->
+<!-- 		AND REF_NRLMBER = 4 -->
 	</sql>
 
 	<!-- 페이징 갯수 -->
@@ -59,7 +61,8 @@
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
 				,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName  	 	<!-- 허용IP 이름 -->
 
-				,PROCESSID													as processid			<!-- 프로세스 ID -->
+				,PROCESSID													as processid			프로세스 ID
+<!-- 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y%m%d%H%i%s') 		as processid 	로그인일자 -->
 				,STTUS														as sttus				<!-- 처리상태(A) -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
