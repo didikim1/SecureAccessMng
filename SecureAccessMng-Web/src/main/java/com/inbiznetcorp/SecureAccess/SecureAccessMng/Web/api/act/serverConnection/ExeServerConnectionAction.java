@@ -41,8 +41,8 @@ public class ExeServerConnectionAction
 	 
 	 // 작업구분
 	 @SuppressWarnings({ "rawtypes", "unchecked" })
-	 @RequestMapping("/codeList.do")
-	 public ResponseEntity codeList( HttpServletRequest request, HttpServletResponse response )
+	 @RequestMapping("/workList.do")
+	 public ResponseEntity workList( HttpServletRequest request, HttpServletResponse response )
 	 {
 			// >> title = 'WORK_TYPE', type = 'B'
 			// >> seq, dpamentId, positionId, uniqId, mberName, mberSttus, moblphonNo, emailAddress, 
@@ -71,8 +71,85 @@ public class ExeServerConnectionAction
 	 }
 	 
 	 // IDC
+	 @SuppressWarnings({ "rawtypes"})
+	 @RequestMapping("/idcList.do")
+	 public ResponseEntity idcList( HttpServletRequest request, HttpServletResponse response )
+	 {
+			JSONObject requestMessage  = FrameworkUtils.getBody( request );
+			
+			List<MyCamelMap> responseList	    = null;
+			JSONArray      responseArrayMessage = null;
+			
+			MyMap paramMap = new MyMap();
+			
+			responseList = mEqListBiz.ListData(paramMap).getList();
+			
+			responseArrayMessage = new JSONArray();
+			
+			for (MyCamelMap info : responseList) 
+			{
+				responseArrayMessage.add(new JSONObject(info));
+			}
+			
+			HttpHeaders resHeaders = new HttpHeaders();
+		    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+			
+			return new ResponseEntity<String>(responseArrayMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
+	 
 	 
 	 // 서버 정보
+	 @SuppressWarnings({ "unchecked", "rawtypes" })
+	 @RequestMapping("/serverList.do")
+	 public ResponseEntity serverList( HttpServletRequest request, HttpServletResponse response )
+	 {
+			JSONObject requestMessage  = FrameworkUtils.getBody( request );
+			
+			List<MyCamelMap> responseList	    = null;
+			JSONArray      responseArrayMessage = null;
+			
+			MyMap paramMap = new MyMap();
+			paramMap.put("refEqIdc", (int) requestMessage.getOrDefault("refEqIdc", 0));
+			
+			responseList = mEqIdcBiz.ListData(paramMap).getList();
+			
+			responseArrayMessage = new JSONArray();
+			
+			for (MyCamelMap info : responseList) 
+			{
+				responseArrayMessage.add(new JSONObject(info));
+			}
+			
+			HttpHeaders resHeaders = new HttpHeaders();
+		    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+			
+			return new ResponseEntity<String>(responseArrayMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
 	 
 	 // 계정 정보
+	 @RequestMapping("/idpwdList.do")
+	 public ResponseEntity idpwdList( HttpServletRequest request, HttpServletResponse response )
+	 {
+			JSONObject requestMessage  = FrameworkUtils.getBody( request );
+			
+			List<MyCamelMap> responseList	    = null;
+			JSONArray      responseArrayMessage = null;
+			
+			MyMap paramMap = new MyMap();
+			paramMap.put("refEqList", (int) requestMessage.getOrDefault("refEqList", 0));
+			
+			responseList = mEqIdpwdBiz.ListData(paramMap).getList();
+			
+			responseArrayMessage = new JSONArray();
+			
+			for (MyCamelMap info : responseList) 
+			{
+				responseArrayMessage.add(new JSONObject(info));
+			}
+			
+			HttpHeaders resHeaders = new HttpHeaders();
+		    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+			
+			return new ResponseEntity<String>(responseArrayMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
 }
