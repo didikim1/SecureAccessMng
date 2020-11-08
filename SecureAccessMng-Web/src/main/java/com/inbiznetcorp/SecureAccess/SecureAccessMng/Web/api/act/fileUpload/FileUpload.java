@@ -22,80 +22,80 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 // /exe/FileUpload/fileUp.do
 @Controller
 @RequestMapping("/exe/FileUpload")
-public class FileUpload 
+public class FileUpload
 {
 	final String pagePrefix = "login";
-	
+
 	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(FileUpload.class.getName());
-	
+
 	@RequestMapping(value = "/fileUp.do")
     public String ExcelUp(HttpServletRequest req, HttpServletResponse rep){
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
+
 		 return pagePrefix + "/index";
 //		Logger.info("@@@@@@@@@@@@@@@FileUp START@@@@@@@@@@@@@@@");
-//        
-//        //파일이 저장될 path 설정 
-//        String path = "D://"; 
-//        Map returnObject = new HashMap(); 
-//        
-//        try 
-//        { 
-//        	// MultipartHttpServletRequest 생성 
-//            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) req; 
-//            Iterator iter = mhsr.getFileNames(); 
-//            MultipartFile mfile = null; 
-//            String fieldName = ""; 
-//            List resultList = new ArrayList(); // 디레토리가 없다면 생성 
-//            File dir = new File(path); 
-//            
-//            if (!dir.isDirectory()) 
+//
+//        //파일이 저장될 path 설정
+//        String path = "D://";
+//        Map returnObject = new HashMap();
+//
+//        try
+//        {
+//        	// MultipartHttpServletRequest 생성
+//            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) req;
+//            Iterator iter = mhsr.getFileNames();
+//            MultipartFile mfile = null;
+//            String fieldName = "";
+//            List resultList = new ArrayList(); // 디레토리가 없다면 생성
+//            File dir = new File(path);
+//
+//            if (!dir.isDirectory())
 //            {
-//                dir.mkdirs(); 
-//            } 
-//            
-//            // 값이 나올때까지
-//            while (iter.hasNext()) 
-//            { 
-//                fieldName = iter.next().toString(); // 내용을 가져와서 
-//                mfile = mhsr.getFile(fieldName); 
-//                String origName; 
-//                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면 
-//            
-//                if ("".equals(origName)) { continue; } // 파일 명 변경(uuid로 암호화) 
-//            
-//                String ext = origName.substring(origName.lastIndexOf('.')); // 확장자
-//                String saveFileName = getUuid() + ext;//getUuid() + ext; // 설정한 path에 파일저장 
-//                File serverFile = new File(path + File.separator + saveFileName); 
-//                mfile.transferTo(serverFile); 
-//                Map file = new HashMap(); 
-//                file.put("origName", origName); 
-//                file.put("sfile", serverFile); 
-//                resultList.add(file); 
-//                
-//                //DB에 들어갈만한 건들
-//                System.out.println("복호화된 파일 이름 : "+serverFile.getName()); //복호화된 파일 이름 
-//                System.out.println("물리적 저장 경로  : "+serverFile.getAbsolutePath()); //물리적 저장 경로 
-//                System.out.println("파일 크기 : "+serverFile.length()); //파일 크기 
-//                System.out.println("원래 파일 명 : "+origName); //원래 파일 명
-// 
+//                dir.mkdirs();
 //            }
-//            
-//            returnObject.put("files", resultList); 
-//            returnObject.put("params", mhsr.getParameterMap()); 
-//            
-//        } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
-//            e.printStackTrace(); 
-//        }catch (IllegalStateException e) { // TODO Auto-generated catch block 
-//            e.printStackTrace(); 
-//        } catch (IOException e) { // TODO Auto-generated catch block 
-//            e.printStackTrace(); 
+//
+//            // 값이 나올때까지
+//            while (iter.hasNext())
+//            {
+//                fieldName = iter.next().toString(); // 내용을 가져와서
+//                mfile = mhsr.getFile(fieldName);
+//                String origName;
+//                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면
+//
+//                if ("".equals(origName)) { continue; } // 파일 명 변경(uuid로 암호화)
+//
+//                String ext = origName.substring(origName.lastIndexOf('.')); // 확장자
+//                String saveFileName = getUuid() + ext;//getUuid() + ext; // 설정한 path에 파일저장
+//                File serverFile = new File(path + File.separator + saveFileName);
+//                mfile.transferTo(serverFile);
+//                Map file = new HashMap();
+//                file.put("origName", origName);
+//                file.put("sfile", serverFile);
+//                resultList.add(file);
+//
+//                //DB에 들어갈만한 건들
+//                System.out.println("복호화된 파일 이름 : "+serverFile.getName()); //복호화된 파일 이름
+//                System.out.println("물리적 저장 경로  : "+serverFile.getAbsolutePath()); //물리적 저장 경로
+//                System.out.println("파일 크기 : "+serverFile.length()); //파일 크기
+//                System.out.println("원래 파일 명 : "+origName); //원래 파일 명
+//
+//            }
+//
+//            returnObject.put("files", resultList);
+//            returnObject.put("params", mhsr.getParameterMap());
+//
+//        } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }catch (IllegalStateException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) { // TODO Auto-generated catch block
+//            e.printStackTrace();
 //        }
-        Logger.info("@@@@@@@@@@@@@@@FileUp End@@@@@@@@@@@@@@@");
+//        Logger.info("@@@@@@@@@@@@@@@FileUp End@@@@@@@@@@@@@@@");
     }
-	
-	 public static String getUuid() { 
-	       return UUID.randomUUID().toString().replaceAll("-", ""); 
+
+	 public static String getUuid() {
+	       return UUID.randomUUID().toString().replaceAll("-", "");
 	  }
 
 
