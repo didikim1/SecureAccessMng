@@ -46,19 +46,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         sbReqMessage.append("==========================//LAB603==================================" + strNewLine);
 
         Logger.info( sbReqMessage.toString() );
-
-        if( 	    url.indexOf("/login/") >= 0
-        		|| 	url.indexOf("/login/index.do") >= 0
-        		|| 	url.indexOf("/login/SelectOneData.do") >= 0
-        		|| 	url.indexOf("/login/DeleteData.do") >= 0
-        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
-        	)
-        {
-        	return true;
-        }
-        else
-        {
-        	return true;
+        return true;
+//
+//        if( 	    url.indexOf("/login/") >= 0
+//        		|| 	url.indexOf("/login/index.do") >= 0
+//        		|| 	url.indexOf("/login/SelectOneData.do") >= 0
+//        		|| 	url.indexOf("/login/DeleteData.do") >= 0
+//        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
+//        	)
+//        {
+//        	return true;
+//        }
+//        else
+//        {
+//        	return true;
 
 //        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
 //        	{
@@ -70,7 +71,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 //        		return true;
 //        	}
 
-        }
+//        }
     }
 
 

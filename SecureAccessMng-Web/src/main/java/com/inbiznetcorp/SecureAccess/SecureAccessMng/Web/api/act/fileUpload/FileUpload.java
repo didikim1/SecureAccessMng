@@ -26,15 +26,14 @@ public class FileUpload
 {
 	final String pagePrefix = "login";
 
-	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(FileUpload.class.getName());
+//	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(FileUpload.class.getName());
 
 	@RequestMapping(value = "/fileUp.do")
     public String ExcelUp(HttpServletRequest req, HttpServletResponse rep){
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-		 return pagePrefix + "/index";
-//		Logger.info("@@@@@@@@@@@@@@@FileUp START@@@@@@@@@@@@@@@");
-//
+//		 return pagePrefix + "/index";
+
 //        //파일이 저장될 path 설정
 //        String path = "D://";
 //        Map returnObject = new HashMap();
@@ -91,7 +90,8 @@ public class FileUpload
 //        } catch (IOException e) { // TODO Auto-generated catch block
 //            e.printStackTrace();
 //        }
-//        Logger.info("@@@@@@@@@@@@@@@FileUp End@@@@@@@@@@@@@@@");
+        
+        return pagePrefix + "/index";
     }
 
 	 public static String getUuid() {
