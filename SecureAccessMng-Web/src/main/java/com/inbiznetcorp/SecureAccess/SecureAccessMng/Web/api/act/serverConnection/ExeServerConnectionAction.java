@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,6 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
 
-import net.minidev.json.JSONArray;
 
 @Controller
 @RequestMapping("/exe/api/ServerConnection")
@@ -55,7 +55,7 @@ public class ExeServerConnectionAction
 			paramMap.put("title", 			requestMessage.getOrDefault("title", "WORK_TYPE"));
 			paramMap.put("type", 			requestMessage.getOrDefault("type", "B"));
 			
-			responseList = mCodeMapper.ListPagingData(paramMap);
+			responseList = mCodeMapper.ListData(paramMap);
 			
 			responseArrayMessage = new JSONArray();
 			

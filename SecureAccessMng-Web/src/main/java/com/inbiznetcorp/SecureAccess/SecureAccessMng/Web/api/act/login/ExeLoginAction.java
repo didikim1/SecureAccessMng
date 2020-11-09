@@ -1,6 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.login;
 
 import java.util.Enumeration;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -36,14 +37,18 @@ public class ExeLoginAction
 		JSONObject requestMessage  = FrameworkUtils.getBody( request );
 		
 		MyCamelMap responseMap	   = null;
-		JSONObject responseMessage = null;
+		JSONObject responseMessage = new JSONObject();
 		
 		MyMap paramMap = new MyMap();
 		paramMap.put("uniqid", 			requestMessage.getOrDefault("uniqid", ""));
 		paramMap.put("password", 		requestMessage.getOrDefault("password", ""));
 		
 		responseMap = mBiz.SelectOneData(paramMap);
-		responseMessage = new JSONObject(responseMap);
+		
+		for( Map.Entry elem : responseMap.entrySet() )
+		{
+            responseMessage.put(String.valueOf( elem.getKey() ), String.valueOf( elem.getValue() ));
+        }
 		
 		HttpHeaders resHeaders = new HttpHeaders();
 	    resHeaders.add("Content-Type", "application/json;charset=UTF-8");

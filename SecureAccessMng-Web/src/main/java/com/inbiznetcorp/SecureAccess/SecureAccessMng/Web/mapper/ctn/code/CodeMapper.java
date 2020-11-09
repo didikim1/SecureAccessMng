@@ -23,6 +23,13 @@ public interface CodeMapper
 	* @return
 	*/
 	public java.util.List<MyCamelMap> ListPagingData(MyMap paramMap);
+	
+	/**
+	 * 전체목록
+	 * @param paramMap
+	 * @return
+	 */
+	public java.util.List<MyCamelMap> ListData(MyMap paramMap);
 
 	/**
 	* 상세

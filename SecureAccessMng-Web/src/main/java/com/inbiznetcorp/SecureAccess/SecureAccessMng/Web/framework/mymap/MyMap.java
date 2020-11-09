@@ -1,8 +1,11 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+//import net.sf.json.JSONArray;
+//import net.sf.json.JSONObject;
 public class MyMap extends LinkedHashMap<Object,Object>
 {
 	private static final long serialVersionUID = -7964609600835164119L;

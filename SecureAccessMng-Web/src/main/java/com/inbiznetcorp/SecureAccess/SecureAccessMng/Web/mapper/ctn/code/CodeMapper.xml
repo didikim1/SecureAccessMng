@@ -47,9 +47,28 @@
 			 CTN_CODE T1
 		WHERE 1=1
 			<include refid="addWhere"/>
-<!-- 		ORDER BY CODE_SEQ DESC -->
 		ORDER BY ${sidx} ${sord}
 		LIMIT #{start}, #{end}
+	</select>
+	
+	<select id="ListData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 CODE_SEQ 														as codeSeq				<!-- 고유번호 -->
+				,REF_CODE 														as refCode				<!-- 상위CODEID -->
+				,PREFIX 														as prefix 				<!-- 코드접두사 -->
+				,TITLE 															as title  				<!-- 분류코드명 -->
+				,TYPE 															as type					<!-- 부모(P),자식(C) -->
+				,ID 															as id					<!-- 코드ID -->
+				,REMARK 														as remark				<!-- 설명 -->
+				,NAME 															as name					<!-- 코드ID명 -->
+				,FRST_REGISTER_ID 												as frstRegisterId		<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID 												as lastUpdusrId			<!-- 최종등록ID -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		as frstRegisterPnttm 	<!-- 최초등록일 -->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm 		<!-- 최종등록일 -->
+		FROM
+			 CTN_CODE T1
+		WHERE 1=1
+			<include refid="addWhere"/>
 	</select>
 
 	<!-- 상세 -->
