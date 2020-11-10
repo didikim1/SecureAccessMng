@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.bbs.BBSMasterDao">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(bbsId)">
+			AND BBS_ID 	=  #{bbsId}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(bbsNm)">
+			AND BBS_NM 	=  #{bbsNm}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(bbsCode)">
+			AND BBS_CODE =  #{bbsCode}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sStartDate)">
+			AND (
+				DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') BETWEEN #{sStartDate} AND #{sEndDate}
+			)
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sBBSTyCode) and @com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sKeyword)">
+			<choose>
+				<when test=" sBBSTyCode != null and sBBSTyCode.equals('bbsTyCode')">
+					AND BBS_TY_CODE LIKE '%${sKeyword}%'
+				</when>
+				<when test=" sBBSTyCode != null and sBBSTyCode.equals('bbsNm')">
+					AND BBS_NM LIKE '%${sKeyword}%'
+				</when>
+				<when test=" sBBSTyCode != null and sBBSTyCode.equals('frstRegisterId')">
+					AND FRST_REGISTER_ID LIKE '%${sKeyword}%'
+				</when>
+				<when test=" sBBSTyCode != null and sBBSTyCode.equals('lastUpdusrId')">
+					AND LAST_UPDUSR_ID LIKE '%${sKeyword}%'
+				</when>
+				<otherwise>
+					AND (
+							BBS_TY_CODE like '%${sKeyword}%'
+					        OR
+					            BBS_NM like '%${sKeyword}%'
+					        OR
+					            FRST_REGISTER_ID like '%${sKeyword}%'
+					        OR
+					            LAST_UPDUSR_ID like '%${sKeyword}%'
+						)
+				</otherwise>
+			</choose>
+		</if>
+
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_BBSMASTER
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 BBS_ID													as bbsId					<!-- 게시판ID -->
+			,BBS_TY_CODE											as bbsTyCode				<!-- 게시판유형코드 -->
+			,BBS_CODE												as bbsCode					<!-- 게시판고유키 -->
+			,USE_AT													as useAt					<!-- 사용여부 -->
+			,BBS_NM													as bbsNm					<!-- 게시판명 -->
+			,REPLY_POSBL_AT											as replyPosblAt				<!-- 답장가능여부 -->
+			,POSBL_ATCH_FILE_NUMBER 								as posblAtchFileNumber		<!-- 첨부가능파일갯수 -->
+			,FILE_ATCH_POSBL_AT										as fileAtchPosblAt			<!-- 첨부가능여부 -->
+			,POSBL_ATCH_FILE_SIZE									as posblAtchFileSize		<!-- 첨부가능사이즈(KB) -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			CTN_BBSMASTER
+		WHERE 1=1
+		<include refid="addWhere"/>
+		LIMIT #{start}, #{end}
+	</select>
+
+	<select id="ListAllData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 BBS_ID													as bbsId					<!-- 게시판ID -->
+			,BBS_TY_CODE											as bbsTyCode				<!-- 게시판유형코드 -->
+			,BBS_CODE												as bbsCode					<!-- 게시판고유키 -->
+			,USE_AT													as useAt					<!-- 사용여부 -->
+			,BBS_NM													as bbsNm					<!-- 게시판명 -->
+			,REPLY_POSBL_AT											as replyPosblAt				<!-- 답장가능여부 -->
+			,POSBL_ATCH_FILE_NUMBER 								as posblAtchFileNumber		<!-- 첨부가능파일갯수 -->
+			,FILE_ATCH_POSBL_AT										as fileAtchPosblAt			<!-- 첨부가능여부 -->
+			,POSBL_ATCH_FILE_SIZE									as posblAtchFileSize		<!-- 첨부가능사이즈(KB) -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			CTN_BBSMASTER
+		WHERE 1=1
+		<include refid="addWhere"/>
+		ORDER BY BBS_NM ASC
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 BBS_ID					as bbsId					<!-- 게시판ID -->
+			,BBS_TY_CODE			as bbsTyCode				<!-- 게시판유형코드 -->
+			,BBS_CODE				as bbsCode					<!-- 게시판고유키 -->
+			,USE_AT					as useAt					<!-- 사용여부 -->
+			,BBS_NM					as bbsNm					<!-- 게시판명 -->
+			,REPLY_POSBL_AT			as replyPosblAt				<!-- 답장가능여부 -->
+			,POSBL_ATCH_FILE_NUMBER as posblAtchFileNumber		<!-- 첨부가능파일갯수 -->
+			,FILE_ATCH_POSBL_AT		as fileAtchPosblAt			<!-- 첨부가능여부 -->
+			,POSBL_ATCH_FILE_SIZE	as posblAtchFileSize		<!-- 첨부가능사이즈(KB) -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			 CTN_BBSMASTER T1
+		WHERE 1=1
+		AND BBS_CODE =  #{bbsCode}
+	</select>
+
+	<!-- 추가 -->
+	<insert id="RegisterData"  parameterType="myMap" useGeneratedKeys="true"   keyProperty="BBS_ID">
+		INSERT INTO CTN_BBSMASTER
+		(
+		  BBS_TY_CODE
+		 ,BBS_CODE
+		 ,BBS_NM
+		 ,REPLY_POSBL_AT
+		 ,POSBL_ATCH_FILE_NUMBER
+		 ,FILE_ATCH_POSBL_AT
+		 ,POSBL_ATCH_FILE_SIZE
+		 ,FRST_REGISTER_PNTTM
+		 ,FRST_REGISTER_ID
+		)
+		 VALUES
+		(
+		     #{bbsTyCode}				<!-- 게시판유형코드 -->
+		    ,#{bbsCode}					<!-- 게시판명 -->
+		    ,#{bbsNm}					<!-- 게시판명 -->
+		    ,#{replyPosblAt}			<!-- 답장 가능여부 -->
+		    ,#{posblAtchFileNumber}		<!-- 첨부파일가능한파일갯수 -->
+		    ,#{fileAtchPosblAt}			<!-- 첨부파일가능여부 -->
+		    ,#{posblAtchFileSize}		<!-- 첨부파일가능사이즈 -->
+		    ,now()						<!-- 최초등록시점 -->
+		    ,#{SESSION_USER_ID}			<!-- 최초등록자 -->
+		)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_BBSMASTER
+				 SET
+				 BBS_ID = BBS_ID
+				 ,<if test="@com.mapper.Utily@isNotEmpty(bbsTyCode)">  				,BBS_TY_CODE 				= #{bbsTyCode}  									</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(bbstyid)">  				,BBSTYID 					= #{bbstyid} 												</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(useAt)"> 					,AND USE_AT 				= #{useAt} 											</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(bbsNm)"> 					,AND BBS_NM 				= #{bbsNm} 											</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(replyPosblAt)"> 			,AND REPLY_POSBL_AT 		= #{replyPosblAt} 							</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(posblAtchFileNumber)"> 	,AND POSBL_ATCH_FILE_NUMBER = #{posblAtchFileNumber} 			</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(fileAtchPosblAt)"> 		,AND FILE_ATCH_POSBL_AT 	= #{fileAtchPosblAt} 					</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(posblAtchFileSize)"> 		,AND POSBL_ATCH_FILE_SIZE 	= #{posblAtchFileSize} 				</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(lastUpdusrPnttm)"> 		,AND LAST_UPDUSR_PNTTM 		= #{lastUpdusrPnttm} 						</if>
+				 ,<if test="@com.mapper.Utily@isNotEmpty(lastUpdusrId)"> 			,AND LAST_UPDUSR_ID 		= #{lastUpdusrId} 							</if>
+				WHERE BBS_ID = #{bbs_id}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_BBSMASTER WHERE BBS_ID = #{bbsId}
+	</update>
+
+</mapper>

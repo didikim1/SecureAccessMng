@@ -137,10 +137,35 @@
 			<include refid="addWhere"/>
 		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
 	</select>
-
+	
 	<!-- 추가 -->
 	<update id="RegisterData" parameterType="myMap" >
-
+		INSERT INTO EQ_ACCLOG
+			(
+				 WORKTYPECODE_ID 		<!-- 업무코드 ID -->
+				,REF_EQ_IDC 			<!-- IDC고유 SEQ -->
+				,REF_EQ_LIST 			<!-- 서버고유SEQ -->
+				,REF_EQ_IDPWD 			<!-- 모듈고유SEQ -->
+				,REF_NRLMBER			<!-- 회원고유번호 SEQ -->
+				,REF_ALLOW_IP			<!-- 허용IP SEQ -->
+				,PROCESSID				<!-- 프로세스 ID -->
+				,STTUS					<!-- 처리상태(A) -->
+				,REASON					<!-- 사유 -->
+				,FRST_REGISTER_PNTTM	<!-- 로그인일자 -->
+			)
+			VALUES
+			(
+				 #{worktypecodeId} 		<!-- 업무코드 ID -->
+				,#{refEqIdc} 			<!-- IDC고유 SEQ -->
+				,#{refEqList} 			<!-- 서버고유SEQ -->
+				,#{refEqIdpwd} 			<!-- 모듈고유SEQ -->
+				,#{refNrlmber}			<!-- 회원고유번호 SEQ -->
+				,#{refAllowIp}			<!-- 허용IP SEQ -->
+				,#{processID}			<!-- 프로세스 ID -->
+				,'A'					<!-- 처리상태(A) -->
+				,#{reason}				<!-- 사유 -->
+				,now()					<!-- 최초등록ID -->
+			)
 	</update>
 
 	<!-- 수정 -->

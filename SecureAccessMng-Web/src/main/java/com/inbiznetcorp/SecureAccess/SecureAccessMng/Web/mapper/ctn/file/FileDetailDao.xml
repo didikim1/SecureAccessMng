@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.file.FileDetailDao">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(fileSn)">
+			AND FILE_SN 	=  #{fileSn}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(SESSION_BOARD_ID)">
+			AND SESSION_BOARD_ID 	=  #{SESSION_BOARD_ID}
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_FILEDETAIL
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 ATCH_FILE_ID											as atchFileId				<!-- 첨부파일그룹ID -->
+			,FILE_SN												as fileSn					<!-- 첨부파일ID -->
+			,STRE_FILE_NM 											as streFileNm				<!-- 저장된파일명 -->
+			,ORIGNL_FILE_NM 										as orignlFileNm				<!-- 오리지날파일명 -->
+			,FILE_EXTSN 											as fileExtsn				<!-- 첨부파일확장자명 -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			 CTN_FILEDETAIL T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="AllListData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 ATCH_FILE_ID											as atchFileId				<!-- 첨부파일그룹ID -->
+			,FILE_SN												as fileSn					<!-- 첨부파일ID -->
+			,STRE_FILE_NM 											as streFileNm				<!-- 저장된파일명 -->
+			,ORIGNL_FILE_NM 										as orignlFileNm				<!-- 오리지날파일명 -->
+			,FILE_STRE_COURS										as fileStreCours			<!-- 파일경로 -->
+			,FILE_EXTSN 											as fileExtsn				<!-- 첨부파일확장자명 -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+			,SESSION_BOARD_ID										as SESSION_BOARD_ID
+		FROM
+			 CTN_FILEDETAIL T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 ATCH_FILE_ID											as atchFileId				<!-- 첨부파일그룹ID -->
+			,FILE_SN												as fileSn					<!-- 첨부파일ID -->
+			,STRE_FILE_NM 											as streFileNm				<!-- 저장된파일명 -->
+			,ORIGNL_FILE_NM 										as orignlFileNm				<!-- 오리지날파일명 -->
+			,FILE_STRE_COURS										as fileStreCours			<!-- 파일경로 -->
+			,FILE_EXTSN 											as fileExtsn				<!-- 첨부파일확장자명 -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			 CTN_FILEDETAIL T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true"   keyProperty="FILE_SN">
+		INSERT INTO CTN_FILEDETAIL
+			(
+			  ATCH_FILE_ID			<!-- 첨부파일그룹ID 	-->
+			 ,STRE_FILE_NM			<!-- 저장된파일명 		-->
+			 ,ORIGNL_FILE_NM		<!-- 오리지날파일명 	-->
+			 ,FILE_EXTSN			<!-- 첨부파일확장자명 	-->
+			 ,FILE_STRE_COURS		<!-- 첨부파일경로 		-->
+			 ,URL_PATH				<!-- 첨부파일URL 		-->
+			 ,ISVIEW				<!-- 화면노출여부 		-->
+			 ,FRST_REGISTER_ID		<!-- 최초등록자 		-->
+			 ,FRST_REGISTER_PNTTM	<!-- 최초등록시점 		-->
+			 ,SESSION_BOARD_ID
+			)
+			 VALUES
+			(
+			     #{atchFileId}				<!-- 첨부파일그룹ID 	-->
+			    ,#{streFileNm}				<!-- 저장된파일명 		-->
+			    ,#{orignlFileNm}			<!-- 오리지날파일명 	-->
+			    ,#{fileExtsn}				<!-- 첨부파일확장자명 	-->
+			    ,#{fileStreCours}			<!-- 첨부파일경로 	-->
+			    ,#{urlPath}					<!-- 첨부파일URL 	-->
+			    ,#{isview}					<!-- 화면노출여부 	-->
+			    ,#{SESSION_USER_ID}			<!-- 최초등록자 		-->
+			    ,now()						<!-- 최초등록시점 		-->
+			    ,#{SESSION_BOARD_ID}
+			)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_FILEDETAIL
+			 SET
+			  LAST_UPDUSR_ID 	=  #{SESSION_USER_ID}
+			 ,LAST_UPDUSR_PNTTM =  now()
+		WHERE FILE_SN = #{fileSn}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_FILEDETAIL WHERE FILE_SN = #{fileSn}
+	</update>
+
+</mapper>

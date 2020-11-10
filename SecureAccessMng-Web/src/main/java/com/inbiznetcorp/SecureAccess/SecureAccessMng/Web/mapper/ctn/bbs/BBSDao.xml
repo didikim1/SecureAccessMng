@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.bbs.BBSDao">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nttId)">
+			AND NTT_ID 	=  #{nttId}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(bbsId)">
+			AND BBS_ID =  #{bbsId}
+		</if>
+		AND USE_AT != 'N'
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_BBS
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			  NTT_ID		as nttId																<!-- 게시물ID -->
+			 ,SORT_ORDR		as sortOrdr																<!-- 정렬순서 -->
+			 ,PASSWORD		as password																<!-- 패스워드 -->
+			 ,NTT_SJ		as nttSj																<!-- 게시물제목 -->
+			 ,NTT_CN		as nttCn																<!-- 게시물내용 -->
+			 ,USE_AT		as useAt																<!-- 사용여부 -->
+			 ,DATE_FORMAT(NTCE_BGNDE, '%Y-%m-%d')	as ntceBgnde									<!-- 게시시작일 -->
+			 ,DATE_FORMAT(NTCE_ENDDE, '%Y-%m-%d')	as ntceEndde									<!-- 게시종료일 -->
+			 ,FRST_REGISTER_ID											as frstRegisterId			<!-- 최초등록ID -->
+			 ,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			 ,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+			 ,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			 ,NTT_NO				as nttNo														<!-- 조회횟수 -->
+			 ,ATCH_FILE_ID			as atchFileId													<!-- 첨부파일ID -->
+			 ,BBS_ID				as bbsId
+		FROM
+			 CTN_BBS T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY NTT_ID DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			  NTT_ID		as nttId																<!-- 게시물ID -->
+			 ,SORT_ORDR		as sortOrdr																<!-- 정렬순서 -->
+			 ,PASSWORD		as password																<!-- 패스워드 -->
+			 ,NTT_SJ		as nttSj																<!-- 게시물제목 -->
+			 ,NTT_CN		as nttCn																<!-- 게시물내용 -->
+			 ,USE_AT		as useAt																<!-- 사용여부 -->
+			 ,DATE_FORMAT(NTCE_BGNDE, '%Y-%m-%d')	as ntceBgnde									<!-- 게시시작일 -->
+			 ,DATE_FORMAT(NTCE_ENDDE, '%Y-%m-%d')	as ntceEndde									<!-- 게시종료일 -->
+			 ,FRST_REGISTER_ID											as frstRegisterId			<!-- 최초등록ID -->
+			 ,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			 ,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+			 ,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			 ,NTT_NO				as nttNo														<!-- 조회횟수 -->
+			 ,ATCH_FILE_ID			as atchFileId													<!-- 첨부파일ID -->
+			 ,BBS_ID				as bbsId														<!-- 게시판ID -->
+			 ,SESSION_BOARD_ID		as sessionBoardId												<!-- SESSION_BOARD_ID -->
+		FROM
+			 CTN_BBS T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true"   keyProperty="NTT_ID">
+		INSERT INTO CTN_BBS
+			(
+			  BBS_ID
+			 ,PASSWORD
+			 ,NTT_SJ
+			 ,NTT_CN
+			 ,NTCE_BGNDE
+			 ,NTCE_ENDDE
+			 ,FRST_REGISTER_ID
+			 ,FRST_REGISTER_PNTTM
+			 ,SESSION_BOARD_ID
+			)
+			 VALUES
+			(
+			     #{bbsId}		<!-- 게시판ID -->
+			    ,#{password}	<!-- 패스워드 -->
+			    ,#{nttSj}		<!-- 게시물제목 -->
+			    ,#{nttCn}		<!-- 게시물내용 -->
+			    ,DATE_FORMAT(#{ntceBgnde}, '%Y-%m-%d') 	<!-- 게시시작일 -->
+			    ,DATE_FORMAT(#{ntceEndde}, '%Y-%m-%d')  <!-- 게시종료일 -->
+			    ,#{SESSION_USER_ID}			<!-- 최초등록자 -->
+			    ,now()						<!-- 최초등록시점 -->
+			    ,#{SESSION_BOARD_ID}
+			)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_BBS
+			 SET
+			 NTT_ID = #{nttId}
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">  		,LAST_UPDUSR_ID 	=  #{lastUpdusrId}, LAST_UPDUSR_PNTTM = now() </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(bbsId)">  			,BBS_ID 			=  #{bbsId}   			</if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sortOrdr)">  			,SORT_ORDR 			=  #{sortOrdr}	        </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)"> 			,PASSWORD 			=  #{password} 		    </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nttSj)">  			,NTT_SJ 			=  #{nttSj}			    </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nttCn)"> 				,NTT_CN 			=  #{nttCn} 			</if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(useAt)"> 				,USE_AT 			=  #{useAt} 			</if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(ntceBgnde)"> 			,NTCE_BGNDE 		=  DATE_FORMAT(#{ntceBgnde}, '%Y-%m-%d')         </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(ntceEndde)"> 			,NTCE_ENDDE 		=  DATE_FORMAT(#{ntceEndde}, '%Y-%m-%d')         </if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nttNo)"> 				,NTT_NO 			=  #{nttNo} 			</if>
+			 <if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(atchFileId)"> 		,ATCH_FILE_ID 		=  #{atchFileId} 		</if>
+		WHERE NTT_ID = #{nttId}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_BBS WHERE NTT_ID = #{nttId}
+	</update>
+
+</mapper>

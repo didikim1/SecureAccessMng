@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.file.FileDao">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(atchFileId)">
+			AND ATCH_FILE_ID 	=  #{atchFileId}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(SESSION_BOARD_ID)">
+			AND SESSION_BOARD_ID 	=  #{SESSION_BOARD_ID}
+		</if>
+<!-- 		AND USE_AT != 'N' -->
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_FILE
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 ATCH_FILE_ID											as atchFileId				<!-- 첨부파일그룹ID -->
+			,USE_AT 												as useAt					<!-- 사용여부 -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			 CTN_FILE T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 ATCH_FILE_ID											as atchFileId				<!-- 첨부파일그룹ID -->
+			,USE_AT 												as useAt					<!-- 사용여부 -->
+			,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			,FRST_REGISTER_ID										as frstRegisterId			<!-- 최초등록ID -->
+			,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+		FROM
+			 CTN_FILE T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<!-- 추가 -->
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true"   keyProperty="ATCH_FILE_ID">
+		INSERT INTO CTN_FILE
+			(
+			  FRST_REGISTER_ID
+			 ,FRST_REGISTER_PNTTM
+			 ,SESSION_BOARD_ID
+			)
+			 VALUES
+			(
+			     #{SESSION_USER_ID}			<!-- 최초등록자 -->
+			    ,now()						<!-- 최초등록시점 -->
+			    ,#{SESSION_BOARD_ID}
+			)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_FILE
+			 SET
+			  LAST_UPDUSR_ID 	=  #{SESSION_USER_ID}
+			 ,LAST_UPDUSR_PNTTM =  now()
+		WHERE ATCH_FILE_ID = #{atchFileId}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_FILE WHERE ATCH_FILE_ID = #{atchFileId}
+	</update>
+
+</mapper>

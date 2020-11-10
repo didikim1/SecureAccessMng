@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUpload
 {
 	final String pagePrefix = "login";
-
+	// /exe/FileUpload/fileUp.do
 //	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(FileUpload.class.getName());
 
 	@RequestMapping(value = "/fileUp.do")
