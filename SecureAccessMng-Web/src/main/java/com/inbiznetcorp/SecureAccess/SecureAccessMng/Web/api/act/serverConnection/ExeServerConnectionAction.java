@@ -12,7 +12,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz;
@@ -22,6 +24,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllowIPMapper;
 
 
 @Controller
@@ -42,6 +45,9 @@ public class ExeServerConnectionAction
 	 
 	 @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz")
 	 EqAccLogBiz mEqAccLogBiz;
+	 
+	 @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllowIPMapper")
+	 EqAllowIPMapper mEqAllowIPMapper;
 	 
 	 // 작업구분
 	 @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -86,7 +92,7 @@ public class ExeServerConnectionAction
 			
 			MyMap paramMap = new MyMap();
 			
-			responseList = mEqListBiz.ListData(paramMap).getList();
+			responseList = mEqIdcBiz.ListData(paramMap).getList();
 			
 			responseArrayMessage = new JSONArray();
 			
@@ -219,5 +225,47 @@ public class ExeServerConnectionAction
 		 resHeaders.add("Content-Type", "application/json;charset=UTF-8");
 		 
 		 return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
+	 
+	 @RequestMapping(value ={ "/EqAllowIP.do" })
+	 public ResponseEntity EqAllowIP(Model model, HttpServletRequest request)
+     {
+         MyMap 		 paramMap 		  = new MyMap();
+         MyMap 		 returnMap 		  = null;
+		 JSONObject  requestMessage   = FrameworkUtils.getBody( request );
+		 JSONObject  responseMessage  = null;	
+		 
+		 paramMap.put("addr", (String) requestMessage.getOrDefault("addr", getIp(request)));
+		 
+		 returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
+		 
+		 responseMessage = new JSONObject(returnMap);
+		 
+		 HttpHeaders resHeaders = new HttpHeaders();
+		 resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+			
+		 return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
+    }
+	 
+	 private String getIp( HttpServletRequest request )
+	 {
+		 	String ip = request.getHeader("X-FORWARDED-FOR");
+
+	        if (ip == null || ip.length() == 0)
+	        {
+	          ip= request.getHeader("Proxy-Client-IP");
+	        }
+
+	        if (ip == null || ip.length() == 0)
+	        {
+	          ip= request.getHeader("WL-Proxy-Client-IP");
+	        }
+
+	        if (ip == null || ip.length() == 0)
+	        {
+	          ip= request.getRemoteAddr() ;
+	        }
+	        
+	        return ip;
 	 }
 }
