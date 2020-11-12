@@ -51,6 +51,8 @@ public interface EqAccLogMapper
 	* @return
 	*/
 	public int ModifyData(MyMap paramMap);
+	
+	public int UpdateLogOutAccLog(MyMap paramMap);
 
 	/**
 	* 삭제

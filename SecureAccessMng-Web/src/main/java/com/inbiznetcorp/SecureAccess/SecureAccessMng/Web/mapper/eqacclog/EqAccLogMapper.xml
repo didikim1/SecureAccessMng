@@ -61,8 +61,7 @@
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
 				,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName  	 	<!-- 허용IP 이름 -->
 
-				,PROCESSID													as processid			프로세스 ID
-<!-- 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y%m%d%H%i%s') 		as processid 	로그인일자 -->
+				,PROCESSID													as processid			<!-- 프로세스 ID -->
 				,STTUS														as sttus				<!-- 처리상태(A) -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
@@ -167,7 +166,17 @@
 				,now()					<!-- 최초등록ID -->
 			)
 	</update>
-
+	
+	
+	<update id="UpdateLogOutAccLog"  parameterType="MyMap">
+		UPDATE EQ_ACCLOG
+		SET
+			 STTUS = 'E'
+			,LAST_UPDUSR_PNTTM = now()
+		WHERE
+			PROCESSID = #{processid}
+	</update>
+	
 	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
 

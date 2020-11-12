@@ -49,6 +49,38 @@ public class ExeServerConnectionAction
 	 @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllowIPMapper")
 	 EqAllowIPMapper mEqAllowIPMapper;
 	 
+	 
+	 @SuppressWarnings("rawtypes")
+	 @RequestMapping("/eqAccLogList.do")
+	 public ResponseEntity eqAccLogList( HttpServletRequest request, HttpServletResponse response )
+	 {
+		 JSONObject requestMessage  = FrameworkUtils.getBody( request );
+		 
+		 List<MyCamelMap> responseList	    = null;
+		 JSONArray        responseMessage 	= null;
+		 int			  intRtnValue		= 0;
+		 
+		 System.out.println("requestMessage: " + requestMessage);
+		 
+		 MyMap paramMap = new MyMap();
+		 
+		 paramMap.put("rows", 10);
+		 responseList = mEqAccLogBiz.ListPagingData(paramMap).getList();
+		 
+		 
+		 responseMessage = new JSONArray();
+			
+		for (MyCamelMap info : responseList) 
+		{
+			responseMessage.add(new JSONObject(info));
+		}
+		
+		HttpHeaders resHeaders = new HttpHeaders();
+	    resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		
+		return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
+	 
 	 // 작업구분
 	 @SuppressWarnings({ "rawtypes", "unchecked" })
 	 @RequestMapping("/workList.do")
@@ -188,7 +220,7 @@ public class ExeServerConnectionAction
 				,now()					<!-- 최초등록ID -->
 	  */
 	 @SuppressWarnings("unchecked")
-	@RequestMapping("/mEqAccLogBiz.do")
+	@RequestMapping("/eqAccLogRegisterData.do")
 	 public ResponseEntity mEqAccLogBiz( HttpServletRequest request, HttpServletResponse response )
 	 {
 		 JSONObject requestMessage  = FrameworkUtils.getBody( request );
@@ -226,6 +258,37 @@ public class ExeServerConnectionAction
 		 
 		 return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
 	 }
+	 
+	 @RequestMapping("/UpdateLogOutAccLog.do")
+	 public ResponseEntity UpdateLogOutAccLog( HttpServletRequest request, HttpServletResponse response )
+	 {
+		 JSONObject requestMessage  = FrameworkUtils.getBody( request );
+		 
+		 List<MyCamelMap> responseList	    = null;
+		 JSONObject       responseMessage 	= null;
+		 int			  intRtnValue		= 0;
+		 
+		 System.out.println("requestMessage: " + requestMessage);
+		 
+		 MyMap paramMap = new MyMap();
+		 paramMap.put("processid",  requestMessage.getOrDefault("processid", "").toString() );
+		 
+		 intRtnValue = mEqAccLogBiz.UpdateLogOutAccLog(paramMap);
+		 
+		 responseMessage = new JSONObject();
+		 
+		 responseMessage.put("resultCode", "99");
+		 if ( intRtnValue > 0)
+		 {
+			 responseMessage.put("resultCode", "00");
+		 }
+		 
+		 HttpHeaders resHeaders = new HttpHeaders();
+		 resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		 
+		 return new ResponseEntity<String>(responseMessage.toString(), resHeaders, HttpStatus.OK);
+	 }
+	 
 	 
 	 @RequestMapping(value ={ "/EqAllowIP.do" })
 	 public ResponseEntity EqAllowIP(Model model, HttpServletRequest request)

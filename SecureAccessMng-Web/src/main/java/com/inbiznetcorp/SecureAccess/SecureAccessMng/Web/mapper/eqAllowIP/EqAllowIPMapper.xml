@@ -33,8 +33,7 @@
 			 EQ_ALLOW_IP T1
 		WHERE 1=1
 			<include refid="addWhere"/>
-		ORDER BY T1.EQ_ALLOW_IP DESC
-		LIMIT #{start}, #{end}
+		ORDER BY T1.FRST_REGISTER_PNTTM DESC
 	</select>
 	
 	<!-- 상세 -->

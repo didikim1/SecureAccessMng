@@ -74,6 +74,11 @@ public class EqAccLogBiz
     {
         return mMapper.ModifyData(paramMap);
     }
+    
+    public int UpdateLogOutAccLog(MyMap paramMap)
+    {
+    	return mMapper.UpdateLogOutAccLog(paramMap);
+    }
 
     /**
     * 삭제
