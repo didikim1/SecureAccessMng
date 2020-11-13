@@ -26,23 +26,32 @@
 	<!-- 페이징 목록 -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			  NTT_ID		as nttId																<!-- 게시물ID -->
-			 ,SORT_ORDR		as sortOrdr																<!-- 정렬순서 -->
-			 ,PASSWORD		as password																<!-- 패스워드 -->
-			 ,NTT_SJ		as nttSj																<!-- 게시물제목 -->
-			 ,NTT_CN		as nttCn																<!-- 게시물내용 -->
-			 ,USE_AT		as useAt																<!-- 사용여부 -->
-			 ,DATE_FORMAT(NTCE_BGNDE, '%Y-%m-%d')	as ntceBgnde									<!-- 게시시작일 -->
-			 ,DATE_FORMAT(NTCE_ENDDE, '%Y-%m-%d')	as ntceEndde									<!-- 게시종료일 -->
-			 ,FRST_REGISTER_ID											as frstRegisterId			<!-- 최초등록ID -->
-			 ,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
-			 ,LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
-			 ,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm			<!-- 마지막등록시점 -->
-			 ,NTT_NO				as nttNo														<!-- 조회횟수 -->
-			 ,ATCH_FILE_ID			as atchFileId													<!-- 첨부파일ID -->
-			 ,BBS_ID				as bbsId
+			  T1.NTT_ID		as nttId																<!-- 게시물ID -->
+			 ,T1.SORT_ORDR	as sortOrdr																<!-- 정렬순서 -->
+			 ,T1.PASSWORD	as password																<!-- 패스워드 -->
+			 ,T1.NTT_SJ		as nttSj																<!-- 게시물제목 -->
+			 ,T1.NTT_CN		as nttCn																<!-- 게시물내용 -->
+			 ,T1.USE_AT		as useAt																<!-- 사용여부 -->
+			 ,DATE_FORMAT(NTCE_BGNDE, '%Y-%m-%d')	as ntceBgnde								<!-- 게시시작일 -->
+			 ,DATE_FORMAT(NTCE_ENDDE, '%Y-%m-%d')	as ntceEndde								<!-- 게시종료일 -->
+			 ,CONCAT(DATE_FORMAT(NTCE_BGNDE,'%m월%d일'), '~', DATE_FORMAT(NTCE_ENDDE, '%m월%d일') ) ntceDate
+			 
+			 ,T1.FRST_REGISTER_ID													as frstRegisterId			<!-- 최초등록ID -->
+			 ,(SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = T1.FRST_REGISTER_ID )    as frstRegister 		<!-- 최초등록Name -->
+			 
+			 ,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm		<!-- 최초등록시점 -->
+			 ,T1.LAST_UPDUSR_ID											as lastUpdusrId				<!-- 마지막등록ID -->
+			 ,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 		as lastUpdusrPnttm			<!-- 마지막등록시점 -->
+			 ,T1.NTT_NO				as nttNo														<!-- 조회횟수 -->
+			 ,T1.BBS_ID				as bbsId
+			 ,T2.ORIGNL_FILE_NM	 	as orignlFileNm
+			 ,T2.ATCH_FILE_ID	 	as atchFileId
+			 ,(SELECT ADDR FROM EQ_ALLOW_IP WHERE SEQ = T1.TARGET_IP )  as targetIp
+			 ,(SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = T1.TARGET_NRLM ) 	as targetNrlm
 		FROM
-			 CTN_BBS T1
+			CTN_BBS  AS T1 
+		LEFT OUTER JOIN CTN_FILEDETAIL AS T2
+			ON T1.SESSION_BOARD_ID = T2.SESSION_BOARD_ID	
 		WHERE 1=1
 			<include refid="addWhere"/>
 		ORDER BY NTT_ID DESC
@@ -74,7 +83,11 @@
 			<include refid="addWhere"/>
 	</select>
 
-	<!-- 추가 -->
+	<!-- 추가 
+	
+	.addParam("targetIp",    		strTargetIp)
+				.addParam("targetNrlm",    		strTargetNrlm)
+	-->
 	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true"   keyProperty="NTT_ID">
 		INSERT INTO CTN_BBS
 			(
@@ -87,6 +100,8 @@
 			 ,FRST_REGISTER_ID
 			 ,FRST_REGISTER_PNTTM
 			 ,SESSION_BOARD_ID
+			 ,TARGET_IP
+			 ,TARGET_NRLM
 			)
 			 VALUES
 			(
@@ -99,6 +114,8 @@
 			    ,#{SESSION_USER_ID}			<!-- 최초등록자 -->
 			    ,now()						<!-- 최초등록시점 -->
 			    ,#{SESSION_BOARD_ID}
+			    ,#{targetIp}
+			    ,#{targetNrlm}
 			)
 	</insert>
 

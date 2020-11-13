@@ -82,7 +82,7 @@ public class ExeCtnBBSAction
     {
     	MyMap 				paramMap 	 = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
     	List<MyCamelMap> responseList	 = null;
-    	JSONArray        responseMessage = null;		 
+    	JSONArray        responseMessage = new JSONArray();		 
     	
     	responseList = mNrlmberBiz.ListPagingData(paramMap).getList();
     	
