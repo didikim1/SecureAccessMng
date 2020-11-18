@@ -34,7 +34,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllo
 @RequestMapping("/exe/ctn/bbs")
 public class ExeCtnBBSAction 
 {
-	 final String pagePrefix  = "comtn/bbs";
+	final String pagePrefix  = "comtn/bbs";
 
     private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(ExeCtnBBSAction.class.getName());
 
