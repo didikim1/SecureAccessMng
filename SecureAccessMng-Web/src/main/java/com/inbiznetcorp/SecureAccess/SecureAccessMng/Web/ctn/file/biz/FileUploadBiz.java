@@ -2,6 +2,8 @@ package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.file.biz;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -174,37 +176,72 @@ public class FileUploadBiz
 
 		objMultipartFile	= multiPartFile;
 
-		if ( objMultipartFile.isEmpty() == true ) return null;
+		if ( objMultipartFile.isEmpty() == true )
+		{
+			Logger.info("   objMultipartFile Empty() " );
+			return null;
+		}
 
 		System.out.println("------------- file start -------------");
 		System.out.println("name : "+objMultipartFile.getName());
-		System.out.println("filename : "+objMultipartFile.getOriginalFilename());
+		try {
+			System.out.println("filename : "+URLDecoder.decode(objMultipartFile.getOriginalFilename(), "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.println("size : "+objMultipartFile.getSize());
 		System.out.println("-------------- file end --------------\n");
-
 		
+		
+
+		String strORIGNLFileNm  = null;
 		int	   iAtchFileId 		= objATCHFileMap.getInt("atchFileId");
 		String strFileExtsn     = FilenameUtils.getExtension(objMultipartFile.getOriginalFilename());
-		String strORIGNLFileNm  = objMultipartFile.getOriginalFilename();
+		try {
+			strORIGNLFileNm  = URLDecoder.decode(objMultipartFile.getOriginalFilename(), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String stFileNm  		= strGenerateSessionID +  "." +strFileExtsn;
-
+		
+		
+		
+		
 		String strFileUrl		= strSaveUrl  + "/" +  stFileNm;
 		String strFilePath		= strSavePath + File.separator +  stFileNm;
 
 		Logger.debug("## strFileUrl = " +strFileUrl);
 		Logger.debug("## strFilePath = " +strFilePath);
-
+		
+		Logger.debug("## strFilePath [0]");
 		MyMap objDetailFileMap = new MyMap();
-
-		objDetailFileMap.put("SESSION_USER_ID",   SESSION_USER_ID);
-		objDetailFileMap.put("SESSION_BOARD_ID",  strGenerateSessionID);
-		objDetailFileMap.put("atchFileId",   	 iAtchFileId);
-		objDetailFileMap.put("streFileNm",   	 stFileNm);
-		objDetailFileMap.put("orignlFileNm", 	 strORIGNLFileNm);
-		objDetailFileMap.put("fileExtsn",    	 strFileExtsn);
-		objDetailFileMap.put("fileStreCours",    strFilePath);
-		objDetailFileMap.put("urlPath",    		 strFileUrl);
-		objDetailFileMap.put("isview",    		 isView);
+		Logger.debug("## strFilePath [1]");
+		try {
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("SESSION_USER_ID",   SESSION_USER_ID);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("SESSION_BOARD_ID",  strGenerateSessionID);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("atchFileId",   	 iAtchFileId);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("streFileNm",   	 stFileNm);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("orignlFileNm", 	 strORIGNLFileNm);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("fileExtsn",    	 strFileExtsn);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("fileStreCours",    strFilePath);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("urlPath",    		 strFileUrl);
+			Logger.debug("## strFilePath [1]");
+			objDetailFileMap.put("isview",    		 isView);
+			Logger.debug("## strFilePath [1]");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 		Logger.info(" objDetailFileMap = " +objDetailFileMap.toString());
 

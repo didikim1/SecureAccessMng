@@ -31,9 +31,6 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllo
 @RequestMapping("/exe/eq/Depoly")
 public class ExEEqDepolyAction 
 {	
-//	  @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.biz.BBSBiz")
-//	  BBSBiz mService;
-	  
 	  @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqDepoly.biz.EqDepolyBiz")
 	  EqDepolyBiz mDepolyBiz;
 	
