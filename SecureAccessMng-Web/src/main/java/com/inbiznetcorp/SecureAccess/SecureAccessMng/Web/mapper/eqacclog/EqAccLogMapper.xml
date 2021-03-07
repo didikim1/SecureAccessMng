@@ -17,7 +17,7 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eQListSeq)">
 			AND REF_EQ_LIST 	=  #{eQListSeq}
 		</if>
-		
+
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
 			AND SEQ 	=  #{seq}
 		</if>
@@ -40,7 +40,9 @@
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 	 SEQ														as seq				    <!--서버고유ID-->
-			 	,WORKTYPECODE_ID 											as worktypecodeId		<!-- 업무코드 ID -->
+
+			 	,WORKTYPECODE_ID 												as worktypecodeId	<!-- 업무코드 ID -->
+				,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName <!-- 업무명칭 -->
 
 				,REF_EQ_IDC 									  			as refEqIdc				<!-- IDC고유 SEQ -->
 			    ,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 		as eqIdcName  			<!-- IDC 명칭 -->
@@ -49,8 +51,8 @@
 				,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 	as eqListSvIp1  		<!-- 서버명칭 -->
 				,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 		as eqListName  			<!-- 서버명칭 -->
 
-				,REF_EQ_IDPWD 										  		as refEqIdpwd			<!-- 모듈고유SEQ -->
-				,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 		as eqIdpwdID  			<!-- 모듈명칭 -->
+				,REF_EQ_IDPWD 										  		as refEqIdpwd			<!-- 계정 SEQ -->
+				,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 		as eqIdpwdID  			<!-- 계정 ID -->
 
 
 				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
@@ -76,31 +78,31 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 	  	SEQ										 						as seq 
-					,WORKTYPECODE_ID 												as worktypecodeId 
+			 	  	SEQ										 						as seq
+					,WORKTYPECODE_ID 												as worktypecodeId
 					,REASON															as reason
-					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName 
-					,REF_EQ_IDC	 													as refEqIdc 
-					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 			as eqIdcName 
-					,REF_EQ_LIST 													as refEqList 
-					,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListSvIp1 
-					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListName ,REF_EQ_IDPWD as refEqIdpwd 
-					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) as eqIdpwdID ,REF_NRLMBER as refNrlmber 
-					,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName 
-					,( SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 
-					,REF_ALLOW_IP as refAllowIp 
-					,( SELECT ADDR FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd 
-					,( SELECT NAME FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName 
-					,PROCESSID as processid 
-					,STTUS as sttus 
-					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') as frstRegisterPnttm 
-					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') as lastUpdusrPnttm 
+					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName
+					,REF_EQ_IDC	 													as refEqIdc
+					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 			as eqIdcName
+					,REF_EQ_LIST 													as refEqList
+					,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListSvIp1
+					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListName ,REF_EQ_IDPWD as refEqIdpwd
+					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) as eqIdpwdID ,REF_NRLMBER as refNrlmber
+					,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName
+					,( SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID
+					,REF_ALLOW_IP as refAllowIp
+					,( SELECT ADDR FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd
+					,( SELECT NAME FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName
+					,PROCESSID as processid
+					,STTUS as sttus
+					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') as frstRegisterPnttm
+					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') as lastUpdusrPnttm
 		FROM
 			 EQ_ACCLOG T1
 		WHERE 1=1
 			<include refid="addWhere"/>
 	</select>
-	
+
 	<!-- 페이징 목록 -->
 	<select id="ListData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
@@ -136,7 +138,7 @@
 			<include refid="addWhere"/>
 		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
 	</select>
-	
+
 	<!-- 추가 -->
 	<update id="RegisterData" parameterType="myMap" >
 		INSERT INTO EQ_ACCLOG
@@ -166,8 +168,8 @@
 				,now()					<!-- 최초등록ID -->
 			)
 	</update>
-	
-	
+
+
 	<update id="UpdateLogOutAccLog"  parameterType="MyMap">
 		UPDATE EQ_ACCLOG
 		SET
@@ -176,7 +178,7 @@
 		WHERE
 			PROCESSID = #{processid}
 	</update>
-	
+
 	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
 

@@ -53,6 +53,7 @@
 							<th scope="col" width="8%"></th>
 							<th scope="col" width="8%">IDC</th>
 							<th scope="col" width="8%">서버</th>
+							<th scope="col" width="8%">업무</th>
 							<th scope="col" width="7%">접속ID</th>
 							<th scope="col" width="7%">접속IP</th>
 							<th scope="col" width="7%">접속자</th>
@@ -68,8 +69,8 @@
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 							<td>${board.eqIdcName}</td>											<!-- IDC -->
 							<td>${board.eqListName}</td>										<!-- 서버 -->
-<%-- 							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>					<!-- 접속ID --> --%>
-							<td>ibmng01(${board.eqListSvIp1})</td>					<!-- 접속ID -->
+							<td>${board.worktypecodeName}</td>									<!-- 업무 -->
+							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>										<!-- 접속ID -->
 							<td>${board.eqAllowIpName}(${board.eqAllowIpAdd})</td>				<!-- 접속IP -->
 							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
 							<td>${board.processid}</td>											<!-- 프로세스ID -->
