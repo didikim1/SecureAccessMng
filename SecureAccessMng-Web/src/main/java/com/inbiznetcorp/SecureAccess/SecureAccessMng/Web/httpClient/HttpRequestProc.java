@@ -24,8 +24,29 @@ public class HttpRequestProc
     public String sendPacket(String url, Map<String, String> paramMap)
     {
         List<NameValuePair> paramList           = this.map2NameValuePairList(paramMap);
+        String              rtnStr              = this.excute(url, paramList);
 
-        return this.excute(url, paramList);
+
+        return rtnStr;
+    }
+
+    public JSONObject sendPacket2(String url, Map<String, String> paramMap)
+    {
+        List<NameValuePair> paramList           = this.map2NameValuePairList(paramMap);
+        String              rtnStr              = this.excute(url, paramList);
+
+        JSONObject          rtnJSON             = null;
+        try
+        {
+            rtnJSON             = (JSONObject) new JSONParser().parse( rtnStr );
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            rtnJSON             = new JSONObject();
+        }
+
+        return rtnJSON;
     }
 
     @SuppressWarnings("deprecation")

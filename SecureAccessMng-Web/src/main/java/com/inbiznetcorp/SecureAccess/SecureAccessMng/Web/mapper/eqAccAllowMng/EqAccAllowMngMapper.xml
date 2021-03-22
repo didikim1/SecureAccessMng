@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 수신입금계좌정보 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAccAllowMng.EqAccAllowMngMapper">
+
+	<sql id="addWhere">
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sttus)">
+			AND STTUS = #{sttus}
+		</if>
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			EQ_ACCALLOWMNG
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 SEQ														as seq				    <!-- 고유ID-->
+			 	,PHONNUMBER 												as phonnumber			<!-- 엑세스관리  인증  휴대폰 번호 -->
+				,AUTHNUMBER 									  			as authnumber			<!-- 인증번호 -->
+				,SMSNUMBER 										  			as smsnumber			<!-- 엑세스관리  공지  휴대폰 번호 -->
+				,STTUS 										  				as sttus				<!-- 계정 SEQ -->
+				,FRST_REGISTER_ID											as frstRegisterId		<!-- 등록 ID -->
+				,LAST_UPDUSR_ID												as lastUpdusrId			<!-- 수정 ID -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!-- 등록 일자-->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!-- 수정 일자-->
+		FROM
+			 EQ_ACCALLOWMNG T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 	 SEQ														as seq				    <!-- 고유ID-->
+			 	,PHONNUMBER 												as phonnumber			<!-- 엑세스관리  인증  휴대폰 번호 -->
+				,AUTHNUMBER 									  			as authnumber			<!-- 인증번호 -->
+				,SMSNUMBER 										  			as smsnumber			<!-- 엑세스관리  공지  휴대폰 번호 -->
+				,STTUS 										  				as sttus				<!-- 계정 SEQ -->
+				,FRST_REGISTER_ID											as frstRegisterId		<!-- 등록 ID -->
+				,LAST_UPDUSR_ID												as lastUpdusrId			<!-- 수정 ID -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!-- 등록 일자-->
+				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!-- 수정 일자-->
+		FROM
+			 EQ_ACCALLOWMNG T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
+		LIMIT 1
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListData" parameterType="myMap" resultType="myCamelMap">
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" >
+	</update>
+
+
+	<update id="UpdateLogOutAccLog"  parameterType="MyMap">
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+
+	</update>
+
+</mapper>

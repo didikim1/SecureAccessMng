@@ -365,7 +365,7 @@ public class FrameworkUtils extends StringUtils{
 
 	    return ip;
 	}
-	
+
 	public static JSONObject getBody(HttpServletRequest request)
     {
         StringBuilder   stringBuilder   = new StringBuilder();
@@ -409,23 +409,38 @@ public class FrameworkUtils extends StringUtils{
 
         return jsonObject;
     }
-	
+
 	public static String getCurrentDate(String strFormat)
 	{
 		SimpleDateFormat dayTime = new SimpleDateFormat(strFormat);
 		return dayTime.format(new Date());
 	}
-	
+
 	public static String aGoDate(int aGo, String strFormat)
 	{
 		SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
 		Calendar cal = Calendar.getInstance();
-		
+
 		cal.setTime(new Date());
 		cal.add(Calendar.HOUR, aGo);
-		
+
 		return sdformat.format(cal.getTime());
 	}
+
+
+	public static String separateTextComma(String strAuthNumber)
+        {
+                String result = "";
+
+                for (int i = 0; i < strAuthNumber.length(); i++)
+                {
+                        result  += strAuthNumber.charAt(i) +",";
+                }
+
+                return result;
+        }
+
+
 
 	private     static int      mSequenceNumber = 0;
 
