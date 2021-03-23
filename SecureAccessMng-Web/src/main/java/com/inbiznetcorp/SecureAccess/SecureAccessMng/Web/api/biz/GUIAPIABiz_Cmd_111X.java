@@ -31,9 +31,7 @@ public class GUIAPIABiz_Cmd_111X
         JSONObject  responseMessage              = null;
 
 
-        System.out.println("addr : " + addr);
-
-        paramMap.put("addr", (String) requestMessage.getOrDefault("addr", getIp(request)));
+        paramMap.put("addr", addr);
 
         returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
 
