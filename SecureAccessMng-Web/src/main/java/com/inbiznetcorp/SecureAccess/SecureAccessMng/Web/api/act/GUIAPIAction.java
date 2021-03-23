@@ -67,7 +67,7 @@ public class GUIAPIAction
                 case GUIAPIConfig.Cmd.Cmd_1312:                                                                           break;       // 접속승인     삭제
                 case GUIAPIConfig.Cmd.Cmd_1313: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1313(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  조회
                 case GUIAPIConfig.Cmd.Cmd_1314: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1314(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  접속승인요청
-
+                case GUIAPIConfig.Cmd.Cmd_1315: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1315(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  접속알림(SMS)
 
                 default:
                         jsonResMessage = new JSONObject();

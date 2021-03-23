@@ -1,5 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz;
 
+import java.util.logging.Logger;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONObject;
@@ -24,8 +26,12 @@ public class GUIAPIABiz_Cmd_111X
     {
         MyMap           paramMap                 = new MyMap();
         MyMap           returnMap                = null;
+        String          addr                     = getIp(request);
 
         JSONObject  responseMessage              = null;
+
+
+        System.out.println("addr : " + addr);
 
         paramMap.put("addr", (String) requestMessage.getOrDefault("addr", getIp(request)));
 

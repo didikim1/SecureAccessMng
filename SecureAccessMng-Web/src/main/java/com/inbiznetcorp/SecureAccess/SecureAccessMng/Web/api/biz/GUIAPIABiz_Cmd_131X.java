@@ -136,4 +136,44 @@ public class GUIAPIABiz_Cmd_131X
         return approvalResponseMessage;
     }
 
+    @SuppressWarnings("unchecked")
+    public JSONObject Cmd_1315(JSONObject requestMessage, HttpServletRequest request)
+    {
+        MyMap           paramMap                 = new MyMap();
+        MyMap           returnMap                = null;
+        JSONObject      responseMessage          = new JSONObject();
+
+        String          paramName                = null;
+        String          paramWorkType            = null;
+        String          paramIDC                 = null;
+        String          paramServerIP            = null;
+        String          paramMdctId              = null;
+
+        HashMap         approvalParamMap         = null;
+        JSONObject      approvalResponseMessage  = null;
+        String          INFO1                    = null;
+
+        paramMap.put("sttus",      requestMessage.getOrDefault("sttus", "A")); // A 활성화
+
+        returnMap = mMapper.SelectOneData(paramMap);
+
+        paramName       = requestMessage.getOrDefault("name", "").toString();
+        paramWorkType   = requestMessage.getOrDefault("workType", "").toString();
+        paramIDC        = requestMessage.getOrDefault("idc", "").toString();
+        paramServerIP   = requestMessage.getOrDefault("serverIP", "").toString();
+        paramMdctId     = requestMessage.getOrDefault("mdctId", "").toString();
+
+        INFO1           =  paramName + "님이 "+ paramServerIP+" 서버에 " + paramMdctId+" 계정으로 접속하였습니다." ;
+
+        approvalParamMap = new HashMap();
+
+        approvalParamMap.put("msgType",                 "SMS");
+        approvalParamMap.put("callback",                "15880559");
+        approvalParamMap.put("msg",                     INFO1);
+        approvalParamMap.put("phone",                   returnMap.getStr("phonnumber", ""));
+
+        approvalResponseMessage = new HttpRequestProc().sendPacket2("http://dev01.ring2pay.com:43400/SMSMng/Sender/Proc", approvalParamMap);
+
+        return approvalResponseMessage;
+    }
 }

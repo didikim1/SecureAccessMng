@@ -53,24 +53,29 @@ public class GUIAPIConfig
 
 
         /**
-         * 접속승인 등록 (1210)
+         * 접속승인 등록 (1310)
          */
         final static String Cmd_1310    = "1310";
         /**
-         * 접속승인 변경 (1211)
+         * 접속승인 변경 (1311)
          */
         final static String Cmd_1311    = "1311";
         /**
-         * 접속승인 삭제 (1212)
+         * 접속승인 삭제 (1312)
          */
         final static String Cmd_1312    = "1312";
         /**
-         * 접속승인 조회 (1213)
+         * 접속승인 조회 (1313)
          */
         final static String Cmd_1313    = "1313";
         /**
-         * 접속승인 접속승인요청 (1214)
+         * 접속승인 접속승인요청 (1314)
          */
         final static String Cmd_1314    = "1314";
+
+        /**
+         * 접속승인 접속알림(SMS) (1315)
+         */
+        final static String Cmd_1315    = "1315";
     }
 }
