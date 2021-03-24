@@ -16,6 +16,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.intrf.GUIAPICon
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_111X;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_121X;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_131X;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
 @Controller
@@ -31,6 +32,9 @@ public class GUIAPIAction
 
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_131X")
     GUIAPIABiz_Cmd_131X mGUIAPIABiz_Cmd_131X;
+
+    @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz")
+    EqAccLogBiz mEqAccLogBiz;
 
     @SuppressWarnings({ "unchecked"})
     @RequestMapping(value = { "/{cmd}" } , method=RequestMethod.POST)
@@ -68,6 +72,7 @@ public class GUIAPIAction
                 case GUIAPIConfig.Cmd.Cmd_1313: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1313(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  조회
                 case GUIAPIConfig.Cmd.Cmd_1314: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1314(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  접속승인요청
                 case GUIAPIConfig.Cmd.Cmd_1315: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1315(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  접속알림(SMS)
+                case GUIAPIConfig.Cmd.Cmd_1316: jsonResMessage = mGUIAPIABiz_Cmd_131X.Cmd_1316(jsonReqMessage, request); System.out.println("jsonResMessage:"+jsonResMessage); break;       // 접속승인  사용자승인목록
 
                 default:
                         jsonResMessage = new JSONObject();

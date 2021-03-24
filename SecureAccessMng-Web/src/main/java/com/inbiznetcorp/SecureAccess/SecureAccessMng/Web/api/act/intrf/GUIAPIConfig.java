@@ -77,5 +77,10 @@ public class GUIAPIConfig
          * 접속승인 접속알림(SMS) (1315)
          */
         final static String Cmd_1315    = "1315";
+
+        /**
+         * 접속승인 사용자승인목록 (1316)
+         */
+        final static String Cmd_1316    = "1316";
     }
 }

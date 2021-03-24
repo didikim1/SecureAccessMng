@@ -1,6 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -9,16 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.httpClient.HttpRequestProc;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAccAllowMng.EqAccAllowMngMapper;
+
+import net.minidev.json.JSONArray;
 
 @Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_131X")
 public class GUIAPIABiz_Cmd_131X
 {
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAccAllowMng.EqAccAllowMngMapper")
     EqAccAllowMngMapper mMapper;
+
+    @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz")
+    EqAccLogBiz mEqAccLogBiz;
+
 
     /**
      * 등록
@@ -175,5 +184,29 @@ public class GUIAPIABiz_Cmd_131X
         approvalResponseMessage = new HttpRequestProc().sendPacket2("http://dev01.ring2pay.com:43400/SMSMng/Sender/Proc", approvalParamMap);
 
         return approvalResponseMessage;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject Cmd_1316(JSONObject requestMessage, HttpServletRequest request)
+    {
+        MyMap                   paramMap                 = new MyMap();
+        List<MyCamelMap>        returnMap                = null;
+        JSONObject              responseMessage          = new JSONObject();
+        JSONArray               responseMessageList      = new JSONArray();
+
+        paramMap.put("sttus",           requestMessage.getOrDefault("sttus", "A"));     // A 활성화
+        paramMap.put("refNrlmber",      requestMessage.getOrDefault("refNrlmber", "0")); // 사용자 고유 SEQ
+
+        returnMap = mEqAccLogBiz.ListData(paramMap);
+
+        for (MyCamelMap info : returnMap)
+        {
+            JSONObject tempObject = new JSONObject( info );
+
+            responseMessageList.add(tempObject);
+        }
+        responseMessage.put("list", responseMessageList);
+
+        return responseMessage;
     }
 }

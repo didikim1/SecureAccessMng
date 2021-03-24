@@ -21,9 +21,15 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
 			AND SEQ 	=  #{seq}
 		</if>
-<!-- 		AND REF_EQ_IDPWD = 40  -->
-<!-- 		AND REF_ALLOW_IP = 3 -->
-<!-- 		AND REF_NRLMBER = 4 -->
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sttus)">
+			AND STTUS 	=  #{sttus}
+		</if>
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refNrlmber)">
+			AND REF_NRLMBER =  #{refNrlmber}
+		</if>
+
 	</sql>
 
 	<!-- 페이징 갯수 -->
@@ -103,7 +109,7 @@
 			<include refid="addWhere"/>
 	</select>
 
-	<!-- 페이징 목록 -->
+	<!-- 전체 목록 -->
 	<select id="ListData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 	 SEQ														as seq				    <!--서버고유ID-->
