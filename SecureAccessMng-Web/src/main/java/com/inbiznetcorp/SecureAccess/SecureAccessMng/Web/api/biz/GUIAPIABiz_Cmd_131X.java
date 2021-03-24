@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,6 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.Framewo
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.httpClient.HttpRequestProc;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAccAllowMng.EqAccAllowMngMapper;
 
-import net.minidev.json.JSONArray;
 
 @Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.biz.GUIAPIABiz_Cmd_131X")
 public class GUIAPIABiz_Cmd_131X
