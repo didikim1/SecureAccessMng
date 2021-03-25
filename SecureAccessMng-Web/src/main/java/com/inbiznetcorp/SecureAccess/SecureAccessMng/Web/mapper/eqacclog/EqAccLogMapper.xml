@@ -77,7 +77,7 @@
 			 EQ_ACCLOG T1
 		WHERE 1=1
 			<include refid="addWhere"/>
-		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
+		ORDER BY STTUS ASC, T1.FRST_REGISTER_PNTTM DESC
 		LIMIT #{start}, #{end}
 	</select>
 
