@@ -82,5 +82,10 @@ public class GUIAPIConfig
          * 접속승인 사용자승인목록 (1316)
          */
         final static String Cmd_1316    = "1316";
+
+        /**
+         * 접속승인 로그아웃처리 (1317)
+         */
+        final static String Cmd_1317    = "1317";
     }
 }

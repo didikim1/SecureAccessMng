@@ -209,4 +209,29 @@ public class GUIAPIABiz_Cmd_131X
 
         return responseMessage;
     }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject Cmd_1317(JSONObject requestMessage, HttpServletRequest request)
+    {
+        MyMap                   paramMap                 = new MyMap();
+        int                     iResult                  = 0;
+        MyMap                   returnMap                = new MyMap();
+        JSONObject              responseMessage          = new JSONObject();
+
+        paramMap.put("processid",       requestMessage.getOrDefault("processid",  "0")); // 프로세스 ID
+        paramMap.put("refNrlmber",      requestMessage.getOrDefault("refNrlmber", "0")); // 사용자 고유 SEQ
+
+        iResult = mEqAccLogBiz.UpdateLogOutAccLogByRefNrlmberWithProcessid(paramMap);
+
+        returnMap.put("result", "99");
+
+        if ( iResult > 0 )
+        {
+            returnMap.put("result", "00");
+        }
+
+        responseMessage = new JSONObject( returnMap );
+
+        return responseMessage;
+    }
 }

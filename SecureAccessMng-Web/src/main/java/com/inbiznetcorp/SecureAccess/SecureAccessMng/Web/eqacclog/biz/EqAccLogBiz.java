@@ -34,7 +34,7 @@ public class EqAccLogBiz
 
         return resultBean;
     }
-    
+
     /**
      * 데이터(목록)
      * @param paramMap
@@ -74,10 +74,15 @@ public class EqAccLogBiz
     {
         return mMapper.ModifyData(paramMap);
     }
-    
+
     public int UpdateLogOutAccLog(MyMap paramMap)
     {
     	return mMapper.UpdateLogOutAccLog(paramMap);
+    }
+
+    public int UpdateLogOutAccLogByRefNrlmberWithProcessid(MyMap paramMap)
+    {
+        return mMapper.UpdateLogOutAccLogByRefNrlmberWithProcessid(paramMap);
     }
 
     /**

@@ -23,7 +23,7 @@ public interface EqAccLogMapper
 	* @return
 	*/
 	public java.util.List ListPagingData(MyMap paramMap);
-	
+
 	/**
 	 * 목록
 	 * @param paramMap
@@ -51,8 +51,10 @@ public interface EqAccLogMapper
 	* @return
 	*/
 	public int ModifyData(MyMap paramMap);
-	
+
 	public int UpdateLogOutAccLog(MyMap paramMap);
+
+	public int UpdateLogOutAccLogByRefNrlmberWithProcessid(MyMap paramMap);
 
 	/**
 	* 삭제
