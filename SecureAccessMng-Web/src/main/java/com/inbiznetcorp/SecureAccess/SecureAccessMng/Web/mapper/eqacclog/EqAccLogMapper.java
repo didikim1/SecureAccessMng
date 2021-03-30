@@ -31,6 +31,9 @@ public interface EqAccLogMapper
 	 */
 	public java.util.List ListData(MyMap paramMap);
 
+
+
+
 	/**
 	* 상세
 	* @param paramMap
@@ -62,5 +65,10 @@ public interface EqAccLogMapper
 	* @return
 	*/
 	public int DeleteData(MyMap paramMap);
+
+
+	public int SelectOnePagingAllCount(MyMap paramMap);
+
+	public java.util.List ListAllData(MyMap paramMap);
 
 }

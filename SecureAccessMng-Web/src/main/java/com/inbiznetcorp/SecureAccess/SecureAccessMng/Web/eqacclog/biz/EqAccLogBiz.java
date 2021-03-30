@@ -94,4 +94,14 @@ public class EqAccLogBiz
     {
         return mMapper.DeleteData(paramMap);
     }
+
+    public BasicBean ListPagingAllData(MyMap paramMap)
+    {
+        BasicBean resultBean = null;
+
+        FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 10));
+        resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10), mMapper.SelectOnePagingAllCount(paramMap), mMapper.ListAllData(paramMap));
+
+        return resultBean;
+    }
 }

@@ -49,19 +49,19 @@
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
-						<tr>
-							<th scope="col" width="8%"></th>
-							<th scope="col" width="8%">IDC</th>
-							<th scope="col" width="8%">서버</th>
-							<th scope="col" width="8%">업무</th>
-							<th scope="col" width="7%">접속ID</th>
-							<th scope="col" width="7%">접속IP</th>
-							<th scope="col" width="7%">접속자</th>
-							<th scope="col" width="7%">프로세스ID</th>
-							<th scope="col" width="7%">현재상태</th>
-							<th scope="col" width="7%">로그인일자</th>
-							<th scope="col" width="7%">로그아웃일자</th>
-						</tr>
+					<tr>
+						<th scope="col" width="2%"></th>
+						<th scope="col" width="8%">IDC</th>
+						<th scope="col" width="8%">서버</th>
+						<th scope="col" width="9%">업무</th>
+						<th scope="col" width="7%">접속ID</th>
+						<th scope="col" width="7%">접속IP</th>
+						<th scope="col" width="7%">접속자</th>
+						<th scope="col" width="7%">프로세스ID</th>
+						<th scope="col" width="7%">현재상태</th>
+						<th scope="col" width="7%">로그인일자</th>
+						<th scope="col" width="7%">로그아웃일자</th>
+					</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="board" items="${Data.list}" varStatus="status">
@@ -69,8 +69,8 @@
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 							<td>${board.eqIdcName}</td>											<!-- IDC -->
 							<td>${board.eqListName}</td>										<!-- 서버 -->
-							<td>${board.worktypecodeName}</td>									<!-- 업무 -->
-							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>										<!-- 접속ID -->
+							<td><b>${board.worktypecodeName}</b></td>							<!-- 업무 -->
+							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>					<!-- 접속ID -->
 							<td>${board.eqAllowIpName}(${board.eqAllowIpAdd})</td>				<!-- 접속IP -->
 							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
 							<td>${board.processid}</td>											<!-- 프로세스ID -->

@@ -30,7 +30,7 @@ public class GUIAPIABiz_Cmd_111X
 
         JSONObject  responseMessage              = null;
 
-
+        addr = "220.73.45.183";
         paramMap.put("addr", addr);
 
         returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
