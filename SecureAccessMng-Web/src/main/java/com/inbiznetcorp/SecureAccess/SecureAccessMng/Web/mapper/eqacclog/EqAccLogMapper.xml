@@ -38,7 +38,8 @@
 			COUNT(0)
 		FROM
 			EQ_ACCLOG
-		WHERE 1=1 AND WORKTYPECODE_ID IN (29, 27)
+		WHERE 1=1
+<!-- 		AND WORKTYPECODE_ID IN (29, 27) -->
 		<include refid="addWhere"/>
 	</select>
 
@@ -75,7 +76,8 @@
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
 		FROM
 			 EQ_ACCLOG T1
-		WHERE 1=1 AND WORKTYPECODE_ID IN (29, 27)
+		WHERE 1=1
+<!-- 		AND WORKTYPECODE_ID IN (29, 27) -->
 			<include refid="addWhere"/>
 
 		ORDER BY STTUS ASC, T1.FRST_REGISTER_PNTTM DESC
