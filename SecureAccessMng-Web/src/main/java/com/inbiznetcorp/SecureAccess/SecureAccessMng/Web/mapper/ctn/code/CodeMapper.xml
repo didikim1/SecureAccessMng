@@ -50,7 +50,7 @@
 		ORDER BY ${sidx} ${sord}
 		LIMIT #{start}, #{end}
 	</select>
-	
+
 	<select id="ListData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 	 CODE_SEQ 														as codeSeq				<!-- 고유번호 -->
@@ -61,6 +61,7 @@
 				,ID 															as id					<!-- 코드ID -->
 				,REMARK 														as remark				<!-- 설명 -->
 				,NAME 															as name					<!-- 코드ID명 -->
+				,SORT 															as sort					<!-- 정렬 -->
 				,FRST_REGISTER_ID 												as frstRegisterId		<!-- 최초등록ID -->
 				,LAST_UPDUSR_ID 												as lastUpdusrId			<!-- 최종등록ID -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		as frstRegisterPnttm 	<!-- 최초등록일 -->
@@ -69,6 +70,7 @@
 			 CTN_CODE T1
 		WHERE 1=1
 			<include refid="addWhere"/>
+		ORDER BY SORT ASC
 	</select>
 
 	<!-- 상세 -->
