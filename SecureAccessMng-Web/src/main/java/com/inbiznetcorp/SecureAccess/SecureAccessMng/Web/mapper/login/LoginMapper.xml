@@ -41,6 +41,7 @@
 				UNIQ_ID = #{uniqid}
 			AND
 				PASSWORD = password(#{password})
+			AND MBER_STTUS = 'A'
 	</select>
 
 	<!-- 추가 -->
