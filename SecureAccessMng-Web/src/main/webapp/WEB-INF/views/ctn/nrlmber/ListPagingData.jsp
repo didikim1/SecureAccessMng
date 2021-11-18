@@ -48,15 +48,23 @@
 			</div>
 
 			<div class="border margin_l6">
-				<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 생성</button>
+				 <c:choose>
+			         <c:when test = "${roleId eq 8}"> <!-- 권한관리자 -->
+			    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 생성</button>
+			         </c:when>
+			         <c:otherwise>
+			         ${positionId}
+		         	</c:otherwise>
+		      </c:choose>
+
 			</div>
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
 						<tr>
 							<th scope="col" width="8%"></th>
-							<th scope="col" width="8%">부서</th>
-							<th scope="col" width="8%">직위</th>
+<!-- 							<th scope="col" width="8%">부서</th> -->
+<!-- 							<th scope="col" width="8%">직위</th> -->
 							<th scope="col" width="7%">아이디</th>
 							<th scope="col" width="7%">이름</th>
 							<th scope="col" width="7%">휴대폰번호</th>
@@ -71,18 +79,34 @@
 						<c:forEach var="board" items="${Data.list}" varStatus="status">
 						<tr>
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
-							<td>${board.dpamentName}</td>		<!-- 부서 -->
-							<td>${board.positionName}</td>		<!-- 직위 -->
+<%-- 							<td>${board.dpamentName}</td>		<!-- 부서 --> --%>
+<%-- 							<td>${board.positionName}</td>		<!-- 직위 --> --%>
 							<td>${board.uniqId}</td>			<!-- 아이디 -->
 							<td>${board.mberName}</td>			<!-- 이름 -->
 							<td>${board.moblphonNo}</td>		<!-- 휴대폰번호 -->
 							<td>${board.emailAddress}</td>		<!-- 이메일주소 -->
-							<td>${board.mberSttus}</td>			<!-- 상태 -->
+							<td>
+								<c:choose>
+									<c:when test = "${board.mberSttus eq 'A'}"> <!-- 권한관리자 -->
+										(정상)
+									</c:when>
+									<c:when test = "${board.mberSttus eq 'B'}"> <!-- 권한관리자 -->
+										(잠김)
+									</c:when>
+									<c:when test = "${board.mberSttus eq 'C'}"> <!-- 권한관리자 -->
+										(퇴사)
+									</c:when>
+									<c:otherwise>
+										알수없음
+									</c:otherwise>
+								</c:choose>
+								${board.positionName}
+							</td>			<!-- 상태 -->
 							<td>${board.frstRegisterPnttm}</td>		<!-- 생성일 -->
 							<td>${board.lastUpdusrPnttm}</td>		<!-- 수정일 -->
 							<td>
 							<input type="button" class="btn_it01" onclick="fnOpenRegisterPage('${board.uniqId}');"  value="변경"/> <!-- 계정변경 -->
-							&nbsp;<input type="button" class="btn_it01" onclick="fnProcDelete('${board.mberId}', '${board.uniqId}', '${board.mberName}');"  value="삭제"/> <!-- 계정삭제 -->
+<%-- 							&nbsp;<input type="button" class="btn_it01" onclick="fnProcDelete('${board.mberId}', '${board.uniqId}', '${board.mberName}');"  value="삭제"/> <!-- 계정삭제 --> --%>
 							</td>
 						</tr>
 					</c:forEach>

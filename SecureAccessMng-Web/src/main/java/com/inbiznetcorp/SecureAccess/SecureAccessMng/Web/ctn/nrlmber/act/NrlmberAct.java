@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
@@ -33,8 +34,11 @@ public class NrlmberAct
 
             resultBean = mBiz.ListPagingData( paramMap );
 
-            model.addAttribute("paramMap",          paramMap);
-            model.addAttribute("Data",              resultBean);
+
+
+            model.addAttribute("roleId",                FrameworkBeans.findSessionBean().roleId);
+            model.addAttribute("paramMap",              paramMap);
+            model.addAttribute("Data",                  resultBean);
 
 	    return pagePrefix + "/ListPagingData";
 	}
@@ -73,21 +77,35 @@ public class NrlmberAct
 		MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		MyMap resultMap       = null;
 
+		resultMap = mBiz.SelectOneData(paramMap);
+
 		 model.addAttribute("paramMap",      paramMap);
+		 model.addAttribute("Info",          resultMap);
 
 		return pagePrefix + "/RegisterData";
 	}
 
 	@RequestMapping(value = { "/ProcRegisterData.do" })
-	public ResultMessage ProcRegisterData(Model model)
+	public @ResponseBody ResultMessage ProcRegisterData(Model model)
 	{
 	    MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 	    MyCamelMap         resultMap                       = new MyCamelMap();
+
+	    String             resultCode                      = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+
             int                resultRegisterDataCount         = 0;
 
-            resultRegisterDataCount = mBiz.RegisterData( paramMap );
+            if(paramMap.getInt("seq", 0) > 0 )
+            {
+                resultCode      = ResultCode.RESULT_OK;
+                resultRegisterDataCount = mBiz.ModifyData(paramMap);
+            }
+            else
+            {
+                resultRegisterDataCount = mBiz.RegisterData( paramMap );
+            }
 
-	    return new ResultMessage("", null);
+	    return new ResultMessage(resultCode, null);
 	}
 
 	@RequestMapping(value = { "/ModifyData.do" })

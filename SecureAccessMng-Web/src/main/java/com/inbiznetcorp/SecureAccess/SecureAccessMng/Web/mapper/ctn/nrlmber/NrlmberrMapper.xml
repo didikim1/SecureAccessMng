@@ -46,13 +46,13 @@
 	<!-- 페이징 목록 -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 	 SEQ				                                                       		as seq			<!-- 회원ID -->
+			 	 SEQ				                                                       	  as seq				<!-- 회원ID -->
 				,DPAMENT_ID				                                                       as dpamentId			<!-- 부서고유ID -->
 				,POSITION_ID				                                                   as positionId		<!-- 직위고유ID -->
-				,'' 	   																		 as dpamentName 		<!-- 부서명 -->
-				,''																				 as positionName  	<!-- 직위명 -->
-<!-- 				,(SELECT DPAMENT_NAME FROM COMTNDPAMENT WHERE DPAMENT_ID = T1.DPAMENT_ID ) 	   as dpamentName 		부서명 -->
-<!-- 				,(SELECT POSITION_NAME FROM COMTNPOSITION WHERE POSITION_ID = T1.POSITION_ID ) as positionName  	직위명 -->
+				,ROLE_ID				                                                   	   as roleId			<!-- 권한ID -->
+ 				,(SELECT DPAMENT_NAME FROM COMTNDPAMENT WHERE DPAMENT_ID = T1.DPAMENT_ID ) 	   as dpamentName 		<!--부서명 -->
+ 				,(SELECT POSITION_NAME FROM COMTNPOSITION WHERE POSITION_ID = T1.POSITION_ID ) as positionName  	<!--직위명 -->
+				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )				   as roleName			<!-- 권한명 -->
 				,UNIQ_ID				                                  		               as uniqId			<!-- 고유ID -->
 				,PASSWORD				                                  		               as password			<!-- 비밀번호 -->
 				,MBER_NAME				                                  		               as mberName			<!-- 이름 -->
@@ -74,13 +74,13 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-				 SEQ				                                                       		as seq			<!-- 회원ID -->
+				 SEQ				                                                       	  as seq				<!-- 회원ID -->
 				,DPAMENT_ID				                                                       as dpamentId			<!-- 부서고유ID -->
 				,POSITION_ID				                                                   as positionId		<!-- 직위고유ID -->
-				,'' 	   																		 as dpamentName 		<!-- 부서명 -->
-				,''																				 as positionName  	<!-- 직위명 -->
-<!-- 				,(SELECT DPAMENT_NAME FROM COMTNDPAMENT WHERE DPAMENT_ID = T1.DPAMENT_ID ) 	   as dpamentName 		부서명 -->
-<!-- 				,(SELECT POSITION_NAME FROM COMTNPOSITION WHERE POSITION_ID = T1.POSITION_ID ) as positionName  	직위명 -->
+				,ROLE_ID				                                                   	   as roleId			<!-- 권한ID -->
+ 				,(SELECT DPAMENT_NAME FROM COMTNDPAMENT WHERE DPAMENT_ID = T1.DPAMENT_ID ) 	   as dpamentName 		<!--부서명 -->
+ 				,(SELECT POSITION_NAME FROM COMTNPOSITION WHERE POSITION_ID = T1.POSITION_ID ) as positionName  	<!--직위명 -->
+				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )				   as roleName			<!-- 권한명 -->
 				,UNIQ_ID				                                  		               as uniqId			<!-- 고유ID -->
 				,PASSWORD				                                  		               as password			<!-- 비밀번호 -->
 				,MBER_NAME				                                  		               as mberName			<!-- 이름 -->
@@ -131,13 +131,12 @@
 
 	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
-		UPDATE COMTNGNRLMBER
+		UPDATE CTN_NRLMBER
 			 SET
 				 LAST_UPDUSR_ID 	=  #{lastUpdusrId}
 				,LAST_UPDUSR_PNTTM  =  now()
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(dpamentId)">   	,DPAMENT_ID = #{dpamentId}  </if>  	 <!-- 부서ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">   	,POSITION_ID = #{positionId}  </if>   <!-- 직위ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberId)">   		,MBER_ID = #{mberId}  	 </if>  	 <!-- 회원ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">   		,UNIQ_ID = #{uniqId}  	 </if>  	 <!-- 고유ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)">   	,PASSWORD = #{password}  </if>  	 <!-- 비밀번호 -->
 
@@ -148,7 +147,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">    ,MOBLPHON_NO = #{moblphonNo}  	  </if>  <!-- 휴대폰번호 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(emailAddress)">  ,EMAIL_ADDRESS = #{emailAddress}  </if>  <!-- Email 주소 -->
 
-		WHERE MBER_ID = #{mberId}
+		WHERE SEQ = #{seq}
 	</update>
 
 	<!-- 삭제 -->

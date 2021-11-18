@@ -83,7 +83,7 @@ public class MybatisLogInterceptor implements Interceptor{
 			}
 		}
 		//LOGGER.debug(QueryFomatter.format(sql));
-		//System.out.println(QueryFomatter.format(sql));
+		System.out.println(QueryFomatter.format(sql));
 		return invocation.proceed(); // 쿼리 실행
 	}
 	public Object plugin(Object target){

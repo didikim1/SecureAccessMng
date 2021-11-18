@@ -46,32 +46,31 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         sbReqMessage.append("==========================//LAB603==================================" + strNewLine);
 
         Logger.info( sbReqMessage.toString() );
-        return true;
-//
-//        if( 	    url.indexOf("/login/") >= 0
-//        		|| 	url.indexOf("/login/index.do") >= 0
-//        		|| 	url.indexOf("/login/SelectOneData.do") >= 0
-//        		|| 	url.indexOf("/login/DeleteData.do") >= 0
-//        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
-//        	)
-//        {
-//        	return true;
-//        }
-//        else
-//        {
-//        	return true;
+//        return true;
 
-//        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
-//        	{
-//        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-//        		return true;
-//        	}
-//        	else
-//        	{
-//        		return true;
-//        	}
+        if( 	    url.indexOf("/login/") >= 0
+        		|| 	url.indexOf("/login/index.do") >= 0
+        		|| 	url.indexOf("/login/SelectOneData.do") >= 0
+        		|| 	url.indexOf("/login/DeleteData.do") >= 0
+        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
+        		|| 	url.indexOf("api") >= 0
+        	)
+        {
+        	return true;
+        }
+        else
+        {
+        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
+        	{
+        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
+        		return true;
+        	}
+        	else
+        	{
+        		return true;
+        	}
 
-//        }
+        }
     }
 
 
@@ -79,13 +78,14 @@ public class AuthenticationInterceptor implements HandlerInterceptor
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception
     {
     	request.setAttribute("SessionBean_dpamentId", FrameworkBeans.findSessionBean().dpamentId);
+    	request.setAttribute("SessionBean_roleId", FrameworkBeans.findSessionBean().roleId);
     	request.setAttribute("SessionBean_mberName", FrameworkBeans.findSessionBean().mberName);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception
     {
-    	
+
     }
 
     public static final Logger Logger = LoggerFactory.getLogger(AuthenticationInterceptor.class);

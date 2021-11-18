@@ -52,14 +52,14 @@ public class LoginAct
 
         return pagePrefix + "/ListPagingData";
     }
-    
+
     @RequestMapping(value = { "/ModifyPassword.do" })
     public String ModifyPassword(Model model)
     {
     	MyMap           paramMap    = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-    	
+
     	model.addAttribute("paramMap",          paramMap);
-    	
+
     	return pagePrefix + "/ModifyPassword";
     }
 
@@ -91,7 +91,7 @@ public class LoginAct
                 resultCode = ResultCode.RESULT_EMPTY;
         }
         else
-        {	
+        {
         		if( "0".equals( checkPw( paramMap.getStr("password", "") ) ) == false )
         		{
         			// RESULT_NOT_MODIFIED 패스워드 변경이 필요(현재 정책에 맞지않는 패스워드 사용중)
@@ -100,6 +100,7 @@ public class LoginAct
         		else
         		{
         			FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
+        			FrameworkBeans.findSessionBean().roleId      = resultMap.getStr("roleId");
         			FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
         			FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
         			FrameworkBeans.findSessionBean().uniqId         = resultMap.getStr("uniqId");
@@ -109,41 +110,41 @@ public class LoginAct
         			FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
         		}
         }
-        
+
         return new ResultMessage(resultCode, "success");
     }
-    
+
     @RequestMapping(value = { "/ModifyPasswordProc.do" })
     public @ResponseBody ResultMessage ModifyPasswordProc(Model model)
     {
         MyMap           paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         MyCamelMap      resultMap       = new MyCamelMap();
         String          resultCode      = ResultCode.RESULT_OK;
-        
+
         int				resultInt		= 0;
         String			resultCheckPw   = "99";
-        
+
         if ( FrameworkUtils.isNull( paramMap.getStr("password") ) ) 	{ return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, "error"); }
         if ( FrameworkUtils.isNull( paramMap.getStr("uniqId") ) ) 		{ return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, "error"); }
         if ( FrameworkUtils.isNull( paramMap.getStr("newpassword") ) )  { return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, "error"); }
-        
+
         resultCheckPw = checkPw(paramMap.getStr("newpassword")) ;
-        
+
         if ( "0".equals( resultCheckPw ) == false )
         {
         	return new ResultMessage(ResultCode.RESULT_BAD_REQUEST, "error");
         }
-        
+
         resultInt                       = mBiz.ModifyDataPassword(paramMap);
 
         if ( resultInt >= 1 )
         {
                 resultCode = ResultCode.RESULT_OK;
-                
+
                 paramMap.put("password", paramMap.getStr("newpassword"));
-                
+
                 resultMap                         = mBiz.SelectOneData(paramMap);
-                
+
                 FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
     			FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
     			FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
@@ -154,14 +155,14 @@ public class LoginAct
     			FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
         }
         else
-        {	
+        {
         	resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
         }
-        
+
         return new ResultMessage(resultCode, "success");
     }
-    
-    
+
+
     // 로그아웃
     @RequestMapping(value = { "/DeleteData.do" })
     public String DeleteData(Model model, HttpServletRequest request)
@@ -171,8 +172,8 @@ public class LoginAct
             return "redirect:/login/";
     }
 
-    
-    
+
+
     /**
      * 패스워드를 규칙에 맞게 체크한다.
 
@@ -205,7 +206,7 @@ public class LoginAct
         String strResult = "";
         if (inputPw == null || inputPw.equals("")) return "1";
         if (inputPw.length() > 16) return "2";
- 
+
         try {
             Pattern pAlphabetLow = null;
             Pattern pAlphabetUp = null;
@@ -214,12 +215,12 @@ public class LoginAct
             Pattern pThreeChar = null;
             Matcher match;
             int nCharType = 0;
- 
+
             pAlphabetLow = Pattern.compile("[a-z]");             // 영소문자
             pAlphabetUp  = Pattern.compile("[A-Z]");              // 영대문자
             pNumber 	 = Pattern.compile("[0-9]");                  // 숫자
             pSpecialChar = Pattern.compile("\\p{Punct}");        // 특수문자 -_=+\\|()*&^%$#@!~`?>             pThreeChar = Pattern.compile("(\\p{Alnum})\\1{2,}");// 3자리 이상 같은 문자 또는 숫자
- 
+
             // 영소문자가 포함되어 있는가?
             match = pAlphabetLow.matcher(inputPw);
             if(match.find()) nCharType++;
@@ -232,11 +233,11 @@ public class LoginAct
             // 특수문자가 포함되어 있는가?
             match = pSpecialChar.matcher(inputPw);
             if(match.find()) nCharType++;
-            
+
             // 3자리 이상 같은 문자 또는 숫자가 포함되어 있는가?
 //            match = pThreeChar.matcher(inputPw);
 //            if(match.find()) return "8";
-            
+
             // 3가지 이상 조합인가?
             if (nCharType >= 3) {
                 if(inputPw.length() < 9 ) return "4";
@@ -249,20 +250,20 @@ public class LoginAct
             } else {
                 return "5";
             }
- 
+
             // 연속된 3자리 이상의 문자나 숫자가 포함되어 있는가?
             String listThreeChar = "abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789|890";
             String[] arrThreeChar = listThreeChar.split("\\|");
-            for (int i=0; i<arrThreeChar.length; i++){                 
+            for (int i=0; i<arrThreeChar.length; i++){
             		if(inputPw.toLowerCase().matches(".*" + arrThreeChar[i] + ".*")) {
                     return "6";
                 }
             }
- 
+
             // 연속된 3자리 이상의 키보드 문자가 포함되어 있는가?
             String listKeyboardThreeChar = "qwe|wer|ert|rty|tyu|yui|uio|iop|asd|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm";
             String[] arrKeyboardThreeChar = listKeyboardThreeChar.split("\\|");
-            for (int j=0; j<arrKeyboardThreeChar.length; j++){                 
+            for (int j=0; j<arrKeyboardThreeChar.length; j++){
             		if(inputPw.toLowerCase().matches(".*" + arrKeyboardThreeChar[j] + ".*")) {
                     return "7";
                 }
@@ -271,8 +272,8 @@ public class LoginAct
         	ex.printStackTrace();
             strResult = "99";
         }
- 
+
         return strResult;
     }
-    
+
 }

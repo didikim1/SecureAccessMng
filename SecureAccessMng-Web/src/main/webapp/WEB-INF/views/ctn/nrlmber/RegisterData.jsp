@@ -6,29 +6,29 @@
 	<div class="content">
 		<div class="border_sub">
 			<form name="FormComtngnrlmber">
-				<input type="hidden" name="mberId" value="${Info.mberId}" />
+				<input type="hidden" name="seq" value="${Info.seq}" />
 				<div align="center" >
 					<table class="htable">
-						<tr>
-							<th scope="col" width="120px">부서</th>
-							<td>
-								<select class="userManageInput" name="dpamentId">
-									<c:forEach var="data" items="${ComtnDpamentList.list}" varStatus="status">
-										<option value="${data.dpamentId}" <c:if test="${Info.dpamentId eq data.dpamentId}">selected</c:if> >${data.dpamentName}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th scope="col" width="120px">직위</th>
-							<td>
-								<select class="userManageInput" name=positionId>
-									<c:forEach var="data" items="${ComtnPositionList.list}" varStatus="status">
-										<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >${data.positionName}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<th scope="col" width="120px">부서</th> -->
+<!-- 							<td> -->
+<!-- 								<select class="userManageInput" name="dpamentId"> -->
+<%-- 									<c:forEach var="data" items="${ComtnDpamentList.list}" varStatus="status"> --%>
+<%-- 										<option value="${data.dpamentId}" <c:if test="${Info.dpamentId eq data.dpamentId}">selected</c:if> >${data.dpamentName}</option> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th scope="col" width="120px">직위</th> -->
+<!-- 							<td> -->
+<!-- 								<select class="userManageInput" name=positionId> -->
+<%-- 									<c:forEach var="data" items="${ComtnPositionList.list}" varStatus="status"> --%>
+<%-- 										<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >${data.positionName}</option> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
 							<th scope="col" width="120px">상태</th>
 							<td>
@@ -88,9 +88,10 @@ function fnProcRegisterData(){
 	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
-		url:"/gnrlmber/ProcRegisterData.do",
+		url:"/ctn/nrlmber/ProcRegisterData.do",
 		dataType:"JSON",
 		success:function(data){
+			console.log(data);
 			if( "200" == data.code ) {
 				$.fun.alert({content:"정상 처리되었습니다.", action:function(){
 					location.reload();
