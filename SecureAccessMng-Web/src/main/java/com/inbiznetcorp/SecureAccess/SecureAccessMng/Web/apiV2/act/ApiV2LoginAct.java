@@ -26,22 +26,21 @@ public class ApiV2LoginAct
     private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(ApiV2LoginAct.class.getName());
 
     public static String kKey_uniqid    = "uniqid";
-    public static String kKey_password  = "uniqid";
+    public static String kKey_password  = "password";
 
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.biz.LoginBiz")
     LoginBiz mBiz;
 
-    @RequestMapping(value="/findByUserInfo.do", method=RequestMethod.POST)
-    public @ResponseBody ResultMessage findByUserInfo(  )
+    @RequestMapping(value="/login.do", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody ResultMessage login(@RequestBody LoginDTO dto)
     {
-        Logger.info("#############");
         String result_code = ResultCode.RESULT_NOT_FOUND;
 
         MyCamelMap      responseMap     = null;
         MyMap           paramMap        = new MyMap();
 
-//        paramMap.put(kKey_uniqid,       dto.getUniqid());
-//        paramMap.put(kKey_password,     dto.getPassword());
+        paramMap.put(kKey_uniqid,       dto.getUniqid());
+        paramMap.put(kKey_password,     dto.getPassword());
 
         responseMap = mBiz.SelectOneData(paramMap);
 
