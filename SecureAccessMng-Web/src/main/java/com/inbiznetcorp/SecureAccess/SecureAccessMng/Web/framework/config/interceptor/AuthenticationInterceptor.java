@@ -31,6 +31,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
         FrameworkBeans.setHttpServletBean(_httpServletRequest, _httpServletResponse);
 
+        Logger.info( "URL:"+url);
+
         sbReqMessage.append(strNewLine+"==========================LAB603=================================="+strNewLine);
         sbReqMessage.append(" Request URL=" + url + strNewLine);
         sbReqMessage.append(" Connetion IPAddr=" + _httpServletRequest.getRemoteAddr() + strNewLine);

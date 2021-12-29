@@ -37,7 +37,7 @@ public class ApiV2IdcCenterAct
      * IDC 목록
      * @return
      */
-    @RequestMapping(value="/list.do", method=RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value="/list.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage list()
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;
@@ -59,7 +59,7 @@ public class ApiV2IdcCenterAct
      * @param refEqIdc
      * @return
      */
-    @RequestMapping(value="/{refEqIdc}/list.do", method=RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value="/{refEqIdc}/list.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage server_list(@PathVariable("refEqIdc") int refEqIdc)
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;
@@ -84,7 +84,7 @@ public class ApiV2IdcCenterAct
      * @param refEqIdc
      * @return
      */
-    @RequestMapping(value="/{refEqIdc}/{refEqList}/list.do", method=RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value="/{refEqIdc}/{refEqList}/list.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage server_idpwd_list(@PathVariable("refEqIdc") int refEqIdc, @PathVariable("refEqList") int refEqList)
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;

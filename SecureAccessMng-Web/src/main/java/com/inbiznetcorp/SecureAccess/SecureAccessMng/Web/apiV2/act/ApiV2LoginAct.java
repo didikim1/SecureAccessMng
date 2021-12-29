@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.AllowIPDTO;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.LoginDTO;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
@@ -36,15 +38,14 @@ public class ApiV2LoginAct
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllowIPMapper")
     EqAllowIPMapper mEqAllowIPMapper;
 
-    @RequestMapping(value="/chkAllowIP.do", method=RequestMethod.GET, consumes="application/json")
-    public @ResponseBody ResultMessage list(@RequestParam(value="ip", defaultValue="0.0.0.0") String ipAddress)
+    @RequestMapping(value="/chkAllowIP.do", method=RequestMethod.GET)
+    public @ResponseBody ResultMessage list(@RequestParam("ip") String ip)
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;
 
         MyMap           returnMap      = null;
         MyMap           paramMap       = new MyMap();
-
-        paramMap.put("addr", ipAddress);
+        paramMap.put("addr",  ip);
         returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
 
         if(returnMap != null)
