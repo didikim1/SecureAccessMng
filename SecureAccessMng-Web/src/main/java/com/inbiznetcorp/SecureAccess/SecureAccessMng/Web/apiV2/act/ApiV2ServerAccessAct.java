@@ -55,7 +55,7 @@ public class ApiV2ServerAccessAct
     private String kKey_reason          = "reason";
 
 
-    @RequestMapping(value="/list.do", method=RequestMethod.GET, consumes="application/json")
+    @RequestMapping(value="/accLogs.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage list(@RequestParam(value="rows", defaultValue="10") int rows)
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;

@@ -38,8 +38,27 @@ public class ApiV2LoginAct
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqAllowIP.EqAllowIPMapper")
     EqAllowIPMapper mEqAllowIPMapper;
 
+
+//    @RequestMapping(value="/chkAllowMacAddress.do", method=RequestMethod.GET)
+//    public @ResponseBody ResultMessage chkAllowMacAddress(@RequestParam("macaddress") String macaddress)
+//    {
+//        String result_code = ResultCode.RESULT_NOT_FOUND;
+//
+//        MyMap           returnMap      = null;
+//        MyMap           paramMap       = new MyMap();
+//        paramMap.put("addr",  macaddress);
+//        returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
+//
+//        if(returnMap != null)
+//        {
+//            result_code = ResultCode.RESULT_OK;
+//        }
+//
+//        return new ResultMessage(result_code, returnMap);
+//    }
+
     @RequestMapping(value="/chkAllowIP.do", method=RequestMethod.GET)
-    public @ResponseBody ResultMessage list(@RequestParam("ip") String ip)
+    public @ResponseBody ResultMessage chkAllowIP(@RequestParam("ip") String ip)
     {
         String result_code = ResultCode.RESULT_NOT_FOUND;
 
