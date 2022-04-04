@@ -85,6 +85,9 @@ table.wtable_sub td {
 	padding:3px;
 	line-height: 30px;
 	color:#404040;
+	justify-content: center;
+	heigth: 100px;
+	padding-left: 120px;
 	}
 
 table.htable {
@@ -94,7 +97,7 @@ table.htable {
 	}
 
 table.htable th {
-	background-color:#464646;
+	background-color:#a6a6a6;
 	line-height: 40px;
 	padding:2px;
 	color:#fff;
@@ -154,20 +157,21 @@ table.htable td {
 #layout_content div.common_div,
 #layout_content_popup div.common_div{
   width: 100px;
-  height: 30px;
+  height: 40px;
   font-size: 14px;
   color: #1b1b1b;
   background-color:#eee;
   text-align: center;
   border: 1px solid #ccc;
   border-right:none;
+  padding: 5px 0;
   float: left;
 }
 
 #layout_content input.common_input2,
 #layout_content_popup input.common_input2 {
   width: 140px;
-  height: 30px;
+  height: 40px;
   line-height:24px;
   font-size: 14px;
   color: #1b1b1b;
@@ -180,7 +184,7 @@ table.htable td {
 #layout_content select.common_select,
 #layout_content_popup select.common_select{
   width: 120px;
-  height: 30px;
+  height: 40px;
   cursor:pointer;
   font-size: 14px;
   color: #1b1b1b;
@@ -214,8 +218,8 @@ table.htable td {
 
 #layout_content button.common_button2,
 #layout_content_popup button.common_button2{
-  width: 80px;
-  height: 30px;
+  width: 100px;
+  height: 40px;
   line-height:24px;
   cursor:pointer;
   font-size: 14px;
@@ -224,7 +228,7 @@ table.htable td {
   border: none;
   border-radius: 4px;
   text-align: center;
-  float: left;
+  margin-right:30px;
   behavior: url(/r2pRecordStreaming/static/lib/PIE/PIE.htc);
 }
 
@@ -329,7 +333,7 @@ table.htable td {
 }
 
 .btn_it02 {
-	width: 180px;
+	width: 120px;
 	height: 30px;
 	background-color:#464646;
 	border:solid 1px transparent;
@@ -342,13 +346,9 @@ table.htable td {
 	float: left;
 	behavior: url(/r2pRecordStreaming/static/lib/PIE/PIE.htc);
 	}
-
-.btn_it02:hover{
-	background-color:#848484;
-}
-
+	
 .btn_it03 {
-	width: 180px;
+	width: 120px;
 	height: 30px;
 	background-color:#464646;
 	border:solid 1px transparent;
@@ -362,10 +362,9 @@ table.htable td {
 	behavior: url(/r2pRecordStreaming/static/lib/PIE/PIE.htc);
 	}
 
-.btn_it03:hover{
+.btn_it02:hover{
 	background-color:#848484;
 }
-
 
 .left{
 	border-top-left-radius: 3px;

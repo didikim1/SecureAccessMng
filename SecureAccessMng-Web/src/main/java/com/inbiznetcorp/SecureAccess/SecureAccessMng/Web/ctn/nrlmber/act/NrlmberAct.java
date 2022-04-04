@@ -1,10 +1,14 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
@@ -84,7 +88,21 @@ public class NrlmberAct
 
 		return pagePrefix + "/RegisterData";
 	}
-
+	
+	@RequestMapping(value = { "/RegisterContent.do" })
+	public String RegisterContent(Model model)
+	{
+		MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		MyMap resultMap       = null;
+		
+		resultMap = mBiz.SelectOneData(paramMap);
+		
+		model.addAttribute("paramMap",      paramMap);
+		model.addAttribute("Info",          resultMap);
+		
+		return pagePrefix + "/RegisterContent";
+	}
+	
 	@RequestMapping(value = { "/ProcRegisterData.do" })
 	public @ResponseBody ResultMessage ProcRegisterData(Model model)
 	{

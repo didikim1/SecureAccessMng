@@ -15,30 +15,37 @@
 					<table class="wtable_sub">
 						<tr>
 							<td>
-								<div class="common_div left">부서</div>
-								<select class="common_select" name="dpamentId">
-									<option value="" <c:if test="${paramMap.dpamentId  != '' || paramMap.dpamentId  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${ComtnDpamentList.list}" varStatus="status">
-										<option value="${data.dpamentId}" <c:if test="${paramMap.dpamentId eq data.dpamentId}">selected</c:if> >${data.dpamentName}</option>
-									</c:forEach>
-								</select>
+								<div class="common_div left">처리일</div>
+								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
+								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
-								<div class="common_div left margin_l2">직위</div>
+		
+								<div class="common_div left margin_l2">소유자</div>
+								<input type="text" class="common_input2 right" name="mberName" id="mberName" placeholder="소유자명" value="${paramMap.mberName}" autocomplete="off"/>
+
+								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="positionId">
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${ComtnPositionList.list}" varStatus="status">
-										<option value="${data.positionId}" <c:if test="${paramMap.positionId eq data.positionId}">selected</c:if> >${data.positionName}</option>
-									</c:forEach>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >책임자</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >관리자</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >운영팀</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >정산팀</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >CS팀</option>
 								</select>
 
-								<div class="common_div left margin_l2">아이디</div>
-								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="아이디" value="${paramMap.uniqId}" autocomplete="off"/>
+								<div class="common_div left margin_l2">정부</div>
+								<select class="common_select" name="positionId">
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}">selected</c:if> >선택</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >정</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >부</option>
+								</select>
 
-								<div class="common_div left margin_l2">이름</div>
-								<input type="text" class="common_input2 right" name="mberName" id="mberName" placeholder="이름" value="${paramMap.mberName}" autocomplete="off"/>
-
-								<div class="common_div left margin_l2">휴대폰번호</div>
-								<input type="text" class="common_input2 right" name="moblphonNo" id="moblphonNo" placeholder="휴대폰번호" value="${paramMap.moblphonNo}" autocomplete="off"/>
+								<div class="common_div left margin_l2">상태</div>
+								<select class="common_select" name="positionId">
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}">selected</c:if> >선택</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >사용중</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >해지</option>
+								</select>
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 							</td>
@@ -50,41 +57,43 @@
 			<div class="border margin_l6">
 				 <c:choose>
 			         <c:when test = "${roleId eq 8}"> <!-- 권한관리자 -->
-			    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 생성</button>
+			    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
+			    		<button type="button" class="btn_it03" onclick="fnOpenRegisterPage(0);">엑셀 다운로드</button>
 			         </c:when>
 			         <c:otherwise>
 			         ${positionId}
 		         	</c:otherwise>
 		      </c:choose>
-
 			</div>
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
 						<tr>
-							<th scope="col" width="8%"></th>
+							<th scope="col" width="5%">No</th>
 <!-- 							<th scope="col" width="8%">부서</th> -->
 <!-- 							<th scope="col" width="8%">직위</th> -->
-							<th scope="col" width="7%">아이디</th>
-							<th scope="col" width="7%">이름</th>
-							<th scope="col" width="7%">휴대폰번호</th>
-							<th scope="col" width="7%">이메일주소</th>
+							<th scope="col" width="7%">처리일자</th>
+							<th scope="col" width="7%">처리자</th>
+							<th scope="col" width="7%">소유자</th>
+							<th scope="col" width="7%">계정</th>
+							<th scope="col" width="7%">전화번호</th>
+							<th scope="col" width="7%">담당</th>
+							<th scope="col" width="7%">권한</th>
+							<th scope="col" width="7%">정/부</th>
 							<th scope="col" width="7%">상태</th>
-							<th scope="col" width="7%">생성일</th>
-							<th scope="col" width="7%">수정일</th>
-							<th scope="col" width="13%">관리</th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach var="board" items="${Data.list}" varStatus="status">
+					<tbody onclick ="fnOpenRegisterContentPage()">
+						<c:forEach var="board" items="${Data.list}" varStatus="status" >
 						<tr>
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 <%-- 							<td>${board.dpamentName}</td>		<!-- 부서 --> --%>
 <%-- 							<td>${board.positionName}</td>		<!-- 직위 --> --%>
 							<td>${board.uniqId}</td>			<!-- 아이디 -->
-							<td>${board.mberName}</td>			<!-- 이름 -->
-							<td>${board.moblphonNo}</td>		<!-- 휴대폰번호 -->
-							<td>${board.emailAddress}</td>		<!-- 이메일주소 -->
+							<td>${board.mberName}</td>			<!-- 처리자 -->
+							<td>${board.mberName}</td>			<!-- 소유자-->
+							<td>${board.emailAddress}</td>		<!-- 계정-->
+							<td>${board.moblphonNo}</td>		<!-- 전화번호-->
 							<td>
 								<c:choose>
 									<c:when test = "${board.mberSttus eq 'A'}"> <!-- 권한관리자 -->
@@ -104,10 +113,11 @@
 							</td>			<!-- 상태 -->
 							<td>${board.frstRegisterPnttm}</td>		<!-- 생성일 -->
 							<td>${board.lastUpdusrPnttm}</td>		<!-- 수정일 -->
-							<td>
+							<td>${board.emailAddress}</td>  <!-- 상태  -->
+<%-- 						<td>
 							<input type="button" class="btn_it01" onclick="fnOpenRegisterPage('${board.uniqId}');"  value="변경"/> <!-- 계정변경 -->
-<%-- 							&nbsp;<input type="button" class="btn_it01" onclick="fnProcDelete('${board.mberId}', '${board.uniqId}', '${board.mberName}');"  value="삭제"/> <!-- 계정삭제 --> --%>
-							</td>
+ 							&nbsp;<input type="button" class="btn_it01" onclick="fnProcDelete('${board.mberId}', '${board.uniqId}', '${board.mberName}');"  value="삭제"/> <!-- 계정삭제 --> 
+							</td>--%>
 						</tr>
 					</c:forEach>
 					</tbody>

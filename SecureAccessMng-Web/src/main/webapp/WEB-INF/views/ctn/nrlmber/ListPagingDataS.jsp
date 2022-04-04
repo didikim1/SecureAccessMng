@@ -41,7 +41,23 @@ function fnOpenRegisterPage(uniqId){
 			$.fun.layout({
 				id:"induacaAdd",
 				"content":data,
-				"title":"계정생성",
+				"title":"계정등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
+function fnOpenRegisterContentPage(uniqId){
+	$.fun.ajax({
+		type:'get',
+		url:"/ctn/nrlmber/RegisterContent.do?uniqId="+uniqId,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"계정 상세내역",
 				"width":475,
 				"buttons":{}
 			});

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,8 +17,13 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.Framewo
 public class AuthenticationInterceptor implements HandlerInterceptor
 {
 	String[] UN_CKECKURLS = new String[]{"/index", "/loginProc", "/error/error500"};
-
-
+	
+	// spring.profiles.active=${:local}
+	
+//	@Value("${spring.profiles.active}")
+//    private String active;
+	
+	
     @Override
     public boolean preHandle(HttpServletRequest _httpServletRequest, HttpServletResponse _httpServletResponse, Object _handler) throws Exception
     {
@@ -48,8 +54,24 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         sbReqMessage.append("==========================//LAB603==================================" + strNewLine);
 
         Logger.info( sbReqMessage.toString() );
-//        return true;
+        
+//        System.out.println("active = " + active);
+//        System.out.println("active = " + active);
+//        System.out.println("active = " + active);
+//        System.out.println("active = " + active);
+//        System.out.println("active = " + active);
+//        System.out.println("active = " + active);
+        
+        if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
+        {
+        	FrameworkBeans.findSessionBean().roleId = "8";
+        }
+        
+        return true;
 
+        
+       // 임시주석
+       /*
         if( 	    url.indexOf("/login/") >= 0
         		|| 	url.indexOf("/login/index.do") >= 0
         		|| 	url.indexOf("/login/SelectOneData.do") >= 0
@@ -71,8 +93,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         	{
         		return true;
         	}
-
         }
+        */
     }
 
 

@@ -5,6 +5,10 @@
 <div id="layout_content_popup_sub">
 	<div class="content">
 		<div class="border_sub">
+		
+		<table id="grid"></table>
+		<div id="pager"></div>
+		
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" value="${Info.seq}" />
 				<div align="center" >
@@ -30,20 +34,16 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 						<tr>
-							<th scope="col" width="120px">계정</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
-						</tr>
-						<tr>
 							<th scope="col" width="120px">소유자</th>
 							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
-							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off"></td>
+							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">전화번호</th>
-							<td><input type="password" class="userManageInput" id="password_re" name="password_re" autocomplete="off"></td>
+							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
@@ -82,22 +82,13 @@
 			</form>
 		</div>
 
-	<%-- 	<div class="border margin_l7">
-			<c:choose>
- 				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정하기</button>
-				</c:when>
-				<c:otherwise>
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
-				</c:otherwise>
-			</c:choose>
-			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button> 
-		</div>
-	--%>
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
+					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
+				</c:when>
+ 				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
+					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">해지</button>
 				</c:when>
 			</c:choose>
 		</div>
@@ -105,7 +96,6 @@
 </div>
 <script type="text/javascript">
 function fnProcRegisterData(){
-
 	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
@@ -125,22 +115,48 @@ function fnProcRegisterData(){
 		}
 	});
 	
-	$.fun.ajax({
-		type:'get',
-		url:"/ctn/nrlmber/RegisterContent.do",
-		data:$("form[name=FormEqList]").serialize(),
-		success:function(data){
-			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-				location.reload();
-			}});
-		}
-	});
 
 }
 
 function fnClose(){
 	$("#induacaAdd").dialog('destroy').remove();
 }
+
+$(document).ready(function(){
+	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
+		datatype:'json',
+		url:'/jqGrid/init',
+		colNames: [
+		           	 '고유ID'
+		           	,'패스워드'
+		           	,'아이디'
+		           	,'최종등록자'
+		           	,'최종등록일'
+		           ],
+		colModel:[
+				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				,{name:'pwd', 				index:'PWD',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
+				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
+				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
+		],
+		pager:"#pager",
+		rowNum:10,
+		width:"300px",
+		height:"150px",
+		sortname:"LAST_UPDUSR_PNTTM",
+   		sortorder:"desc",
+   		onSelectRow:function(rowid, status, e){
+
+   			var rowval = $('#grid').jqGrid('getRowData', rowid);
+   			console.log(rowval)
+
+   			$("[name=seq]").val(rowval.seq);
+   			$("[name=id]").val(rowval.id);
+   			$("[name=pwd]").val(rowval.pwd);
+   		}
+	}));
+});
 
 
 </script>

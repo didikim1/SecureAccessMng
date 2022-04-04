@@ -798,6 +798,9 @@ body .ui-tooltip {
 .ui-widget button {
 	font-family: Verdana,Arial,sans-serif;
 	font-size: 1em;
+	width: 300px;
+    height: 30px;
+    border-color: #eee;
 }
 .ui-widget-content {
 	border: 1px solid #aaaaaa;
