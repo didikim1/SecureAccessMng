@@ -76,6 +76,17 @@ public class AuthenticationInterceptor implements HandlerInterceptor
             {
                 FrameworkBeans.findSessionBean().roleId = "8";
             }
+
+            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().dpamentId))
+            {
+
+            }
+
+            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().mberName))
+            {
+
+            }
+
             return true;
         default:
                 if( 	                url.indexOf("/login/") >= 0
@@ -109,9 +120,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception
     {
-    	request.setAttribute("SessionBean_dpamentId", FrameworkBeans.findSessionBean().dpamentId);
-    	request.setAttribute("SessionBean_roleId", FrameworkBeans.findSessionBean().roleId);
-    	request.setAttribute("SessionBean_mberName", FrameworkBeans.findSessionBean().mberName);
+    	request.setAttribute("dpamentId",  FrameworkBeans.findSessionBean().dpamentId);
+    	request.setAttribute("roleId",     FrameworkBeans.findSessionBean().roleId);
+    	request.setAttribute("mberName",   FrameworkBeans.findSessionBean().mberName);
     }
 
     @Override

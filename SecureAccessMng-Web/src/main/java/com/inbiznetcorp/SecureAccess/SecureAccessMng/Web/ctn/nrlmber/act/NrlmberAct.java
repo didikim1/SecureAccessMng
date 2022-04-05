@@ -40,7 +40,7 @@ public class NrlmberAct
 
 
 
-            model.addAttribute("roleId",                FrameworkBeans.findSessionBean().roleId);
+//            model.addAttribute("roleId",                FrameworkBeans.findSessionBean().roleId);
             model.addAttribute("paramMap",              paramMap);
             model.addAttribute("Data",                  resultBean);
 
@@ -88,21 +88,21 @@ public class NrlmberAct
 
 		return pagePrefix + "/RegisterData";
 	}
-	
+
 	@RequestMapping(value = { "/RegisterContent.do" })
 	public String RegisterContent(Model model)
 	{
 		MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		MyMap resultMap       = null;
-		
+
 		resultMap = mBiz.SelectOneData(paramMap);
-		
+
 		model.addAttribute("paramMap",      paramMap);
 		model.addAttribute("Info",          resultMap);
-		
+
 		return pagePrefix + "/RegisterContent";
 	}
-	
+
 	@RequestMapping(value = { "/ProcRegisterData.do" })
 	public @ResponseBody ResultMessage ProcRegisterData(Model model)
 	{
