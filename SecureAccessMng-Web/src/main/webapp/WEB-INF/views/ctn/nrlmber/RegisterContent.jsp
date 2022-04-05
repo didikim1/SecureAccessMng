@@ -86,8 +86,6 @@
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
 					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
-				</c:when>
- 				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
 					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">해지</button>
 				</c:when>
 			</c:choose>
@@ -129,15 +127,19 @@ $(document).ready(function(){
 		colNames: [
 		           	 '고유ID'
 		           	,'패스워드'
-		           	,'아이디'
-		           	,'최종등록자'
-		           	,'최종등록일'
+		           	,'정/부'
+		           	,'계정'
+		           	,'소유자'
+		           	,'전화번호'
+		           	,'담당'
 		           ],
 		colModel:[
 				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'pwd', 				index:'PWD',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
+				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
+				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
 		],
 		pager:"#pager",
