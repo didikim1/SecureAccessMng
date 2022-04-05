@@ -38,9 +38,6 @@ public class NrlmberAct
 
             resultBean = mBiz.ListPagingData( paramMap );
 
-
-
-//            model.addAttribute("roleId",                FrameworkBeans.findSessionBean().roleId);
             model.addAttribute("paramMap",              paramMap);
             model.addAttribute("Data",                  resultBean);
 

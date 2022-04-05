@@ -22,7 +22,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
-@Component
+
 public class AuthenticationInterceptor implements HandlerInterceptor
 {
    String[] UN_CKECKURLS = new String[]{"/index", "/loginProc", "/error/error500"};
@@ -66,7 +66,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
 
         CommonBiz commonBiz = (CommonBiz) FrameworkBeans.findBean("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz");
-        System.out.println("active = " + commonBiz.active);
+//        System.out.println("active = " + commonBiz.active);
 
         switch (commonBiz.active)
         {

@@ -78,12 +78,6 @@ public class EqAccLogAction
             model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
         }
 
-        System.out.println("active = " + active);
-        System.out.println("active = " + active);
-        System.out.println("active = " + active);
-        System.out.println("active = " + active);
-        System.out.println("active = " + active);
-        System.out.println("active = " + active);
 
 
         return pagePrefix + "/ListPagingData";
