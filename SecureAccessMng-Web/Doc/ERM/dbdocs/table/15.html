@@ -1,0 +1,909 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>접속로그</title>
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+	</head>
+<script>
+function asd() {
+	parent.document.title="접속로그";
+}
+</script>
+
+	<body onload="asd();">
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="14.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="16.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="15.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+		<a name="main"></a>
+		<h2>테이블   접속로그</h2>
+		<hr>
+
+
+<dl>
+	<dt><b>물리명:</b></dt>
+		<dd>EQ_ACCLOG<br><br></dd>
+</dl>
+
+<dl>
+	<dt><b>제약:</b></dt>
+		<dd><br><br></dd>
+</dl>
+
+<pre style="font-size:1em;">
+
+</pre>
+
+<p>
+
+<!-- ======== Attribute ======== -->
+
+<a name="attribute_summary"></a>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">속성 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>PK</th>
+		<th>FK</th>
+		<th>논리명</th>
+		<th>물리명</th>
+		<th>형식</th>
+		<th>UNIQUE</th>
+		<th>NOT NULL</th>
+	</tr>
+	<tr>
+	<tr>
+	<td align="center"><img src="../image/icons/pkey.gif">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#370">접속이력 SEQ</a>&nbsp;</td>
+	<td>SEQ&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#371">업무코드 ID</a>&nbsp;</td>
+	<td>WORKTYPECODE_ID&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#372">IDC고유키값</a>&nbsp;</td>
+	<td>REF_EQ_IDC&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#373">장비목록고유값</a>&nbsp;</td>
+	<td>REF_EQ_LIST&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#374">장비접속ID</a>&nbsp;</td>
+	<td>REF_EQ_IDPWD&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#375">에이전트접속IP고유SEQ</a>&nbsp;</td>
+	<td>REF_ALLOW_IP&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#350">회원 SEQ</a>&nbsp;</td>
+	<td>REF_NRLMBER&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#310">관리회원고유</a>&nbsp;</td>
+	<td>REF_ENTRPRSMBER&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#376">프로세스ID</a>&nbsp;</td>
+	<td>PROCESSID&nbsp;</td>
+	<td>varchar(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#377">요청일자</a>&nbsp;</td>
+	<td>REQUESTTIME&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#378">응답일자</a>&nbsp;</td>
+	<td>REPONSETIME&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#379">처리상태</a>&nbsp;</td>
+	<td>STTUS&nbsp;</td>
+	<td>char(1)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#380">접근사유</a>&nbsp;</td>
+	<td>REASON&nbsp;</td>
+	<td>varchar(300)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#381">A:ARS,NE:이메일알림</a>&nbsp;</td>
+	<td>AUTH_TYPE&nbsp;</td>
+	<td>varchar(10)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#382">인증결과코드</a>&nbsp;</td>
+	<td>AUTH_RTN_CODE&nbsp;</td>
+	<td>varchar(10)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#383">인증결과메세지</a>&nbsp;</td>
+	<td>AUTH_RTN_MESSAGE&nbsp;</td>
+	<td>varchar(100)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#384">로그인ID</a>&nbsp;</td>
+	<td>FRST_REGISTER_ID&nbsp;</td>
+	<td>varchar(20)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#385">로그인일자</a>&nbsp;</td>
+	<td>FRST_REGISTER_PNTTM&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#386">로그아웃ID</a>&nbsp;</td>
+	<td>LAST_UPDUSR_ID&nbsp;</td>
+	<td>varchar(20)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#387">로그아웃일자</a>&nbsp;</td>
+	<td>LAST_UPDUSR_PNTTM&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+	</tr>
+</table>
+
+<p>
+
+<!-- ========== FOREIGN KEY =========== -->
+
+<a name="foreign_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">외부 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">참조 테이블</th>
+		<th width="12%">참조 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	<tr>
+	<td><a href="#372">IDC고유키값&nbsp;</a></td>
+	<td><a href="../table/19.html">IDC정보&nbsp;</a></td>
+	<td><a href="../table/19.html#388">IDC고유키값&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#373">장비목록고유값&nbsp;</a></td>
+	<td><a href="../table/21.html">장비목록&nbsp;</a></td>
+	<td><a href="../table/21.html#389">장비목록고유값&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#374">장비접속ID&nbsp;</a></td>
+	<td><a href="../table/20.html">장비접속정보&nbsp;</a></td>
+	<td><a href="../table/20.html#390">장비접속ID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#375">에이전트접속IP고유SEQ&nbsp;</a></td>
+	<td><a href="../table/16.html">접속허용IP&nbsp;</a></td>
+	<td><a href="../table/16.html#391">에이전트접속IP고유SEQ&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#350">회원 SEQ&nbsp;</a></td>
+	<td><a href="../table/11.html">일반회원&nbsp;</a></td>
+	<td><a href="../table/11.html#336">회원 SEQ&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#310">관리회원고유&nbsp;</a></td>
+	<td><a href="../table/7.html">관리회원&nbsp;</a></td>
+	<td><a href="../table/7.html#299">관리회원고유&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== REFERENCE KEY =========== -->
+
+<a name="reference_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">참조 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">테이블</th>
+		<th width="12%">외부 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	
+</table>
+
+<p>
+
+<!-- ========== Complex Unique Key =========== -->
+
+<a name="complex_unique_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="1">복합 고유 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>&nbsp;</th>
+		
+	</tr>
+	
+</table>
+
+
+
+<p>
+
+<!-- ========== INDEX SUMMARY =========== -->
+
+<a name="index_summary"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="3">인덱스 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>인덱스명</th>
+		<th>유형</th>
+		<th>UNIQUE</th>
+	</tr>
+	
+</table>
+
+<p>
+
+
+
+
+
+<p>
+
+<!-- ============ ATTRIBUTE DETAIL =========== -->
+
+<a name="attribute_detail"></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th>속성 상세</th>
+	</tr>
+</table>
+
+<a name="370"></a>
+<h3><img src="../image/icons/pkey.gif">  접속이력 SEQ</h3>
+
+<dl>
+	<dd>SEQ
+	<p>
+	<dd><pre>접속이력 SEQ</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>TRUE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="371"></a>
+<h3>  업무코드 ID</h3>
+
+<dl>
+	<dd>WORKTYPECODE_ID
+	<p>
+	<dd><pre>업무코드 ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="372"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> IDC고유키값</h3>
+
+<dl>
+	<dd>REF_EQ_IDC
+	<p>
+	<dd><pre>IDC고유키값</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="373"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 장비목록고유값</h3>
+
+<dl>
+	<dd>REF_EQ_LIST
+	<p>
+	<dd><pre>장비목록고유값</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="374"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 장비접속ID</h3>
+
+<dl>
+	<dd>REF_EQ_IDPWD
+	<p>
+	<dd><pre>장비접속ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="375"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 에이전트접속IP고유SEQ</h3>
+
+<dl>
+	<dd>REF_ALLOW_IP
+	<p>
+	<dd><pre>에이전트접속IP고유SEQ</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="350"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 회원 SEQ</h3>
+
+<dl>
+	<dd>REF_NRLMBER
+	<p>
+	<dd><pre>회원 SEQ</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="310"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 관리회원고유</h3>
+
+<dl>
+	<dd>REF_ENTRPRSMBER
+	<p>
+	<dd><pre>관리회원고유</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="376"></a>
+<h3>  프로세스ID</h3>
+
+<dl>
+	<dd>PROCESSID
+	<p>
+	<dd><pre>프로세스ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="377"></a>
+<h3>  요청일자</h3>
+
+<dl>
+	<dd>REQUESTTIME
+	<p>
+	<dd><pre>요청일자</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="378"></a>
+<h3>  응답일자</h3>
+
+<dl>
+	<dd>REPONSETIME
+	<p>
+	<dd><pre>응답일자</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="379"></a>
+<h3>  처리상태</h3>
+
+<dl>
+	<dd>STTUS
+	<p>
+	<dd><pre>처리상태 A:활성화 E:종료</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>char(1)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b>A<br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="380"></a>
+<h3>  접근사유</h3>
+
+<dl>
+	<dd>REASON
+	<p>
+	<dd><pre>접근사유</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(300)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="381"></a>
+<h3>  A:ARS,NE:이메일알림</h3>
+
+<dl>
+	<dd>AUTH_TYPE
+	<p>
+	<dd><pre>A:ARS,NE:이메일알림</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(10)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="382"></a>
+<h3>  인증결과코드</h3>
+
+<dl>
+	<dd>AUTH_RTN_CODE
+	<p>
+	<dd><pre>인증결과코드</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(10)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="383"></a>
+<h3>  인증결과메세지</h3>
+
+<dl>
+	<dd>AUTH_RTN_MESSAGE
+	<p>
+	<dd><pre>인증결과메세지</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(100)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="384"></a>
+<h3>  로그인ID</h3>
+
+<dl>
+	<dd>FRST_REGISTER_ID
+	<p>
+	<dd><pre>로그인ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(20)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="385"></a>
+<h3>  로그인일자</h3>
+
+<dl>
+	<dd>FRST_REGISTER_PNTTM
+	<p>
+	<dd><pre>로그인일자</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="386"></a>
+<h3>  로그아웃ID</h3>
+
+<dl>
+	<dd>LAST_UPDUSR_ID
+	<p>
+	<dd><pre>로그아웃ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(20)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="387"></a>
+<h3>  로그아웃일자</h3>
+
+<dl>
+	<dd>LAST_UPDUSR_PNTTM
+	<p>
+	<dd><pre>로그아웃일자</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+
+
+
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="14.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="16.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="15.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+
+	</body>
+</HTML>

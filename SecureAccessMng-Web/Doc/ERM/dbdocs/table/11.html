@@ -1,0 +1,759 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>일반회원</title>
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+	</head>
+<script>
+function asd() {
+	parent.document.title="일반회원";
+}
+</script>
+
+	<body onload="asd();">
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="10.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="12.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="11.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+		<a name="main"></a>
+		<h2>테이블   일반회원</h2>
+		<hr>
+
+
+<dl>
+	<dt><b>물리명:</b></dt>
+		<dd>CTN_NRLMBER<br><br></dd>
+</dl>
+
+<dl>
+	<dt><b>제약:</b></dt>
+		<dd><br><br></dd>
+</dl>
+
+<pre style="font-size:1em;">
+
+</pre>
+
+<p>
+
+<!-- ======== Attribute ======== -->
+
+<a name="attribute_summary"></a>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">속성 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>PK</th>
+		<th>FK</th>
+		<th>논리명</th>
+		<th>물리명</th>
+		<th>형식</th>
+		<th>UNIQUE</th>
+		<th>NOT NULL</th>
+	</tr>
+	<tr>
+	<tr>
+	<td align="center"><img src="../image/icons/pkey.gif">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#336">회원 SEQ</a>&nbsp;</td>
+	<td>SEQ&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#231">부서명 고유ID</a>&nbsp;</td>
+	<td>DPAMENT_ID&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#239">직위고유ID</a>&nbsp;</td>
+	<td>POSITION_ID&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#337">권한고유ID</a>&nbsp;</td>
+	<td>ROLE_ID&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#277">담당업무ID</a>&nbsp;</td>
+	<td>CHARGE_ID&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#338">고유ID</a>&nbsp;</td>
+	<td>UNIQ_ID&nbsp;</td>
+	<td>varchar(20)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#339">비밀번호</a>&nbsp;</td>
+	<td>PASSWORD&nbsp;</td>
+	<td>varchar(100)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#340">상태</a>&nbsp;</td>
+	<td>MBER_STTUS&nbsp;</td>
+	<td>char(1)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#341">휴대폰번호</a>&nbsp;</td>
+	<td>MOBLPHON_NO&nbsp;</td>
+	<td>varchar(15)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#342">Email 주소</a>&nbsp;</td>
+	<td>EMAIL_ADDRESS&nbsp;</td>
+	<td>varchar(50)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#343">최초등록ID</a>&nbsp;</td>
+	<td>FRST_REGISTER_ID&nbsp;</td>
+	<td>varchar(20)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#344">최종등록ID</a>&nbsp;</td>
+	<td>LAST_UPDUSR_ID&nbsp;</td>
+	<td>varchar(20)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#345">최초등록일</a>&nbsp;</td>
+	<td>FRST_REGISTER_PNTTM&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#346">최종등록일</a>&nbsp;</td>
+	<td>LAST_UPDUSR_PNTTM&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#347">비밀번호최종변경일</a>&nbsp;</td>
+	<td>LAST_UPDUSR_PWD&nbsp;</td>
+	<td>datetime&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+	</tr>
+</table>
+
+<p>
+
+<!-- ========== FOREIGN KEY =========== -->
+
+<a name="foreign_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">외부 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">참조 테이블</th>
+		<th width="12%">참조 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	<tr>
+	<td><a href="#231">부서명 고유ID&nbsp;</a></td>
+	<td><a href="../table/0.html">부서정보&nbsp;</a></td>
+	<td><a href="../table/0.html#225">부서명 고유ID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#239">직위고유ID&nbsp;</a></td>
+	<td><a href="../table/1.html">직위&nbsp;</a></td>
+	<td><a href="../table/1.html#232">직위고유ID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#337">권한고유ID&nbsp;</a></td>
+	<td><a href="../table/13.html">권한&nbsp;</a></td>
+	<td><a href="../table/13.html#348">권한고유ID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#277">담당업무ID&nbsp;</a></td>
+	<td><a href="../table/4.html">담당업무&nbsp;</a></td>
+	<td><a href="../table/4.html#271">고유ID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== REFERENCE KEY =========== -->
+
+<a name="reference_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">참조 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">테이블</th>
+		<th width="12%">외부 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	<tr>
+	<td><a href="#336">회원 SEQ&nbsp;</a></td>
+	<td><a href="../table/12.html">일반회원_히스토리&nbsp;</a></td>
+	<td><a href="../table/12.html#349">회원 SEQ&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#336">회원 SEQ&nbsp;</a></td>
+	<td><a href="../table/15.html">접속로그&nbsp;</a></td>
+	<td><a href="../table/15.html#350">회원 SEQ&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== Complex Unique Key =========== -->
+
+<a name="complex_unique_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="1">복합 고유 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>&nbsp;</th>
+		
+	</tr>
+	
+</table>
+
+
+
+<p>
+
+<!-- ========== INDEX SUMMARY =========== -->
+
+<a name="index_summary"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="3">인덱스 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>인덱스명</th>
+		<th>유형</th>
+		<th>UNIQUE</th>
+	</tr>
+	
+</table>
+
+<p>
+
+
+
+
+
+<p>
+
+<!-- ============ ATTRIBUTE DETAIL =========== -->
+
+<a name="attribute_detail"></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th>속성 상세</th>
+	</tr>
+</table>
+
+<a name="336"></a>
+<h3><img src="../image/icons/pkey.gif">  회원 SEQ</h3>
+
+<dl>
+	<dd>SEQ
+	<p>
+	<dd><pre>회원 SEQ</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>TRUE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="231"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 부서명 고유ID</h3>
+
+<dl>
+	<dd>DPAMENT_ID
+	<p>
+	<dd><pre>부서명 고유ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="239"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 직위고유ID</h3>
+
+<dl>
+	<dd>POSITION_ID
+	<p>
+	<dd><pre>직위고유ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="337"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 권한고유ID</h3>
+
+<dl>
+	<dd>ROLE_ID
+	<p>
+	<dd><pre>권한고유ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="277"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 담당업무ID</h3>
+
+<dl>
+	<dd>CHARGE_ID
+	<p>
+	<dd><pre>고유ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="338"></a>
+<h3>  고유ID</h3>
+
+<dl>
+	<dd>UNIQ_ID
+	<p>
+	<dd><pre>고유ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(20)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="339"></a>
+<h3>  비밀번호</h3>
+
+<dl>
+	<dd>PASSWORD
+	<p>
+	<dd><pre>비밀번호</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(100)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="340"></a>
+<h3>  상태</h3>
+
+<dl>
+	<dd>MBER_STTUS
+	<p>
+	<dd><pre>상태  A: 활성화 C: 중지</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>char(1)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b>A<br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="341"></a>
+<h3>  휴대폰번호</h3>
+
+<dl>
+	<dd>MOBLPHON_NO
+	<p>
+	<dd><pre>휴대폰번호</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(15)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="342"></a>
+<h3>  Email 주소</h3>
+
+<dl>
+	<dd>EMAIL_ADDRESS
+	<p>
+	<dd><pre>Email 주소</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(50)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="343"></a>
+<h3>  최초등록ID</h3>
+
+<dl>
+	<dd>FRST_REGISTER_ID
+	<p>
+	<dd><pre>최초등록ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(20)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="344"></a>
+<h3>  최종등록ID</h3>
+
+<dl>
+	<dd>LAST_UPDUSR_ID
+	<p>
+	<dd><pre>최종등록ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(20)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="345"></a>
+<h3>  최초등록일</h3>
+
+<dl>
+	<dd>FRST_REGISTER_PNTTM
+	<p>
+	<dd><pre>최초등록일</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="346"></a>
+<h3>  최종등록일</h3>
+
+<dl>
+	<dd>LAST_UPDUSR_PNTTM
+	<p>
+	<dd><pre>최종등록일</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="347"></a>
+<h3>  비밀번호최종변경일</h3>
+
+<dl>
+	<dd>LAST_UPDUSR_PWD
+	<p>
+	<dd><pre>비밀번호최종변경일</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>datetime<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+
+
+
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="10.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="12.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="11.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+
+	</body>
+</HTML>

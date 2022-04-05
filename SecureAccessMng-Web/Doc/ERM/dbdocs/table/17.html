@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>고객사정보</title>
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+	</head>
+<script>
+function asd() {
+	parent.document.title="고객사정보";
+}
+</script>
+
+	<body onload="asd();">
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="16.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="18.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="17.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+		<a name="main"></a>
+		<h2>테이블   고객사정보</h2>
+		<hr>
+
+
+<dl>
+	<dt><b>물리명:</b></dt>
+		<dd>EQ_COMPANY<br><br></dd>
+</dl>
+
+<dl>
+	<dt><b>제약:</b></dt>
+		<dd><br><br></dd>
+</dl>
+
+<pre style="font-size:1em;">
+
+</pre>
+
+<p>
+
+<!-- ======== Attribute ======== -->
+
+<a name="attribute_summary"></a>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">속성 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>PK</th>
+		<th>FK</th>
+		<th>논리명</th>
+		<th>물리명</th>
+		<th>형식</th>
+		<th>UNIQUE</th>
+		<th>NOT NULL</th>
+	</tr>
+	<tr>
+	<tr>
+	<td align="center"><img src="../image/icons/pkey.gif">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#399">고유키값</a>&nbsp;</td>
+	<td>SEQ&nbsp;</td>
+	<td>int(11)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#400">고객사코드</a>&nbsp;</td>
+	<td>COMPANYCODE&nbsp;</td>
+	<td>varchar(50)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#401">고객사명칭</a>&nbsp;</td>
+	<td>COMPANYNAME&nbsp;</td>
+	<td>varchar(50)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#402">화면에노출될이름</a>&nbsp;</td>
+	<td>DISPLAYNAME&nbsp;</td>
+	<td>varchar(50)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+	</tr>
+</table>
+
+<p>
+
+<!-- ========== FOREIGN KEY =========== -->
+
+<a name="foreign_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">외부 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">참조 테이블</th>
+		<th width="12%">참조 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	
+</table>
+
+<p>
+
+<!-- ========== REFERENCE KEY =========== -->
+
+<a name="reference_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">참조 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">속성</th>
+		<th width="28%">테이블</th>
+		<th width="12%">외부 키</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">부모의 다중성</th>
+		<th width="12%">자식의 다중성</th>
+	</tr>
+	
+</table>
+
+<p>
+
+<!-- ========== Complex Unique Key =========== -->
+
+<a name="complex_unique_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="1">복합 고유 키</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>&nbsp;</th>
+		
+	</tr>
+	
+</table>
+
+
+
+<p>
+
+<!-- ========== INDEX SUMMARY =========== -->
+
+<a name="index_summary"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="3">인덱스 개요</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>인덱스명</th>
+		<th>유형</th>
+		<th>UNIQUE</th>
+	</tr>
+	
+</table>
+
+<p>
+
+
+
+
+
+<p>
+
+<!-- ============ ATTRIBUTE DETAIL =========== -->
+
+<a name="attribute_detail"></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th>속성 상세</th>
+	</tr>
+</table>
+
+<a name="399"></a>
+<h3><img src="../image/icons/pkey.gif">  고유키값</h3>
+
+<dl>
+	<dd>SEQ
+	<p>
+	<dd><pre>고유키값</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>형식 : </b>int(11)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>TRUE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="400"></a>
+<h3>  고객사코드</h3>
+
+<dl>
+	<dd>COMPANYCODE
+	<p>
+	<dd><pre>고객사코드</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(50)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="401"></a>
+<h3>  고객사명칭</h3>
+
+<dl>
+	<dd>COMPANYNAME
+	<p>
+	<dd><pre>고객사명칭</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(50)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="402"></a>
+<h3>  화면에노출될이름</h3>
+
+<dl>
+	<dd>DISPLAYNAME
+	<p>
+	<dd><pre>화면에노출될이름</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>형식 : </b>varchar(50)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>기본값 : </b><br></dt>
+		<dt><b>제약 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+
+
+
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">개요</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">개체 유형</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								테이블&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">도움말</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="16.html" ><b>이전테이블</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="18.html" ><b>다음테이블</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">프레임</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="17.html" target="_top">프레임 없음</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">모든 개체</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">모든 개체</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+
+	</body>
+</HTML>
