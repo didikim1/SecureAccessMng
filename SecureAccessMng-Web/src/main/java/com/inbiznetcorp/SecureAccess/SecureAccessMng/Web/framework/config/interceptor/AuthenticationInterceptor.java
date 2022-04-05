@@ -7,27 +7,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
+@Component
 public class AuthenticationInterceptor implements HandlerInterceptor
 {
-	String[] UN_CKECKURLS = new String[]{"/index", "/loginProc", "/error/error500"};
-	
-	// spring.profiles.active=${:local}
-	
-//	@Value("${spring.profiles.active}")
-//    private String active;
-	
-	
+   String[] UN_CKECKURLS = new String[]{"/index", "/loginProc", "/error/error500"};
+
+   final String  kLogNewLine             = "\r\n";
+
+    final String kProfiles_Active_Local  = "local";
+    final String kProfiles_Active_Test   = "test";
+    final String kProfiles_Active_PRD    = "prd";
+
+
     @Override
     public boolean preHandle(HttpServletRequest _httpServletRequest, HttpServletResponse _httpServletResponse, Object _handler) throws Exception
     {
-    	String 	strNewLine = "\r\n";
 
         String url = _httpServletRequest.getAttribute("org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping").toString();
         _httpServletRequest.setAttribute("MAPPING_URL", url);
@@ -39,62 +48,61 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
         Logger.info( "URL:"+url);
 
-        sbReqMessage.append(strNewLine+"==========================LAB603=================================="+strNewLine);
-        sbReqMessage.append(" Request URL=" + url + strNewLine);
-        sbReqMessage.append(" Connetion IPAddr=" + _httpServletRequest.getRemoteAddr() + strNewLine);
-        sbReqMessage.append(" Connetion X-Forwarded-For=" + _httpServletRequest.getHeader("x-forwarded-for") + strNewLine);
+        sbReqMessage.append(kLogNewLine+"==========================LAB603=================================="+kLogNewLine);
+        sbReqMessage.append(" Request URL=" + url + kLogNewLine);
+        sbReqMessage.append(" Connetion IPAddr=" + _httpServletRequest.getRemoteAddr() + kLogNewLine);
+        sbReqMessage.append(" Connetion X-Forwarded-For=" + _httpServletRequest.getHeader("x-forwarded-for") + kLogNewLine);
         for (Entry<Object, Object> elem : FrameworkBeans.findHttpServletBean().findClientRequestParameter().entrySet())
         {
             String mapKey = (String) elem.getKey();
             String mapVal = (String) elem.getValue();
 
-            sbReqMessage.append("\t " + mapKey + " = " + mapVal + strNewLine);
+            sbReqMessage.append("\t " + mapKey + " = " + mapVal + kLogNewLine);
         }
 
-        sbReqMessage.append("==========================//LAB603==================================" + strNewLine);
+        sbReqMessage.append("==========================//LAB603==================================" + kLogNewLine);
 
         Logger.info( sbReqMessage.toString() );
-        
-//        System.out.println("active = " + active);
-//        System.out.println("active = " + active);
-//        System.out.println("active = " + active);
-//        System.out.println("active = " + active);
-//        System.out.println("active = " + active);
-//        System.out.println("active = " + active);
-        
-        if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
-        {
-        	FrameworkBeans.findSessionBean().roleId = "8";
-        }
-        
-        return true;
 
-        
-       // 임시주석
-       /*
-        if( 	    url.indexOf("/login/") >= 0
-        		|| 	url.indexOf("/login/index.do") >= 0
-        		|| 	url.indexOf("/login/SelectOneData.do") >= 0
-        		|| 	url.indexOf("/login/DeleteData.do") >= 0
-        		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
-        		|| 	url.indexOf("api") >= 0
-        	)
+
+        CommonBiz commonBiz = (CommonBiz) FrameworkBeans.findBean("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz");
+        System.out.println("active = " + commonBiz.active);
+
+        switch (commonBiz.active)
         {
-        	return true;
+        case kProfiles_Active_Local:
+
+            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
+            {
+                FrameworkBeans.findSessionBean().roleId = "8";
+            }
+            return true;
+        default:
+                if( 	                url.indexOf("/login/") >= 0
+                		|| 	url.indexOf("/login/index.do") >= 0
+                		|| 	url.indexOf("/login/SelectOneData.do") >= 0
+                		|| 	url.indexOf("/login/DeleteData.do") >= 0
+                		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
+                		|| 	url.indexOf("api") >= 0
+                	)
+                {
+                	return true;
+                }
+                else
+                {
+                	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
+                	{
+                		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
+                		return true;
+                	}
+                	else
+                	{
+                		return true;
+                	}
+                }
         }
-        else
-        {
-        	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
-        	{
-        		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-        		return true;
-        	}
-        	else
-        	{
-        		return true;
-        	}
-        }
-        */
+
+
     }
 
 

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,9 +43,12 @@ public class EqAccLogAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
     EqListBiz mEqListBiz;
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
+
+    @Value("${spring.profiles.active}")
+    String active;
 
     @RequestMapping(value ={ "/ListPagingData.do" })
     public String ListPagingData(Model model)
@@ -57,9 +61,9 @@ public class EqAccLogAction
         	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
         	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
         }
-        
+
         resultBean = mBiz.ListPagingData( paramMap );
-        
+
         model.addAttribute("paramMap",          paramMap);
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       idcInfoBean.getList());
@@ -74,24 +78,32 @@ public class EqAccLogAction
             model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
         }
 
+        System.out.println("active = " + active);
+        System.out.println("active = " + active);
+        System.out.println("active = " + active);
+        System.out.println("active = " + active);
+        System.out.println("active = " + active);
+        System.out.println("active = " + active);
+
+
         return pagePrefix + "/ListPagingData";
     }
-    
+
     @RequestMapping(value = {"/ListExcelData" })
-	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException 
+	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
 	{
 		List<MyCamelMap> resultS03Excel    = null;
         MyMap            paramMap          = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        
+
         String      strFileName      = "접속로그 상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
         String[]    arrTitle		 = new String[]{"IDC", 			  "서버", 	   "접속ID", 		"접속IP", 		"접속자",   		   "프로세스ID", 	"로그인일자",    	 "로그아웃일자"};
         String[]    arrExcelColum  	 = new String[]{"eqIdcName", 	  "eqListName", "eqIdpwdID", "eqAllowIpName",  "ctnNrlmberName", "processid", 	"frstRegisterPnttm", "lastUpdusrPnttm"};
-        
+
         resultS03Excel = mBiz.ListData(paramMap);
-        
+
         mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultS03Excel, strFileName);
 	}
-    
+
     // IDC별 조회시
     @RequestMapping(value ={ "/EqList/ListData.do" })
     public @ResponseBody ResultMessage EqListListData(Model model)
@@ -106,9 +118,9 @@ public class EqAccLogAction
 
         return new ResultMessage(ResultCode.RESULT_OK, mEqListBiz.ListPagingData(eqListParamMap) );
     }
-    
-    
-    
+
+
+
 
     @RequestMapping(value ={ "/SelectOneData.do" })
     public String SelectOneData(Model model)
@@ -117,15 +129,15 @@ public class EqAccLogAction
 
         return null;
     }
-    
+
     @RequestMapping(value ={ "/pop/SelectOneData.do" })
     public String popSelectOneData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         MyMap rtnMap   = mBiz.SelectOneData(paramMap);
-        
+
         model.addAttribute("info",          rtnMap);
-        
+
         return pagePrefix + "/pop/SelectOneData";
     }
 
