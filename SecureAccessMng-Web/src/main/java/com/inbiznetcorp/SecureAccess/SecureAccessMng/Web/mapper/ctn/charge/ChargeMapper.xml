@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 회원관리 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.charge.ChargeMapper">
+
+	<sql id="addWhere">
+
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_CHARGE
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 SEQ				                                                       as seq				<!-- 고유ID -->
+				,NAME				                                               	       as name				<!-- 담당업무-->
+				,FRST_REGISTER_ID		                                  		           as frstRegisterId	<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID		                                  		               as lastUpdusrId		<!-- 최초등록ID -->
+				,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		               as frstRegisterPnttm <!-- 최초등록일 -->
+				,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	               as lastUpdusrPnttm 	<!-- 최종등록일 -->
+		FROM
+			 CTN_CHARGE
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY SEQ DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 SEQ				                                                   	 	as seq					<!-- 고유ID -->
+				,NAME   				                                             		as name					<!-- 담당업무-->
+				,FRST_REGISTER_ID		                                  		            as frstRegisterId		<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID		                                  		                as lastUpdusrId			<!-- 최초등록ID -->
+				,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		                as frstRegisterPnttm	<!-- 최초등록일 -->
+				,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	                as lastUpdusrPnttm 		<!-- 최종등록일 -->
+		FROM
+			 CTN_CHARGE
+		WHERE 1=1
+			AND SEQ = #{seq}
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
+		INSERT INTO CTN_CHARGE
+			(
+				 NAME						<!-- 담당업무-->
+				,FRST_REGISTER_ID			<!-- 최초등록자 -->
+				,LAST_UPDUSR_ID				<!-- 최종등록자 -->
+				,FRST_REGISTER_PNTTM		<!-- 최초등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{name}				<!-- 담당업무-->
+				,#{frstRegisterId}		<!-- 최초등록자  -->
+				,#{lastUpdusrId}		<!-- 최종등록자  -->
+				,now()					<!-- 최초등록일 -->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE CTN_CHARGE
+			 SET
+				 SEQ 							=  #{seq}     					<!-- 부서명 고유ID -->
+				,NAME  							=  #{name}  					<!-- 부서명-->
+				,FRST_REGISTER_ID				=  #{frstRegisterId}			<!-- 최초등록자 -->
+				,FRST_REGISTER_PNTTM			=  now()						<!-- 최조등록일 -->
+				
+		WHERE SEQ = #{seq}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM CTN_CHARGE WHERE SEQ = #{seq}
+	</update>
+
+</mapper>

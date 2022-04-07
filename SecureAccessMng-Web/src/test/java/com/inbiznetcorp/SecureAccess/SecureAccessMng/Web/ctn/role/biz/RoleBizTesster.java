@@ -13,6 +13,8 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBe
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 
+import scala.annotation.meta.param;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RoleBizTesster
@@ -38,61 +40,91 @@ public class RoleBizTesster
     @Test
     public void 권한등록()
     {
-        BasicBean  bean = mBiz.ListPagingData(new MyMap());
-
-        List<MyCamelMap> list = bean.getList();
-
-
-        for (MyCamelMap info : list)
-        {
-            System.out.println(info.toString());
-        }
-
+    	MyMap paramMap = new MyMap();
+    	paramMap.put("role", "권한");
+    	paramMap.put("roleName", "권한명칭");
+    	paramMap.put("frstRegisterId", "등록자");
+    	
+    	int iRtn = mBiz.RegisterData(paramMap);
+    		
+    	System.out.println(iRtn);
     }
+    	
+//        BasicBean  bean = mBiz.RegisterData(new MyMap());
+//
+//        List<MyCamelMap> list = bean.getList();
+//
+//
+//        for (MyCamelMap info : list)
+//        {
+//            System.out.println(info.toString());
+//        }
+
 
 
     @Test
     public void 권한상세()
     {
-        BasicBean  bean = mBiz.ListPagingData(new MyMap());
-
-        List<MyCamelMap> list = bean.getList();
-
-
-        for (MyCamelMap info : list)
-        {
-            System.out.println(info.toString());
-        }
-
+    	MyMap paramMap = new MyMap();
+    	paramMap.put("roleId", 2);
+    	MyCamelMap  info = mBiz.SelectOneData(paramMap);
+    	
+    	System.out.println("InOF::"+info);
+    	
+//    	List<MyCamelMap> list = myCameMap.getListMyCamelMap("ROLE_ID");
+//
+//        for (MyCamelMap info : list)
+//        {
+//            System.out.println(info.toString());
+//        }
+    	
     }
-
+    	
     @Test
     public void 권한수정()
     {
-        BasicBean  bean = mBiz.ListPagingData(new MyMap());
-
-        List<MyCamelMap> list = bean.getList();
-
-
-        for (MyCamelMap info : list)
-        {
-            System.out.println(info.toString());
-        }
+    	
+    	MyMap paramMap = new MyMap();
+    	paramMap.put("role", "권한");
+    	paramMap.put("roleName", "권한명칭");
+    	paramMap.put("frstRegisterId", "등록자");
+    	
+    	int iRtn = mBiz.ModifyData(paramMap);
+    		
+    	System.out.println(iRtn);
+    	
+//    	 BasicBean bean = mBiz.ModifyData(new MyMap());
+//
+//        List<MyCamelMap> list = bean.getList();
+//
+//
+//        for (MyCamelMap info : list)
+//        {
+//            System.out.println(info.toString());
+//        }
 
     }
 
     @Test
     public void 권한삭제()
     {
-        BasicBean  bean = mBiz.ListPagingData(new MyMap());
-
-        List<MyCamelMap> list = bean.getList();
-
-
-        for (MyCamelMap info : list)
-        {
-            System.out.println(info.toString());
-        }
+    	
+    	MyMap paramMap = new MyMap();
+    	paramMap.put("roleId", 2);
+    	int  info = mBiz.DeleteData(paramMap);
+    	
+    	System.out.println("InOF::"+info);
+    	
+    	
+//    	BasicBean  bean =  mBiz.DeleteData(new MyMap());
+//
+//        List<MyCamelMap> list = bean.getList();
+//
+//
+//        for (MyCamelMap info : list)
+//        {
+//            System.out.println(info.toString());
+//        }
 
     }
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 회원관리 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.position.PositionMapper">
+
+	<sql id="addWhere">
+
+	</sql>
+
+	<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			COMTNPOSITION
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 POSITION_ID				                                                   as positionId		<!-- 직위고유ID -->
+				,POSITION_NAME				                                                   as position			<!-- 직위-->
+				,FRST_REGISTER_ID		                                  		               as frstRegisterId	<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID		                                  		               	   as lastUpdusrId		<!-- 최종등록ID -->
+				,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		          		   as frstRegisterPnttm <!-- 최초등록일 -->
+				,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	              	   as lastUpdusrPnttm 	<!-- 최종등록일 -->
+		FROM
+			 COMTNPOSITION
+		WHERE 1=1
+			<include refid="addWhere"/>
+		ORDER BY POSITION_ID DESC
+		LIMIT #{start}, #{end}
+	</select>
+
+	<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 POSITION_ID				                                                   as positionId		<!-- 직위고유ID -->
+				,POSITION_NAME   				                                               as position			<!-- 직위-->
+				,FRST_REGISTER_ID		                                  		               as frstRegisterId	<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID		                                  		             	   as lastUpdusrId		<!-- 최종등록ID -->
+				,DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		                   as frstRegisterPnttm <!-- 최초등록일 -->
+				,DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	                   as lastUpdusrPnttm 	<!-- 최종등록일 -->
+		FROM
+			 COMTNPOSITION
+		WHERE 1=1
+			AND POSITION_ID = #{positionId}
+	</select>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" keyProperty="positionId" useGeneratedKeys="true" >
+		INSERT INTO COMTNPOSITION
+			(
+				 POSITION_NAME					<!-- 직위-->
+				,FRST_REGISTER_ID				<!-- 최초등록자 -->
+				,FRST_REGISTER_PNTTM			<!-- 최초등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{position}					<!-- 직위-->
+				,#{frstRegisterId}				<!-- 최초등록자  -->
+				,now()							<!-- 최초등록일 -->
+			)
+	</update>
+
+	<!-- 수정 -->
+	<update id="ModifyData" parameterType="myMap">
+		UPDATE COMTNPOSITION
+			 SET
+				,POSITION_NAME  				=  #{positionName}  			<!-- 직위명-->
+				,LAST_UPDUSR_ID					=  #{lastUpdusrId}				<!-- 최종등록자 -->
+				,FRST_REGISTER_PNTTM			=  now()						<!-- 최조등록일 -->
+				
+		WHERE POSITION_ID = #{positionId}
+	</update>
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		DELETE FROM COMTNPOSITION WHERE POSITION_ID = #{positionId}
+	</update>
+
+</mapper>

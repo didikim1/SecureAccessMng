@@ -1,4 +1,4 @@
-package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.role.biz;
+package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.dpament.biz;
 
 import javax.annotation.Resource;
 
@@ -8,13 +8,13 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBe
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkPagingUtils;
-import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.role.RoleMapper;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.dpament.DpamentMapper;
 
-@Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.role.biz.RoleBiz")
-public class RoleBiz
+@Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.dpament.biz.DpamentBiz")
+public class DpamentBiz
 {
-    @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.role.RoleMapper")
-    RoleMapper mMapper;
+    @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.dpament.DpamentMapper")
+    DpamentMapper mMapper;
 
     public BasicBean ListPagingData(MyMap paramMap)
     {

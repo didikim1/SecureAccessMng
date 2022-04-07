@@ -26,8 +26,8 @@
 								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="positionId">
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}">selected</c:if> >선택</option>
-									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >책임자</option>
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >관리자</option>
+									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >책임자</option>
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >운영팀</option>
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >정산팀</option>
 									<option value="" <c:if test="${paramMap.positionId  != '' || paramMap.positionId  ne null}"></c:if> >CS팀</option>
@@ -63,7 +63,7 @@
 			         <c:otherwise>
 			         ${positionId}
 		         	</c:otherwise>
-		      </c:choose>
+		      </c:choose> 
 			</div>
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
