@@ -42,9 +42,9 @@ public class DpamentBizTester
     public void 부서등록()
     {
     	MyMap paramMap = new MyMap();
-    	paramMap.put("dpamentId", "부서고유ID");
-    	paramMap.put("depamentName", "부서명");
-    	paramMap.put("frstRegisterId", "등록자입니다");
+//    	paramMap.put("dpamentId", "부서고유ID");
+    	paramMap.put("depamentName", "재경팀");
+    	paramMap.put("frstRegisterId", "김다혜");
     	
     	int iRtn = mBiz.RegisterData(paramMap);
     	

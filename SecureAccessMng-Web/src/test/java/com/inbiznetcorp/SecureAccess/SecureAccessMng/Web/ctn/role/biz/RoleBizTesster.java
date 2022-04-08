@@ -50,17 +50,6 @@ public class RoleBizTesster
     	System.out.println(iRtn);
     }
     	
-//        BasicBean  bean = mBiz.RegisterData(new MyMap());
-//
-//        List<MyCamelMap> list = bean.getList();
-//
-//
-//        for (MyCamelMap info : list)
-//        {
-//            System.out.println(info.toString());
-//        }
-
-
 
     @Test
     public void 권한상세()
@@ -71,13 +60,7 @@ public class RoleBizTesster
     	
     	System.out.println("InOF::"+info);
     	
-//    	List<MyCamelMap> list = myCameMap.getListMyCamelMap("ROLE_ID");
-//
-//        for (MyCamelMap info : list)
-//        {
-//            System.out.println(info.toString());
-//        }
-    	
+  	
     }
     	
     @Test
@@ -93,16 +76,6 @@ public class RoleBizTesster
     		
     	System.out.println(iRtn);
     	
-//    	 BasicBean bean = mBiz.ModifyData(new MyMap());
-//
-//        List<MyCamelMap> list = bean.getList();
-//
-//
-//        for (MyCamelMap info : list)
-//        {
-//            System.out.println(info.toString());
-//        }
-
     }
 
     @Test
@@ -115,16 +88,5 @@ public class RoleBizTesster
     	
     	System.out.println("InOF::"+info);
     	
-    	
-//    	BasicBean  bean =  mBiz.DeleteData(new MyMap());
-//
-//        List<MyCamelMap> list = bean.getList();
-//
-//
-//        for (MyCamelMap info : list)
-//        {
-//            System.out.println(info.toString());
-//        }
-
     }
 }

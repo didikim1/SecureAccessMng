@@ -30,12 +30,12 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 						<tr>
-							<th scope="col" width="120px">계정</th>
+							<th scope="col" width="120px">처리자</th>
 							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
+							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberName}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
@@ -43,37 +43,54 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">전화번호</th>
-							<td><input type="password" class="userManageInput" id="password_re" name="password_re" autocomplete="off"></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNo}"></td>
+						</tr>
+						<tr>
+							<th scope="col" width="120px">계정(ID)</th>
+							<td><input type="text" class="userManageInput" id="emailAddress" name="emailAddress" autocomplete="off" value="${Info.emailAddress}"></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
-							<select class="common_select" name=positionId> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >책임자</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >관리자</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >운영자</option> 
-							</select>
+							<select class="common_select" name="chargeId"> 
+								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
+								<option value="1">책임자</option> 
+								<option value="2">관리자</option> 
+								<option value="3">운영팀</option> 
+								<option value="4">정산팀</option> 
+								<option value="5">CS팀</option> 
+							</select> 
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<td>
-							 <select>
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기/쓰기</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기/쓰기/선택</option> 
+							 <select class="common_select" name="roleId">
+									<option value="${data.role}" <c:if test="${Info.role eq data.role}">selected</c:if> >선택</option> 
+										<option value="1" >읽기</option> 
+										<option value="2">읽기/쓰기</option> 
+										<option value="3">읽기/쓰기/수정</option> 
+										<option value="4">읽기/쓰기/수정/삭제</option> 
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<td>
-							<select class="common_select" name=positionId> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >정</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >부</option> 
+							<select class="common_select" name="mberRating"> 
+									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option> 
+									<option value="M">정</option> 
+									<option value="D">부</option> 
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<th scope="col" width="120px">상태</th>
+							<td>
+							<select class="common_select" name="mberSttus"> 
+									<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option> 
+									<option value="A" >활성화</option> 
+									<option value="C" >중지</option> 
 							</select>
 							</td>
 						</tr>
@@ -105,7 +122,6 @@
 </div>
 <script type="text/javascript">
 function fnProcRegisterData(){
-
 	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
@@ -124,18 +140,6 @@ function fnProcRegisterData(){
 			}
 		}
 	});
-	
-	$.fun.ajax({
-		type:'get',
-		url:"/ctn/nrlmber/RegisterContent.do",
-		data:$("form[name=FormEqList]").serialize(),
-		success:function(data){
-			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-				location.reload();
-			}});
-		}
-	});
-
 }
 
 function fnClose(){

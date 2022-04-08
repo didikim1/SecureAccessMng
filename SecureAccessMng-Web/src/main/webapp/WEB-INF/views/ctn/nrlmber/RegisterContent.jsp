@@ -35,45 +35,47 @@
 <!-- 						</tr> -->
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
+							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberName}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
+							<td><input type="text" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">전화번호</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNo}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
-							<select class="common_select" name=positionId> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >책임자</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >관리자</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >운영자</option> 
+							<select class="common_select" name="chargeId"> 	
+								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
+										<option value="2">관리자</option>
+										<option value="3">운영팀</option>
+										<option value="4">정산팀</option>
+										<option value="5">CS팀</option>
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<td>
-							 <select>
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기/쓰기</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >읽기/쓰기/선택</option> 
+							 <select class="common_select" name="roleId" id ="roleId"> 
+									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option> 
+									<option value="1" >읽기</option> 
+									<option value="2">읽기/쓰기</option> 
+									<option value="3">읽기/쓰기/수정</option> 
+									<option value="4">읽기/쓰기/수정/삭제</option> 
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<td>
-							<select class="common_select" name=positionId> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}">selected</c:if> >선택</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >정</option> 
-									<option value="${data.positionId}" <c:if test="${Info.positionId eq data.positionId}"></c:if> >부</option> 
+							<select class="common_select" name="mberRating" id="mberRating"> 
+									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option> 
+									<option value="M">정</option> 
+									<option value="D">부</option> 
 							</select>
 							</td>
 						</tr>
@@ -126,21 +128,25 @@ $(document).ready(function(){
 		url:'/jqGrid/init',
 		colNames: [
 		           	 '고유ID'
-		           	,'패스워드'
-		           	,'정/부'
-		           	,'계정'
-		           	,'소유자'
-		           	,'전화번호'
+		           	,'권한'
 		           	,'담당'
+		           	,'계정'
+		           	,'상태'
+		           	,'정/부'
+		           	,'소유자'
+		           	,'휴대폰번호'
+		           	,'이메일주소'
 		           ],
 		colModel:[
-				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
-				,{name:'pwd', 				index:'PWD',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
-				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
-				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
-				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
-				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
-				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
+				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				,{name:'roleId', 			index:'ROLE_ID',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'chargeId', 			index:'CHARGE_ID',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'uniqId', 			index:'UNIQ_ID',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberSttus', 		index:'MBER_STTUS',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberRating', 		index:'MBER_RATING',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberName', 		 	index:'MBER_NAME',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'moblphonNo', 		index:'MOBLPHON_NO',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'emailAddress', 		index:'EMAIL_ADDRESS',			width:10,	align:'center', search:false,  sortable:true}
 		],
 		pager:"#pager",
 		rowNum:10,

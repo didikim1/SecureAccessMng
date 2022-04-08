@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.role.biz.RoleBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
@@ -29,17 +31,31 @@ public class NrlmberAct
 
 	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
 	NrlmberBiz mBiz;
+	
+	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.role.biz.RoleBiz")
+	RoleBiz mRoleBiz;
+	
+	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz")
+	ChargeBiz mChargeBiz;
+
+
 
 	@RequestMapping(value = { "/ListPagingData.do" })
 	public String ListPagingDatas(Model model)
 	{
-	    MyMap           paramMap    = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-            BasicBean       resultBean  = null;
+			MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+            BasicBean       resultBean  		= null;
+    		BasicBean       roleList	 		= null;
+    		BasicBean       chargeList  		= null;
 
-            resultBean = mBiz.ListPagingData( paramMap );
+            resultBean   = mBiz.ListPagingData( paramMap );
+    		roleList  	 = mRoleBiz.ListPagingData(new MyMap());
+    		chargeList	 = mChargeBiz.ListPagingData(new MyMap());
 
-            model.addAttribute("paramMap",              paramMap);
-            model.addAttribute("Data",                  resultBean);
+            model.addAttribute("paramMap",      paramMap);
+            model.addAttribute("Data",          resultBean);
+   		 	model.addAttribute("RoleList",      roleList.getList());
+   		 	model.addAttribute("ChargeList",    chargeList.getList());
 
 	    return pagePrefix + "/ListPagingData";
 	}
@@ -47,8 +63,8 @@ public class NrlmberAct
 	@RequestMapping(value = { "/SelectOneData.do" })
 	public String SelectOneData(Model model)
 	{
-	    MyMap                 paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-            MyCamelMap      resultMap       = new MyCamelMap();
+			MyMap                 paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+            MyCamelMap     		  resultMap       = new MyCamelMap();
 
             resultMap = mBiz.SelectOneData(paramMap);
 
@@ -77,12 +93,19 @@ public class NrlmberAct
 	{
 		MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		MyMap resultMap       = null;
-
-		resultMap = mBiz.SelectOneData(paramMap);
-
+		
+		BasicBean roleList	  = null;
+		BasicBean chargeList  = null;
+		
+		resultMap	 = mBiz.SelectOneData(paramMap);
+		roleList  	 = mRoleBiz.ListPagingData(new MyMap());
+		chargeList	 = mChargeBiz.ListPagingData(new MyMap());
+		
 		 model.addAttribute("paramMap",      paramMap);
 		 model.addAttribute("Info",          resultMap);
-
+		 model.addAttribute("RoleList",      roleList.getList());
+		 model.addAttribute("ChargeList",    chargeList.getList());
+		
 		return pagePrefix + "/RegisterData";
 	}
 
@@ -91,11 +114,18 @@ public class NrlmberAct
 	{
 		MyMap paramMap        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		MyMap resultMap       = null;
-
-		resultMap = mBiz.SelectOneData(paramMap);
-
+		
+		BasicBean roleList	  = null;
+		BasicBean chargeList  = null;
+		
+		resultMap  = mBiz.SelectOneData(paramMap);
+		roleList   = mRoleBiz.ListPagingData(new MyMap());
+		chargeList = mChargeBiz.ListPagingData(new MyMap());
+		
 		model.addAttribute("paramMap",      paramMap);
 		model.addAttribute("Info",          resultMap);
+		model.addAttribute("RoleList",      roleList.getList());
+		model.addAttribute("ChargeList",    chargeList.getList());
 
 		return pagePrefix + "/RegisterContent";
 	}
@@ -105,20 +135,24 @@ public class NrlmberAct
 	{
 	    MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 	    MyCamelMap         resultMap                       = new MyCamelMap();
-
+	    
 	    String             resultCode                      = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+	    int                resultRegisterDataCount         = 0;
 
-            int                resultRegisterDataCount         = 0;
-
-            if(paramMap.getInt("seq", 0) > 0 )
-            {
+	    	
+        if(paramMap.getInt("seq", 0) > 0 )
+        {
                 resultCode      = ResultCode.RESULT_OK;
-                resultRegisterDataCount = mBiz.ModifyData(paramMap);
-            }
-            else
-            {
-                resultRegisterDataCount = mBiz.RegisterData( paramMap );
-            }
+                resultRegisterDataCount = mBiz.ModifyData(paramMap);            
+        }
+        else
+        {
+        	resultRegisterDataCount = mBiz.RegisterData( paramMap );
+        	if( resultRegisterDataCount > 0 )
+        	{
+        		resultCode = ResultCode.RESULT_OK;
+        	}
+        }
 
 	    return new ResultMessage(resultCode, null);
 	}
@@ -138,7 +172,7 @@ public class NrlmberAct
 	{
 	    MyMap              paramMap                = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 	    MyCamelMap         resultMap               = new MyCamelMap();
-            int                resultRegisterDataCount = 0;
+            int            resultRegisterDataCount = 0;
 
 	    resultRegisterDataCount = mBiz.ModifyData( paramMap );
 
@@ -159,9 +193,9 @@ public class NrlmberAct
 	public ResultMessage ProcDeleteData(Model model)
 	{
 	    MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-	    MyCamelMap         resultMap                     = new MyCamelMap();
-            int                resultDeleteDataCount         = 0;
-            String              resultCode                   = ResultCode.RESULT_EMPTY;
+	    MyCamelMap        		resultMap                     = new MyCamelMap();
+            int                 resultDeleteDataCount         = 0;
+            String              resultCode                    = ResultCode.RESULT_EMPTY;
 
             resultDeleteDataCount = mBiz.DeleteData( paramMap );
 

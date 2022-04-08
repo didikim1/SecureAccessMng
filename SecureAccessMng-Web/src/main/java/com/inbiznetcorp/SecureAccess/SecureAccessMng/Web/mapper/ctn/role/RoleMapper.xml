@@ -12,7 +12,7 @@
 		SELECT
 			COUNT(0)
 		FROM
-			CTN_ROLE
+			CTN_ROLE T1
 		WHERE 1=1
 		<include refid="addWhere"/>
 	</select>
@@ -53,7 +53,7 @@
 
 	<!-- 추가 -->
 	<update id="RegisterData" parameterType="myMap" >
-		INSERT INTO CTN_ROLE
+		INSERT INTO CTN_ROLE T1
 			(
 				 ROLE					<!-- 권한 -->
 				,ROLE_NAME				<!-- 권한명칭 -->
@@ -71,7 +71,7 @@
 
 	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
-		UPDATE CTN_ROLE
+		UPDATE CTN_ROLE T1
 			 SET
 				 ROLE 					=  #{role}     			<!-- 권한 -->
 				,ROLE_NAME  			=  #{roleName}  		<!-- 권한명칭 -->

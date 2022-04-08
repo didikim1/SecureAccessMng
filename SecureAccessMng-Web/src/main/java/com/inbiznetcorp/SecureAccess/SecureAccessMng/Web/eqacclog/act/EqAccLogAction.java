@@ -96,6 +96,7 @@ public class EqAccLogAction
         resultS03Excel = mBiz.ListData(paramMap);
 
         mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultS03Excel, strFileName);
+        
 	}
 
     // IDC별 조회시

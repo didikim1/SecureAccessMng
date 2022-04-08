@@ -24,7 +24,7 @@ public class ChargeBizTester
     @Test
     public void 담당업무조회()
     {
-        BasicBean  bean = mBiz.ListPagingData(new MyMap());
+    	BasicBean  bean = mBiz.ListPagingData(new MyMap());
         List<MyCamelMap> list = bean.getList();
 
         for (MyCamelMap info : list)
@@ -38,9 +38,9 @@ public class ChargeBizTester
     public void 담당업무등록()
     {
     	MyMap paramMap = new MyMap();
-    	paramMap.put("seq", "고유ID");
-    	paramMap.put("name", "담당업무");
-    	paramMap.put("frstRegisterId", "등록자");
+//    	paramMap.put("seq", "고유ID");
+    	paramMap.put("name", "회계");
+    	paramMap.put("frstRegisterId", "김다혜");
     	
     	int iRtn = mBiz.RegisterData(paramMap);
     		
