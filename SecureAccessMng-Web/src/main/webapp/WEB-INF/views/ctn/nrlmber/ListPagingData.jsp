@@ -50,20 +50,20 @@
 							</td>
 						</tr>
 					</table>
-				</form>
-			</div>
+						<div class="border margin_l6">
+							 <c:choose>
+						         <c:when test = "${roleId eq 8}"> <!-- 권한관리자  이거? 네-->
+						    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
+						    		<button type="button" class="btn_it03" onclick="fnProcExcel()";>엑셀 다운로드</button>
+						         </c:when>
+						         <c:otherwise>
+						         ${positionId}
+					         	</c:otherwise>
+					      </c:choose> 
+						</div>
+					</form>
+				</div>
 
-			<div class="border margin_l6">
-				 <c:choose>
-			         <c:when test = "${roleId eq 8}"> <!-- 권한관리자 -->
-			    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
-			    		<button type="button" class="btn_it03" onclick="fnOpenListExcelData(0);">엑셀 다운로드</button>
-			         </c:when>
-			         <c:otherwise>
-			         ${positionId}
-		         	</c:otherwise>
-		      </c:choose> 
-			</div>
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
@@ -86,16 +86,16 @@
 						<c:forEach var="board" items="${Data.list}" varStatus="status" >
 						<tr onclick ="fnOpenRegisterContentPage('${board.uniqId}')">
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
-<%-- 							<td>${board.dpamentName}</td>			<!-- 부서 --> --%>
-<%-- 							<td>${board.positionName}</td>			<!-- 직위 --> --%>
-							<td>${board.frstRegisterPnttm}</td>			<!-- 처리일자 -->
-							<td>${board.uniqId}</td>					<!-- 등록자-->
+<%-- 							<td>${board.dpamentName}</td>	<!-- 부서 --> --%>
+<%-- 							<td>${board.positionName}</td>		<!-- 직위 --> --%>
+							<td>${board.frstRegisterPnttm}</td>		<!-- 처리일자 -->
+							<td>${board.uniqId}</td>							<!-- 등록자-->
 							<td>${board.mberName}</td>					<!-- 소유자 -->
 							<td>${board.emailAddress}</td>				<!-- 계정-->
 							<td>${board.moblphonNo}</td>				<!-- 전화번호-->
-							<td>${board.name}</td>						<!-- 담당-->
-							<td>${board.roleName}</td>					<!-- 권한-->
-							<td>${board.mberRating}</td>				<!-- 정/부 -->
+							<td>${board.name}</td>								<!-- 담당-->
+							<td>${board.roleName}</td>						<!-- 권한-->
+							<td>${board.mberRating}</td>					<!-- 정/부 -->
 							<td>${board.mberSttus}</td>					<!-- 상태 -->
 <%-- 						<td>
 							<input type="button" class="btn_it01" onclick="fnOpenRegisterPage('${board.uniqId}');"  value="변경"/> <!-- 계정변경 -->

@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -15,10 +17,17 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.stereotype.Service;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqacclog.EqAccLogMapper;
+
 
 
 @Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
 public class ExcelWrite {
+	@Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqacclog.EqAccLogMapper")
+	EqAccLogMapper mMapper;
+	
+	
 	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ExcelWrite.class);
 
 
@@ -107,6 +116,11 @@ public class ExcelWrite {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<MyCamelMap> ListData(MyMap paramMap)
+    {
+    	return mMapper.ListData(paramMap);
     }
 
 
