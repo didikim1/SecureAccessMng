@@ -10,7 +10,9 @@
 		<div id="pager"></div>
 		
 			<form name="FormComtngnrlmber">
-				<input type="hidden" name="seq" value="${Info.seq}" />
+				<input type="hidden" name="seq" 		value="${Info.seq}" />
+				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
+				<input type="hidden" name=mberSttus 	value="${Info.mberSttus}" />
 				<div align="center" >
 					<table class="htable">
 <!-- 						<tr> -->
@@ -48,31 +50,30 @@
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
+							
 							<select class="common_select" name="chargeId"> 	
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
-										<option value="2">관리자</option>
-										<option value="3">운영팀</option>
-										<option value="4">정산팀</option>
-										<option value="5">CS팀</option>
+									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
+											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+									</c:forEach>
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<td>
-							 <select class="common_select" name="roleId" id ="roleId"> 
+								<select class="common_select" name="roleId"> 	
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option> 
-									<option value="1" >읽기</option> 
-									<option value="2">읽기/쓰기</option> 
-									<option value="3">읽기/쓰기/수정</option> 
-									<option value="4">읽기/쓰기/수정/삭제</option> 
-							</select>
+									<c:forEach var="role" items="${RoleList}" varStatus="status">
+											<option value="${role.roleId}" <c:if test="${Info.chargeId eq role.roleId}">selected</c:if> >${role.roleName}</option>
+									</c:forEach>
+								</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<td>
-							<select class="common_select" name="mberRating" id="mberRating"> 
+							<select class="common_select" name="mberRating"> 
 									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option> 
 									<option value="M">정</option> 
 									<option value="D">부</option> 
@@ -88,7 +89,7 @@
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
 					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">해지</button>
+					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
 				</c:when>
 			</c:choose>
 		</div>
@@ -114,8 +115,27 @@ function fnProcRegisterData(){
 			}
 		}
 	});
-	
+}
 
+function fnDeleteData(){
+	$.fun.ajax({
+		type:'post',
+		data:$( "[name=mberSttus]" ).serialize(),
+		url:"/ctn/nrlmber/DeleteData.do",
+		dataType:"JSON",
+		success:function(data){
+			console.log(data);
+			if( "200" == data.code ) {
+				$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+					location.reload();
+				}});
+			}else {
+				$.fun.alert({content:"Error!!!!!", action:function(){
+					location.reload();
+				}});
+			}
+		}
+	});
 }
 
 function fnClose(){
@@ -135,7 +155,6 @@ $(document).ready(function(){
 		           	,'정/부'
 		           	,'소유자'
 		           	,'휴대폰번호'
-		           	,'이메일주소'
 		           ],
 		colModel:[
 				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:true}
@@ -146,7 +165,6 @@ $(document).ready(function(){
 				,{name:'mberRating', 		index:'MBER_RATING',			width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberName', 		 	index:'MBER_NAME',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'moblphonNo', 		index:'MOBLPHON_NO',			width:10,	align:'center', search:false,  sortable:true}
-				,{name:'emailAddress', 		index:'EMAIL_ADDRESS',			width:10,	align:'center', search:false,  sortable:true}
 		],
 		pager:"#pager",
 		rowNum:10,

@@ -9,6 +9,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkPagingUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmber.NrlmberrMapper;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmberHistory.NrlmberHistoryMapper;
 
 @Service("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
 public class NrlmberBiz
@@ -17,6 +18,9 @@ public class NrlmberBiz
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmber.NrlmberrMapper")
     NrlmberrMapper mMapper;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmberHistory.NrlmberHistoryMapper")
+    NrlmberHistoryMapper mHistoryMapper;
 
     /**
     * 페이징 데이터
@@ -57,7 +61,13 @@ public class NrlmberBiz
     */
     public int RegisterData(MyMap paramMap)
     {
-        return mMapper.RegisterData(paramMap);
+    	if( mMapper.RegisterData(paramMap) > 0 )
+    	{
+    		paramMap.put("procSttus", "I");
+    		return mHistoryMapper.RegisterData(paramMap);
+    	}
+    	
+    	return 0;
     }
 
     /**
@@ -67,7 +77,14 @@ public class NrlmberBiz
     */
     public int ModifyData(MyMap paramMap)
     {
-        return mMapper.ModifyData(paramMap);
+
+    	if(mMapper.ModifyData(paramMap) > 0 )
+        {
+    		paramMap.put("procSttus", "U");
+        	return mHistoryMapper.ModifyData(paramMap);
+        	
+        }
+        return 0;
     }
 
     /**
@@ -77,6 +94,12 @@ public class NrlmberBiz
     */
     public int DeleteData(MyMap paramMap)
     {
-        return mMapper.DeleteData(paramMap);
+    	if (mMapper.DeleteData(paramMap) > 0 )
+    	{
+    		paramMap.put("procSttus", "D");
+    		paramMap.put("mberSttus", "C");
+    		return mHistoryMapper.DeleteData(paramMap);
+    	}
+        return 0;
     }
 }

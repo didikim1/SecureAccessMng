@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 회원관리 -->
+<mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmberHistory.NrlmberHistoryMapper">
+
+	<sql id="addWhere">
+
+		 <!--  부서고유ID--> 
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">
+			AND DPAMENT_ID LIKE CONCAT('%',#{chargeId},'%')
+		</if>
+
+		<!--직위고유ID--> 
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
+			AND POSITION_ID LIKE CONCAT('%',#{positionId},'%')
+		</if>
+
+		<!-- 고유ID -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
+			AND UNIQ_ID = #{uniqId} 
+		</if>
+
+		<!-- 이름 -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">
+			AND MBER_NAME LIKE CONCAT('%',#{mberName},'%')
+		</if>
+
+		<!-- 휴대폰번호 -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
+			AND MOBLPHON_NO LIKE CONCAT('%',#{moblphonNo},'%')
+		</if>
+
+
+	</sql>
+
+	<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
+		INSERT INTO CTN_NRLMBER_HISTORY
+			(
+				 ROLE_ID					<!-- 부서고유ID -->
+				,CHARGE_ID					<!-- 담당업무고유ID -->
+				,NRLMBER_ID					<!-- 회원 SEQ -->
+				,MBER_STTUS					<!-- 정/부 -->
+				,PROC_STTUS					<!-- 처리상태 -->
+				,PROC_PNTTM					<!-- 처리일자 -->
+				,FRST_REGISTER_ID			<!-- 최초등록ID -->
+				,FRST_REGISTER_PNTTM		<!-- 최초등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{roleId}				<!-- 부서고유ID -->
+			  	,#{chargeId}			<!-- 담당업무고유ID -->
+				,#{nrlmberId}			<!-- 회원SEQ -->
+				,#{mberSttus}			<!-- 정/부 -->
+				,#{procSttus}			<!-- 처리상태 -->
+				,#{procPnttm}			<!-- 처리일자 -->
+				,#{frstRegisterId}		<!-- 최초등록ID -->
+				,now()					<!-- 최초등록일 -->
+			)
+	</update>
+	
+	
+	<!-- 수정--> 
+	<update id="ModifyData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
+		INSERT INTO CTN_NRLMBER_HISTORY
+			(
+				 ROLE_ID					<!-- 부서고유ID -->
+				,CHARGE_ID					<!-- 담당업무고유ID -->
+				,NRLMBER_ID					<!-- 회원 SEQ -->
+				,MBER_STTUS					<!-- 정/부 -->
+				,PROC_STTUS					<!-- 처리상태 -->
+				,PROC_PNTTM					<!-- 처리일자 -->
+				,FRST_REGISTER_ID			<!-- 최초등록ID -->
+				,FRST_REGISTER_PNTTM		<!-- 최초등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{roleId}				<!-- 부서고유ID -->
+			  	,#{chargeId}			<!-- 담당업무고유ID -->
+				,#{nrlmberId}			<!-- 회원SEQ -->
+				,#{mberSttus}			<!-- 정/부 -->
+				,#{procSttus}			<!-- 처리상태 -->
+				,#{procPnttm}			<!-- 처리일자 -->
+				,#{frstRegisterId}		<!-- 최초등록ID -->
+				,now()					<!-- 최초등록일 -->
+			)
+	</update> 
+
+
+	<!-- 삭제 -->
+	<update id="DeleteData" parameterType="myMap">
+		INSERT INTO CTN_NRLMBER_HISTORY
+			(
+				 ROLE_ID					<!-- 부서고유ID -->
+				,CHARGE_ID					<!-- 담당업무고유ID -->
+				,NRLMBER_ID					<!-- 회원 SEQ -->
+				,MBER_STTUS					<!-- 정/부 -->
+				,PROC_STTUS					<!-- 처리상태 -->
+				,PROC_PNTTM					<!-- 처리일자 -->
+				,FRST_REGISTER_ID			<!-- 최초등록ID -->
+				,FRST_REGISTER_PNTTM		<!-- 최초등록일 -->
+			)
+			 VALUES
+			(
+			  	 #{roleId}				<!-- 부서고유ID -->
+			  	,#{chargeId}			<!-- 담당업무고유ID -->
+				,#{nrlmberId}			<!-- 회원SEQ -->
+				,#{mberSttus}			<!-- 정/부 -->
+				,#{procSttus}			<!-- 처리상태 -->
+				,now()					<!-- 처리일자 -->
+				,#{frstRegisterId}		<!-- 최초등록ID -->
+				,now()					<!-- 최초등록일 -->
+			)
+	</update> 
+	
+</mapper>

@@ -168,6 +168,7 @@ public class NrlmberAct
 
 	    return new ResultMessage(resultCode, null);
 	}
+	
 
 	@RequestMapping(value = { "/ModifyData.do" })
 	public String ModifyData(Model model)
@@ -178,7 +179,7 @@ public class NrlmberAct
 
 		return pagePrefix + "/ModifyData";
 	}
-
+	
 	@RequestMapping(value = { "/ProcModifyData.do" })
 	public ResultMessage ProcModifyData(Model model)
 	{
