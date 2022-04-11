@@ -55,6 +55,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         for (Entry<Object, Object> elem : FrameworkBeans.findHttpServletBean().findClientRequestParameter().entrySet())
         {
             String mapKey = (String) elem.getKey();
+            System.out.println("=="+mapKey);
             String mapVal = (String) elem.getValue();
 
             sbReqMessage.append("\t " + mapKey + " = " + mapVal + kLogNewLine);

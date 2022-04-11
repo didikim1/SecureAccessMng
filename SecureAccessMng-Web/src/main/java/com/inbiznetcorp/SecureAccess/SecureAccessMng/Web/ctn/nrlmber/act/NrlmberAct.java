@@ -219,28 +219,7 @@ public class NrlmberAct
 
             return new ResultMessage(resultCode, resultMap);
 	}
-	
-	/*
-	 * 참고용
-	     @RequestMapping(value = {"/ListExcelData" })
-	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
-	{
-		List<MyCamelMap> resultS03Excel    = null;
-        MyMap            paramMap          = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
-        String      strFileName      = "접속로그 상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-        String[]    arrTitle		 = new String[]{"IDC", 			  "서버", 	   "접속ID", 		"접속IP", 		"접속자",   		   "프로세스ID", 	"로그인일자",    	 "로그아웃일자"}; // 엑셀에 표시될 Title
-        String[]    arrExcelColum  	 = new String[]{"eqIdcName", 	  "eqListName", "eqIdpwdID", "eqAllowIpName",  "ctnNrlmberName", "processid", 	"frstRegisterPnttm", "lastUpdusrPnttm"};
-        // db 조회시 컬럼값  ... 위의 arrTitle 과 arrExcelColum 1:1 맵핑 
-         
-
-        resultS03Excel = mBiz.ListData(paramMap);
-
-        mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultS03Excel, strFileName);
-        
-	}
-	 */
-	
+		
 	// 엑셀 다운로드
 	@RequestMapping(value = { "/ListExcelData.do" })
 	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
