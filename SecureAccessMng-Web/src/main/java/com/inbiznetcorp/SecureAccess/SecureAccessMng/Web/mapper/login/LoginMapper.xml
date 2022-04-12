@@ -17,23 +17,20 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 	 SEQ				                                                       	  as seq				<!-- 회원ID -->
-				,DPAMENT_ID				                                                       as dpamentId			<!-- 부서고유ID -->
-				,POSITION_ID				                                                   as positionId		<!-- 직위고유ID -->
-				,ROLE_ID				                                                   	   as roleId			<!-- 권한ID -->
- 				,(SELECT DPAMENT_NAME FROM COMTNDPAMENT WHERE DPAMENT_ID = T1.DPAMENT_ID ) 	   as dpamentName 		<!--부서명 -->
- 				,(SELECT POSITION_NAME FROM COMTNPOSITION WHERE POSITION_ID = T1.POSITION_ID ) as positionName  	<!--직위명 -->
-				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )				   as roleName			<!-- 권한명 -->
-				,UNIQ_ID				as uniqId				<!-- 고유ID -->
-				,PASSWORD				as password				<!-- 비밀번호 -->
-				,MBER_NAME				as mberName				<!-- 이름 -->
-				,MBER_STTUS				as mberSttus			<!-- 상태 -->
-				,MOBLPHON_NO			as moblphonNo			<!-- 휴대폰번호 -->
-				,EMAIL_ADDRESS			as emailAddress			<!-- Email 주소 -->
-				,FRST_REGISTER_ID		as frstRegisterId		<!-- 최초등록ID -->
-				,LAST_UPDUSR_ID			as lastUpdusrId			<!-- 최종등록ID -->
-				,FRST_REGISTER_PNTTM	as frstRegisterPnttm	<!-- 최초등록일 -->
-				,LAST_UPDUSR_PNTTM		as lastUpdusrPnttm		<!-- 최종등록일 -->
+			 	 SEQ				                                                       	   		as seq					<!-- 회원ID -->
+				,CHARGE_ID				                                                       		as chargeId				<!-- 부서고유ID -->
+				,ROLE_ID				                                                   	   		as roleId				<!-- 권한ID -->
+				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )				   		as roleName				<!-- 권한명 -->
+				,UNIQ_ID																			as uniqId				<!-- 고유ID -->
+				,PASSWORD																			as password				<!-- 비밀번호 -->
+				,MBER_NAME																			as mberName				<!-- 이름 -->
+				,MBER_STTUS																			as mberSttus			<!-- 상태 -->
+				,MOBLPHON_NO																		as moblphonNo			<!-- 휴대폰번호 -->
+				,EMAIL_ADDRESS																		as emailAddress			<!-- Email 주소 -->
+				,FRST_REGISTER_ID																	as frstRegisterId		<!-- 최초등록ID -->
+				,LAST_UPDUSR_ID																		as lastUpdusrId			<!-- 최종등록ID -->
+				,FRST_REGISTER_PNTTM																as frstRegisterPnttm	<!-- 최초등록일 -->
+				,LAST_UPDUSR_PNTTM																	as lastUpdusrPnttm		<!-- 최종등록일 -->
 		FROM
 			 CTN_NRLMBER T1
 		WHERE 1=1
@@ -45,7 +42,7 @@
 	</select>
 
 	<!-- 추가 -->
-	<update id="RegisterData" parameterType="myMap" >
+	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true">
 	</update>
 
 	<!-- 수정 -->

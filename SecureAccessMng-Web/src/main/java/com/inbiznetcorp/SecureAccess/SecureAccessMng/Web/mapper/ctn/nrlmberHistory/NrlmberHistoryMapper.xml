@@ -106,7 +106,7 @@
 			  	,#{chargeId}			<!-- 담당업무고유ID -->
 				,#{nrlmberId}			<!-- 회원SEQ -->
 				,#{mberSttus}			<!-- 정/부 -->
-				,#{procSttus}			<!-- 처리상태 -->
+				,"C"					<!-- 처리상태 -->
 				,now()					<!-- 처리일자 -->
 				,#{frstRegisterId}		<!-- 최초등록ID -->
 				,now()					<!-- 최초등록일 -->

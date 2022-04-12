@@ -25,6 +25,10 @@
 
 				    		<div class="login_input_box block">
 				    			<form action="" name="loginForm">
+								<p class="main_text4">
+									<span class="glyphicon glyphicon-exclamation-sign"></span>
+									ARS인증
+								</p>
 					    			<div class="login_div_sub">
 					    				<div class="login_div">아이디</div>
 										<input type="text" name="uniqid" id="uniqId" class="loginInput" placeholder="아이디" autocomplete="off"/>

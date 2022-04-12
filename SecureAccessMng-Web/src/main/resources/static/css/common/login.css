@@ -17,9 +17,9 @@
 	line-height: 1.3333333; 
 	border-radius: 1px;  
 	border: none; 
-	width:350px;
+	width:330px;
 	height:46px; 
-	margin : 10px auto 20px auto;
+	margin : 20px auto 10px auto;
 	font-size:13pt; 
 	background-color:#848484;
 	color: #fff; 
@@ -29,6 +29,14 @@
 
 #content div.login_input_box button.loginButton:HOVER{
 	background-color:#464646;
+}
+
+#content div.login_input_box .div.ars_div{
+	width: 1060px;
+	height: 500px;
+	font: 50px;
+/* 	border: 1px solid black; */
+	margin: 180px auto 150px auto; 
 }
 
 #content div.login_box{
@@ -58,8 +66,8 @@
 
 #content div.login_div_sub {
 	width: 380px;
-	height: 180px;
-	margin: 40px auto 10px auto;
+	height: 100px;
+	margin: 5px auto 10px auto;
 }	  
 	    
 #content div.login_div {
@@ -94,5 +102,10 @@
 #content p.main_text3 {
 	font-size:9pt; 
 	color:#A4A4A4;
+}
+#content p.main_text4 {
+	margin-top: 40px;
+	font-size:30pt; 
+	color:#5f5984;
 }
 

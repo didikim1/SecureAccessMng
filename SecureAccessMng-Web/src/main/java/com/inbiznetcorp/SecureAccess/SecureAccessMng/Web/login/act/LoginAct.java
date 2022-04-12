@@ -100,7 +100,7 @@ public class LoginAct
         		else
         		{
         			FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
-        			FrameworkBeans.findSessionBean().roleId      = resultMap.getStr("roleId");
+        			FrameworkBeans.findSessionBean().roleId      	= resultMap.getStr("roleId");
         			FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
         			FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
         			FrameworkBeans.findSessionBean().uniqId         = resultMap.getStr("uniqId");

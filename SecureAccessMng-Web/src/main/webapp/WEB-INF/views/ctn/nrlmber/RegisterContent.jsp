@@ -119,22 +119,9 @@ function fnProcRegisterData(){
 
 function fnDeleteData(){
 	$( "[name=mberSttus]" ).val("C");
-	// 서버로 값을 보낼땐 값만 보낼순없어 
-	// key = value 가 한쌍이 되어야해
-	// 아까 ajax data 부에  $( "[name=mberSttus]" ).val("procSttus", "C"); 이렇게 값만 보내면안됭
-	// 저것만 보낸다면 json형시그로 {procStus: $( "[name=mberSttus]" ).val("procSttus", "C");}
-	// 아까 같은경우 이런식으로 했으면 아까 같은 오류는 안나오지
-	// ㅇㅋㅇㅋ?
-   // 화면은 새로고침만 하면됨
-   // 지금 적용됫오
- // 이런식으로	
-    //var _value = $( "[name=mberSttus]" ).val();
-	//console.log(_value)
-	
 	$.fun.ajax({ 
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
-		//data:{mberSttus: "'"+$( "[name=mberSttus]" ).val("mberSttus", "C")+"'" },
 		url:"/ctn/nrlmber/DeleteData.do",
 		dataType:"JSON",
 		success:function(data){
@@ -194,7 +181,6 @@ $(document).ready(function(){
 
    			$("[name=seq]").val(rowval.seq);
    			$("[name=id]").val(rowval.id);
-   			$("[name=pwd]").val(rowval.pwd);
    		}
 	}));
 });

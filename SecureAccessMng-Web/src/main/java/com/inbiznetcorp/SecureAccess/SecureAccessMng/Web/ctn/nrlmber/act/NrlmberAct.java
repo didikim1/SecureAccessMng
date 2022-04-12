@@ -193,13 +193,22 @@ public class NrlmberAct
 	}
 
 	@RequestMapping(value = { "/DeleteData.do" })
-	public String DeleteData(Model model)
+	public @ResponseBody ResultMessage DeleteData(Model model)
 	{
-		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
+		MyMap 	paramMap 				  	= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		String 	resultCode			  		= ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+		int   	resultRegisterDataCount 	= 0;
+		
+		resultRegisterDataCount = mBiz.DeleteData( paramMap );
+		
+		if( resultRegisterDataCount > 0)
+		{
+			resultCode			  		= ResultCode.RESULT_OK;
+		}
+		
 		 model.addAttribute("paramMap",      paramMap);
-
-		return pagePrefix + "/ModifyData";
+		 
+		 return new ResultMessage(ResultCode.RESULT_OK, null);
 	}
 
 	@RequestMapping(value = { "/ProcDeleteData.do" })

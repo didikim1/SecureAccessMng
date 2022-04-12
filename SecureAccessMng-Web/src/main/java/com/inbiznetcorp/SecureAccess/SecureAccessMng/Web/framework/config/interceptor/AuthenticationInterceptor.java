@@ -90,7 +90,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
             return true;
         default:
-                if( 	                url.indexOf("/login/") >= 0
+                if( 	    url.indexOf("/login/") >= 0
                 		|| 	url.indexOf("/login/index.do") >= 0
                 		|| 	url.indexOf("/login/SelectOneData.do") >= 0
                 		|| 	url.indexOf("/login/DeleteData.do") >= 0
