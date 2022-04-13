@@ -12,7 +12,7 @@
 <script type="text/javascript">
 function fnAuthCallSender() {
 	
-	// JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("phoneNumber"), paramMap.getStr("authNumber"));
+	// JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), paramMap.getStr("authNumber"));
 	
 // 	 var authNumber = Math.floor(Math.random() * 98) +10 ;
 // 	 if( authNumber > 100 ){
@@ -20,12 +20,12 @@ function fnAuthCallSender() {
 // 	 }
 // 	 $("#authNumber").text(authNumber);
 	 
-// 	 var phoneNumber = "01036253133";
+// 	 var moblphonNo = "01036253133";
 	 
 	 $.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/CallAuth.do",
-		//data:{'phoneNumber':phoneNumber, 'authNumber':authNumber},
+		//data:{'moblphonNo':moblphonNo, 'authNumber':authNumber},
 		success:function(data){
 			console.log(data);
 		}

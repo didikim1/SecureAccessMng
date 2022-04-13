@@ -239,13 +239,13 @@ public class NrlmberAct
 	@RequestMapping(value = { "/ListExcelData.do" })
 	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
 	{
-		List<MyCamelMap> resultS03Excel    = null;
-        MyMap            paramMap          = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		List<MyCamelMap> resultS03Excel    		= null;
+        MyMap            paramMap          		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-        BasicBean       resultBean  		= null;
-        String      strFileName      		= "계정상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-		String [] arrTitle           			= new String[]{"처리자", 			"소유자",					"계정",				"전화번호",				"담당",				"권한",			"담당책임",			"상태"};
-		String [] arrExcelColum         = new String[] {"uniqId",		"mberName",	"emailAddress",	"moblphonNo",		"chargeId",	"roleId",		"mberRating",	"mberSttus"};
+        BasicBean       resultBean 	 			= null;
+        String      	strFileName      		= "계정상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
+		String [] 		arrTitle           		= new String[] {"처리자", 	"소유자",		"계정",			"전화번호",		"담당",		"권한",	 "담당책임",		"상태"};
+		String [] 		arrExcelColum         	= new String[] {"uniqId",	"mberName",	"emailAddress",	"moblphonNo",	"chargeId",	"roleId","mberRating",	"mberSttus"};
 
 		paramMap.put("rows",1000000);
 		resultBean = mBiz.ListPagingData( paramMap );
@@ -304,7 +304,7 @@ public class NrlmberAct
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         JSONObject rtrn = null;
         // 상태값 A()
-        String phoneNumber = null;
+        String moblphonNo = null;
         String authNumber 	= "12";
         
         // 책임자 찾기
@@ -316,9 +316,19 @@ public class NrlmberAct
         System.out.println("charge : " + charge);
         
         // 2. CTN_CHARGE.SEQ 값으로  CTN_NRLMBER 테이블에서  `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
-        // 3. CTN_NRLMBER.MOBLPHON_NO 가 책임자의 phoneNumber
         
-//         rtrn =  mCommonBiz.authCallSender(paramMap.getStr("phoneNumber"), authNumber);
+        charge_seachMap.put("chargeId","1");
+        charge_seachMap.put("chargeName","책임자");
+        
+        MyCamelMap nrlmber =  mBiz.SelectOneData(charge_seachMap);
+        System.out.println("nrlmber : " + nrlmber);
+        
+        // 3. CTN_NRLMBER.MOBLPHON_NO 가 책임자의 phoneNumber
+        MyMap nrlmber_SearchMap = new MyMap();
+        nrlmber_SearchMap.put("moblphonNo", "${Data.moblphonNo}");
+        
+        
+//         rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
 
         return new ResultMessage(ResultCode.RESULT_OK, rtrn );
     }
