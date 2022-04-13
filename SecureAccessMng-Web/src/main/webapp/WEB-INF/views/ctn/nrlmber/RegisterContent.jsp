@@ -13,8 +13,8 @@
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
 				<input type="hidden" name=mberSttus 	value="${Info.mberSttus}" />
-				<div align="center" >
-					<table class="htable">
+				<div align="center"  >
+					<table class="htable" >
 <!-- 						<tr> -->
 <!-- 							<th scope="col" width="120px">부서</th> -->
 <!-- 							<td> -->
@@ -123,7 +123,7 @@ function fnProcRegisterData(){
 	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
-		url:"/ctn/nrlmber/ProcRegisterData.do",
+		url:"/jqGrid/init",
 		dataType:"JSON",
 		success:function(data){
 			console.log(data);
@@ -182,7 +182,7 @@ $(document).ready(function(){
 		           	,'휴대폰번호'
 		           ],
 		colModel:[
-				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:false}
 				,{name:'roleId', 			index:'ROLE_ID',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'chargeId', 			index:'CHARGE_ID',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'uniqId', 			index:'UNIQ_ID',				width:10,	align:'center', search:false,  sortable:true}
@@ -191,13 +191,14 @@ $(document).ready(function(){
 				,{name:'mberName', 		 	index:'MBER_NAME',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'moblphonNo', 		index:'MOBLPHON_NO',			width:10,	align:'center', search:false,  sortable:true}
 		],
+		
 		pager:"#pager",
 		rowNum:10,
 		width:"300px",
 		height:"150px",
 		sortname:"LAST_UPDUSR_PNTTM",
    		sortorder:"desc",
-   		onSelectRow:function(rowid, status, e){
+   		onSelectRow:function(rowid, status){
 
    			var rowval = $('#grid').jqGrid('getRowData', rowid);
    			console.log(rowval)
