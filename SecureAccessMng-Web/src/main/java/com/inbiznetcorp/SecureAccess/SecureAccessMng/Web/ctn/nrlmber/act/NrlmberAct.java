@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -248,27 +249,6 @@ public class NrlmberAct
 
 		paramMap.put("rows",1000000);
 		resultBean = mBiz.ListPagingData( paramMap );
-
-		// 엑셀 데이터 나오는거 때문에 그러는거지?네네
-		// public void selectExcelList(HttpServletResponse response, String[] title, String[] cols, List<MyCamelMap> list, String fileName) {
-		// mExcelWrite 이 클래스에서 selectExcelList 이것만 사용하면될것같아
-		// tcp 안에 http가 있는거고 tcp 소켓은 인아웃에 스트림을 있찌
-		// HttpServletRequest 요청스트림
-		// HttpServletResponse 응답스트림
-		// 응답스트림에 엑셀을 내려주는건데
-		// selectExcelList 오면 `list` 리스트만 실어주면될듯해
-		//
-		// BasicBean       resultBean  		= null;
-		// resultBean   = mBiz.ListPagingData( paramMap );
-		// 일단 목록 페이지에서 사용하고있는  list항목을 이용해보자
-		// 일단 `void` 인 이유는 다른곳은 다른곳은 페이지를 return 하거나 @Responsbody를 써서 바로 string을 리턴하지만(요청자한테바로)
-		// 여긴 mExcelWrite 함수한테 `response` 응답 스트림을 넘겨줌
-		// 근데 엑셀은 10개만 할게 아니지?ㅎㅎ
-		// 잘바바
-		// 11 rows가 엑셀에 나왔고
-		// 엑셀다운로들 누를때 limit 0 ~ 1000000 까지
-		// 그냥 페이지은 걍 10 씩만 나오는거고..ㅎ
-		// ㅇㅋㅇㅋㅋㅇㅋ???네!!!
 //		String [] arrvalue         			= new String[] {"${info.uniqId}",		"mberName",	"emailAddress",	"moblphonNo",		"chargeId",	"roleId",		"mberRating",	"mberSttus"};
 
 //		resultS03Excel = mExcelWrite.ListData( paramMap );
@@ -296,25 +276,27 @@ public class NrlmberAct
      *
      *
      */
+   
     @RequestMapping(value = { "/CallAuthPage.do" })
     public String CallAuthPage(Model model)
     {
-            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
-            // 랜덤 숫자 두자리를 생성 전달 `https://offbyone.tistory.com/237`
+    	MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+    	
+    	// 랜덤 숫자 두자리를 생성 전달 `https://offbyone.tistory.com/237`
 //            String phoneNumber = paramMap.getStr("phoneNumber");  //  해당 컨트롤러
-            String authNumber  = null;
-
-            /*랜덤숫자 두자리 생성*/
-            // authNumber = fsfsfs
-
-             model.addAttribute("paramMap",         paramMap);
+    	int authNumber  = 0;
+    	   	
+    	/*랜덤숫자 두자리 생성*/
+    	//authNumber = ((int)(Math.random() * 98) + 10);
+    	
+    	model.addAttribute("paramMap",         paramMap);
 //             model.addAttribute("phoneNumber",      phoneNumber);
-             model.addAttribute("authNumber",       authNumber);
-
-            return pagePrefix + "/CallAuthPage";
+    	model.addAttribute("authNumber",       authNumber);
+    	
+    	return pagePrefix + "/CallAuthPage";
     }
 
+    
     // 전화하는 컨트롤러
     @RequestMapping(value = { "/CallAuth.do" })
     public @ResponseBody ResultMessage  CallAuth(Model model)

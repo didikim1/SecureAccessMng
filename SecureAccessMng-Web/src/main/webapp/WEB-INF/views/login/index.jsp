@@ -26,7 +26,6 @@
 				    		<div class="login_input_box block">
 				    			<form action="" name="loginForm">
 								<p class="main_text4">
-									<span class="glyphicon glyphicon-exclamation-sign"></span>
 									ARS인증
 								</p>
 					    			<div class="login_div_sub">

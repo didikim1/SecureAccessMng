@@ -90,12 +90,20 @@
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
 					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
 					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
+					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button>
 				</c:when>
 			</c:choose>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+
+function fnCallAuthPage(authNumber) {
+	
+var authNumber = Math.floor(Math.random() * 98) +10 ;
+document.write(authNumber);
+}
+
 function fnProcRegisterData(){
 	$.fun.ajax({
 		type:'post',

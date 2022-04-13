@@ -102,6 +102,7 @@ function fnOpenRegisterContentPage(uniqId){
 	});
 }
 
+
 function fnProcDelete(mberId, uniqId, mberName){
 	var _mberId		= mberId;
 	var _uniqId		= uniqId;
