@@ -98,10 +98,25 @@
 </div>
 <script type="text/javascript">
 
-function fnCallAuthPage(authNumber) {
+function fnCallAuthPage() {
 	
-var authNumber = Math.floor(Math.random() * 98) +10 ;
-document.write(authNumber);
+// var authNumber = Math.floor(Math.random() * 98) +10 ;
+// document.write(authNumber);
+	
+	$.fun.ajax({
+		type:'get',
+		url:"/ctn/nrlmber/CallAuthPage.do",
+		success:function(data){
+			$.fun.layout({
+				id:"CallAuthPage",
+				"content":data,
+				"title":"ARS인증요청",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+		
 }
 
 function fnProcRegisterData(){

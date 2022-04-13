@@ -293,7 +293,7 @@ public class NrlmberAct
 //             model.addAttribute("phoneNumber",      phoneNumber);
     	model.addAttribute("authNumber",       authNumber);
     	
-    	return pagePrefix + "/CallAuthPage";
+    	return pagePrefix + "/RegisterCallAuthPage";
     }
 
     
@@ -301,16 +301,26 @@ public class NrlmberAct
     @RequestMapping(value = { "/CallAuth.do" })
     public @ResponseBody ResultMessage  CallAuth(Model model)
     {
-            MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        JSONObject rtrn = null;
+        // 상태값 A()
+        String phoneNumber = null;
+        String authNumber 	= "12";
+        
+        // 책임자 찾기
+        // 1. CTN_CHARGE  에서 NAME값이 `책임자` ROW의 SEQ값 가져오기
+        MyMap charge_seachMap = new MyMap();
+        charge_seachMap.put("name", "책임자");
+        
+        MyCamelMap charge =  mChargeBiz.SelectOneData(charge_seachMap);
+        System.out.println("charge : " + charge);
+        
+        // 2. CTN_CHARGE.SEQ 값으로  CTN_NRLMBER 테이블에서  `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
+        // 3. CTN_NRLMBER.MOBLPHON_NO 가 책임자의 phoneNumber
+        
+//         rtrn =  mCommonBiz.authCallSender(paramMap.getStr("phoneNumber"), authNumber);
 
-             // 
-
-
-             model.addAttribute("paramMap",      paramMap);
-
-             JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("phoneNumber"), paramMap.getStr("authNumber"));
-
-             return new ResultMessage(ResultCode.RESULT_OK, rtrn );
+        return new ResultMessage(ResultCode.RESULT_OK, rtrn );
     }
 
 }

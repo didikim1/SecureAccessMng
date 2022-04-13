@@ -4,7 +4,12 @@
 <mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.charge.ChargeMapper">
 
 	<sql id="addWhere">
-
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
+			AND SEQ 	=  #{seq}
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">
+			AND NAME 	=  #{name}
+		</if>
 	</sql>
 
 	<!-- 페이징 갯수 -->
@@ -46,7 +51,7 @@
 		FROM
 			 CTN_CHARGE
 		WHERE 1=1
-			AND SEQ = #{seq}
+			<include refid="addWhere"/>
 	</select>
 
 	<!-- 추가 -->
