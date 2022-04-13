@@ -315,6 +315,7 @@ public class NrlmberAct
         MyCamelMap charge =  mChargeBiz.SelectOneData(charge_seachMap);
         System.out.println("charge : " + charge);
         
+        
         // 2. CTN_CHARGE.SEQ 값으로  CTN_NRLMBER 테이블에서  `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
         
         charge_seachMap.put("chargeId","1");
@@ -323,9 +324,12 @@ public class NrlmberAct
         MyCamelMap nrlmber =  mBiz.SelectOneData(charge_seachMap);
         System.out.println("nrlmber : " + nrlmber);
         
+        
         // 3. CTN_NRLMBER.MOBLPHON_NO 가 책임자의 phoneNumber
         MyMap nrlmber_SearchMap = new MyMap();
         nrlmber_SearchMap.put("moblphonNo", "${Data.moblphonNo}");
+        
+        MyCamelMap nrlmber_phone =  mBiz.SelectOneData(nrlmber_SearchMap);
         
         
 //         rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
