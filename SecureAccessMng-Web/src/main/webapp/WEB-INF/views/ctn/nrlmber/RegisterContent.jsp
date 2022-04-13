@@ -5,10 +5,10 @@
 <div id="layout_content_popup_sub">
 	<div class="content">
 		<div class="border_sub">
-		
+
 		<table id="grid"></table>
 		<div id="pager"></div>
-		
+
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
@@ -50,9 +50,9 @@
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
-							
-							<select class="common_select" name="chargeId"> 	
-								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
+
+							<select class="common_select" name="chargeId">
+								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
 									</c:forEach>
@@ -62,8 +62,8 @@
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<td>
-								<select class="common_select" name="roleId"> 	
-									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option> 
+								<select class="common_select" name="roleId">
+									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
 											<option value="${role.roleId}" <c:if test="${Info.chargeId eq role.roleId}">selected</c:if> >${role.roleName}</option>
 									</c:forEach>
@@ -73,10 +73,10 @@
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<td>
-							<select class="common_select" name="mberRating"> 
-									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option> 
-									<option value="M">정</option> 
-									<option value="D">부</option> 
+							<select class="common_select" name="mberRating">
+									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
+									<option value="M">정</option>
+									<option value="D">부</option>
 							</select>
 							</td>
 						</tr>
@@ -88,9 +88,9 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
+					<button type="button" class="userManageButton" onclick="fnCallAuthPage()">수정</button>
 					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
-					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button>
+<!-- 					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button> -->
 				</c:when>
 			</c:choose>
 		</div>
@@ -99,10 +99,10 @@
 <script type="text/javascript">
 
 function fnCallAuthPage() {
-	
+
 // var authNumber = Math.floor(Math.random() * 98) +10 ;
 // document.write(authNumber);
-	
+
 	$.fun.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/CallAuthPage.do",
@@ -116,7 +116,7 @@ function fnCallAuthPage() {
 			});
 		}
 	});
-		
+
 }
 
 function fnProcRegisterData(){
@@ -142,7 +142,7 @@ function fnProcRegisterData(){
 
 function fnDeleteData(){
 	$( "[name=mberSttus]" ).val("C");
-	$.fun.ajax({ 
+	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
 		url:"/ctn/nrlmber/DeleteData.do",
@@ -160,7 +160,7 @@ function fnDeleteData(){
 			}
 		}
 	});
-	
+
 }
 
 function fnClose(){

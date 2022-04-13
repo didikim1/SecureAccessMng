@@ -5,19 +5,19 @@
 
 	<sql id="addWhere">
 
-		 <!--  부서고유ID--> 
+		 <!--  부서고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">
-			AND DPAMENT_ID LIKE CONCAT('%',#{chargeId},'%')
+			AND CHARGE_ID = #{chargeId}
 		</if>
 
-		<!--직위고유ID--> 
+		<!--직위고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
-			AND POSITION_ID LIKE CONCAT('%',#{positionId},'%')
+			AND POSITION_ID = #{positionId}
 		</if>
 
 		<!-- 고유ID -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
-			AND UNIQ_ID = #{uniqId} 
+			AND UNIQ_ID = #{uniqId}
 		</if>
 
 		<!-- 이름 -->
@@ -27,7 +27,7 @@
 
 		<!-- 휴대폰번호 -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
-			AND MOBLPHON_NO LIKE CONCAT('%',#{moblphonNo},'%')
+			AND MOBLPHON_NO = #{moblphonNo}
 		</if>
 
 
@@ -127,7 +127,7 @@
 			)
 	</update>
 
-	<!-- 수정--> 
+	<!-- 수정-->
 	<update id="ModifyData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true">
 		UPDATE CTN_NRLMBER
 			 SET
@@ -147,7 +147,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(emailAddress)">  ,EMAIL_ADDRESS = #{emailAddress}  </if>  <!-- Email 주소 -->
 
 		WHERE SEQ = #{seq}
-	</update> 
+	</update>
 
 
 	<!-- 삭제 -->

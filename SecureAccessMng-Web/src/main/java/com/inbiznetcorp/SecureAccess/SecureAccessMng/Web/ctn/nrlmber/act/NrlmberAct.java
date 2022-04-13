@@ -276,27 +276,27 @@ public class NrlmberAct
      *
      *
      */
-   
+
     @RequestMapping(value = { "/CallAuthPage.do" })
     public String CallAuthPage(Model model)
     {
     	MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-    	
+
     	// 랜덤 숫자 두자리를 생성 전달 `https://offbyone.tistory.com/237`
 //            String phoneNumber = paramMap.getStr("phoneNumber");  //  해당 컨트롤러
     	int authNumber  = 0;
-    	   	
+
     	/*랜덤숫자 두자리 생성*/
     	//authNumber = ((int)(Math.random() * 98) + 10);
-    	
+
     	model.addAttribute("paramMap",         paramMap);
 //             model.addAttribute("phoneNumber",      phoneNumber);
     	model.addAttribute("authNumber",       authNumber);
-    	
+
     	return pagePrefix + "/RegisterCallAuthPage";
     }
 
-    
+
     // 전화하는 컨트롤러
     @RequestMapping(value = { "/CallAuth.do" })
     public @ResponseBody ResultMessage  CallAuth(Model model)
@@ -306,33 +306,29 @@ public class NrlmberAct
         // 상태값 A()
         String moblphonNo = null;
         String authNumber 	= "12";
-        
+
         // 책임자 찾기
         // 1. CTN_CHARGE  에서 NAME값이 `책임자` ROW의 SEQ값 가져오기
         MyMap charge_seachMap = new MyMap();
         charge_seachMap.put("name", "책임자");
-        
+
         MyCamelMap charge =  mChargeBiz.SelectOneData(charge_seachMap);
         System.out.println("charge : " + charge);
-        
-        
+
+
         // 2. CTN_CHARGE.SEQ 값으로  CTN_NRLMBER 테이블에서  `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
-        
+
         charge_seachMap.put("chargeId","1");
-        charge_seachMap.put("chargeName","책임자");
-        
+
         MyCamelMap nrlmber =  mBiz.SelectOneData(charge_seachMap);
         System.out.println("nrlmber : " + nrlmber);
-        
-        
-        // 3. CTN_NRLMBER.MOBLPHON_NO 가 책임자의 phoneNumber
-        MyMap nrlmber_SearchMap = new MyMap();
-        nrlmber_SearchMap.put("moblphonNo", "${Data.moblphonNo}");
-        
-        MyCamelMap nrlmber_phone =  mBiz.SelectOneData(nrlmber_SearchMap);
-        
-        
-//         rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
+
+        System.out.println("moblphonNo:"+nrlmber.getStr("moblphonNo"));
+        System.out.println("uniqId:"+nrlmber.getStr("uniqId"));
+        System.out.println("mberSttus:"+nrlmber.getStr("mberSttus"));
+
+
+         rtrn =  mCommonBiz.authCallSender(nrlmber.getStr("moblphonNo"), authNumber);
 
         return new ResultMessage(ResultCode.RESULT_OK, rtrn );
     }

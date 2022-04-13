@@ -4,40 +4,51 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <div id="layout_content_popup_sub">
 	<div class="content">
-		<div class="" >	
+		<div class="" >
 			관리자에게 ARS를 요청중입니다.
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
 function fnAuthCallSender() {
-	
+
 	// JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), paramMap.getStr("authNumber"));
-	
+
 // 	 var authNumber = Math.floor(Math.random() * 98) +10 ;
 // 	 if( authNumber > 100 ){
 // 		 authNumber -= 10;
 // 	 }
 // 	 $("#authNumber").text(authNumber);
-	 
+
 // 	 var moblphonNo = "01036253133";
-	 
+
 	 $.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/CallAuth.do",
+		 dataType : "json",
 		//data:{'moblphonNo':moblphonNo, 'authNumber':authNumber},
 		success:function(data){
 			console.log(data);
+			if( data.code == "200"){
+				if (data.result.result == "00"){
+					// 성공
+					fnProcRegisterData();
+				}else {
+					$.fun.alert({content:"관리자의 인증 실패로 처리되지않았습니다.", action:function(){
+						location.reload();
+					}});
+				}
+			}
 		}
 	});
-	 
-	 
+
+
 }
 $(document).ready(function(){
 	setTimeout(function(){
 		fnAuthCallSender() ;
-		
+
 	}, 500);
-	
+
 })
 </script>
