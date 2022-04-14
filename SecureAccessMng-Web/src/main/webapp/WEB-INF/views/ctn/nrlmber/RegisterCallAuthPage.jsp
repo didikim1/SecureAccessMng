@@ -12,15 +12,15 @@
 <script type="text/javascript">
 function fnAuthCallSender() {
 
-	// JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), paramMap.getStr("authNumber"));
+//	 JSONObject rtrn =  mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), paramMap.getStr("authNumber"));
 
-// 	 var authNumber = Math.floor(Math.random() * 98) +10 ;
-// 	 if( authNumber > 100 ){
-// 		 authNumber -= 10;
-// 	 }
-// 	 $("#authNumber").text(authNumber);
+ 	 var authNumber = Math.floor(Math.random() * 98) +10 ;
+ 	 if( authNumber > 100 ){
+ 		 authNumber -= 10;
+ 	 }
+ 	  $("#authNumber").text(authNumber); 
 
-// 	 var moblphonNo = "01036253133";
+ 	//var moblphonNo = "01036253133";
 
 	 $.ajax({
 		type:'get',
@@ -29,12 +29,12 @@ function fnAuthCallSender() {
 		//data:{'moblphonNo':moblphonNo, 'authNumber':authNumber},
 		success:function(data){
 			console.log(data);
-			if(data.code == "200"){
+			if(data.code == "200"){//성공코드 200이면 
 				if (data.result.result == "00"){
-			if( data.code == "200"){   				//성공코드 200이면 
+			if( data.code == "200"){   				
 				if (data.result.result == "00"){   //결과코드 00이면 
 					// 성공
-					fnProcRegisterData();    
+					fnProcRegisterData();
 				}else {
 					$.fun.alert({content:"관리자의 인증 실패로 처리되지않았습니다.", action:function(){
 						location.reload();
@@ -48,7 +48,7 @@ function fnAuthCallSender() {
 		
 $(document).ready(function(){
 	setTimeout(function(){
-		fnAuthCallSender() ;
+		fnAuthCallSender();
 
 	}, 500);
 

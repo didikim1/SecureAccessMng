@@ -88,7 +88,7 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
+					<button type="button" class="userManageButton" onclick="fnCallAuthPage()">수정</button>
 					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
 <!-- 					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button> -->
 				</c:when>
@@ -100,8 +100,8 @@
 
 function fnCallAuthPage() {
 
-// var authNumber = Math.floor(Math.random() * 98) +10 ;
-// document.write(authNumber);
+//var authNumber = Math.floor(Math.random() * 98) +10 ;
+ //document.write(authNumber);
 
 	$.fun.ajax({
 		type:'get',
@@ -172,24 +172,22 @@ $(document).ready(function(){
 		datatype:'json',
 		url:'/jqGrid/init',
 		colNames: [
-		           	 '고유ID'
-		           	,'권한'
-		           	,'담당'
+		           	 '정/부'
 		           	,'계정'
-		           	,'상태'
-		           	,'정/부'
-		           	,'소유자'
+		           	,'이름'
 		           	,'휴대폰번호'
+		           	,'담당'
+		           	,'권한'
+		           	,'상태'
 		           ],
 		colModel:[
-				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:false}
-				,{name:'roleName', 			index:'roleName',				width:10,	align:'center', search:false,  sortable:true}
+				 {name:'mberRatingName', 	index:'mberRatingName',			width:5,	align:'center', search:false,  sortable:true}
+				,{name:'nrlmberId', 		index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberName', 		 	index:'mberName',				width:8,	align:'center', search:false,  sortable:true}
+				,{name:'moblphonNo', 		index:'moblphonNo',				width:13,	align:'center', search:false,  sortable:true}
 				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'uniqId', 			index:'uniqId',					width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberSttusName', 	index:'mberSttusName',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberRating', 		index:'mberRating',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberName', 		 	index:'mberName',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'moblphonNo', 		index:'moblphonNo',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'roleName', 			index:'roleName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberSttusName', 	index:'mberSttusName',			width:10,	align:'center', search:false,  sortable:true}
 		],
 
 		pager:"#pager",

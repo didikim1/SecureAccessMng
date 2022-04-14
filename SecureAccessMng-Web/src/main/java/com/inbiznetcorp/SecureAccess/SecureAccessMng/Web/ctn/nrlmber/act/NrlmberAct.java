@@ -295,7 +295,7 @@ public class NrlmberAct
     	//authNumber = ((int)(Math.random() * 98) + 10);
 
     	model.addAttribute("paramMap",         paramMap);
-//             model.addAttribute("phoneNumber",      phoneNumber);
+//        model.addAttribute("phoneNumber",      phoneNumber);
     	model.addAttribute("authNumber",       authNumber);
 
     	return pagePrefix + "/RegisterCallAuthPage";

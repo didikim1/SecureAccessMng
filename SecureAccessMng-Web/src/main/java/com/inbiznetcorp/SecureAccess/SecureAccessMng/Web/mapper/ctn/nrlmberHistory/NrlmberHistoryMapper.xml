@@ -47,12 +47,16 @@
 		SELECT
 				 SEQ																				as  seq					<!-- 고유키값 -->
 				,NRLMBER_ID																			as 	nrlmberId			<!-- 계정고유ID -->
+				,MBER_NAME																			as  mberName			<!-- 이름 -->
 				,ROLE_ID																			as  roleId				<!-- 권한ID -->
 				,CHARGE_ID																			as  chargeId			<!-- 담당업무ID -->
 				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    	as  chargeName  		<!-- 담당업무명 -->
 				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )						as  roleName			<!-- 권한명 -->
 				,MBER_STTUS																			as  mberSttus
-				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 					AS  mberSttusName		<!-- 상태명 -->
+				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
+				,MBER_RATING
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
+				,MOBLPHON_NO			                                  		               		as moblphonNo			<!-- 휴대폰번호 -->
 				,PROC_STTUS																			as  procSttus
 				,DATE_FORMAT(T1.PROC_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as  procPnttm 			<!-- 처리일자 -->
 				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
@@ -72,7 +76,10 @@
 				 ROLE_ID					<!-- 부서고유ID -->
 				,CHARGE_ID					<!-- 담당업무고유ID -->
 				,NRLMBER_ID					<!-- 회원 SEQ -->
-				,MBER_STTUS					<!-- 정/부 -->
+				,MBER_NAME					<!-- 이름  -->
+				,MOBLPHON_NO			    <!-- 휴대폰번호 -->
+				,MBER_STTUS					<!-- 상태 -->
+				,MBER_RATING				<!-- 담당책임(정/부)-->
 				,PROC_STTUS					<!-- 처리상태 -->
 				,PROC_PNTTM					<!-- 처리일자 -->
 				,FRST_REGISTER_ID			<!-- 최초등록ID -->
@@ -83,7 +90,10 @@
 			  	 #{roleId}				<!-- 부서고유ID -->
 			  	,#{chargeId}			<!-- 담당업무고유ID -->
 				,#{nrlmberId}			<!-- 회원SEQ -->
-				,#{mberSttus}			<!-- 정/부 -->
+				,#{mberName}			<!-- 이름 -->
+				,#{moblphonNo}			<!-- 휴대폰번호 -->
+				,#{mberSttus}			<!-- 상태 -->
+				,#{mberRating}			<!-- 담당책임(정/부)-->
 				,#{procSttus}			<!-- 처리상태 -->
 				,#{procPnttm}			<!-- 처리일자 -->
 				,#{frstRegisterId}		<!-- 최초등록ID -->
@@ -99,7 +109,10 @@
 				 ROLE_ID					<!-- 부서고유ID -->
 				,CHARGE_ID					<!-- 담당업무고유ID -->
 				,NRLMBER_ID					<!-- 회원 SEQ -->
-				,MBER_STTUS					<!-- 정/부 -->
+				,MBER_NAME					<!-- 이름  -->
+				,MOBLPHON_NO			    <!-- 휴대폰번호 -->
+				,MBER_RATING				<!-- 담당책임(정/부)-->
+				,MBER_STTUS					<!-- 상태-->
 				,PROC_STTUS					<!-- 처리상태 -->
 				,PROC_PNTTM					<!-- 처리일자 -->
 				,FRST_REGISTER_ID			<!-- 최초등록ID -->
@@ -110,7 +123,10 @@
 			  	 #{roleId}				<!-- 부서고유ID -->
 			  	,#{chargeId}			<!-- 담당업무고유ID -->
 				,#{nrlmberId}			<!-- 회원SEQ -->
-				,#{mberSttus}			<!-- 정/부 -->
+				,#{mberName}			<!-- 이름 -->
+				,#{moblphonNo}			<!-- 휴대폰번호 -->
+				,#{mberRating}			<!-- 담당책임(정/부)-->
+				,#{mberSttus}			<!-- 상태-->
 				,#{procSttus}			<!-- 처리상태 -->
 				,#{procPnttm}			<!-- 처리일자 -->
 				,#{frstRegisterId}		<!-- 최초등록ID -->
@@ -126,7 +142,9 @@
 				 ROLE_ID					<!-- 부서고유ID -->
 				,CHARGE_ID					<!-- 담당업무고유ID -->
 				,NRLMBER_ID					<!-- 회원 SEQ -->
-				,MBER_STTUS					<!-- 정/부 -->
+				,MBER_NAME					<!-- 이름  -->
+				,MBER_RATING				<!-- 담당책임(정/부)-->
+				,MBER_STTUS					<!-- 상태 -->
 				,PROC_STTUS					<!-- 처리상태 -->
 				,PROC_PNTTM					<!-- 처리일자 -->
 				,FRST_REGISTER_ID			<!-- 최초등록ID -->
@@ -137,7 +155,9 @@
 			  	 #{roleId}				<!-- 부서고유ID -->
 			  	,#{chargeId}			<!-- 담당업무고유ID -->
 				,#{nrlmberId}			<!-- 회원SEQ -->
-				,#{mberSttus}			<!-- 정/부 -->
+				,#{mberName}			<!-- 이름 -->
+				,#{mberRating}			<!-- 담당책임(정/부)-->
+				,#{mberSttus}			<!-- 상태 -->
 				,"C"					<!-- 처리상태 -->
 				,now()					<!-- 처리일자 -->
 				,#{frstRegisterId}		<!-- 최초등록ID -->
