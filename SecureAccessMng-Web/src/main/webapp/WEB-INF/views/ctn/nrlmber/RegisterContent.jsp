@@ -88,7 +88,7 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnCallAuthPage()">수정</button>
+					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">수정</button>
 					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
 <!-- 					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button> -->
 				</c:when>

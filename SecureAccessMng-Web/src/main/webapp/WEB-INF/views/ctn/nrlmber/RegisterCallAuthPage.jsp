@@ -38,14 +38,14 @@ function fnAuthCallSender() {
 				}else {
 					$.fun.alert({content:"관리자의 인증 실패로 처리되지않았습니다.", action:function(){
 						location.reload();
-					}});
+						}});
+					}
 				}
 			}
 		}
-	});
-
-
-}
+	}})
+};
+		
 $(document).ready(function(){
 	setTimeout(function(){
 		fnAuthCallSender() ;

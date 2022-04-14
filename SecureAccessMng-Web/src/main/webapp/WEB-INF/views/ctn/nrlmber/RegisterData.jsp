@@ -52,26 +52,23 @@
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
-							<select class="common_select" name="chargeId"> 
-								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
-								<option value="1">책임자</option> 
-								<option value="2">관리자</option> 
-								<option value="3">운영팀</option> 
-								<option value="4">정산팀</option> 
-								<option value="5">CS팀</option> 
-							</select> 
+							<select class="common_select" name="chargeId">
+								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
+									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
+											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+									</c:forEach>
+							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<td>
-							 <select class="common_select" name="roleId">
-									<option value="${data.role}" <c:if test="${Info.role eq data.role}">selected</c:if> >선택</option> 
-										<option value="1" >읽기</option> 
-										<option value="2">읽기/쓰기</option> 
-										<option value="3">읽기/쓰기/수정</option> 
-										<option value="4">읽기/쓰기/수정/삭제</option> 
-							</select>
+								<select class="common_select" name="roleId">
+									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
+									<c:forEach var="role" items="${RoleList}" varStatus="status">
+											<option value="${role.roleId}" <c:if test="${Info.chargeId eq role.roleId}">selected</c:if> >${role.roleName}</option>
+									</c:forEach>
+								</select>
 							</td>
 						</tr>
 						<tr>

@@ -23,27 +23,27 @@ public class CommonAction
 {
 	private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(CommonAction.class.getName());
 
-	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
-	NrlmberBiz mBiz;
+//	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
+//	NrlmberBiz mBiz;
 
     @RequestMapping(value = "/jqGrid/init")
     public @ResponseBody ResultMessage init(Model model) throws Exception
     {
-	    	MyCamelMap     		  	resultMap      	= new MyCamelMap();
-			MyMap 							paramMap 		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-			BasicBean 						resultBean 		= null;
+ //   	MyCamelMap     		  			resultMap      	= new MyCamelMap();
+		MyMap 							paramMap 		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		BasicBean 						resultBean 		= null;
+	
+//		resultMap = mBiz.SelectOneData(paramMap);
 		
-			resultMap = mBiz.SelectOneData(paramMap);
-			
-			FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 10));
+		FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 10));
+	
+		resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10),
+						0, new ArrayList<MyCamelMap>());
 		
-			resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10),
-							0, new ArrayList<MyCamelMap>());
-			
-			model.addAttribute("paramMap",      paramMap);
-			model.addAttribute("Data",          resultMap);
-			  
-		    return new ResultMessage("200", resultBean);
+//		model.addAttribute("paramMap",      paramMap);
+//		model.addAttribute("Data",          resultMap);
+		  
+	    return new ResultMessage("200", resultBean);
     }
 
 
