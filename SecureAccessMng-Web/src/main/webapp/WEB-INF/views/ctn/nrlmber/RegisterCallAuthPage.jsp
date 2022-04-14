@@ -29,7 +29,7 @@ function fnAuthCallSender() {
 		//data:{'moblphonNo':moblphonNo, 'authNumber':authNumber},
 		success:function(data){
 			console.log(data);
-			if( data.code == "200"){
+			if(data.code == "200"){
 				if (data.result.result == "00"){
 					// 성공
 					fnProcRegisterData();
