@@ -74,20 +74,20 @@
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<td>
-							<select class="common_select" name="mberRating"> 
-									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option> 
-									<option value="M">정</option> 
-									<option value="D">부</option> 
+							<select class="common_select" name="mberRating">
+									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
+									<option value="M">정</option>
+									<option value="D">부</option>
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">상태</th>
 							<td>
-							<select class="common_select" name="mberSttus"> 
-									<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option> 
-									<option value="A" >활성화</option> 
-									<option value="C" >중지</option> 
+							<select class="common_select" name="mberSttus">
+									<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
+									<option value="A" >활성화</option>
+									<option value="C" >중지</option>
 							</select>
 							</td>
 						</tr>
@@ -105,19 +105,39 @@
 					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
 				</c:otherwise>
 			</c:choose>
-			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button> 
+			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>
 		</div>
 	--%>
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
+					<button type="button" class="userManageButton" onclick="fnProcUniqIdChk()">등록</button>
 				</c:when>
 			</c:choose>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+
+function fnProcUniqIdChk(){
+	// jqeury
+	var uniqId = "";
+	$.fun.ajax({
+		type:'post',
+		data:{"uniqId" : uniqId },
+		url:"/ctn/nrlmber/uniqIdChk.do",
+		dataType:"JSON",
+		success:function(data){
+			if( "404" == data.code ) {
+				fnProcRegisterData();
+			}else {
+				$.fun.alert({content:"죄송합니다. 이미 등록된 아이디입니다.", action:function(){
+					location.reload();
+				}});
+			}
+		}
+	});
+}
 function fnProcRegisterData(){
 	$.fun.ajax({
 		type:'post',

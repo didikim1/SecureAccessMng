@@ -148,6 +148,34 @@ public class NrlmberAct
 		return pagePrefix + "/RegisterContent";
 	}
 
+
+	/**
+	 * id체크
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/uniqIdChk.do" })
+	public @ResponseBody ResultMessage uniqIdChk(Model model)
+	{
+	            MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+	            MyCamelMap         resultMap                       = new MyCamelMap();
+
+	            String             resultCode                      = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+	            int                resultRegisterDataCount         = 0;
+
+	            // paramMap 에는
+	            //  uniqId 키값으로 사용자가 입력한 id가 있어야함.
+	            resultMap = mBiz.SelectOneData(paramMap);
+
+	            if( resultMap == null ){
+	                resultCode = ResultCode.RESULT_NOT_FOUND;
+	            } else {
+	                resultCode = ResultCode.RESULT_BAD_REQUEST;
+	            }
+
+	            return new ResultMessage(resultCode, null);
+	}
+
 	/**
 	 * 계정정보 변경
 	 * @param model
@@ -310,7 +338,9 @@ public class NrlmberAct
         JSONObject rtrn = null;
         // 상태값 A()
         String moblphonNo = null;
-        String authNumber 	= "12";
+        String authNumber 	= paramMap.getStr("authNumber");
+
+        String resultCode = ResultCode.RESULT_OK;
 
         // 책임자 찾기
         // 1. CTN_CHARGE  에서 NAME값이 `책임자` ROW의 SEQ값 가져오기
@@ -334,8 +364,16 @@ public class NrlmberAct
 
 
          rtrn =  mCommonBiz.authCallSender(nrlmber.getStr("moblphonNo"), authNumber);
+         String callResult = (String) rtrn.get("result");
 
-        return new ResultMessage(ResultCode.RESULT_OK, rtrn );
+         if( callResult.equals("00")  )
+         {
+             resultCode = ResultCode.RESULT_OK;
+         } else {
+             resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+         }
+
+        return new ResultMessage(resultCode, rtrn );
     }
 
 }
