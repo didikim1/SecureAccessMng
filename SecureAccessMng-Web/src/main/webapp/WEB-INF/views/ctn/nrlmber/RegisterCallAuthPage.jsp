@@ -31,8 +31,10 @@ function fnAuthCallSender() {
 			console.log(data);
 			if(data.code == "200"){
 				if (data.result.result == "00"){
+			if( data.code == "200"){   				//성공코드 200이면 
+				if (data.result.result == "00"){   //결과코드 00이면 
 					// 성공
-					fnProcRegisterData();
+					fnProcRegisterData();    
 				}else {
 					$.fun.alert({content:"관리자의 인증 실패로 처리되지않았습니다.", action:function(){
 						location.reload();
