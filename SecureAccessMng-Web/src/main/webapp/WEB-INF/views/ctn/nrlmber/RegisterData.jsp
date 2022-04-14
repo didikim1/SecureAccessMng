@@ -30,11 +30,11 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 						<tr>
-							<th scope="col" width="120px">처리자</th>
+							<th scope="col" width="120px">ID</th>
 							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">소유자</th>
+							<th scope="col" width="120px">이름</th>
 							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberName}" /></td>
 						</tr>
 						<tr>
@@ -42,11 +42,11 @@
 							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off"></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">전화번호</th>
+							<th scope="col" width="120px">휴대폰번호</th>
 							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNo}"></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">계정(ID)</th>
+							<th scope="col" width="120px">Email</th>
 							<td><input type="text" class="userManageInput" id="emailAddress" name="emailAddress" autocomplete="off" value="${Info.emailAddress}"></td>
 						</tr>
 						<tr>
@@ -121,47 +121,57 @@
 
 function fnProcUniqIdChk(){
 	// jqeury
-	var uniqId = "";
-	$.fun.ajax({
-		type:'post',
-		data:{"uniqId" : uniqId },
-		url:"/ctn/nrlmber/uniqIdChk.do",
-		dataType:"JSON",
-		success:function(data){
-			if( "404" == data.code ) {
-				fnProcRegisterData();
-			}else {
-				$.fun.alert({content:"죄송합니다. 이미 등록된 아이디입니다.", action:function(){
-					location.reload();
-				}});
+	var uniqId = "${info.uniqId}";
+		$.fun.ajax({
+			type : 'post',
+			data : {
+				"uniqId" : uniqId
+			},
+			url : "/ctn/nrlmber/uniqIdChk.do",
+			dataType : "JSON",
+			success : function(data) {
+				if ("404" == data.code) {
+					fnProcRegisterData();
+				} else {
+					$.fun.alert({
+						content : "이미 등록된 아이디입니다. 다시 입력 해 주세요.",
+						action : function() {
+							$("#uniqId").val("");
+							$("#uniqId").focus(); 
+						}
+					});
+				}
 			}
-		}
-	});
-}
-function fnProcRegisterData(){
-	$.fun.ajax({
-		type:'post',
-		data:$( "[name=FormComtngnrlmber]" ).serialize(),
-		url:"/ctn/nrlmber/ProcRegisterData.do",
-		dataType:"JSON",
-		success:function(data){
-			console.log(data);
-			if( "200" == data.code ) {
-				$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-					location.reload();
-				}});
-			}else {
-				$.fun.alert({content:"Error!!!!!", action:function(){
-					location.reload();
-				}});
+		});
+	}
+	function fnProcRegisterData() {
+		$.fun.ajax({
+			type : 'post',
+			data : $("[name=FormComtngnrlmber]").serialize(),
+			url : "/ctn/nrlmber/ProcRegisterData.do",
+			dataType : "JSON",
+			success : function(data) {
+				console.log(data);
+				if ("200" == data.code) {
+					$.fun.alert({
+						content : "정상 처리되었습니다.",
+						action : function() {
+							location.reload();
+						}
+					});
+				} else {
+					$.fun.alert({
+						content : "Error!!!!!",
+						action : function() {
+							location.reload();
+						}
+					});
+				}
 			}
-		}
-	});
-}
+		});
+	}
 
-function fnClose(){
-	$("#induacaAdd").dialog('destroy').remove();
-}
-
-
+	function fnClose() {
+		$("#induacaAdd").dialog('destroy').remove();
+	}
 </script>

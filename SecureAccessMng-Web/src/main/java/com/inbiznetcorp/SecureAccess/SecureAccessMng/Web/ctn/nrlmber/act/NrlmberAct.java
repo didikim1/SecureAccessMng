@@ -167,7 +167,7 @@ public class NrlmberAct
 	            //  uniqId 키값으로 사용자가 입력한 id가 있어야함.
 	            resultMap = mBiz.SelectOneData(paramMap);
 
-	            if( resultMap == null ){
+	            if( resultMap == null ){    					
 	                resultCode = ResultCode.RESULT_NOT_FOUND;
 	            } else {
 	                resultCode = ResultCode.RESULT_BAD_REQUEST;
