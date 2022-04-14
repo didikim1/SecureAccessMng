@@ -60,12 +60,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">권한</th>
+							<th scope="col" width="120px">권한 ${Info.roleId}</th>
 							<td>
 								<select class="common_select" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
-											<option value="${role.roleId}" <c:if test="${Info.chargeId eq role.roleId}">selected</c:if> >${role.roleName}</option>
+											<option value="${role.roleId}" <c:if test="${Info.roleId eq role.roleId}">selected</c:if> >${role.roleName}</option>
 									</c:forEach>
 								</select>
 							</td>
@@ -75,8 +75,8 @@
 							<td>
 							<select class="common_select" name="mberRating">
 									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
-									<option value="M">정</option>
-									<option value="D">부</option>
+									<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
+									<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
 							</select>
 							</td>
 						</tr>
@@ -123,7 +123,7 @@ function fnProcRegisterData(){
 	$.fun.ajax({
 		type:'post',
 		data:$( "[name=FormComtngnrlmber]" ).serialize(),
-		url:"/jqGrid/init",
+		url:"/ctn/nrlmber/ProcRegisterData.do",
 		dataType:"JSON",
 		success:function(data){
 			console.log(data);
@@ -183,15 +183,15 @@ $(document).ready(function(){
 		           ],
 		colModel:[
 				 {name:'seq',				index:'SEQ',					width:10,	align:'center', search:false,  sortable:true, hidden:false}
-				,{name:'roleId', 			index:'ROLE_ID',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'chargeId', 			index:'CHARGE_ID',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'uniqId', 			index:'UNIQ_ID',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberSttus', 		index:'MBER_STTUS',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberRating', 		index:'MBER_RATING',			width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberName', 		 	index:'MBER_NAME',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'moblphonNo', 		index:'MOBLPHON_NO',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'roleName', 			index:'roleName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'uniqId', 			index:'uniqId',					width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberSttusName', 	index:'mberSttusName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberRating', 		index:'mberRating',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberName', 		 	index:'mberName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'moblphonNo', 		index:'moblphonNo',				width:10,	align:'center', search:false,  sortable:true}
 		],
-		
+
 		pager:"#pager",
 		rowNum:10,
 		width:"300px",
@@ -199,14 +199,21 @@ $(document).ready(function(){
 		sortname:"LAST_UPDUSR_PNTTM",
    		sortorder:"desc",
    		onSelectRow:function(rowid, status){
-
    			var rowval = $('#grid').jqGrid('getRowData', rowid);
-   			console.log(rowval)
-
-   			$("[name=seq]").val(rowval.seq);
-   			$("[name=id]").val(rowval.id);
+//    			$("[name=seq]").val(rowval.seq);
+//    			$("[name=id]").val(rowval.id);
    		}
 	}));
+
+	setTimeout(function(){
+		var paramMap = {};
+		paramMap["refEqList"] 		= '${infoMap.seq}';
+		jqGridUtils.searchProc({
+		     gridId:"#grid"
+			,postData:paramMap
+		   ,url:"/ctn/nrlmber/history/ListPagingData.do"
+		});
+	}, 1000);
 });
 
 

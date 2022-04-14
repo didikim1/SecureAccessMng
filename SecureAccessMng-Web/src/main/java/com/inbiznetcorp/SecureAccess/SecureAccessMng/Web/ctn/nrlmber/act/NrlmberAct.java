@@ -148,6 +148,11 @@ public class NrlmberAct
 		return pagePrefix + "/RegisterContent";
 	}
 
+	/**
+	 * 계정정보 변경
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = { "/ProcRegisterData.do" })
 	public @ResponseBody ResultMessage ProcRegisterData(Model model)
 	{

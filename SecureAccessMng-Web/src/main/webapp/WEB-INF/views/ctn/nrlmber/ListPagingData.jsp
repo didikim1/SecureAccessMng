@@ -20,16 +20,16 @@
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
-		
+
 								<div class="common_div left margin_l2">소유자</div>
 								<input type="text" class="common_input2 right" name="mberName" id="mberName" placeholder="소유자명" value="${paramMap.mberName}" autocomplete="off"/>
 
 								<div class="common_div left margin_l2">담당</div>
-								<select class="common_select" name="chargeId"> 	
-									<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option> 
+								<select class="common_select" name="chargeId">
+									<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 										<c:forEach var="charge" items="${ChargeList}" varStatus="status" >
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
-										</c:forEach> 
+										</c:forEach>
 								</select>
 
 								<div class="common_div left margin_l2">정부</div>
@@ -51,15 +51,14 @@
 						</tr>
 					</table>
 						<div class="border margin_l6">
-							 <c:choose>
-						         <c:when test = "${roleId eq 8}"> 
+							<c:choose>
+						         <c:when test = "${roleId eq 8}">
 						    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
-						    		<button type="button" class="btn_it03" onclick="fnProcExcel()";>엑셀 다운로드</button>
+						    		<button type="button" class="btn_it03" onclick="fnProcExcel();">엑셀 다운로드</button>
 						         </c:when>
 						         <c:otherwise>
-						         ${positionId}
 					         	</c:otherwise>
-					      </c:choose> 
+							</c:choose>
 						</div>
 					</form>
 				</div>
@@ -95,12 +94,19 @@
 							<td>${board.moblphonNo}</td>				<!-- 전화번호-->
 							<td>${board.name}</td>						<!-- 담당-->
 							<td>${board.roleName}</td>					<!-- 권한-->
-							<td>${board.mberRating}</td>				<!-- 정/부 -->
-							<td>${board.mberSttus}</td>					<!-- 상태 -->
-<%-- 						<td>
-							<input type="button" class="btn_it01" onclick="fnOpenRegisterPage('${board.uniqId}');"  value="변경"/> <!-- 계정변경 -->
- 							&nbsp;<input type="button" class="btn_it01" onclick="fnProcDelete('${board.mberId}', '${board.uniqId}', '${board.mberName}');"  value="삭제"/> <!-- 계정삭제 --> 
-							</td>--%>
+							<td>
+																		<!-- 정/부 -->
+								<c:choose>
+									 <c:when test = "${board.mberRating eq 'M'}">정</c:when>
+									 <c:otherwise>부</c:otherwise>
+								</c:choose>
+							</td>
+							<td>										<!-- 상태 -->
+								<c:choose>
+									 <c:when test = "${board.mberSttus eq 'A'}">활성화</c:when>
+									 <c:otherwise>해지</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 					</tbody>
