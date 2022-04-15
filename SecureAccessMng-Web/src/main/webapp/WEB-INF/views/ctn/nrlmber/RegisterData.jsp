@@ -120,8 +120,36 @@
 <script type="text/javascript">
 
 function fnProcUniqIdChk(){
-	// jqeury
-	var uniqId = "${Info.uniqId}";
+
+	var form = $("[name=FormComtngnrlmber]");
+	// jqeury  // isNull
+	var uniqId 		= form.find("[name=uniqId]").val();
+	var mberName 	= form.find("[name=mberName]").val();
+	/*
+	..
+	.
+	.
+	.
+	.
+	.
+	*/
+	console.log("mberName : " + mberName)
+	if( isNull(uniqId) ){
+		$.fun.alert({
+			content : "계정을 입력해주세요.",
+			action : function() {
+				$("[name=uniqId]").focus();
+			}
+		});
+	}
+	else if( isNull( mberName) ){
+		$.fun.alert({
+			content : "이름을 입력해주세요.",
+			action : function() {
+				$("[name=mberName]").focus();
+			}
+		});
+	} else {
 		$.fun.ajax({
 			type : 'post',
 			data : {
@@ -137,41 +165,43 @@ function fnProcUniqIdChk(){
 						content : "이미 등록된 아이디입니다. 다시 입력 해 주세요.",
 						action : function() {
 							$("#uniqId").val("");
-							$("#uniqId").focus(); 
+							$("#uniqId").focus();
 						}
 					});
 				}
 			}
 		});
 	}
-	function fnProcRegisterData() {
-		$.fun.ajax({
-			type : 'post',
-			data : $("[name=FormComtngnrlmber]").serialize(),
-			url : "/ctn/nrlmber/ProcRegisterData.do",
-			dataType : "JSON",
-			success : function(data) {
-				console.log(data);
-				if ("200" == data.code) {
-					$.fun.alert({
-						content : "정상 처리되었습니다.",
-						action : function() {
-							location.reload();
-						}
-					});
-				} else {
-					$.fun.alert({
-						content : "Error!!!!!",
-						action : function() {
-							location.reload();
-						}
-					});
-				}
-			}
-		});
-	}
+}
 
-	function fnClose() {
-		$("#induacaAdd").dialog('destroy').remove();
-	}
+function fnProcRegisterData() {
+	$.fun.ajax({
+		type : 'post',
+		data : $("[name=FormComtngnrlmber]").serialize(),
+		url : "/ctn/nrlmber/ProcRegisterData.do",
+		dataType : "JSON",
+		success : function(data) {
+			console.log(data);
+			if ("200" == data.code) {
+				$.fun.alert({
+					content : "정상 처리되었습니다.",
+					action : function() {
+						location.reload();
+					}
+				});
+			} else {
+				$.fun.alert({
+					content : "Error!!!!!",
+					action : function() {
+						location.reload();
+					}
+				});
+			}
+		}
+	});
+}
+
+function fnClose() {
+	$("#induacaAdd").dialog('destroy').remove();
+}
 </script>
