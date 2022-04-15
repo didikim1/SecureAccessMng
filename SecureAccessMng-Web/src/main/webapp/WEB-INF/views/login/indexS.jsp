@@ -114,7 +114,7 @@ function fnLogin(){
 }
 
 function fnCallAuthPage() {
-	var uniqId = "${info.uniqId}";
+	var uniqId = "${uniqid}",
 		$.fun.ajax({
 			type:'get',
 			url:"/login/CallAuthPage.do",

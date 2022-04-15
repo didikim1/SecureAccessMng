@@ -16,7 +16,7 @@
 					<table class="wtable_sub">
 						<tr>
 							<td>
-								<div class="common_div left">처리일</div>
+								<div class="common_div left">처리일자</div>
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
@@ -34,16 +34,16 @@
 
 								<div class="common_div left margin_l2">정부</div>
 								<select class="common_select" name="mberRating">
-									<option value="" <c:if test="${paramMap.mberRating  != '' || paramMap.mberRating  ne null}">selected</c:if> >선택</option>
-									<option value="M">정</option>
-									<option value="D">부</option>
+										<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
+										<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
+										<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
 								</select>
 
 								<div class="common_div left margin_l2">상태</div>
 								<select class="common_select" name="mberSttus">
-									<option value="" <c:if test="${paramMap.mberSttus  != '' || paramMap.mberSttus  ne null}">selected</c:if> >선택</option>
-									<option value="A" >사용중</option>
-									<option value="C" >해지</option>
+										<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
+										<option value="A"  <c:if test="${Info.mberRating eq 'A'}">selected</c:if>  >활성화</option>
+										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >중지</option>
 								</select>
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>

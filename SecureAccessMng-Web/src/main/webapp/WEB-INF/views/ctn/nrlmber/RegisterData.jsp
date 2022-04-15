@@ -66,7 +66,7 @@
 								<select class="common_select" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
-											<option value="${role.roleId}" <c:if test="${Info.chargeId eq role.roleId}">selected</c:if> >${role.roleName}</option>
+											<option value="${role.roleId}" <c:if test="${Info.roleId eq role.roleId}">selected</c:if> >${role.roleName}</option>
 									</c:forEach>
 								</select>
 							</td>
@@ -75,20 +75,20 @@
 							<th scope="col" width="120px">정/부</th>
 							<td>
 							<select class="common_select" name="mberRating">
-									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
-									<option value="M">정</option>
-									<option value="D">부</option>
+										<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
+										<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
+										<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
 							</select>
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">상태</th>
 							<td>
-							<select class="common_select" name="mberSttus">
-									<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
-									<option value="A" >활성화</option>
-									<option value="C" >중지</option>
-							</select>
+								<select class="common_select" name="mberSttus">
+										<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
+										<option value="A"  <c:if test="${Info.mberRating eq 'A'}">selected</c:if>  >활성화</option>
+										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >중지</option>
+								</select>
 							</td>
 						</tr>
 					</table>
@@ -121,7 +121,7 @@
 
 function fnProcUniqIdChk(){
 	// jqeury
-	var uniqId = "${info.uniqId}";
+	var uniqId = "${Info.uniqId}";
 		$.fun.ajax({
 			type : 'post',
 			data : {

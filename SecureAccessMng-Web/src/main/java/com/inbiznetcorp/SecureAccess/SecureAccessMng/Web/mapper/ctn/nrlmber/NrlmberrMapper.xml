@@ -29,6 +29,24 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
 			AND MOBLPHON_NO = #{moblphonNo}
 		</if>
+		
+		<!--담당책임(정/부)-->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)">
+			AND MBER_RATING = #{mberRating}
+		</if>		
+		
+		<!--상태-->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">
+			AND MBER_STTUS = #{mberSttus}
+		</if>		
+		
+		<!-- 날짜 -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
+			<![CDATA[AND DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]>
+		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
+			<![CDATA[AND DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
+		</if>	
 
 
 	</sql>
@@ -125,6 +143,7 @@
 				,now()					<!-- 최초등록일 -->
 				,now()					<!-- 최종등록일 -->
 			)
+			
 	</update>
 
 	<!-- 수정-->
@@ -133,9 +152,9 @@
 			 SET
 				 LAST_UPDUSR_ID 	=  #{lastUpdusrId}
 				,LAST_UPDUSR_PNTTM  =  now()
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">   	,CHARGE_ID = #{chargeId} 		</if>    <!-- 직위ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(roleId)">   		,ROLE_ID = #{roleId}  	 		</if>  	 <!-- 권한ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">   		,UNIQ_ID = #{uniqId}  	 		</if>  	 <!-- 고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">   	,CHARGE_ID = #{chargeId} 				</if>    <!-- 직위ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(roleId)">   		,ROLE_ID = #{roleId}  	 				</if>  	 <!-- 권한ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">   		,UNIQ_ID = #{uniqId}  	 				</if>  	 <!-- 고유ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)">   	,PASSWORD = #password(#{password}) 		</if>  	 <!-- 비밀번호 -->
 
 
