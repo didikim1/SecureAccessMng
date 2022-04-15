@@ -11,7 +11,7 @@ function fnModifyPasswordProc(){
 	var _newpassword2 	= $("[name=FormModifyPassword]").find("[name=newpassword2]").val();
 
 	if ( isNull(_uniqid) ){
-		$.fun.alert({content:"[아이디] 입력해주세요."});
+		$.fun.alert({content:"[아이디]를 입력해주세요."});
 		return false;
 	} else if( isNull(_password ) ) {
 		$.fun.alert({content:"현재 비빌번호를 입력해주세요."});
@@ -72,10 +72,10 @@ function fnLogin(){
 	var _password 	= $("[name=password]").val();
 
 	if ( isNull(_uniqid) ){
-		alert("[아이디] 입력해주세요.");
+		alert("[아이디] 를 입력해주세요.");
 		return;
 	} else if( isNull(_password ) ) {
-		alert("[비밀번호를] 입력해주세요.");
+		alert("[비밀번호]를 입력해주세요.");
 		return;
 	}
 	else{
@@ -87,7 +87,7 @@ function fnLogin(){
 	        dataType: 'json',
 	        success: function (result) {
 	        	if ( "200" == result.code ){
-	        		location.href="/eqacclog/ListPagingData.do";
+	        		fnCallAuthPage()
 	        	} else if ( "304" == result.code ){
 	        		var uniqid = result.result.uniqid;
 	        		$.fun.alert({
@@ -100,7 +100,7 @@ function fnLogin(){
 	         			}
 	        		});
 	        	} else if ( "100" == result.code ){
-	        		alert("[아이디/비밀번호] 확인해주세요.");
+	        		$.fun.alert({content:"아이디/비밀번호를 확인해주세요."});
 	        	} else {
 	        		alert("Error");
 	        	}
@@ -112,6 +112,24 @@ function fnLogin(){
 	    });
 	}
 }
+
+function fnCallAuthPage() {
+	var uniqId = "${info.uniqId}";
+		$.fun.ajax({
+			type:'get',
+			url:"/login/CallAuthPage.do",
+			success:function(data){
+				$.fun.layout({
+					id:"CallAuthPage",
+					"content":data,
+					"title":"ARS인증요청",
+					"width":475,
+					"buttons":{}
+				});
+			}
+		});
+
+	}
 
 $(document).ready(function(){
 

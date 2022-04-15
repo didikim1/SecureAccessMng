@@ -6,12 +6,16 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
@@ -31,6 +35,15 @@ public class LoginAct
 
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.biz.LoginBiz")
     LoginBiz mBiz;
+    
+	 @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
+	 NrlmberBiz mNrlmberBiz;
+	 
+	 @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz")
+	 CommonBiz mCommonBiz;
+	 
+	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz")
+	ChargeBiz mChargeBiz;
 
 
     @RequestMapping(value = { "/", "/index.do" })
@@ -275,5 +288,67 @@ public class LoginAct
 
         return strResult;
     }
+    
+    @RequestMapping(value = { "/CallAuthPage.do" })
+    public String CallAuthPage(Model model)
+    {
+    	MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
+    	int authNumber  = 0;
+
+    	model.addAttribute("paramMap",         paramMap);
+//        model.addAttribute("phoneNumber",      phoneNumber);
+    	model.addAttribute("authNumber",       authNumber);
+
+    	return pagePrefix + "/RegisterCallAuthPage";
+    }
+
+
+    // 전화하는 컨트롤러
+    @RequestMapping(value = { "/CallAuth.do" })
+    public @ResponseBody ResultMessage  CallAuth(Model model)
+    {
+        MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        JSONObject rtrn = null;
+        // 상태값 A()
+        String moblphonNo = null;
+        String authNumber 	= paramMap.getStr("authNumber");
+
+        String resultCode = ResultCode.RESULT_OK;
+
+        MyMap charge_seachMap = new MyMap();
+        charge_seachMap.put("name", "책임자");
+        charge_seachMap.put("name", "관리자");
+        charge_seachMap.put("name", "운영팀");
+        charge_seachMap.put("name", "정산팀");
+        charge_seachMap.put("name", "CS팀");
+
+        MyCamelMap charge =  mChargeBiz.SelectOneData(charge_seachMap);
+        System.out.println("charge : " + charge);
+
+
+        // 2. CTN_CHARGE.SEQ 값으로  CTN_NRLMBER 테이블에서  `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
+
+        charge_seachMap.put("chargeId","1");
+
+        MyCamelMap nrlmber =  mBiz.SelectOneData(charge_seachMap);
+        System.out.println("nrlmber : " + nrlmber);
+
+        System.out.println("moblphonNo:"+nrlmber.getStr("moblphonNo"));
+        System.out.println("uniqId:"+nrlmber.getStr("uniqId"));
+        System.out.println("mberSttus:"+nrlmber.getStr("mberSttus"));
+
+
+         rtrn =  mCommonBiz.authCallSender(nrlmber.getStr("moblphonNo"), authNumber);
+         String callResult = (String) rtrn.get("result");
+
+         if( callResult.equals("00")  )
+         {
+             resultCode = ResultCode.RESULT_OK;
+         } else {
+             resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+         }
+
+        return new ResultMessage(resultCode, rtrn );
+    }
 }

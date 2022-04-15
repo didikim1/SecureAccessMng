@@ -4,6 +4,32 @@
 <mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.login.LoginMapper">
 
 	<sql id="addWhere">
+		 <!--  부서고유ID-->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">
+			AND CHARGE_ID = #{chargeId}
+		</if>
+
+		<!--직위고유ID-->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
+			AND POSITION_ID = #{positionId}
+		</if>
+
+		<!-- 고유ID -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
+			AND UNIQ_ID = #{uniqId}
+		</if>
+
+		<!-- 이름 -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">
+			AND MBER_NAME LIKE CONCAT('%',#{mberName},'%')
+		</if>
+
+		<!-- 휴대폰번호 -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
+			AND MOBLPHON_NO = #{moblphonNo}
+		</if>
+	
+	
 	</sql>
 
 	<!-- 페이징 갯수 -->
@@ -34,10 +60,7 @@
 		FROM
 			 CTN_NRLMBER T1
 		WHERE 1=1
-			AND
-				UNIQ_ID = #{uniqid}
-			AND
-				PASSWORD = password(#{password})
+			<include refid="addWhere"/>
 			AND MBER_STTUS = 'A'
 	</select>
 
