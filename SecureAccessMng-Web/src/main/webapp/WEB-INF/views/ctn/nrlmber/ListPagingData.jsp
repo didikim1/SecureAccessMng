@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <c:set var="_url" value="${pageContext.request.contextPath == '/' ? '' : pageContext.request.contextPath }" scope="application"/>
 
@@ -32,7 +33,7 @@
 										</c:forEach>
 								</select>
 
-								<div class="common_div left margin_l2">정부</div>
+								<div class="common_div left margin_l2">정/부</div>
 								<select class="common_select" name="mberRating">
 										<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
 										<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
@@ -71,13 +72,13 @@
 <!-- 							<th scope="col" width="8%">부서</th> -->
 <!-- 							<th scope="col" width="8%">직위</th> -->
 							<th scope="col" width="7%">처리일자</th>
-							<th scope="col" width="7%">처리자</th>
+							<th scope="col" width="7%">등록자</th>
 							<th scope="col" width="7%">소유자</th>
-							<th scope="col" width="7%">계정</th>
+							<th scope="col" width="7%">Email</th>
 							<th scope="col" width="7%">전화번호</th>
 							<th scope="col" width="7%">담당</th>
 							<th scope="col" width="7%">권한</th>
-							<th scope="col" width="7%">정(M)/부(D)</th>
+							<th scope="col" width="7%">정/부</th>
 							<th scope="col" width="7%">상태</th>
 						</tr>
 					</thead>
@@ -109,8 +110,15 @@
 							</td>
 						</tr>
 					</c:forEach>
-					</tbody>
 
+					    <c:if test="${mberName ne null && mberName !='' }">
+					      ${fn:substring(mberName,0,1) }
+					      <c:forEach begin="1" end="${fn:length(mberName)}" step="1">
+					        *
+					      </c:forEach>
+					    </c:if>
+					</tbody>
+					    
 				<c:if test="${Data.paginationInfo.totalRecordCount == 0 }">
 					<tr>
 						<td colspan="10">데이터가 존재하지 않습니다.</td>

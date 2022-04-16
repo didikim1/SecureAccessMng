@@ -125,31 +125,26 @@ function fnProcUniqIdChk(){
 	// jqeury  // isNull
 	var uniqId 		= form.find("[name=uniqId]").val();
 	var mberName 	= form.find("[name=mberName]").val();
-	/*
-	..
-	.
-	.
-	.
-	.
-	.
-	*/
+	var mberName 	= form.find("[name=password]").val();
+	var mberName 	= form.find("[name=moblphonNo]").val();
+	var mberName 	= form.find("[name=emailAddress]").val();
+	var mberName 	= form.find("[name=chargeId]").val();
+	var mberName 	= form.find("[name=roleId]").val();
+	var mberName 	= form.find("[name=mberRating]").val();
+	var mberName 	= form.find("[name=mberSttus]").val();
+	
+	
 	console.log("mberName : " + mberName)
+	
 	if( isNull(uniqId) ){
 		$.fun.alert({
-			content : "계정을 입력해주세요.",
+			content : "계정을 입력해 주세요.",
 			action : function() {
 				$("[name=uniqId]").focus();
 			}
 		});
 	}
-	else if( isNull( mberName) ){
-		$.fun.alert({
-			content : "이름을 입력해주세요.",
-			action : function() {
-				$("[name=mberName]").focus();
-			}
-		});
-	} else {
+	else {
 		$.fun.ajax({
 			type : 'post',
 			data : {
