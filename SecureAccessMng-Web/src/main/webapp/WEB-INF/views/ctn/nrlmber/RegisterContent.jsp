@@ -167,23 +167,29 @@ function fnClose(){
 	$("#induacaAdd").dialog('destroy').remove();
 }
 
+
+
 $(document).ready(function(){
+<<<<<<< HEAD
 	var uniqId 	= $("[name=uniqId]").val();
+=======
+	
+>>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
 		datatype:'json',
 		url:'/jqGrid/init',
 		colNames: [
 		           	 '정/부'
-		           	,'계정'
+		           	,'회원 SEQ'
 		           	,'이름'
 		           	,'휴대폰번호'
 		           	,'담당'
 		           	,'권한'
 		           	,'상태'
 		           ],
-		colModel:[
+		colModel: [
 				 {name:'mberRatingName', 	index:'mberRatingName',			width:5,	align:'center', search:false,  sortable:true}
-				,{name:'nrlmberId', 		index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'nrlmberId', 			index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberName', 		 	index:'mberName',				width:8,	align:'center', search:false,  sortable:true}
 				,{name:'moblphonNo', 		index:'moblphonNo',				width:13,	align:'center', search:false,  sortable:true}
 				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
@@ -197,22 +203,67 @@ $(document).ready(function(){
 		height:"150px",
 		sortname:"LAST_UPDUSR_PNTTM",
    		sortorder:"desc",
+<<<<<<< HEAD
    		onSelectRow:function(rowid, status){
    			var rowval = $('#grid').jqGrid('getRowData', rowid);
     			$("[name=seq]").val(rowval.seq);
     			$("[name=id]").val(rowval.id);
+=======
+   		onSelectRow:function(rowid, status,e){
+   			var rowval = $('#grid').jqGrid('getRowData', rowId);
+   			console.log(rowval)
+  			$("[name=mberRatingName]").val(rowval.mberRatingName);
+   			$("[name=nrlmberId]").val(rowval.nrlmberId);
+   			$("[name=mberName]").val(rowval.mberName);
+   			$("[name=moblphonNo]").val(rowval.moblphonNo);
+   			$("[name=chargeName]").val(rowval.chargeName);
+   			$("[name=roleName]").val(rowval.roleName);
+   			$("[name=mberSttusName]").val(rowval.mberSttusName);
+   			
+>>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
    		}
-	}));
-
+	}))
+	/*
+		$.fun.ajax({
+		type:'get',
+		url:"/ctn/nrlmber/RegisterData.do?uniqId="+uniqId,
+        data : {}  
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"계정등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+	*/
+	/*
+	저기 ajax data랑  paramMap["refEqList"] 		= '${infoMap.seq}'; 랑 같은거야
+	javascript 로 {} 표시는 object 를 의미하고
+	infoMap.seq 는 뭐야 잘했네 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+	다했네  (취소!!!!!!!!!!!)
+	내가 저번에 말한것처럼  서버에 값을 보낼땐 키 가 있어야대
+	{refEqList : infoMap.seq} 이거면  refEqList 키의 값을 infoMap.seq(계정고유값) 으로 한다는건데.... 
+	// 인터셉터를 보면  refEqList 라는 키는 넘어갔는데 `infoMap.seq}` 가 빈값이네.. 그러면 이 페이지를 호추할때  `RegisterContent.jsp` 할때 `infoMap.seq` 값이 노내주는 확인해야겠네
+	zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz아 왜 infoMap이였지..? 저거  원래 저거 그냥 그대로였나보넹
+	
+			// /ctn/nrlmber/history/ListPagingData.do
+			
+	*/
+	
 	setTimeout(function(){
 		var paramMap = {};
-		paramMap["refEqList"] 		= '${infoMap.seq}';
+		// paramMap["refEqList"] 		= '${Info.seq}';
+		paramMap["nrlmberId"] 		= '${Info.seq}';  // => 이게 {nrlmberId: ;47'} 이지 
+		console.log("paramMap : " + paramMap);
 		jqGridUtils.searchProc({
 		     gridId:"#grid"
 			,postData:paramMap
 		   ,url:"/ctn/nrlmber/history/ListPagingData.do"
 		});
-	}, 1000);
+	}, 500);
 });
 
 

@@ -16,10 +16,10 @@
 		</if>
 
 		<!-- 고유ID -->
-		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
-			AND UNIQ_ID = #{uniqId}
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nrlmberId)">
+			AND NRLMBER_ID  = #{nrlmberId }
 		</if>
-
+		
 		<!-- 이름 -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">
 			AND MBER_NAME LIKE CONCAT('%',#{mberName},'%')
@@ -38,7 +38,7 @@
 			COUNT(0)
 		FROM
 			CTN_NRLMBER_HISTORY T1
-		WHERE 1=1
+		WHERE 1=1 
 		<include refid="addWhere"/>
 	</select>
 
@@ -67,6 +67,31 @@
 			<include refid="addWhere"/>
 		ORDER BY SEQ DESC
 		LIMIT #{start}, #{end}
+	</select>
+	
+		<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+				 SEQ																				as  seq					<!-- 고유키값 -->
+				,NRLMBER_ID																			as 	nrlmberId			<!-- 계정고유ID -->
+				,MBER_NAME																			as  mberName			<!-- 이름 -->
+				,ROLE_ID																			as  roleId				<!-- 권한ID -->
+				,CHARGE_ID																			as  chargeId			<!-- 담당업무ID -->
+				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    	as  chargeName  		<!-- 담당업무명 -->
+				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )						as  roleName			<!-- 권한명 -->
+				,MBER_STTUS																			as  mberSttus
+				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
+				,MBER_RATING
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
+				,MOBLPHON_NO			                                  		               		as moblphonNo			<!-- 휴대폰번호 -->
+				,PROC_STTUS																			as  procSttus
+				,DATE_FORMAT(T1.PROC_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as  procPnttm 			<!-- 처리일자 -->
+				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
+				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            		as  frstRegisterPnttm 	<!-- 최초등록일 -->
+		FROM
+			 CTN_NRLMBER_HISTORY T1
+		WHERE 1=1
+			<include refid="addWhere"/>
 	</select>
 
 	<!-- 추가 -->

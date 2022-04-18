@@ -35,6 +35,14 @@
 										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}">selected</c:if> >${data.name}</option>
 									</c:forEach>
 								</select>
+								
+								<div class="common_div left margin_l2">업무</div>
+								<select class="common_select" id="eQListSeq" name="eQListSeq" style="width: 170px;">
+									<option value="" <c:if test="${paramMap.eQListSeq  != '' || paramMap.eQListSeq  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${EqListInfoList}" varStatus="status">
+										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}">selected</c:if> >${data.name}</option>
+									</c:forEach>
+								</select>
 
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
