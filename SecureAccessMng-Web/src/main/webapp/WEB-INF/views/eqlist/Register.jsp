@@ -65,7 +65,7 @@ function fnProcRegisterEquipCodeData()
 	// 관리자, IDC 선택하지 않은 경우 체크.
 	if(!$("[name=idcSeq]").val())
 	{
-		$.fun.alert({content:"IDC를 선택하세요."});
+		$.fun.alert({content:"준비중입니다."});
 		$("[name=idcSeq]").focus();
 		return;
 	}

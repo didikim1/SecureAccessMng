@@ -103,7 +103,7 @@
 
 				,	(
 
-						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
 				)  																							as moblphonNo  <!-- 고유ID  -->
 
 
@@ -152,7 +152,7 @@
 				)  																							as uniqId  <!-- 고유ID  -->
 
 				,	(
-						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
 				)  																							as moblphonNo  <!-- 고유ID  -->
 
 

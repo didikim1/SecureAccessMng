@@ -1,0 +1,607 @@
+2022-04-18 16:37:42:989  INFO main c.i.S.S.W.SecureAccessMngWebApplication:48 - Starting SecureAccessMngWebApplication on DESKTOP-0DU5PP8 with PID 24860 (E:\project\git\SecureAccess\SecureAccessMng-Web\SecureAccessMng-Web\target\classes started by for in E:\project\git\SecureAccess\SecureAccessMng-Web\SecureAccessMng-Web)
+2022-04-18 16:37:42:992  INFO main c.i.S.S.W.SecureAccessMngWebApplication:597 - The following profiles are active: local
+2022-04-18 16:37:43:033  INFO main o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:583 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:37:43 KST 2022]; root of context hierarchy
+2022-04-18 16:37:44:635  INFO main o.s.b.c.e.t.TomcatEmbeddedServletContainer:89 - Tomcat initialized with port(s): 39030 (https)
+2022-04-18 16:37:44:644  INFO main o.a.c.c.StandardService:179 - Starting service [Tomcat]
+2022-04-18 16:37:44:645  INFO main o.a.c.c.StandardEngine:179 - Starting Servlet Engine: Apache Tomcat/8.5.16
+2022-04-18 16:37:44:835  WARN localhost-startStop-1 o.a.j.s.TldScanner:179 - Failed to process TLD with path [/WEB-INF/tags/jstl/funLibrary.tld] and URI [funLibrary]. The specified path does not exist.
+2022-04-18 16:37:44:975  INFO localhost-startStop-1 o.a.j.s.TldScanner:179 - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-04-18 16:37:44:984  INFO localhost-startStop-1 o.a.c.c.C.[.[.[/]:179 - Initializing Spring embedded WebApplicationContext
+2022-04-18 16:37:44:985  INFO localhost-startStop-1 o.s.w.c.ContextLoader:276 - Root WebApplicationContext: initialization completed in 1952 ms
+2022-04-18 16:37:45:175  INFO localhost-startStop-1 o.s.b.w.s.ServletRegistrationBean:190 - Mapping servlet: 'dispatcherServlet' to [/]
+2022-04-18 16:37:45:179  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+2022-04-18 16:37:45:180  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2022-04-18 16:37:45:180  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2022-04-18 16:37:45:180  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+2022-04-18 16:37:45:261  INFO main c.i.S.S.W.f.c.m.DatabaseConfig:28 - configureDataSource = MasterDatabaseProperties[com.mysql.jdbc.Driver]
+2022-04-18 16:37:45:785  INFO main c.i.S.S.W.f.c.m.DatabaseConfig:28 - configureDataSource = MasterDatabaseProperties[com.mysql.jdbc.Driver]
+2022-04-18 16:37:46:005  INFO main o.s.w.s.m.m.a.RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:37:43 KST 2022]; root of context hierarchy
+2022-04-18 16:37:46:056  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcSelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:058  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:058  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ModifyData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:058  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/DeleteData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:059  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:059  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/RegisterData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:060  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcDeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcDeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:060  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:060  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcRegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcRegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:064  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:064  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/ListLatestData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ListLatestData(java.lang.String)
+2022-04-18 16:37:46:065  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/SelectOneData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.SelectOneData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:37:46:065  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ModifyData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:37:46:065  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:37:46:066  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.RegisterData(java.lang.String)
+2022-04-18 16:37:46:066  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/eqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.eqAllowIP(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:067  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/ctnNrlmber.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ctnNrlmber(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:068  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/comm/api/arsAuth.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.CommAPIAction.arsAuth(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:068  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/comm/api/getPublicIP.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.CommAPIAction.ListPagingData(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:069  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/FileUpload/fileUp.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.fileUpload.FileUpload.ExcelUp(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:069  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/gui/api/{cmd}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.GUIAPIAction.cmd(java.lang.String,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:070  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/Login/auth.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.login.ExeLoginAction.syncArsAuth(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:071  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/UpdateLogOutAccLog.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.UpdateLogOutAccLog(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:071  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/eqAccLogRegisterData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.mEqAccLogBiz(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:072  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/workList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.workList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:072  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/serverList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.serverList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:072  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/EqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.EqAllowIP(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:073  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/idcList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.idcList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:073  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/idpwdList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.idpwdList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:073  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/eqAccLogList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.eqAccLogList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:074  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:075  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/eqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.eqAllowIP(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:075  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/ctnNrlmber.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.ctnNrlmber(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:075  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Company/ListData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqCompany.act.ExEEqCompanyAction.ListLatestData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:076  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Depoly/User/DEPOLY/ListLatestData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDepoly.ExEEqDepolyAction.ListLatestData()
+2022-04-18 16:37:46:076  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Depoly/User/DEPOLY/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDepoly.ExEEqDepolyAction.RegisterData()
+2022-04-18 16:37:46:077  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:37:46:077  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/SelectOneData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.SelectOneData()
+2022-04-18 16:37:46:078  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:37:46:078  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.RegisterData()
+2022-04-18 16:37:46:078  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/ListPagingData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.UserBBSCode(org.springframework.ui.Model)
+2022-04-18 16:37:46:079  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/code/findByTitle.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2CodeAct.findByUserInfo(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.CodeDTO)
+2022-04-18 16:37:46:080  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.list()
+2022-04-18 16:37:46:080  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/{refEqIdc}/{refEqList}/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.server_idpwd_list(int,int)
+2022-04-18 16:37:46:081  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/{refEqIdc}/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.server_list(int)
+2022-04-18 16:37:46:082  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.LoginDTO)
+2022-04-18 16:37:46:082  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/getIp.do],methods=[GET]}" onto private java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.getIp(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:083  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/chkAllowIP.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.chkAllowIP(java.lang.String)
+2022-04-18 16:37:46:083  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login_ars.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login_ars(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:083  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login_user_info.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login_user_info(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:084  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/register.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.register(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.ServerAccessDTO)
+2022-04-18 16:37:46:086  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/accLogs.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.list(int)
+2022-04-18 16:37:46:087  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/termination.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.termination(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.ServerAccessDTO)
+2022-04-18 16:37:46:087  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/jqGrid/init]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.act.CommonAction.init(org.springframework.ui.Model) throws java.lang.Exception
+2022-04-18 16:37:46:088  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.SelectOneData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:37:46:088  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.ModifyData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:37:46:089  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.ModifyData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:37:46:089  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:37:46:089  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.UserBBSCode(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:37:46:090  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/PopupListData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.PopupListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:091  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:091  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:091  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:091  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ || /ctn/code/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:092  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:092  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ListData(org.springframework.ui.Model)
+2022-04-18 16:37:46:092  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.Register(org.springframework.ui.Model)
+2022-04-18 16:37:46:094  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcSelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:094  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:094  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ModifyData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:095  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:095  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/RegisterData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:095  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcDeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcDeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:095  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:096  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcRegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcRegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:096  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListData(org.springframework.ui.Model)
+2022-04-18 16:37:46:096  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/uniqIdChk.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.uniqIdChk(org.springframework.ui.Model)
+2022-04-18 16:37:46:096  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListExcelData.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListExcelData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model) throws jxl.write.WriteException,java.io.IOException
+2022-04-18 16:37:46:097  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/RegisterContent.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.RegisterContent(org.springframework.ui.Model)
+2022-04-18 16:37:46:097  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListPagingDatas(org.springframework.ui.Model)
+2022-04-18 16:37:46:097  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/CallAuth.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.CallAuth(org.springframework.ui.Model)
+2022-04-18 16:37:46:097  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/CallAuthPage.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.CallAuthPage(org.springframework.ui.Model)
+2022-04-18 16:37:46:098  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/history/ListPagingData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberHistoryAct.ListPagingDatas(org.springframework.ui.Model)
+2022-04-18 16:37:46:099  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:099  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:100  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:100  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:100  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:101  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ListExcelData]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ListExcelData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model) throws jxl.write.WriteException,java.io.IOException
+2022-04-18 16:37:46:101  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/EqList/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.EqListListData(org.springframework.ui.Model)
+2022-04-18 16:37:46:101  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/pop/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.popSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:102  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:102  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:102  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:102  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:103  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:104  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:104  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:104  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:104  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ || /eqidpwd/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:105  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:105  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ListData(org.springframework.ui.Model)
+2022-04-18 16:37:46:105  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.Register(org.springframework.ui.Model)
+2022-04-18 16:37:46:106  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:106  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:37:46:106  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:37:46:106  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/ || /eqlist/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:107  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:37:46:107  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.Register(org.springframework.ui.Model)
+2022-04-18 16:37:46:108  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ || /login/index.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.index(org.springframework.ui.Model)
+2022-04-18 16:37:46:109  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ModifyPasswordProc.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ModifyPasswordProc(org.springframework.ui.Model)
+2022-04-18 16:37:46:109  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ProcSelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:110  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:37:46:110  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/DeleteData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.DeleteData(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:110  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:37:46:110  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/CallAuth.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.CallAuth(org.springframework.ui.Model)
+2022-04-18 16:37:46:110  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/CallAuthPage.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.CallAuthPage(org.springframework.ui.Model)
+2022-04-18 16:37:46:111  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ModifyPassword.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ModifyPassword(org.springframework.ui.Model)
+2022-04-18 16:37:46:113  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:37:46:113  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:37:46:139  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:37:46:139  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:37:46:174  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:37:46:197  INFO main o.s.b.a.w.WebMvcAutoConfiguration$WelcomePageHandlerMapping:549 - Adding welcome page: ServletContext resource [/index.html]
+2022-04-18 16:37:46:396  INFO main o.s.j.e.a.AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+2022-04-18 16:37:47:678  INFO main o.s.b.c.e.t.TomcatEmbeddedServletContainer:201 - Tomcat started on port(s): 39030 (https)
+2022-04-18 16:37:47:682  INFO main c.i.S.S.W.SecureAccessMngWebApplication:57 - Started SecureAccessMngWebApplication in 5.022 seconds (JVM running for 6.842)
+2022-04-18 16:38:22:407  INFO https-jsse-nio-39030-exec-8 o.a.c.c.C.[.[.[/]:179 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-04-18 16:38:22:407  INFO https-jsse-nio-39030-exec-8 o.s.w.s.DispatcherServlet:489 - FrameworkServlet 'dispatcherServlet': initialization started
+2022-04-18 16:38:22:438  INFO https-jsse-nio-39030-exec-8 o.s.w.s.DispatcherServlet:508 - FrameworkServlet 'dispatcherServlet': initialization completed in 31 ms
+2022-04-18 16:38:22:459  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqacclog/ListPagingData.do
+2022-04-18 16:38:22:460  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqacclog/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:22:504  WARN https-jsse-nio-39030-exec-8 o.a.t.j.p.ConnectionPool:179 - initialSize is larger than maxActive, setting initialSize to: 5
+2022-04-18 16:38:28:733  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqacclog/EqList/ListData.do
+2022-04-18 16:38:28:735  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqacclog/EqList/ListData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 idcSeq = 4
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:45:292  INFO https-jsse-nio-39030-exec-4 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/
+2022-04-18 16:38:45:293  INFO https-jsse-nio-39030-exec-4 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:47:417  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:38:47:418  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = C
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:52:524  INFO https-jsse-nio-39030-exec-1 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/ListPagingData.do
+2022-04-18 16:38:52:526  INFO https-jsse-nio-39030-exec-1 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:55:634  INFO https-jsse-nio-39030-exec-5 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/RegisterContent.do
+2022-04-18 16:38:55:635  INFO https-jsse-nio-39030-exec-5 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/RegisterContent.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 uniqId = 123123
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:56:027  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/jqGrid/init
+2022-04-18 16:38:56:028  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/jqGrid/init
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 _search = true
+	 nd = 1650267536023
+	 rows = 10
+	 page = 1
+	 sidx = LAST_UPDUSR_PNTTM
+	 sord = desc
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:38:56:536  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/history/ListPagingData.do
+2022-04-18 16:38:56:537  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/history/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 _search = true
+	 nd = 1650267536532
+	 rows = 10
+	 page = 1
+	 sidx = LAST_UPDUSR_PNTTM
+	 sord = desc
+	 nrlmberId = 50
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:09:213  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/ListPagingData.do
+2022-04-18 16:40:09:214  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:11:272  INFO RMI TCP Connection(11)-127.0.0.1 o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:125 - Application shutdown requested.
+2022-04-18 16:40:11:273  INFO RMI TCP Connection(11)-127.0.0.1 o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:984 - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:37:43 KST 2022]; root of context hierarchy
+2022-04-18 16:40:11:274  INFO RMI TCP Connection(11)-127.0.0.1 o.s.j.e.a.AnnotationMBeanExporter:449 - Unregistering JMX-exposed beans on shutdown
+2022-04-18 16:40:17:626  INFO main c.i.S.S.W.SecureAccessMngWebApplication:48 - Starting SecureAccessMngWebApplication on DESKTOP-0DU5PP8 with PID 23812 (E:\project\git\SecureAccess\SecureAccessMng-Web\SecureAccessMng-Web\target\classes started by for in E:\project\git\SecureAccess\SecureAccessMng-Web\SecureAccessMng-Web)
+2022-04-18 16:40:17:630  INFO main c.i.S.S.W.SecureAccessMngWebApplication:597 - The following profiles are active: local
+2022-04-18 16:40:17:669  INFO main o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:583 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:40:17 KST 2022]; root of context hierarchy
+2022-04-18 16:40:19:202  INFO main o.s.b.c.e.t.TomcatEmbeddedServletContainer:89 - Tomcat initialized with port(s): 39030 (https)
+2022-04-18 16:40:19:211  INFO main o.a.c.c.StandardService:179 - Starting service [Tomcat]
+2022-04-18 16:40:19:212  INFO main o.a.c.c.StandardEngine:179 - Starting Servlet Engine: Apache Tomcat/8.5.16
+2022-04-18 16:40:19:401  WARN localhost-startStop-1 o.a.j.s.TldScanner:179 - Failed to process TLD with path [/WEB-INF/tags/jstl/funLibrary.tld] and URI [funLibrary]. The specified path does not exist.
+2022-04-18 16:40:19:540  INFO localhost-startStop-1 o.a.j.s.TldScanner:179 - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2022-04-18 16:40:19:549  INFO localhost-startStop-1 o.a.c.c.C.[.[.[/]:179 - Initializing Spring embedded WebApplicationContext
+2022-04-18 16:40:19:550  INFO localhost-startStop-1 o.s.w.c.ContextLoader:276 - Root WebApplicationContext: initialization completed in 1881 ms
+2022-04-18 16:40:19:738  INFO localhost-startStop-1 o.s.b.w.s.ServletRegistrationBean:190 - Mapping servlet: 'dispatcherServlet' to [/]
+2022-04-18 16:40:19:742  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+2022-04-18 16:40:19:742  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2022-04-18 16:40:19:743  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2022-04-18 16:40:19:743  INFO localhost-startStop-1 o.s.b.w.s.FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+2022-04-18 16:40:19:827  INFO main c.i.S.S.W.f.c.m.DatabaseConfig:28 - configureDataSource = MasterDatabaseProperties[com.mysql.jdbc.Driver]
+2022-04-18 16:40:20:301  INFO main c.i.S.S.W.f.c.m.DatabaseConfig:28 - configureDataSource = MasterDatabaseProperties[com.mysql.jdbc.Driver]
+2022-04-18 16:40:20:520  INFO main o.s.w.s.m.m.a.RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:40:17 KST 2022]; root of context hierarchy
+2022-04-18 16:40:20:571  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcSelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:572  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/RegisterData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:573  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ModifyData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:573  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/DeleteData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:573  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:574  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:574  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcRegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcRegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:574  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:575  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/Accesslog/ProcDeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.accesslog.act.AccesslogAct.ProcDeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:578  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.RegisterData(java.lang.String)
+2022-04-18 16:40:20:579  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ModifyData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:40:20:579  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:40:20:579  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/SelectOneData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.SelectOneData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:40:20:580  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/eqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.eqAllowIP(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:580  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/User/{bbsCode}/ListLatestData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ListLatestData(java.lang.String)
+2022-04-18 16:40:20:581  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:581  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/ctn/bbs/ctnNrlmber.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.bbs.act.ExeCtnBBSAction.ctnNrlmber(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:582  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/comm/api/getPublicIP.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.CommAPIAction.ListPagingData(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:582  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/comm/api/arsAuth.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.CommAPIAction.arsAuth(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:582  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/FileUpload/fileUp.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.fileUpload.FileUpload.ExcelUp(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:583  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/gui/api/{cmd}],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.GUIAPIAction.cmd(java.lang.String,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:583  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/Login/auth.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.login.ExeLoginAction.syncArsAuth(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:585  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/UpdateLogOutAccLog.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.UpdateLogOutAccLog(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:585  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/eqAccLogRegisterData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.mEqAccLogBiz(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:585  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/idpwdList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.idpwdList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:586  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/serverList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.serverList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:586  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/eqAccLogList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.eqAccLogList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:586  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/workList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.workList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:586  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/EqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.EqAllowIP(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:587  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/api/ServerConnection/idcList.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.act.serverConnection.ExeServerConnectionAction.idcList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:588  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/eqAllowIP.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.eqAllowIP(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:588  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:589  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/Common/ctnNrlmber.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.common.ExECommonAction.ctnNrlmber(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:589  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Company/ListData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqCompany.act.ExEEqCompanyAction.ListLatestData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:590  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Depoly/User/DEPOLY/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDepoly.ExEEqDepolyAction.RegisterData()
+2022-04-18 16:40:20:590  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/Depoly/User/DEPOLY/ListLatestData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDepoly.ExEEqDepolyAction.ListLatestData()
+2022-04-18 16:40:20:591  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/RegisterData.do],methods=[POST]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.RegisterData()
+2022-04-18 16:40:20:591  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:40:20:591  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/SelectOneData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.SelectOneData()
+2022-04-18 16:40:20:591  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/DownLoadFile.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.DonwLoadFile(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2022-04-18 16:40:20:592  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/exe/eq/DocSharing/User/DOCSHARING/ListPagingData.do]}" onto public org.springframework.http.ResponseEntity com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.api.exe.eqDocSharing.ExeEqDocSharingAction.UserBBSCode(org.springframework.ui.Model)
+2022-04-18 16:40:20:593  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/code/findByTitle.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2CodeAct.findByUserInfo(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.CodeDTO)
+2022-04-18 16:40:20:593  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.list()
+2022-04-18 16:40:20:594  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/{refEqIdc}/{refEqList}/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.server_idpwd_list(int,int)
+2022-04-18 16:40:20:594  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/idccenter/{refEqIdc}/list.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2IdcCenterAct.server_list(int)
+2022-04-18 16:40:20:595  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.LoginDTO)
+2022-04-18 16:40:20:595  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/getIp.do],methods=[GET]}" onto private java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.getIp(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:596  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/chkAllowIP.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.chkAllowIP(java.lang.String)
+2022-04-18 16:40:20:596  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login_user_info.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login_user_info(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:596  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/login/login_ars.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2LoginAct.login_ars(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:597  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/register.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.register(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.ServerAccessDTO)
+2022-04-18 16:40:20:597  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/accLogs.do],methods=[GET]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.list(int)
+2022-04-18 16:40:20:598  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/api/v2/serveraccess/termination.do],methods=[POST],consumes=[application/json]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.act.ApiV2ServerAccessAct.termination(com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.apiV2.dto.ServerAccessDTO)
+2022-04-18 16:40:20:598  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/jqGrid/init]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.act.CommonAction.init(org.springframework.ui.Model) throws java.lang.Exception
+2022-04-18 16:40:20:599  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.ModifyData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:40:20:599  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ModifyData.do],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.ModifyData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:40:20:599  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/DeleteData.do]}" onto public org.springframework.web.servlet.ModelAndView com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.DeleteData(java.lang.String,org.springframework.ui.Model)
+2022-04-18 16:40:20:599  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.SelectOneData(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:40:20:600  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/bbs/User/{bbsCode}/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.bbs.act.CtnBBSAction.UserBBSCode(org.springframework.ui.Model,java.lang.String)
+2022-04-18 16:40:20:601  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/PopupListData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.PopupListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:601  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:601  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:602  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:602  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ || /ctn/code/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:602  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:603  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.ListData(org.springframework.ui.Model)
+2022-04-18 16:40:20:603  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/code/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.act.CtnCodeAction.Register(org.springframework.ui.Model)
+2022-04-18 16:40:20:605  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcSelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:605  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/RegisterData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:605  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ModifyData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:605  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:606  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:606  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcRegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcRegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:606  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:606  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ProcDeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ProcDeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:607  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListData(org.springframework.ui.Model)
+2022-04-18 16:40:20:607  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListPagingDatas(org.springframework.ui.Model)
+2022-04-18 16:40:20:607  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/ListExcelData.do]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.ListExcelData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model) throws jxl.write.WriteException,java.io.IOException
+2022-04-18 16:40:20:607  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/uniqIdChk.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.uniqIdChk(org.springframework.ui.Model)
+2022-04-18 16:40:20:607  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/RegisterContent.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.RegisterContent(org.springframework.ui.Model)
+2022-04-18 16:40:20:608  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/CallAuthPage.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.CallAuthPage(org.springframework.ui.Model)
+2022-04-18 16:40:20:608  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/CallAuth.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct.CallAuth(org.springframework.ui.Model)
+2022-04-18 16:40:20:609  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/ctn/nrlmber/history/ListPagingData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberHistoryAct.ListPagingDatas(org.springframework.ui.Model)
+2022-04-18 16:40:20:610  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:611  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:611  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:612  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:612  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:612  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/ListExcelData]}" onto public void com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.ListExcelData(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model) throws jxl.write.WriteException,java.io.IOException
+2022-04-18 16:40:20:613  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/EqList/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.EqListListData(org.springframework.ui.Model)
+2022-04-18 16:40:20:613  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqacclog/pop/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act.EqAccLogAction.popSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:620  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:621  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:621  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:621  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:621  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/idcinfo/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.act.EqIdcAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:622  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:622  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:623  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:623  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ || /eqidpwd/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:623  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:623  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/ListData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.ListData(org.springframework.ui.Model)
+2022-04-18 16:40:20:624  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqidpwd/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act.EqIdpwdAction.Register(org.springframework.ui.Model)
+2022-04-18 16:40:20:624  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/RegisterData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.RegisterData(org.springframework.ui.Model)
+2022-04-18 16:40:20:625  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/ModifyData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.ModifyData(org.springframework.ui.Model)
+2022-04-18 16:40:20:625  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/DeleteData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.DeleteData(org.springframework.ui.Model)
+2022-04-18 16:40:20:625  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/ || /eqlist/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:625  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/SelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:626  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/eqlist/Register.do],methods=[GET]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.act.EqListAction.Register(org.springframework.ui.Model)
+2022-04-18 16:40:20:627  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ || /login/index.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.index(org.springframework.ui.Model)
+2022-04-18 16:40:20:628  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ProcSelectOneData.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ProcSelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:628  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ModifyPasswordProc.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ModifyPasswordProc(org.springframework.ui.Model)
+2022-04-18 16:40:20:628  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/DeleteData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.DeleteData(org.springframework.ui.Model,javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:628  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ListPagingData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ListPagingData(org.springframework.ui.Model)
+2022-04-18 16:40:20:628  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/SelectOneData.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.SelectOneData(org.springframework.ui.Model)
+2022-04-18 16:40:20:629  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/CallAuthPage.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.CallAuthPage(org.springframework.ui.Model)
+2022-04-18 16:40:20:629  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/CallAuth.do]}" onto public com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.CallAuth(org.springframework.ui.Model)
+2022-04-18 16:40:20:629  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/login/ModifyPassword.do]}" onto public java.lang.String com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.act.LoginAct.ModifyPassword(org.springframework.ui.Model)
+2022-04-18 16:40:20:631  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2022-04-18 16:40:20:632  INFO main o.s.w.s.m.m.a.RequestMappingHandlerMapping:543 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-18 16:40:20:658  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:40:20:659  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:40:20:692  INFO main o.s.w.s.h.SimpleUrlHandlerMapping:362 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-18 16:40:20:712  INFO main o.s.b.a.w.WebMvcAutoConfiguration$WelcomePageHandlerMapping:549 - Adding welcome page: ServletContext resource [/index.html]
+2022-04-18 16:40:20:905  INFO main o.s.j.e.a.AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+2022-04-18 16:40:22:210  INFO main o.s.b.c.e.t.TomcatEmbeddedServletContainer:201 - Tomcat started on port(s): 39030 (https)
+2022-04-18 16:40:22:214  INFO main c.i.S.S.W.SecureAccessMngWebApplication:57 - Started SecureAccessMngWebApplication in 4.907 seconds (JVM running for 6.674)
+2022-04-18 16:40:37:947  INFO https-jsse-nio-39030-exec-8 o.a.c.c.C.[.[.[/]:179 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2022-04-18 16:40:37:948  INFO https-jsse-nio-39030-exec-8 o.s.w.s.DispatcherServlet:489 - FrameworkServlet 'dispatcherServlet': initialization started
+2022-04-18 16:40:37:977  INFO https-jsse-nio-39030-exec-8 o.s.w.s.DispatcherServlet:508 - FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
+2022-04-18 16:40:37:998  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/ListPagingData.do
+2022-04-18 16:40:37:998  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:38:042  WARN https-jsse-nio-39030-exec-8 o.a.t.j.p.ConnectionPool:179 - initialSize is larger than maxActive, setting initialSize to: 5
+2022-04-18 16:40:46:097  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/
+2022-04-18 16:40:46:098  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:48:533  INFO https-jsse-nio-39030-exec-5 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:40:48:534  INFO https-jsse-nio-39030-exec-5 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = C
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:50:541  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:40:50:542  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = A
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:53:293  INFO https-jsse-nio-39030-exec-1 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:40:53:294  INFO https-jsse-nio-39030-exec-1 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = C
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:55:486  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqidpwd/Register.do
+2022-04-18 16:40:55:487  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqidpwd/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 seq = B
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:40:55:819  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/jqGrid/init
+2022-04-18 16:40:55:819  INFO https-jsse-nio-39030-exec-8 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/jqGrid/init
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 _search = true
+	 nd = 1650267655815
+	 rows = 10
+	 page = 1
+	 sidx = LAST_UPDUSR_PNTTM
+	 sord = desc
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:41:03:208  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:41:03:209  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = A
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:41:37:971  INFO https-jsse-nio-39030-exec-4 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/
+2022-04-18 16:41:37:972  INFO https-jsse-nio-39030-exec-4 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:41:39:840  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/Register.do
+2022-04-18 16:41:39:841  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/Register.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 registType = A
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:58:13:062  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/ctn/nrlmber/ListPagingData.do
+2022-04-18 16:58:13:063  INFO https-jsse-nio-39030-exec-6 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/ctn/nrlmber/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:59:08:806  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqacclog/ListPagingData.do
+2022-04-18 16:59:08:807  INFO https-jsse-nio-39030-exec-7 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqacclog/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:59:09:895  INFO https-jsse-nio-39030-exec-10 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/
+2022-04-18 16:59:09:896  INFO https-jsse-nio-39030-exec-10 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:59:13:814  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqacclog/ListPagingData.do
+2022-04-18 16:59:13:816  INFO https-jsse-nio-39030-exec-2 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqacclog/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 16:59:16:612  INFO https-jsse-nio-39030-exec-3 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqlist/
+2022-04-18 16:59:16:613  INFO https-jsse-nio-39030-exec-3 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqlist/
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 17:00:09:894  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:49 - URL:/eqacclog/ListPagingData.do
+2022-04-18 17:00:09:895  INFO https-jsse-nio-39030-exec-9 c.i.S.S.W.f.c.i.AuthenticationInterceptor:66 - 
+==========================LAB603==================================
+ Request URL=/eqacclog/ListPagingData.do
+ Connetion IPAddr=127.0.0.1
+ Connetion X-Forwarded-For=null
+	 mberSeq = 5
+	 frstRegisterId = 1020jhs
+	 lastUpdusrId = 1020jhs
+==========================//LAB603==================================
+
+2022-04-18 17:08:51:361  INFO RMI TCP Connection(37)-127.0.0.1 o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:125 - Application shutdown requested.
+2022-04-18 17:08:51:362  INFO RMI TCP Connection(37)-127.0.0.1 o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:984 - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17046283: startup date [Mon Apr 18 16:40:17 KST 2022]; root of context hierarchy
+2022-04-18 17:08:51:363  INFO RMI TCP Connection(37)-127.0.0.1 o.s.j.e.a.AnnotationMBeanExporter:449 - Unregistering JMX-exposed beans on shutdown

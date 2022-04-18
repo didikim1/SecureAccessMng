@@ -24,6 +24,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
 
 import jxl.write.WriteException;
 
@@ -46,6 +47,9 @@ public class EqAccLogAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
+	 CodeMapper mCodeMapper;
 
     @Value("${spring.profiles.active}")
     String active;
@@ -57,9 +61,8 @@ public class EqAccLogAction
         BasicBean       resultBean  		= null;
         BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
-        BasicBean       workInfoBean		= mEqIdcBiz.ListData(new MyMap());              // 업무 List
-
-        if ("".equals(paramMap.getStr("sDate", ""))) {
+        
+           if ("".equals(paramMap.getStr("sDate", ""))) {
         	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
         	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
         }
@@ -70,7 +73,7 @@ public class EqAccLogAction
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       idcInfoBean.getList());
         model.addAttribute("refEqList",       	refEqListInfoBean.getList());
-        model.addAttribute("workInfoList",      workInfoBean.getList());
+
 
         if ( paramMap.getInt("idcSeq", 0) > 0)
         {
@@ -87,7 +90,7 @@ public class EqAccLogAction
 
         return pagePrefix + "/ListPagingData";
     }
-
+    
     @RequestMapping(value = {"/ListExcelData" })
 	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
 	{

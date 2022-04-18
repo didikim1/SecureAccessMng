@@ -11,7 +11,7 @@
 
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
-				<input type="text" name="nrlmberId" 	value="${Info.seq}" />
+				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
 				<input type="hidden" name=mberSttus 	value="${Info.mberSttus}" />
 				<div align="center"  >
 					<table class="htable" >

@@ -20,6 +20,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.Framewo
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
 
 @Controller
 @RequestMapping("/eqlist")
@@ -40,6 +41,9 @@ public class EqListAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.entrprsmber.biz.EntrprsmberBiz")
     EntrprsmberBiz mEntrprsmberBiz;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
+	 CodeMapper mCodeMapper;
 
     @RequestMapping(value =
     { "/", "/ListPagingData.do" })
