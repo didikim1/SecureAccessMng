@@ -31,19 +31,18 @@
 								<div class="common_div left margin_l2">서버</div>
 								<select class="common_select" id="eQListSeq" name="eQListSeq" style="width: 170px;">
 									<option value="" <c:if test="${paramMap.eQListSeq  != '' || paramMap.eQListSeq  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${EqListInfoList}" varStatus="status">
-										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}">selected</c:if> >${data.name}</option>
+									<c:forEach var="data" items="${refEqList}" varStatus="status">
+										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}"></c:if> >${data.eqListSvIp1}</option>
 									</c:forEach>
 								</select>
 								
 								<div class="common_div left margin_l2">업무</div>
-								<select class="common_select" id="eQListSeq" name="eQListSeq" style="width: 170px;">
-									<option value="" <c:if test="${paramMap.eQListSeq  != '' || paramMap.eQListSeq  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${EqListInfoList}" varStatus="status">
-										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}">selected</c:if> >${data.name}</option>
+								<select class="common_select" id="worktypecodeId" >
+									<option value="" <c:if test="${paramMap.worktypecodeId  != '' || paramMap.worktypecodeId  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${workInfoList}" varStatus="status">
+										<option value="${data.worktypecodeId}" <c:if test="${paramMap.worktypecodeId eq data.worktypecodeId}"></c:if> >${Info.worktypecodeName}</option>
 									</c:forEach>
 								</select>
-
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 								<button type="button"  style="width: 120px;" class="common_button2 margin_l2" onclick="fnProcExcel();">&nbsp;엑셀다운로드</button>
@@ -65,8 +64,9 @@
 						<th scope="col" width="7%">접속ID</th>
 						<th scope="col" width="7%">접속IP</th>
 						<th scope="col" width="7%">접속자</th>
+						<th scope="col" width="3%">정/부</th>
 						<th scope="col" width="7%">프로세스ID</th>
-						<th scope="col" width="7%">현재상태</th>
+						<th scope="col" width="5%">현재상태</th>
 						<th scope="col" width="7%">로그인일자</th>
 						<th scope="col" width="7%">로그아웃일자</th>
 					</tr>

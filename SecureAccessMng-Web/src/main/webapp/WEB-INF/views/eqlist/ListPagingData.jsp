@@ -46,8 +46,9 @@
 			</div>
 
 			<div class="border margin_l6">
-				<button type="button" class="btn_it02" onclick="fnOpenRegisterPage('A');">자산 등록</button>
+				<button type="button" class="btn_it02" onclick="fnOpenRegisterPage('A');">IDC 등록</button>
 				<button type="button" class="btn_it03" onclick="fnOpenRegisterPage('B');">계정 등록</button>
+				<button type="button" class="btn_it02" onclick="fnOpenRegisterPage('C');">서버 등록</button>
 			</div>
 
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">

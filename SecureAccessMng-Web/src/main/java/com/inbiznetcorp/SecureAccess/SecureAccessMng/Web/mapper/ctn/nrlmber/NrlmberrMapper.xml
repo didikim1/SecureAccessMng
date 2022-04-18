@@ -69,17 +69,17 @@
 				,CHARGE_ID																	   				as chargeId    		<!-- 담당업무고유ID -->
 				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    			as name   			<!-- 담당업무명 -->
 				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )								as roleName			<!-- 권한명 -->
-				,UNIQ_ID				                                  		              				as uniqId			<!-- 고유ID -->
+				<!-- ,UNIQ_ID				                                  		              				as uniqId		 고유ID -->
 				,PASSWORD				                                  		               				as password			<!-- 비밀번호 -->
 				<!-- 
 				,MBER_NAME				                                  		              				as mberName	
 				 -->
 				,MBER_STTUS				                                  		               				as mberSttus		<!-- 상태 -->
-				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
+				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 								as mberSttusName	<!-- 상태명 -->
 				,MBER_RATING				                                  		           				as mberRating		<!-- 담당책임(정/부)-->
-				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
-				,MOBLPHON_NO			                                  		               				as moblphonNo		<!-- 휴대폰번호 -->
-				,EMAIL_ADDRESS			                                  		               				as emailAddress		<!-- Email 주소 -->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 									as mberRatingName	<!-- 정/부 -->
+				<!-- ,MOBLPHON_NO			                                  		               				as moblphonNo		휴대폰번호 -->
+				,EMAIL_ADDRESS			                                  		               				as emailAddress  	<!--Email 주소 -->
 				,FRST_REGISTER_ID		                                  		               				as frstRegisterId	<!-- 최초등록ID -->
 				,LAST_UPDUSR_ID			                                  		               				as lastUpdusrId		<!-- 최종등록ID -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as frstRegisterPnttm <!-- 최초등록일 -->
@@ -90,7 +90,21 @@
 								ELSE 
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
 						END 
-				)  as mberName
+				)  																							as mberName
+				
+				,	( 	
+						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
+								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-5, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
+								ELSE 
+								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
+						END 
+				)  																							as uniqId  <!-- 고유ID  -->
+				
+				,	( 	
+						
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
+				)  																							as moblphonNo  <!-- 고유ID  -->
+
 		
 		FROM
 			 CTN_NRLMBER T1
@@ -106,19 +120,41 @@
 				 SEQ				                                                       	   as seq				<!-- 회원ID -->
 				,ROLE_ID				                                                   	   as roleId			<!-- 권한ID -->
 				,CHARGE_ID																	   as chargeId   		<!-- 담당업무고유ID -->
-				,UNIQ_ID				                                  		               as uniqId			<!-- 고유ID -->
+				<!-- ,UNIQ_ID				                                  		               as uniqId			 고유ID -->
 				,PASSWORD				                                  		               as password			<!-- 비밀번호 -->
 				,MBER_STTUS				                                  		               as mberSttus			<!-- 상태 -->
-				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
+				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 				   as  mberSttusName	<!-- 상태명 -->
 				,MBER_RATING			                                  		               as mberRating		<!-- 담당책임(정/부)-->
-				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
-				,MBER_NAME				                                  		               as mberName			<!-- 이름 -->
-				,MOBLPHON_NO			                                  		               as moblphonNo		<!-- 휴대폰번호 -->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 					   as  mberRatingName	<!-- 정/부 -->
+				<!-- ,MBER_NAME				                                  		               as mberName			 이름 -->
+				<!-- ,MOBLPHON_NO			                                  		               as moblphonNo		휴대폰번호 -->
 				,EMAIL_ADDRESS			                                  		               as emailAddress		<!-- Email 주소 -->
 				,FRST_REGISTER_ID		                                  		               as frstRegisterId	<!-- 최초등록ID -->
 				,LAST_UPDUSR_ID			                                  		               as lastUpdusrId		<!-- 최종등록ID -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		               as frstRegisterPnttm <!-- 최초등록일 -->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	               as lastUpdusrPnttm 	<!-- 최종등록일 -->
+				
+				,	( 	
+						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
+								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
+								ELSE 
+								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
+						END 
+				)  																							as mberName
+				
+				,	( 	
+						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
+								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-2, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
+								ELSE 
+								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
+						END 
+				)  																							as uniqId  <!-- 고유ID  -->
+				
+				,	( 	
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
+				)  																							as moblphonNo  <!-- 고유ID  -->
+				
+		
 		FROM
 			 CTN_NRLMBER T1
 		WHERE 1=1

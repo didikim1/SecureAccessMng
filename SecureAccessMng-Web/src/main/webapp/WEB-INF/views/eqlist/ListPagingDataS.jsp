@@ -35,7 +35,7 @@ function fnProcSearch(){
 // 자산등록페이지
 function fnOpenRegisterPage(registType)
 {
-	// A:자산등록, B:계정등록
+	// A:IDC등록, B:계정등록, C: 서버등록
 	if(registType == "A")
 	{
 		fnEquipRegister(registType);
@@ -44,10 +44,49 @@ function fnOpenRegisterPage(registType)
 	{
 		fnAccountRegister(registType);
 	}
+	else if(registType == "C")
+	{
+		fnServerRegister(registType);
+	}
 }
 
-// 자산등록
+// IDC 등록
 function fnEquipRegister(registType)
+{
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/Register.do?registType="+registType,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"IDC 등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
+//서버등록
+function fnServerRegister(registType)
+{
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/Register.do?registType="+registType,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"서버등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+// 자산등록
+/* function fnEquipRegister(registType)
 {
 	$.fun.ajax({
 		type:'get',
@@ -63,7 +102,7 @@ function fnEquipRegister(registType)
 		}
 	});
 }
-
+ */
 // 자산 삭제
 function fnDeleteData(seq, name){
 

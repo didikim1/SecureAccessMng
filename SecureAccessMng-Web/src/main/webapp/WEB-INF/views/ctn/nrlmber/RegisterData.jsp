@@ -133,17 +133,6 @@ function fnProcUniqIdChk(){
 	var mberRating 		= form.find("[name=mberRating]").val();
 	var mberSttus 		= form.find("[name=mberSttus]").val();
 
-	var uniqId 		= form.find("[name=uniqId]").val();
-	var mberName 	= form.find("[name=mberName]").val();
-	var mberName 	= form.find("[name=password]").val();
-	var mberName 	= form.find("[name=moblphonNo]").val();
-	var mberName 	= form.find("[name=emailAddress]").val();
-	var mberName 	= form.find("[name=chargeId]").val();
-	var mberName 	= form.find("[name=roleId]").val();
-	var mberName 	= form.find("[name=mberRating]").val();
-	var mberName 	= form.find("[name=mberSttus]").val();
-	
-	
 	console.log("mberName : " + mberName)
 	
 	if( isNull(uniqId) ){

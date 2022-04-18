@@ -6,13 +6,16 @@
 	<div class="content">
 		<div class="border_sub">
 
-			<!-- A:자산등록, B:계정등록 -->
+			<!-- A:자산등록, B:계정등록, C:서버관리 -->
 			<c:choose>
 				<c:when test="${paramMap.registType eq 'A'}">
 					<jsp:include page="register/Equip.jsp" flush="false" />
 				</c:when>
 				<c:when test="${paramMap.registType eq 'B'}">
 					<jsp:include page="register/Account.jsp" flush="false" />
+				</c:when>
+				<c:when test="${paramMap.registType eq 'C'}">
+					<jsp:include page="register/Server.jsp" flush="false" />
 				</c:when>
 			</c:choose>
 
@@ -28,8 +31,8 @@
 <%-- 				</c:otherwise> --%>
 <%-- 			</c:choose> --%>
 
-			<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록하기</button>
-			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>
+			<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
+<!--  		<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>-->
 		</div>
 
 	</div>
@@ -48,6 +51,11 @@ function fnProcRegisterData()
 	else if(registType == "B")
 	{
 		fnProcRegisterAccountData();
+	}
+	// 계정등록
+	else if(registType == "C")
+	{
+		fnProcRegisterServerData();
 	}
 
 }
@@ -92,6 +100,7 @@ function fnProcRegisterAccountData()
 			return false;
 		}
 	}
+	
 
 	// 계정 등록
 	$.fun.ajax({

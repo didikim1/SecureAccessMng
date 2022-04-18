@@ -65,6 +65,9 @@
 				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
 				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
+				
+				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->	
 
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
@@ -87,25 +90,29 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 	  	SEQ										 						as seq
-					,WORKTYPECODE_ID 												as worktypecodeId
-					,REASON															as reason
-					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName
-					,REF_EQ_IDC	 													as refEqIdc
-					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 			as eqIdcName
-					,REF_EQ_LIST 													as refEqList
-					,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListSvIp1
-					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) as eqListName ,REF_EQ_IDPWD as refEqIdpwd
-					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) as eqIdpwdID ,REF_NRLMBER as refNrlmber
-					,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName
-					,( SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID
+			 	  	SEQ										 									as seq
+					,WORKTYPECODE_ID 															as worktypecodeId
+					,REASON																		as reason
+					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) 			as worktypecodeName
+					,REF_EQ_IDC	 																as refEqIdc
+					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 						as eqIdcName
+					,REF_EQ_LIST 																as refEqList
+					,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 					as eqListSvIp1
+					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 						as eqListName 
+					,REF_EQ_IDPWD 																as refEqIdpwd
+					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 						as eqIdpwdID 
+					,REF_NRLMBER 																as refNrlmber
+					,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) 				as ctnNrlmberName
+					,( SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) 				as ctnNrlmberUniqID
 					,REF_ALLOW_IP as refAllowIp
-					,( SELECT ADDR FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd
-					,( SELECT NAME FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName
+					,( SELECT ADDR FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) 					as eqAllowIpAdd
+					,( SELECT NAME FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) 					as eqAllowIpName
 					,PROCESSID as processid
+					,MBER_RATING				                                 				as mberRating			<!-- 담당책임(정/부)-->
+					,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 				as mberRatingName		<!-- 정/부 -->	
 					,STTUS as sttus
-					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') as frstRegisterPnttm
-					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') as lastUpdusrPnttm
+					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') 					as frstRegisterPnttm
+					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') 						as lastUpdusrPnttm
 		FROM
 			 EQ_ACCLOG T1
 		WHERE 1=1
@@ -133,6 +140,9 @@
 				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
 
+				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->	
+
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
 				,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpName  	 	<!-- 허용IP 이름 -->
@@ -158,6 +168,7 @@
 				,REF_EQ_IDPWD 			<!-- 모듈고유SEQ -->
 				,REF_NRLMBER			<!-- 회원고유번호 SEQ -->
 				,REF_ALLOW_IP			<!-- 허용IP SEQ -->
+				,MBER_RATING			<!-- 담당책임(정/부)-->
 				,PROCESSID				<!-- 프로세스 ID -->
 				,STTUS					<!-- 처리상태(A) -->
 				,REASON					<!-- 사유 -->
@@ -171,6 +182,7 @@
 				,#{refEqIdpwd} 			<!-- 모듈고유SEQ -->
 				,#{refNrlmber}			<!-- 회원고유번호 SEQ -->
 				,#{refAllowIp}			<!-- 허용IP SEQ -->
+				,#{mberRating}			<!-- 담당책임(정/부)-->
 				,#{processID}			<!-- 프로세스 ID -->
 				,'A'					<!-- 처리상태(A) -->
 				,#{reason}				<!-- 사유 -->
@@ -242,6 +254,9 @@
 				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
 				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
+				
+				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->
 
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->

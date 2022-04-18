@@ -245,7 +245,6 @@ $(document).ready(function(){
 	
 	setTimeout(function(){
 		var paramMap = {};
-		// paramMap["refEqList"] 		= '${Info.seq}';
 		paramMap["nrlmberId"] 		= '${Info.seq}';  // => 이게 {nrlmberId: ;47'} 이지 
 		console.log("paramMap : " + paramMap);
 		jqGridUtils.searchProc({

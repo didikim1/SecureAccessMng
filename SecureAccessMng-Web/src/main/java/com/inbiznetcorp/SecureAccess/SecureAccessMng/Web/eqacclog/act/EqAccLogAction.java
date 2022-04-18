@@ -53,9 +53,11 @@ public class EqAccLogAction
     @RequestMapping(value ={ "/ListPagingData.do" })
     public String ListPagingData(Model model)
     {
-        MyMap           paramMap    = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        BasicBean       resultBean  = null;
-        BasicBean       idcInfoBean = mEqIdcBiz.ListData(new MyMap());              // IDC List
+        MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        BasicBean       resultBean  		= null;
+        BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
+        BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
+        BasicBean       workInfoBean		= mEqIdcBiz.ListData(new MyMap());              // 업무 List
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
         	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
@@ -67,6 +69,8 @@ public class EqAccLogAction
         model.addAttribute("paramMap",          paramMap);
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       idcInfoBean.getList());
+        model.addAttribute("refEqList",       	refEqListInfoBean.getList());
+        model.addAttribute("workInfoList",      workInfoBean.getList());
 
         if ( paramMap.getInt("idcSeq", 0) > 0)
         {
@@ -74,6 +78,7 @@ public class EqAccLogAction
 
             eqListParamMap.put("rows",     10000);
             eqListParamMap.put("refEqIdc", paramMap.getInt("idcSeq"));
+            
 
             model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
         }

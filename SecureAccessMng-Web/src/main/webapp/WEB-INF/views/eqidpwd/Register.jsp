@@ -34,6 +34,18 @@
 				<td>${infoMap.svIp1}</td>
 			</tr>
 			<!-- //서버 IP -->
+			
+			<!-- 담당책임 (정/부) -->
+			<tr>
+				<th scope="col" width="120px">정/부</th>
+				<td>
+				<select class="common_select" name="mberRating">
+						<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
+						<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
+						<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
+				</select>
+			</tr>
+			<!-- 담당책임 (정/부) -->
 
 			<!-- 장비접속ID -->
 			<tr>
@@ -54,10 +66,9 @@
 
 
 <div class="border margin_l7">
-	<button type="button" class="btn_it01" id="btnRegisterData" onclick="">추가</button>
-	<button type="button" class="btn_it01" id="btnModifyData"   onclick="">수정</button>
-	<button type="button" class="btn_it01" id="btnDeleteData"   onclick="">삭제</button>
-	<button type="button" class="btn_it01" id="btnClose"   		onclick="">닫기</button>
+	<button type="button" class="eqlistButton" id="btnRegisterData" onclick="">추가</button>
+	<button type="button" class="eqlistButton" id="btnModifyData"   onclick="">수정</button>
+	<button type="button" class="eqlistButton" id="btnDeleteData"   onclick="">삭제</button>
 </div>
 
 </div>

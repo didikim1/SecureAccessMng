@@ -298,6 +298,19 @@ table.htable td {
   cursor:pointer;
 }
 
+#layout_content_popup_sub button.eqlistButton{
+  width: 60px;
+  height: 40px;
+  min-height:40px;
+  padding: 2px;
+  margin:5px auto 5px auto;
+  font-size: 14px;
+  color: #fff;
+  background-color:#263238;
+  border: 1px solid transparent;
+  cursor:pointer;
+}
+
 #layout_content_popup_sub button.userManageButton{
   width: 200px;
   height: 40px;
