@@ -89,7 +89,7 @@
 <%-- 							<td>${board.dpamentName}</td>			<!-- 부서 --> --%>
 <%-- 							<td>${board.positionName}</td>			<!-- 직위 --> --%>
 							<td>${board.frstRegisterPnttm}</td>			<!-- 처리일자 -->
-							<td>${board.uniqId}</td>					<!-- 등록자-->
+							<td>${board.uniqIdDisplay}</td>				<!-- 등록자-->
 							<td>${board.mberName}</td>					<!-- 소유자 -->
 							<td>${board.emailAddress}</td>				<!-- 계정-->
 							<td>${board.moblphonNo}</td>				<!-- 전화번호-->
@@ -118,7 +118,7 @@
 					      </c:forEach>
 					    </c:if>
 					</tbody>
-					    
+
 				<c:if test="${Data.paginationInfo.totalRecordCount == 0 }">
 					<tr>
 						<td colspan="10">데이터가 존재하지 않습니다.</td>

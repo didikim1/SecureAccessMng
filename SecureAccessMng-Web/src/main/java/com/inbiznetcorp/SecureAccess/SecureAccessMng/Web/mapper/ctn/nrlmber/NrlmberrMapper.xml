@@ -29,24 +29,24 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
 			AND MOBLPHON_NO = #{moblphonNo}
 		</if>
-		
+
 		<!--담당책임(정/부)-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)">
 			AND MBER_RATING = #{mberRating}
-		</if>		
-		
+		</if>
+
 		<!--상태-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">
 			AND MBER_STTUS = #{mberSttus}
-		</if>		
-		
+		</if>
+
 		<!-- 날짜 -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
 			<![CDATA[AND DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]>
 		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
 			<![CDATA[AND DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
-		</if>	
+		</if>
 
 
 	</sql>
@@ -65,14 +65,15 @@
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 	 SEQ				                                                       	   				as seq				<!-- 회원ID -->
+				,UNIQ_ID				                                                   	   				as uniqId			<!-- 권한ID -->
 				,ROLE_ID				                                                   	   				as roleId			<!-- 권한ID -->
 				,CHARGE_ID																	   				as chargeId    		<!-- 담당업무고유ID -->
 				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    			as name   			<!-- 담당업무명 -->
 				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )								as roleName			<!-- 권한명 -->
 				<!-- ,UNIQ_ID				                                  		              				as uniqId		 고유ID -->
 				,PASSWORD				                                  		               				as password			<!-- 비밀번호 -->
-				<!-- 
-				,MBER_NAME				                                  		              				as mberName	
+				<!--
+				,MBER_NAME				                                  		              				as mberName
 				 -->
 				,MBER_STTUS				                                  		               				as mberSttus		<!-- 상태 -->
 				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 								as mberSttusName	<!-- 상태명 -->
@@ -84,28 +85,28 @@
 				,LAST_UPDUSR_ID			                                  		               				as lastUpdusrId		<!-- 최종등록ID -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as frstRegisterPnttm <!-- 최초등록일 -->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	            				as lastUpdusrPnttm 	<!-- 최종등록일 -->
-				,	( 	
+				,	(
 						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
 								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
-								ELSE 
+								ELSE
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
-						END 
+						END
 				)  																							as mberName
-				
-				,	( 	
+
+				,	(
 						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
 								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-5, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
-								ELSE 
+								ELSE
 								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
-						END 
-				)  																							as uniqId  <!-- 고유ID  -->
-				
-				,	( 	
-						
+						END
+				)  																							as uniqIdDisplay  <!-- 고유ID  -->
+
+				,	(
+
 						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
 				)  																							as moblphonNo  <!-- 고유ID  -->
 
-		
+
 		FROM
 			 CTN_NRLMBER T1
 		WHERE 1=1
@@ -133,28 +134,28 @@
 				,LAST_UPDUSR_ID			                                  		               as lastUpdusrId		<!-- 최종등록ID -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		               as frstRegisterPnttm <!-- 최초등록일 -->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	  	               as lastUpdusrPnttm 	<!-- 최종등록일 -->
-				
-				,	( 	
+
+				,	(
 						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
 								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
-								ELSE 
+								ELSE
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
-						END 
+						END
 				)  																							as mberName
-				
-				,	( 	
+
+				,	(
 						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
 								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-2, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
-								ELSE 
+								ELSE
 								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
-						END 
+						END
 				)  																							as uniqId  <!-- 고유ID  -->
-				
-				,	( 	
+
+				,	(
 						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,5,4),'****')
 				)  																							as moblphonNo  <!-- 고유ID  -->
-				
-		
+
+
 		FROM
 			 CTN_NRLMBER T1
 		WHERE 1=1
@@ -193,7 +194,7 @@
 				,now()					<!-- 최초등록일 -->
 				,now()					<!-- 최종등록일 -->
 			)
-			
+
 	</update>
 
 	<!-- 수정-->
