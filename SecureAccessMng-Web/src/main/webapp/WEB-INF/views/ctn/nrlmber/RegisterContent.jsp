@@ -168,6 +168,7 @@ function fnClose(){
 }
 
 $(document).ready(function(){
+	var uniqId 	= $("[name=uniqId]").val();
 	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
 		datatype:'json',
 		url:'/jqGrid/init',
@@ -198,8 +199,8 @@ $(document).ready(function(){
    		sortorder:"desc",
    		onSelectRow:function(rowid, status){
    			var rowval = $('#grid').jqGrid('getRowData', rowid);
-//    			$("[name=seq]").val(rowval.seq);
-//    			$("[name=id]").val(rowval.id);
+    			$("[name=seq]").val(rowval.seq);
+    			$("[name=id]").val(rowval.id);
    		}
 	}));
 

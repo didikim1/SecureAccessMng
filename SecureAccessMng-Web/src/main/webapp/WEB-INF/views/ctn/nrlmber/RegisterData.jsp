@@ -123,17 +123,16 @@ function fnProcUniqIdChk(){
 
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
-	var uniqId 		= form.find("[name=uniqId]").val();
-	var mberName 	= form.find("[name=mberName]").val();
-	/*
-	..
-	.
-	.
-	.
-	.
-	.
-	*/
-	console.log("mberName : " + mberName)
+	var uniqId 			= form.find("[name=uniqId]").val();
+	var mberName 		= form.find("[name=mberName]").val();
+	var password 		= form.find("[name=password]").val();
+	var moblphonNo 		= form.find("[name=moblphonNo]").val();
+	var emailAddress 	= form.find("[name=emailAddress]").val();
+	var chargeId 		= form.find("[name=chargeId]").val();
+	var roleId 			= form.find("[name=roleId]").val();
+	var mberRating 		= form.find("[name=mberRating]").val();
+	var mberSttus 		= form.find("[name=mberSttus]").val();
+
 	if( isNull(uniqId) ){
 		$.fun.alert({
 			content : "계정을 입력해주세요.",
@@ -147,6 +146,55 @@ function fnProcUniqIdChk(){
 			content : "이름을 입력해주세요.",
 			action : function() {
 				$("[name=mberName]").focus();
+			}
+		});
+	}else if( isNull( password) ){
+		$.fun.alert({
+			content : "비밀번호를 입력해주세요.",
+			action : function() {
+				$("[name=password]").focus();
+			}
+		});
+	}else if( isNull( moblphonNo) ){
+		$.fun.alert({
+			content : "휴대폰번호를 입력해주세요.",
+			action : function() {
+				$("[name=moblphonNo]").focus();
+			}
+		});
+	}else if( isNull( emailAddress) ){
+		$.fun.alert({
+			content : "Email을 입력해주세요.",
+			action : function() {
+				$("[name=emailAddress]").focus();
+			}
+		});
+	}else if( isNull( chargeId) ){
+		$.fun.alert({
+			content : "담당을 선택해주세요.",
+			action : function() {
+				$("[name=chargeId]").focus();
+			}
+		});
+	}else if( isNull( roleId) ){
+		$.fun.alert({
+			content : "권한을 선택해주세요.",
+			action : function() {
+				$("[name=roleId]").focus();
+			}
+		});
+	}else if( isNull( mberRating) ){
+		$.fun.alert({
+			content : "정/부 를 선택해주세요.",
+			action : function() {
+				$("[name=mberRating]").focus();
+			}
+		});
+	}else if( isNull( mberSttus) ){
+		$.fun.alert({
+			content : "상태를 선택해주세요.",
+			action : function() {
+				$("[name=mberSttus]").focus();
 			}
 		});
 	} else {
