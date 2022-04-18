@@ -29,6 +29,10 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refNrlmber)">
 			AND REF_NRLMBER =  #{refNrlmber}
 		</if>
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(worktypecodeId)">
+			AND WORKTYPECODE_ID =  #{worktypecodeId}
+		</if>
+		
 
 	</sql>
 
@@ -39,11 +43,11 @@
 		FROM
 			EQ_ACCLOG
 		WHERE 1=1
-		AND WORKTYPECODE_ID IN (29, 27)
+		
 		<include refid="addWhere"/>
 	</select>
 
-	<!-- 페이징 목록 -->
+	<!-- 페이징 목록    -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 	 SEQ														as seq				    <!--서버고유ID-->

@@ -1,6 +1,7 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.act;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,6 +37,8 @@ public class EqAccLogAction
 
     private static final org.apache.log4j.Logger Logger = org.apache.log4j.Logger.getLogger(EqAccLogAction.class.getName());
 
+	private static final LinkedHashMap<Object, Object> requestMessage = null;
+
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz")
     EqAccLogBiz mBiz;
 
@@ -57,24 +60,47 @@ public class EqAccLogAction
     @RequestMapping(value ={ "/ListPagingData.do" })
     public String ListPagingData(Model model)
     {
-        MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        
+    	MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        
+        
+        
         BasicBean       resultBean  		= null;
         BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
         
-           if ("".equals(paramMap.getStr("sDate", ""))) {
+        List<MyCamelMap> workTypeList	    = null;
+        
+         if ("".equals(paramMap.getStr("sDate", ""))) {
         	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
         	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
         }
 
         resultBean = mBiz.ListPagingData( paramMap );
-
-        model.addAttribute("paramMap",          paramMap);
-        model.addAttribute("Data",              resultBean);
-        model.addAttribute("IdcInfoList",       idcInfoBean.getList());
-        model.addAttribute("refEqList",       	refEqListInfoBean.getList());
-
-
+        
+        
+        // 일부로 MIA 라고함.  맵 이름은 아무 상관없다라는걸 보여주고싶은거야
+        // 걍 MyMap 으로 넘기면됨 변수명은 중요하지않아. 
+        MyMap miaMap = new MyMap();
+        miaMap.put("title", 				"WORK_TYPE");
+        miaMap.put("type", 			"B");
+        
+        //  mCodeMapper.ListData(miaMap) 이 값이 어떻게 RETURN되는지 함보자..
+        workTypeList = mCodeMapper.ListData(miaMap);
+        
+        
+        
+        model.addAttribute("paramMap",        			   paramMap);
+        model.addAttribute("Data",              				   resultBean);
+        model.addAttribute("workInfoList",              	  workTypeList);
+        model.addAttribute("IdcInfoList",      					 idcInfoBean.getList());
+        model.addAttribute("refEqList",       					refEqListInfoBean.getList());
+        
+       
+        
+        
+        	
+        //내가 한거겠지만...이게뭐징..ㅋㅋ
         if ( paramMap.getInt("idcSeq", 0) > 0)
         {
             MyMap eqListParamMap = new MyMap();
@@ -85,8 +111,7 @@ public class EqAccLogAction
 
             model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
         }
-
-
+        
 
         return pagePrefix + "/ListPagingData";
     }
