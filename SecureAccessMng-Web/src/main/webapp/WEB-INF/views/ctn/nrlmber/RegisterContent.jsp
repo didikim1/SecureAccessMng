@@ -170,11 +170,8 @@ function fnClose(){
 
 
 $(document).ready(function(){
-<<<<<<< HEAD
 	var uniqId 	= $("[name=uniqId]").val();
-=======
 	
->>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({
 		datatype:'json',
 		url:'/jqGrid/init',
@@ -203,12 +200,6 @@ $(document).ready(function(){
 		height:"150px",
 		sortname:"LAST_UPDUSR_PNTTM",
    		sortorder:"desc",
-<<<<<<< HEAD
-   		onSelectRow:function(rowid, status){
-   			var rowval = $('#grid').jqGrid('getRowData', rowid);
-    			$("[name=seq]").val(rowval.seq);
-    			$("[name=id]").val(rowval.id);
-=======
    		onSelectRow:function(rowid, status,e){
    			var rowval = $('#grid').jqGrid('getRowData', rowId);
    			console.log(rowval)
@@ -220,7 +211,6 @@ $(document).ready(function(){
    			$("[name=roleName]").val(rowval.roleName);
    			$("[name=mberSttusName]").val(rowval.mberSttusName);
    			
->>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
    		}
 	}))
 	/*

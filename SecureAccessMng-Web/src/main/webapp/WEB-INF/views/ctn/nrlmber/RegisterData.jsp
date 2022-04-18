@@ -123,7 +123,6 @@ function fnProcUniqIdChk(){
 
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
-<<<<<<< HEAD
 	var uniqId 			= form.find("[name=uniqId]").val();
 	var mberName 		= form.find("[name=mberName]").val();
 	var password 		= form.find("[name=password]").val();
@@ -134,7 +133,6 @@ function fnProcUniqIdChk(){
 	var mberRating 		= form.find("[name=mberRating]").val();
 	var mberSttus 		= form.find("[name=mberSttus]").val();
 
-=======
 	var uniqId 		= form.find("[name=uniqId]").val();
 	var mberName 	= form.find("[name=mberName]").val();
 	var mberName 	= form.find("[name=password]").val();
@@ -148,7 +146,6 @@ function fnProcUniqIdChk(){
 	
 	console.log("mberName : " + mberName)
 	
->>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 	if( isNull(uniqId) ){
 		$.fun.alert({
 			content : "계정을 입력해 주세요.",
@@ -157,7 +154,6 @@ function fnProcUniqIdChk(){
 			}
 		});
 	}
-<<<<<<< HEAD
 	else if( isNull( mberName) ){
 		$.fun.alert({
 			content : "이름을 입력해주세요.",
@@ -215,9 +211,6 @@ function fnProcUniqIdChk(){
 			}
 		});
 	} else {
-=======
-	else {
->>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 		$.fun.ajax({
 			type : 'post',
 			data : {
