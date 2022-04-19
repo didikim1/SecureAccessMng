@@ -35,13 +35,13 @@ public class LoginAct
 
     @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.login.biz.LoginBiz")
     LoginBiz mBiz;
-    
+
 	 @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz")
 	 NrlmberBiz mNrlmberBiz;
-	 
+
 	 @Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz")
 	 CommonBiz mCommonBiz;
-	 
+
 	@Resource(name="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz")
 	ChargeBiz mChargeBiz;
 
@@ -105,23 +105,15 @@ public class LoginAct
         }
         else
         {
-        		if( "0".equals( checkPw( paramMap.getStr("password", "") ) ) == false )
-        		{
-        			// RESULT_NOT_MODIFIED 패스워드 변경이 필요(현재 정책에 맞지않는 패스워드 사용중)
-        			return new ResultMessage(ResultCode.RESULT_NOT_MODIFIED, "RESULT_NOT_MODIFIED", paramMap);
-        		}
-        		else
-        		{
-        			FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
-        			FrameworkBeans.findSessionBean().roleId      	= resultMap.getStr("roleId");
-        			FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
-        			FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
-        			FrameworkBeans.findSessionBean().uniqId         = resultMap.getStr("uniqId");
-        			FrameworkBeans.findSessionBean().mberName       = resultMap.getStr("mberName");
-        			FrameworkBeans.findSessionBean().mberSttus      = resultMap.getStr("mberSttus");
-        			FrameworkBeans.findSessionBean().moblphonNo     = resultMap.getStr("moblphonNo");
-        			FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
-        		}
+            FrameworkBeans.findSessionBean().mberSeq        = resultMap.getStr("seq");
+            FrameworkBeans.findSessionBean().roleId         = resultMap.getStr("roleId");
+            FrameworkBeans.findSessionBean().dpamentId      = resultMap.getStr("dpamentId");
+            FrameworkBeans.findSessionBean().positionId     = resultMap.getStr("positionId");
+            FrameworkBeans.findSessionBean().uniqId         = resultMap.getStr("uniqId");
+            FrameworkBeans.findSessionBean().mberName       = resultMap.getStr("mberName");
+            FrameworkBeans.findSessionBean().mberSttus      = resultMap.getStr("mberSttus");
+            FrameworkBeans.findSessionBean().moblphonNo     = resultMap.getStr("moblphonNo");
+            FrameworkBeans.findSessionBean().emailAddress   = resultMap.getStr("emailAddress");
         }
 
         return new ResultMessage(resultCode, "success");
@@ -288,17 +280,20 @@ public class LoginAct
 
         return strResult;
     }
-    
+
     @RequestMapping(value = { "/CallAuthPage.do" })
     public String CallAuthPage(Model model)
     {
     	MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-    	int authNumber  = 0;
+
+    	MyMap  resultMap                         = mBiz.SelectOneData(paramMap);
+
+//    	int authNumber  = 0;
 
     	model.addAttribute("paramMap",         paramMap);
 //        model.addAttribute("phoneNumber",      phoneNumber);
-    	model.addAttribute("authNumber",       authNumber);
+//    	model.addAttribute("authNumber",       authNumber);
 
     	return pagePrefix + "/RegisterCallAuthPage";
     }

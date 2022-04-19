@@ -4,21 +4,21 @@
 
 
 function fnModifyPasswordProc(){
-	
-	var _uniqid 		= $("[name=FormModifyPassword]").find("[name=uniqid]").val();
-	var _password 		= $("[name=FormModifyPassword]").find("[name=password]").val();
-	var _newpassword 	= $("[name=FormModifyPassword]").find("[name=newpassword]").val();
-	var _newpassword2 	= $("[name=FormModifyPassword]").find("[name=newpassword2]").val();
 
-	if ( isNull(_uniqid) ){
+	var _uniqId 		= $("[name=FormModifyPassword]").find("[name=uniqId]").val();
+/* 	var _password 		= $("[name=FormModifyPassword]").find("[name=password]").val();
+	var _newpassword 	= $("[name=FormModifyPassword]").find("[name=newpassword]").val();
+	var _newpassword2 	= $("[name=FormModifyPassword]").find("[name=newpassword2]").val(); */
+
+	if ( isNull(_uniqId) ){
 		$.fun.alert({content:"[아이디]를 입력해주세요."});
 		return false;
-	} else if( isNull(_password ) ) {
+	/* } else if( isNull(_password ) ) {
 		$.fun.alert({content:"현재 비빌번호를 입력해주세요."});
 		return false;
 	} else if ( _newpassword != _newpassword2 ) {
 		$.fun.alert({content:"새로운 비밀번호 두개가 일치하지 않습니다."});
-		return false;
+		return false; */
 	} else {
 		$.ajax({
 	        url: '/login/ModifyPasswordProc.do',
@@ -68,15 +68,15 @@ function fnModifyPasswordPop(uniqid){
  }
 
 function fnLogin(){
-	var _uniqid 	= $("[name=uniqid]").val();
-	var _password 	= $("[name=password]").val();
+	var _uniqId 	= $("[name=uniqId]").val();
+	/* var _password 	= $("[name=password]").val(); */
 
-	if ( isNull(_uniqid) ){
+	if ( isNull(_uniqId) ){
 		alert("[아이디] 를 입력해주세요.");
 		return;
-	} else if( isNull(_password ) ) {
+	/* } else if( isNull(_password ) ) {
 		alert("[비밀번호]를 입력해주세요.");
-		return;
+		return; */
 	}
 	else{
 		$.ajax({
@@ -114,10 +114,10 @@ function fnLogin(){
 }
 
 function fnCallAuthPage() {
-	var uniqId = "${uniqid}"
+	var _uniqId 	= $("[name=uniqId]").val();
 		$.fun.ajax({
 			type:'get',
-			url:"/login/CallAuthPage.do",
+			url:"/login/CallAuthPage.do?uniqId="+_uniqId,
 			success:function(data){
 				$.fun.layout({
 					id:"CallAuthPage",
@@ -144,7 +144,7 @@ $(document).ready(function(){
         }
     });
 	$("#btnLogin").click(function(){
-		fnLogin();
+		fnCallAuthPage();
 	});
 });
 </script>

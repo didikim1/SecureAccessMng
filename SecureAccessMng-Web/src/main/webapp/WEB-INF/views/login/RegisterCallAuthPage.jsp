@@ -19,13 +19,13 @@ function fnAuthCallSender() {
  	 if( authNumber > 100 ){
  		 authNumber -= 10;
  	 }
- 	  $("#authNumber").text(authNumber);
+ 	 $("#authNumber").text(authNumber);
 
 	 $.ajax({
 		type:'get',
 		url:"/login/CallAuth.do",
 		 dataType : "json",
-		data:{'authNumber':authNumber},
+		data:{'authNumber':authNumber, "phoneNumber": ""},
 		success:function(data){
 			console.log(data);
 			if(data.code == "200"){
