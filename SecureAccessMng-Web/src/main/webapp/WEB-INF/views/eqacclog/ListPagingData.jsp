@@ -37,10 +37,35 @@
 								</select>
 								
 								<div class="common_div left margin_l2">업무</div>
-								<select class="common_select" id="worktypecodeId" >
+								<!--  이런식으로 어떻게 paramMap으로 넘어오는지 함볼수있오 ㅎ -->
+								<!-- ????????? 이미 한거아냐? 틀만 만들어뒀어욬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ아니 무슨 수선가 너무 바뀐거아냐?ㅋㅋㅋㅋ -->
+								<!-- 
+								이렇게  
+codeSeq : 고유키값
+name   : 명칭
+
+worktypecodeId이건 어디에서 가져왔을려나....음음.. 아 worktypecodeId 음...
+								일단 실행해보자
+								
+								<select class="common_select" id="worktypecodeId"   > 아까 여기에 이렇게있었는데.
+								
+								실제 server랑 통신하기위해선 컨트롤러에 값이 보내기위해선  name값이 선언되어야함.
+								
+								id 는 javascript 에게 접근 or css에서 접근 그런용도로? 서버에 값을 보내긴 위해선 꼭 ㅜ믇
+								name 이 선언되어야함..
+name항모이 여러개면 배열러 서버에 전달이되고
+								
+							여기서 파람맵은서버에 전단될 값을 그대로 jsp에 return함. 
+							왜냐하면 화면에서  검색바에 검색 항목을 유지하기 위해서 
+							일단 검색 할때  worktypecodeId 로 워크타입을 넘기니깐 저게 sql에서도 적용되야겠지? 
+							
+							" <c:if test="${paramMap.worktypecodeId eq data.codeSeq}">selected</c:if> 
+								
+								 -->
+								<select class="common_select" id="worktypecodeId"   name="worktypecodeId">
 									<option value="" <c:if test="${paramMap.worktypecodeId  != '' || paramMap.worktypecodeId  ne null}">selected</c:if> >선택</option>
 									<c:forEach var="data" items="${workInfoList}" varStatus="status">
-										<option value="${data.worktypecodeId}" <c:if test="${paramMap.worktypecodeId eq data.worktypecodeId}"></c:if> >${Info.worktypecodeName}</option>
+										<option value="${data.codeSeq}" <c:if test="${paramMap.worktypecodeId eq data.codeSeq}">selected</c:if> >${data.name}</option>
 									</c:forEach>
 								</select>
 
@@ -59,8 +84,8 @@
 					<tr>
 						<th scope="col" width="2%"></th>
 						<th scope="col" width="8%">IDC</th>
-						<th scope="col" width="8%">서버</th>
-						<th scope="col" width="9%">업무</th>
+						<th scope="col" width="12%">서버</th>
+						<th scope="col" width="5%">업무</th>
 						<th scope="col" width="7%">접속ID</th>
 						<th scope="col" width="7%">접속IP</th>
 						<th scope="col" width="7%">접속자</th>
@@ -81,6 +106,7 @@
 							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>					<!-- 접속ID -->
 							<td>${board.eqAllowIpName}(${board.eqAllowIpAdd})</td>				<!-- 접속IP -->
 							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
+							<td>${board.mberRatingName}</td>											<!-- 담당책임 (정/부) -->
 							<td>${board.processid}</td>											<!-- 프로세스ID -->
 							<td>																<!-- 현재상태 -->
 							<c:choose>
