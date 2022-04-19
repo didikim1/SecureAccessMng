@@ -35,6 +35,7 @@
 										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}"></c:if> >${data.eqListSvIp1}</option>
 									</c:forEach>
 								</select>
+									<div class="common_div left margin_l2">업무</div>
 								<select class="common_select" id="worktypecodeId"   name="worktypecodeId">
 									<option value="" <c:if test="${paramMap.worktypecodeId  != '' || paramMap.worktypecodeId  ne null}">selected</c:if> >선택</option>
 									<c:forEach var="data" items="${workInfoList}" varStatus="status">
