@@ -29,17 +29,17 @@
 			<!-- //사용용도 -->
 
 			<!-- 서버명 -->
-			 <tr>
+<%-- 			 <tr>
 				<th scope="col" width="120px">서버명</th>
 				<td><input type="text" class="userManageInput" id="svName" name="svName" autocomplete="off" value="${Info.svName}" /></td>
-			</tr> 
+			</tr>  --%>
 			<!-- 서버명 -->
 			
 			<!-- 명칭 -->
-<!-- 			<tr>
+ 			<tr>
 				<th scope="col" width="120px">명칭</th>
 				<td><input type="text" class="userManageInput" id="svName" name="svName" autocomplete="off" value="${Info.svName}" /></td>
-			</tr> -->
+			</tr> 
 			<!--명칭-->
 
 			<!-- 서버기종 -->
@@ -111,24 +111,24 @@
 
 
 			<!-- 주소-->
-<!-- 			<tr>
+			<tr>
 				<th scope="col" width="120px">주소</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
-			</tr>  -->
+			</tr>  
 			<!-- 주소 -->
 			
 			<!-- 상세주소-->
-<!--			<tr>
+			<tr>
 				<th scope="col" width="120px">상세주소</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
-			</tr> -->
+			</tr>
 			<!-- 상세주소 -->
 			
 			<!-- IP #1 -->
- 			<tr>
+<%--  			<tr>
 				<th scope="col" width="120px">IP #1</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
-			</tr> 
+			</tr>  --%>
 			<!-- //IP #1 -->
 
 			<!-- IP #2 -->
@@ -153,10 +153,10 @@
 			<!-- //IP #4 -->
 
 			<!-- port -->
-			<tr>
+<%-- 			<tr>
 				<th scope="col" width="120px">PORT</th>
 				<td><input type="text" class="userManageInput" id="svPort" name="svPort" autocomplete="off" value="${Info.svPort}" /></td>
-			</tr> 
+			</tr>  --%>
 			<!-- //port -->
 
 			<!-- OSType -->
@@ -177,7 +177,7 @@
 			<!-- //서버상태 -->
 
 			<!-- IDC -->
- 			<tr>
+<%--  			<tr>
 				<th scope="col" width="120px">IDC</th>
 				<td>
 					<select class="userManageInput" name="idcSeq">
@@ -187,7 +187,7 @@
 						</c:forEach>
 					</select>
 				</td>
-			</tr> 
+			</tr>  --%>
 			<!-- //IDC -->
 
 			<!-- 상면 -->

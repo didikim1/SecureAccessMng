@@ -35,7 +35,7 @@ function fnProcSearch(){
 // 자산등록페이지
 function fnOpenRegisterPage(registType)
 {
-	// A:IDC등록, B:계정등록, C: 서버등록
+	// A:서버등록, B:계정등록
 	if(registType == "A")
 	{
 		fnEquipRegister(registType);
@@ -44,49 +44,15 @@ function fnOpenRegisterPage(registType)
 	{
 		fnAccountRegister(registType);
 	}
+	// IDC등록
 	else if(registType == "C")
 	{
-		fnServerRegister(registType);
+		fnIdcRegister(registType);
 	}
 }
 
-// IDC 등록
+// 서버등록
 function fnEquipRegister(registType)
-{
-	$.fun.ajax({
-		type:'get',
-		url:"/eqlist/Register.do?registType="+registType,
-		success:function(data){
-			$.fun.layout({
-				id:"induacaAdd",
-				"content":data,
-				"title":"IDC 등록",
-				"width":475,
-				"buttons":{}
-			});
-		}
-	});
-}
-
-//서버등록
-function fnServerRegister(registType)
-{
-	$.fun.ajax({
-		type:'get',
-		url:"/eqlist/Register.do?registType="+registType,
-		success:function(data){
-			$.fun.layout({
-				id:"induacaAdd",
-				"content":data,
-				"title":"서버등록",
-				"width":475,
-				"buttons":{}
-			});
-		}
-	});
-}
-// 자산등록
-/* function fnEquipRegister(registType)
 {
 	$.fun.ajax({
 		type:'get',
@@ -102,7 +68,24 @@ function fnServerRegister(registType)
 		}
 	});
 }
- */
+// IDC등록
+function fnIdcRegister(registType)
+{
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/Register.do?registType="+registType,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"IDC등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
 // 자산 삭제
 function fnDeleteData(seq, name){
 
@@ -184,6 +167,43 @@ function fnAccountRegister(eqlistSeq){
 // 		}
 // 	});
 // }
+
+function fnOpenRegisterPage(idcSeq){
+	// 엑셀은 ajax가 아니라 따로 파일 스트림을 응답받는거라 
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/ListPagingData.do?idcSeq="+idcSeq,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"계정등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
+
+function fnProcExcel(){
+	
+	// javascript 로 html form 을 구성해서  submit하는거지
+	//원래는 jsp를 서버로 응닫받는건데 엑셀은 파일스트림을 응답다아서 엑셀이 써지는거
+	//`FormSearchGnrlmber`  폼 에 있는 엘레멘트 항목
+	var data   = null;
+
+	var data   = serializeObject($("[name=FormSearchEqList]"));
+	var method = "get";
+	var inputs = '';
+
+	for (var k in data) {   // for 문 돌면서 hidden으로 jsp body `appendTo` body 안에  html그려서 submit(form을) 하고  remove 바로 지워버리는거징 무튼 하다보면 알게됭..ㅎ
+		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
+    }
+	// /ctn/nrlmber/ListExcelData 여기로 form을 submit할거야
+	$('<form action="'+ "/eqlist/ListPagingData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
+	
+}
 
 $(document).ready(function(){
 	$("[name=sDate]").datepicker({

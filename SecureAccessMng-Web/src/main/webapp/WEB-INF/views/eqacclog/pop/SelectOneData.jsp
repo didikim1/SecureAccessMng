@@ -42,6 +42,13 @@
 			</tr>
 			<!-- //접속자 -->
 			
+			<!-- 접속자-->
+			<tr>
+				<th scope="col" width="120px">정/부</th>
+				<td>${info.mberRatingName}</td>
+			</tr>
+			<!-- //접속자 -->
+			
 			<!-- 프로세스ID-->
 			<tr>
 				<th scope="col" width="120px">프로세스ID</th>

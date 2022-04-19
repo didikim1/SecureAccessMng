@@ -27,8 +27,10 @@ public class EqListBiz
 		BasicBean resultBean = null;
 
 		FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 1000));
-		resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 1000),
-				mMapper.SelectOnePagingCount(paramMap), mMapper.ListPagingData(paramMap));
+		resultBean = FrameworkPagingUtils.pagingData(paramMap, 
+				paramMap.getInt("rows", 1000),
+				mMapper.SelectOnePagingCount(paramMap), 
+				mMapper.ListPagingData(paramMap));
 
 		return resultBean;
 	}

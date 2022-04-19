@@ -25,7 +25,6 @@ $(function(){
 		sortRestart    : true
 	});
 
-
 });
 
 
@@ -64,26 +63,6 @@ function serializeObject(form){
         }
     });
     return o
-}
-
-
-function fnProcExcel(){
-	
-	// javascript 로 html form 을 구성해서  submit하는거지
-	//원래는 jsp를 서버로 응닫받는건데 엑셀은 파일스트림을 응답다아서 엑셀이 써지는거
-	//`FormSearchGnrlmber`  폼 에 있는 엘레멘트 항목
-	var data   = null;
-
-	var data   = serializeObject($("[name=FormSearchGnrlmber]"));
-	var method = "get";
-	var inputs = '';
-
-	for (var k in data) {   // for 문 돌면서 hidden으로 jsp body `appendTo` body 안에  html그려서 submit(form을) 하고  remove 바로 지워버리는거징 무튼 하다보면 알게됭..ㅎ
-		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
-    }
-	// /ctn/nrlmber/ListExcelData 여기로 form을 submit할거야
-	$('<form action="'+ "/ctn/nrlmber/ListExcelData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
-	
 }
 
 function fnOpenRegisterContentPage(uniqId){

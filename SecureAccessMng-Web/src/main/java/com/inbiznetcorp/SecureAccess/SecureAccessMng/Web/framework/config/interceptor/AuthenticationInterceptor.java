@@ -75,7 +75,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
             if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
             {
-                FrameworkBeans.findSessionBean().roleId = "8";
+				//FrameworkBeans.findSessionBean().roleId = "8"; 
             }
 
             if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().dpamentId))

@@ -6,7 +6,7 @@
 	<div class="content">
 		<div class="border_sub">
 
-			<!-- A:자산등록, B:계정등록, C:서버관리 -->
+			<!-- A:자산등록, B:계정등록, C: IDC등록 -->
 			<c:choose>
 				<c:when test="${paramMap.registType eq 'A'}">
 					<jsp:include page="register/Equip.jsp" flush="false" />
@@ -15,7 +15,7 @@
 					<jsp:include page="register/Account.jsp" flush="false" />
 				</c:when>
 				<c:when test="${paramMap.registType eq 'C'}">
-					<jsp:include page="register/Server.jsp" flush="false" />
+					<jsp:include page="register/Idc.jsp" flush="false" />
 				</c:when>
 			</c:choose>
 
@@ -31,8 +31,8 @@
 <%-- 				</c:otherwise> --%>
 <%-- 			</c:choose> --%>
 
-			<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록</button>
-<!--  		<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>-->
+			<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록하기</button>
+			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>
 		</div>
 
 	</div>
@@ -42,7 +42,7 @@ function fnProcRegisterData()
 {
 	var registType = "${paramMap.registType}";
 
-	// 장비등록
+	// 서버등록
 	if(registType == "A")
 	{
 		fnProcRegisterEquipCodeData();
@@ -52,23 +52,23 @@ function fnProcRegisterData()
 	{
 		fnProcRegisterAccountData();
 	}
-	// 계정등록
+	// IDC등록
 	else if(registType == "C")
 	{
-		fnProcRegisterServerData();
+		fnProcRegisterIdcData();
 	}
 
 }
 
-function fnProcRegisterEquipCodeData()
+ function fnProcRegisterEquipCodeData()
 {
 	// 관리자, IDC 선택하지 않은 경우 체크.
-	if(!$("[name=idcSeq]").val())
-	{
-		$.fun.alert({content:"준비중입니다."});
-		$("[name=idcSeq]").focus();
-		return;
+ 	 if(!$("[name=svName]").val())
+ 	{
+ 		$.fun.alert({content:"서버명을 입력하세요."});
+ 		$("[name=svName]").focus();
 	}
+	
 // 	if(!$("[name=entrprsmberSeq]").val())
 // 	{
 // 		$.fun.alert({content:"관리자를 선택하세요."});
@@ -86,9 +86,33 @@ function fnProcRegisterEquipCodeData()
 				location.reload();
 			}});
 		}
-	});
+	}); 
 }
+ 
+ // IDC 등록
+ function fnProcRegisterIdcData()
+{
+	// 관리자, IDC 선택하지 않은 경우 체크.
+ 	 if(!$("[name=svName]").val())
+ 	{
+ 		$.fun.alert({content:"준비중입니다."});
+ 		$("[name=svName]").focus();
+	}
+	
 
+	// IDC 등록
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/RegisterData.do",
+		data:$("form[name=FormEqList]").serialize(),
+		success:function(data){
+			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+				location.reload();
+			}});
+		}
+	}); 
+}
+ 
 function fnProcRegisterAccountData()
 {
 	var inputText = $("form[name=FormEqList] input[type=text]");
@@ -100,7 +124,6 @@ function fnProcRegisterAccountData()
 			return false;
 		}
 	}
-	
 
 	// 계정 등록
 	$.fun.ajax({
@@ -115,7 +138,7 @@ function fnProcRegisterAccountData()
 	});
 }
 
-// 장비등록
+// 서버등록
 function fnOpenRegisterEquipCodePage(title,inputName){
 	$.fun.ajax({
 		type:'get',
@@ -131,7 +154,7 @@ function fnOpenRegisterEquipCodePage(title,inputName){
 			});
 		}
 	});
-}
+} 
 
 // 계정등록
 function fnOpenRegisterAccountPage(title,inputName){
@@ -164,4 +187,5 @@ $(document).ready(function(){
 		,buttonImage : "/images/ico_date.png"
 	});
 });
+
 </script>
