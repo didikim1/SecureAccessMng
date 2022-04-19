@@ -36,7 +36,7 @@
 									</div>
 								</form>
 
-								<button class="loginButton" type="button" id="btnLogin">
+								<button class="btnLogin" type="button" id="btnLogin">
 									<b>로그인</b>
 								</button>
 

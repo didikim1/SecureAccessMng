@@ -7,9 +7,9 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(seq)">
 			AND SEQ 	=  #{seq}
 		</if>
-		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">
+	<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(name)">
 			AND NAME 	=  #{name}
-		</if>
+		</if> 
 	</sql>
 
 	<!-- 페이징 갯수 -->

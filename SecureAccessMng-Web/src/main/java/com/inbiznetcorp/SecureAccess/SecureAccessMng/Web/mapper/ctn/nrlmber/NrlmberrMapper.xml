@@ -8,7 +8,7 @@
 		 <!--  부서고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">
 			AND CHARGE_ID = #{chargeId}
-		</if>
+		</if> 
 
 		<!--직위고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
@@ -36,9 +36,9 @@
 		</if>
 
 		<!--상태-->
-		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">
+<!-- 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">
 			AND MBER_STTUS = #{mberSttus}
-		</if>
+		</if> -->
 
 		<!-- 날짜 -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">

@@ -25,7 +25,7 @@ function fnAuthCallSender() {
 		type:'get',
 		url:"/login/CallAuth.do",
 		 dataType : "json",
-		data:{'authNumber':authNumber, "phoneNumber": ""},
+		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ) },
 		success:function(data){
 			console.log(data);
 			if(data.code == "200"){

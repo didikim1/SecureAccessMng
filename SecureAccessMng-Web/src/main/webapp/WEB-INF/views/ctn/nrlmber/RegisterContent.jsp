@@ -186,7 +186,7 @@ $(document).ready(function(){
 		           ],
 		colModel: [
 				 {name:'mberRatingName', 	index:'mberRatingName',			width:5,	align:'center', search:false,  sortable:true}
-				,{name:'nrlmberId', 			index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'nrlmberId', 		index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberName', 		 	index:'mberName',				width:8,	align:'center', search:false,  sortable:true}
 				,{name:'moblphonNo', 		index:'moblphonNo',				width:13,	align:'center', search:false,  sortable:true}
 				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
