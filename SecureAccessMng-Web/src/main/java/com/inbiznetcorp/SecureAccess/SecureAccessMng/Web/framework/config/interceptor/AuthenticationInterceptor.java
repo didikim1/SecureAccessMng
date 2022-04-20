@@ -69,51 +69,26 @@ public class AuthenticationInterceptor implements HandlerInterceptor
         CommonBiz commonBiz = (CommonBiz) FrameworkBeans.findBean("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz");
 //        System.out.println("active = " + commonBiz.active);
 
-        switch (commonBiz.active)
+        if(       url.indexOf("/login/") >= 0
+                ||      url.indexOf("/login/index.do") >= 0
+                ||      url.indexOf("/login/SelectOneData.do") >= 0
+                ||      url.indexOf("/login/DeleteData.do") >= 0
+                ||      url.indexOf("/comm/api/getPublicIP.do") >= 0
+                ||      url.indexOf("api") >= 0
+        )
         {
-        case kProfiles_Active_Local:
-
-            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
-            {
-				FrameworkBeans.findSessionBean().roleId = null;
-            }
-
-            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().dpamentId))
-            {
-            	FrameworkBeans.findSessionBean().dpamentId = null;
-            }
-
-            if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().mberName))
-            {
-            	FrameworkBeans.findSessionBean().mberName = null;
-
-            }
-            
-            //FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-            return true;
-
-        default:
-                if( 	    url.indexOf("/login/") >= 0
-                		|| 	url.indexOf("/login/index.do") >= 0
-                		|| 	url.indexOf("/login/SelectOneData.do") >= 0
-                		|| 	url.indexOf("/login/DeleteData.do") >= 0
-                		|| 	url.indexOf("/comm/api/getPublicIP.do") >= 0
-                		|| 	url.indexOf("api") >= 0
-                	)
+                return true;
+        }
+        else
+        {
+                if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
                 {
-                	return true;
+                        FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
+                        return true;
                 }
                 else
                 {
-                	if( FrameworkUtils.isNull( FrameworkBeans.findSessionBean().mberSeq ))
-                	{
-                		FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
-                		return true;
-                	}
-                	else
-                	{
-                		return true;
-                	}
+                        return true;
                 }
         }
 

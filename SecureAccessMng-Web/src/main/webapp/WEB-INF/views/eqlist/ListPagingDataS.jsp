@@ -58,6 +58,7 @@ function fnEquipRegister(registType)
 		type:'get',
 		url:"/eqlist/Register.do?registType="+registType,
 		success:function(data){
+			console.log(data);
 			$.fun.layout({
 				id:"induacaAdd",
 				"content":data,
@@ -152,22 +153,8 @@ function fnAccountRegister(eqlistSeq){
 // 	});
 // }
 
-function fnOpenRegisterPage(idcSeq){
-	// 엑셀은 ajax가 아니라 따로 파일 스트림을 응답받는거라 
-	$.fun.ajax({
-		type:'get',
-		url:"/eqlist/ListPagingData.do?idcSeq="+idcSeq,
-		success:function(data){
-			$.fun.layout({
-				id:"induacaAdd",
-				"content":data,
-				"title":"계정등록",
-				"width":475,
-				"buttons":{}
-			});
-		}
-	});
-}
+
+
 
 //IDC등록
 function fnIdcRegister(registType)
@@ -189,8 +176,25 @@ function fnIdcRegister(registType)
 
 
 
+function serializeObject(form){
+	 var o = {};
+   var a = form.serializeArray();
+   $.each(a, function() {
+       if (o[this.name] !== undefined) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o
+}
+
+
 function fnProcExcel(){
-	
+
 	// javascript 로 html form 을 구성해서  submit하는거지
 	//원래는 jsp를 서버로 응닫받는건데 엑셀은 파일스트림을 응답다아서 엑셀이 써지는거
 	//`FormSearchGnrlmber`  폼 에 있는 엘레멘트 항목
@@ -205,8 +209,10 @@ function fnProcExcel(){
     }
 	// /ctn/nrlmber/ListExcelData 여기로 form을 submit할거야
 	$('<form action="'+ "/eqlist/ListPagingData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
-	
+
 }
+
+
 
 $(document).ready(function(){
 	$("[name=sDate]").datepicker({
