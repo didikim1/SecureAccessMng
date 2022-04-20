@@ -17,13 +17,16 @@ function fnAuthCallSender() {
 
 	// moblphonNo
  	 var authNumber = Math.floor(Math.random() * 98) +10 ;
- 	 if( authNumber > 100 ){
+ 	 if( authNumber >= 100 ){
  		 authNumber -= 10;
  	 }
  	 $("#authNumber").text(authNumber);
-
+	
+ 	 console.log($( "[name=moblphonNo]" ).val());
+ 	 
  	 //console.log({'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val() })
-
+	
+ 	 /*
 	 $.ajax({
 		type:'post',
 		url:"/login/CallAuth.do",
@@ -40,6 +43,7 @@ function fnAuthCallSender() {
 				}});
 			}
 	}})
+	*/
 
 };
 

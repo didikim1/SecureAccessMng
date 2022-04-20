@@ -282,7 +282,9 @@ public class LoginAct {
 	@RequestMapping(value = { "/CallAuthPage.do" })
 	public String CallAuthPage(Model model) {
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
+		
+		
+		
 		MyMap resultMap = mBiz.SelectOneData(paramMap);
 		System.out.println("moblphonNo : " + resultMap);
 
