@@ -4,6 +4,7 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <div id="layout_content_popup_sub">
 	<div class="content">
+		<input type="hidden" name="moblphonNo" value="${moblphonNo}"/>
 		<div class="" >
 			ARS인증 콜을 발신하였습니다.
 			인증번호 <h1 id="authNumber"></h1>
@@ -14,20 +15,21 @@
 <script type="text/javascript">
 function fnAuthCallSender() {
 
-
+	// moblphonNo
  	 var authNumber = Math.floor(Math.random() * 98) +10 ;
  	 if( authNumber > 100 ){
  		 authNumber -= 10;
  	 }
  	 $("#authNumber").text(authNumber);
 
+ 	 //console.log({'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val() })
+
 	 $.ajax({
-		type:'get',
+		type:'post',
 		url:"/login/CallAuth.do",
-		 dataType : "json",
-		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ) },
+		dataType : "json",
+		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val() },
 		success:function(data){
-			console.log(data);
 			if(data.code == "200"){
 				$.fun.alert({content:"인증 성공",  action:function(){
 					location.href="/eqacclog/ListPagingData.do";
@@ -38,7 +40,12 @@ function fnAuthCallSender() {
 				}});
 			}
 	}})
+
 };
+
+
+
+
 
 $(document).ready(function(){
 	setTimeout(function(){

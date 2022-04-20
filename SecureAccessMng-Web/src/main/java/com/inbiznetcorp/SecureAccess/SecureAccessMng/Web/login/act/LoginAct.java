@@ -168,29 +168,29 @@ public class LoginAct {
 
 	/**
 	 * 패스워드를 규칙에 맞게 체크한다.
-	 * 
+	 *
 	 * [사용방법] Util.checkPw(String inputPw);
-	 * 
+	 *
 	 * Return
-	 * 
+	 *
 	 * 0: OK (규칙에 부합됨)
-	 * 
+	 *
 	 * 1: 입력된 패스워드가 null이거나 없음.
-	 * 
+	 *
 	 * 2: 입력된 패스워드가 16자 이상임.
-	 * 
+	 *
 	 * 3: 입력된 패스워드가 2조합 인데, 9자리 미만임.
-	 * 
+	 *
 	 * 4: 입력된 패스워드가 3조합인데, 9자리 미만임.
-	 * 
+	 *
 	 * 5: 입력된 패스워드가 2조합 미만임.
-	 * 
+	 *
 	 * 6: 입력된 패스워드가 3자리 이상 연속된 값이 포함됨. (예, abc, def, 123)
-	 * 
+	 *
 	 * 7: 입력된 패스워드가 키보드 조합으로 3자리 이상 연속된 값이 포함됨. (예, asd, qwe, jkl)
-	 * 
+	 *
 	 * 8: 입력된 패스워드가 3자리 이상 같은 값이 포함됨. (예, aaa, 222)
-	 * 
+	 *
 	 * 99: 에러
 	 */
 	public static String checkPw(String inputPw) {
@@ -286,10 +286,14 @@ public class LoginAct {
 		MyMap resultMap = mBiz.SelectOneData(paramMap);
 		System.out.println("moblphonNo : " + resultMap);
 
+
+
 //    	int authNumber  = 0;
 
+//		resultMap.getStr(key)
+
 		model.addAttribute("paramMap", 		paramMap);
-		model.addAttribute("moblphonNo", 	paramMap);
+		model.addAttribute("moblphonNo", 	resultMap.getStr("moblphonNo"));
 //    	model.addAttribute("authNumber",    authNumber);
 
 		return pagePrefix + "/RegisterCallAuthPage";
@@ -301,23 +305,23 @@ public class LoginAct {
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		JSONObject rtrn = null;
 		// 상태값 A()
-		
+
 		String moblphonNo = paramMap.getStr("moblphonNo");
 
 		String authNumber = paramMap.getStr("authNumber");
 
 		String resultCode = ResultCode.RESULT_OK;
 
-		MyMap charge_seachMap = new MyMap();
-		
-		  charge_seachMap.put("name", "책임자"); charge_seachMap.put("name", "관리자");
-		  charge_seachMap.put("name", "운영팀"); charge_seachMap.put("name", "정산팀");
-		  charge_seachMap.put("name", "CS팀");
-		
-		  
+//		MyMap charge_seachMap = new MyMap();
+//
+//		  charge_seachMap.put("name", "책임자"); charge_seachMap.put("name", "관리자");
+//		  charge_seachMap.put("name", "운영팀"); charge_seachMap.put("name", "정산팀");
+//		  charge_seachMap.put("name", "CS팀");
+
+
 		  //MyCamelMap charge = mChargeBiz.SelectOneData(charge_seachMap); //
 		  //System.out.println("charge : " + charge);
-		
+
 
 		// 2. CTN_CHARGE.SEQ 값으로 CTN_NRLMBER 테이블에서 `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
 
@@ -325,9 +329,9 @@ public class LoginAct {
 
 		/*
 		 * MyCamelMap nrlmber = mBiz.SelectOneData(charge_seachMap);
-		 * 
+		 *
 		 * System.out.println("nrlmber : " + nrlmber);
-		 * 
+		 *
 		 * System.out.println("moblphonNo:" + nrlmber.getStr("moblphonNo"));
 		 * System.out.println("uniqId:" + nrlmber.getStr("uniqId"));
 		 * System.out.println("mberSttus:" + nrlmber.getStr("mberSttus"));
