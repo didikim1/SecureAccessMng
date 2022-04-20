@@ -53,7 +53,6 @@ public class EqListAction
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
     CodeMapper mCodeMapper;
 
-
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
 
@@ -80,19 +79,16 @@ public class EqListAction
     @RequestMapping(value = { "/ListExcelData.do" })
     public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
     {
-            List<MyCamelMap> resultS03Excel                 = null;
-    MyMap            paramMap                       = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
-    BasicBean       resultBean                              = null;
-    String          strFileName                     = "계정상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-            String []               arrTitle                        = new String[] {"처리자",  "소유자",          "계정",                   "전화번호",         "담당",           "권한",    "담당책임",                "상태"};
-            String []               arrExcelColum           = new String[] {"uniqId",       "mberName",     "emailAddress", "moblphonNo",   "name", "roleName","mberRatingName",    "mberSttusName"};
+		    List<MyCamelMap> resultS03Excel                 = null;
+		    MyMap            paramMap                       = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		
+		    BasicBean       resultBean                      = null;
+		    String          strFileName                     = "자산관리 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
+		    String []       arrTitle                		= new String[] { "IDC명",  "서버명", "Port(SSH)", "IP", "등록일"};
+		    String []       arrExcelColum           		= new String[] {"idcName", "name", "svPort",  "svIp1",  "frstRegisterPnttm"};
 
             paramMap.put("rows",1000000);
             resultBean = mBiz.ListPagingData( paramMap );
-//          String [] arrvalue                              = new String[] {"${info.uniqId}",               "mberName",     "emailAddress", "moblphonNo",           "chargeId",     "roleId",               "mberRating",   "mberSttus"};
-
-//          resultS03Excel = mExcelWrite.ListData( paramMap );
 
              mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultBean.getList(),  strFileName);
 

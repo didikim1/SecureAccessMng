@@ -208,7 +208,7 @@ function fnProcExcel(){
 		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
     }
 	// /ctn/nrlmber/ListExcelData 여기로 form을 submit할거야
-	$('<form action="'+ "/eqlist/ListPagingData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
+	$('<form action="'+ "/eqlist/ListExcelData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
 
 }
 

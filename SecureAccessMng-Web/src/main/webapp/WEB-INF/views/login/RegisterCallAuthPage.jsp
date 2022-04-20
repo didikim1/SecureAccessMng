@@ -34,9 +34,9 @@ function fnAuthCallSender() {
 		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val(), "uniqId" : $( "[name=uniqId]" ).val() },
 		success:function(data){
 			if(data.code == "200"){
-				$.fun.alert({content:"인증 성공",  action:function(){
+				{
 					location.href="/eqacclog/ListPagingData.do";
-				}})
+				}
 			} else {
 				$.fun.alert({content:"인증 실패로 처리되지않았습니다.", action:function(){
 					location.reload();
