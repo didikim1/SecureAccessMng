@@ -5,6 +5,7 @@
 <div id="layout_content_popup_sub">
 	<div class="content">
 		<input type="hidden" name="moblphonNo" value="${moblphonNo}"/>
+		<input type="hidden" name="uniqId" 	   value="${uniqId}"/>
 		<div class="" >
 			ARS인증 콜을 발신하였습니다.
 			인증번호 <h1 id="authNumber"></h1>
@@ -26,12 +27,11 @@ function fnAuthCallSender() {
  	 
  	 //console.log({'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val() })
 	
- 	 /*
 	 $.ajax({
 		type:'post',
 		url:"/login/CallAuth.do",
 		dataType : "json",
-		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val() },
+		data:{'authNumber':authNumber, "moblphonNo": $( "[name=moblphonNo]" ).val(), "uniqId" : $( "[name=uniqId]" ).val() },
 		success:function(data){
 			if(data.code == "200"){
 				$.fun.alert({content:"인증 성공",  action:function(){
@@ -43,7 +43,6 @@ function fnAuthCallSender() {
 				}});
 			}
 	}})
-	*/
 
 };
 

@@ -53,7 +53,7 @@
 					</table>
 						<div class="border margin_l6">
 							<c:choose>
-						         <c:when test = "${roleId eq 8}">
+						         <c:when test = "${chargeId eq 1}">
 						    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
 						    		<button type="button" class="btn_it03" onclick="fnProcExcel();">엑셀 다운로드</button>
 						         </c:when>
@@ -111,12 +111,6 @@
 						</tr>
 					</c:forEach>
 
-					    <c:if test="${mberName ne null && mberName !='' }">
-					      ${fn:substring(mberName,0,1) }
-					      <c:forEach begin="1" end="${fn:length(mberName)}" step="1">
-					        *
-					      </c:forEach>
-					    </c:if>
 					</tbody>
 
 				<c:if test="${Data.paginationInfo.totalRecordCount == 0 }">
