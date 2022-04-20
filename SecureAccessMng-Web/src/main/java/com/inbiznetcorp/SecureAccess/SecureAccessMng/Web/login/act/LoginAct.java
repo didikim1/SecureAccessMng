@@ -282,9 +282,9 @@ public class LoginAct {
 	@RequestMapping(value = { "/CallAuthPage.do" })
 	public String CallAuthPage(Model model) {
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-		
-		
-		
+
+
+
 		MyMap resultMap = mBiz.SelectOneData(paramMap);
 		System.out.println("moblphonNo : " + resultMap);
 
@@ -339,28 +339,27 @@ public class LoginAct {
 		 * System.out.println("uniqId:" + nrlmber.getStr("uniqId"));
 		 * System.out.println("mberSttus:" + nrlmber.getStr("mberSttus"));
 		 */
-		
-		MyMap resultMap = mBiz.SelectOneData(paramMap);
-		
-		FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
-		FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
-		FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
-		FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
-		FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
-		FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
-		FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
-		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
-		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
-		
-		/*
+
+//		MyMap resultMap = mBiz.SelectOneData(paramMap);
+//
+//		FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
+//		FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
+//		FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
+//		FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
+//		FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
+//		FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
+//		FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
+//		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
+//		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
+
 		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
 		String callResult = (String) rtrn.get("result");
-		
+
 		if (callResult.equals("00")) {
 			resultCode = ResultCode.RESULT_OK;
-			
+
 			MyMap resultMap = mBiz.SelectOneData(paramMap);
-			
+
 			FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
 			FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
 			FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
@@ -370,11 +369,10 @@ public class LoginAct {
 			FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
 			FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
 			FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
-			
+
 		} else {
 			resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
 		}
-		*/
 
 		return new ResultMessage(resultCode, rtrn);
 	}
