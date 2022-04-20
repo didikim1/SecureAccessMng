@@ -6,7 +6,7 @@
 	<div class="content">
 		<div class="border_sub">
 
-			<!-- A:자산등록, B:계정등록, C: IDC등록 -->
+			<!-- A:서버등록, B:계정등록, C: IDC등록 -->
 			<c:choose>
 				<c:when test="${paramMap.registType eq 'A'}">
 					<jsp:include page="register/Equip.jsp" flush="false" />

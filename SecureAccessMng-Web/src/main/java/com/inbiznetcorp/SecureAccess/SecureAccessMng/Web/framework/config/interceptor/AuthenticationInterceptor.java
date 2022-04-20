@@ -75,20 +75,23 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
             if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().roleId))
             {
-				//FrameworkBeans.findSessionBean().roleId = "8"; 
+				FrameworkBeans.findSessionBean().roleId = null;
             }
 
             if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().dpamentId))
             {
-
+            	FrameworkBeans.findSessionBean().dpamentId = null;
             }
 
             if(FrameworkUtils.isNull(FrameworkBeans.findSessionBean().mberName))
             {
+            	FrameworkBeans.findSessionBean().mberName = null;
 
             }
-
+            
+            //FrameworkBeans.findHttpServletBean().getHttpServletResponse().sendRedirect("/login/index.do");
             return true;
+
         default:
                 if( 	    url.indexOf("/login/") >= 0
                 		|| 	url.indexOf("/login/index.do") >= 0

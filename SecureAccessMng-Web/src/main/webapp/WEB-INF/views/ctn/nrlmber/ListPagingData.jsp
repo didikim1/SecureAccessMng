@@ -52,14 +52,8 @@
 						</tr>
 					</table>
 						<div class="border margin_l6">
-							<c:choose>
-						         <c:when test = "${chargeId eq 1}">
 						    		<button type="button" class="btn_it02" onclick="fnOpenRegisterPage(0);">계정 등록</button>
 						    		<button type="button" class="btn_it03" onclick="fnProcExcel();">엑셀 다운로드</button>
-						         </c:when>
-						         <c:otherwise>
-					         	</c:otherwise>
-							</c:choose>
 						</div>
 					</form>
 				</div>

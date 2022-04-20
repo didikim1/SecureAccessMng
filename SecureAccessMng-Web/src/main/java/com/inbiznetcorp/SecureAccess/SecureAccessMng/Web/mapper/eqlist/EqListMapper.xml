@@ -42,6 +42,8 @@
 			T1.NAME as name ,																<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
+			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	as mberRatingName,  <!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,
@@ -66,6 +68,8 @@
 			T1.NAME as name ,																<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
+			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	as mberRatingName,	<!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,
@@ -102,6 +106,7 @@
 				,SV_IP3 			                                            	<!--서버 IP3-->
 				,SV_IP4 			                                            	<!--서버 IP4-->
 				,SV_PORT 			                                    			<!--서버 SSH PORT-->
+				,MBER_RATING														<!-- 담당책임 (정/부) -->
 				,MANAGER_ID 			                                    		<!--관리자ID-->
 				,RECEIVING_PNTTM 													<!--입고일-->
 				,FRST_REGISTER_PNTTM 	 											<!--최초등록일-->
@@ -130,6 +135,7 @@
 				,#{svIp3} 				<!--서버 IP-->
 				,#{svIp4} 				<!--서버 IP-->
 				,#{svPort} 				<!--서버 SSH PORT-->
+				,#{mberRating} 			<!--담당책임 (정/부)-->
 				,#{entrprsmberSeq}		<!--관리자ID-->
 				,#{receivingPnttm} 		<!--입고일-->
 				,now() 					<!--최초등록일-->
@@ -146,24 +152,25 @@
 				LAST_UPDUSR_PNTTM  =  now()
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcId)">   	   ,IDC_ID = #{idcId}    			        </if>  	 <!-- 서버고유ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svModel)">  	   ,SV_MODEL = #{svModel}  			    	</if>  	 <!-- 기종 -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svManufacture)"> ,SV_MANUFACTURE = #{svManufacture}  	    </if>  	 <!-- 제조업체 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svManufacture)"> ,SV_MANUFACTURE = #{svManufacture}  	</if>  	 <!-- 제조업체 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svName)">  	   ,SV_NAME = #{svName}  			        </if>  	 <!-- 서버명 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svUsage)"> 	   ,SV_USAGE = #{svUsage}  			        </if>  	 <!-- 사용용도 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svPosition)">    ,SV_POSITION = #{svPosition}  	        </if>  	 <!-- 서버 IP -->
 
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyName)"> ,PROPERTY_NAME = #{propertyName}          </if>  	 <!-- 자산명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyName)"> ,PROPERTY_NAME = #{propertyName}          </if>  <!-- 자산명 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyNum)">  ,PROPERTY_NUM = #{propertyNum}  	        </if>   <!-- 자산번호 -->
 
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecCpu)">     ,PROPERTY_NUM = #{sepecCpu}  		        </if>  	 <!-- 스펙 씨피유 -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecMm)">   	  ,SEPEC_MM = #{sepecMm}  			        </if>  	 <!-- 스펙 메모리 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecCpu)">     ,PROPERTY_NUM = #{sepecCpu}  		    </if>  	 <!-- 스펙 씨피유 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecMm)">   	  ,SEPEC_MM = #{sepecMm}  			    </if>  	 <!-- 스펙 메모리 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecDisk)">    ,SEPEC_DISK = #{sepecDisk}  		        </if>  	 <!-- 스펙 디스크 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecNic)">     ,SEPEC_NIC = #{sepecNic}  		        </if>  	 <!-- 스펙 랜카드 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(osType)">        ,OS_TYPE = #{osType}  			        </if>  	 <!-- OS타입 -->
 
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svIp)">     	   ,SV_IP = #{svIp}  						</if>  	 <!-- 서버 IP -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svPort)">        ,SV_PORT = #{svPort}  					</if>  	 <!-- 서버 SSH PORT -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)">     ,MBER_RATING = #{mberRating}  			</if>  	 <!-- 담당책임(정/부) -->
 
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(managerId)">     ,MANAGER_ID = #{managerId}  				</if>  	 <!-- 관리자ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(managerId)">     ,MANAGER_ID = #{managerId}  			</if>  	 <!-- 관리자ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(receivingPnttm)">,RECEIVING_PNTTM = #{receivingPnttm}  	</if>  	 <!-- 입고일 -->
 		WHERE SV_ID = #{svId}
 	</update>

@@ -166,6 +166,7 @@ $(function(){
 		           	 '고유ID'
 		           	,'패스워드'
 		           	,'아이디'
+		           	,'담당책임'
 		           	,'최종등록자'
 		           	,'최종등록일'
 		           ],
@@ -173,6 +174,7 @@ $(function(){
 				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'pwd', 				index:'PWD',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberRating', 		index:'MBER_RATING',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
 		],
@@ -190,6 +192,7 @@ $(function(){
    			$("[name=seq]").val(rowval.seq);
    			$("[name=id]").val(rowval.id);
    			$("[name=pwd]").val(rowval.pwd);
+   			$("[name=mberRating]").val(rowval.mberRating);
    		}
 	}));
 

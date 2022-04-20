@@ -61,30 +61,14 @@ function fnEquipRegister(registType)
 			$.fun.layout({
 				id:"induacaAdd",
 				"content":data,
-				"title":"자산 등록",
+				"title":"서버등록",
 				"width":475,
 				"buttons":{}
 			});
 		}
 	});
 }
-// IDC등록
-function fnIdcRegister(registType)
-{
-	$.fun.ajax({
-		type:'get',
-		url:"/eqlist/Register.do?registType="+registType,
-		success:function(data){
-			$.fun.layout({
-				id:"induacaAdd",
-				"content":data,
-				"title":"IDC등록",
-				"width":475,
-				"buttons":{}
-			});
-		}
-	});
-}
+
 
 // 자산 삭제
 function fnDeleteData(seq, name){
@@ -184,6 +168,25 @@ function fnOpenRegisterPage(idcSeq){
 		}
 	});
 }
+
+//IDC등록
+function fnIdcRegister(registType)
+{
+	$.fun.ajax({
+		type:'get',
+		url:"/eqlist/Register.do?registType="+registType,
+		success:function(data){
+			$.fun.layout({
+				id:"induacaAdd",
+				"content":data,
+				"title":"IDC등록",
+				"width":475,
+				"buttons":{}
+			});
+		}
+	});
+}
+
 
 
 function fnProcExcel(){

@@ -102,7 +102,8 @@ public class EqListAction
     public @ResponseBody ResultMessage RegisterData(Model model)
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
+        MyMap resultMap       = null;
+        
         // 자산 등록
         mBiz.RegisterData(paramMap);
 
