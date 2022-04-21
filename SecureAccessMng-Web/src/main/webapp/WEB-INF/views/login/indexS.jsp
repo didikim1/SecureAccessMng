@@ -145,6 +145,8 @@ $(document).ready(function(){
     });
 	$("#btnLogin").click(function(){
 		fnCallAuthPage();
-	});
+	}); 
+
+
 });
 </script>

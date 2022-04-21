@@ -122,17 +122,20 @@
 
 function fnProcUniqIdChk(){
 
+	var idRegExp = /^[a-zA-z0-9]{4,12}$/;
+	
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
-	var uniqId 			= form.find("[name=uniqId]").val();
+	var uniqId 				= form.find("[name=uniqId]").val();
 	var mberName 		= form.find("[name=mberName]").val();
-	var password 		= form.find("[name=password]").val();
-	var moblphonNo 		= form.find("[name=moblphonNo]").val();
+	var password 			= form.find("[name=password]").val();
+	var moblphonNo 	= form.find("[name=moblphonNo]").val();
 	var emailAddress 	= form.find("[name=emailAddress]").val();
-	var chargeId 		= form.find("[name=chargeId]").val();
-	var roleId 			= form.find("[name=roleId]").val();
+	var chargeId 			= form.find("[name=chargeId]").val();
+	var roleId 					= form.find("[name=roleId]").val();
 	var mberRating 		= form.find("[name=mberRating]").val();
 	var mberSttus 		= form.find("[name=mberSttus]").val();
+	 
 
 	console.log("mberName : " + mberName)
 	
@@ -143,8 +146,7 @@ function fnProcUniqIdChk(){
 				$("[name=uniqId]").focus();
 			}
 		});
-	}
-	else if( isNull( mberName) ){
+	}else if( isNull( mberName) ){
 		$.fun.alert({
 			content : "이름을 입력해주세요.",
 			action : function() {
@@ -224,6 +226,7 @@ function fnProcUniqIdChk(){
 		});
 	}
 }
+
 
 function fnProcRegisterData() {
 	$.fun.ajax({

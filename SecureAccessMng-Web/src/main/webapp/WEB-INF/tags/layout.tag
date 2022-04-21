@@ -27,6 +27,9 @@
 <script type="text/javascript" src="${_resource}/js/common/uicommon.js"></script>
 <script type="text/javascript" src="${_resource}/js/common/jquery/jquery.form.js"></script>
 
+<!-- script 정규식 유효서  체크 -->
+<script type="text/javascript" src="${_resource}/js/common/RegExpChk.js"></script>
+
 <link rel="stylesheet" type="text/css"  href="${_resource}/lib/audio/skin/blue.monday/css/jplayer.blue.monday.css"/>
 <script type="text/javascript" src="${_resource}/lib/audio/jplayer/jquery.jplayer.min.js"></script>
 
@@ -74,7 +77,7 @@
 			<div id="layout_menu">
 				<ul id="nav">
 				   <li class="top border_right" id="m0"><a href="/eqacclog/ListPagingData.do" id="gnb_0" class="top_link">접속로그</a></li>
-				    <li class="top border_right" id="m2"><a href="/eqlist/" id="gnb_0" class="top_link">자산관리</a></li>
+				    <li class="top border_right" id="m2"><a href="/eqlist/ListPagingData.do" id="gnb_0" class="top_link">자산관리</a></li>
 			         <c:if test = "${chargeId eq 1 || chargeId eq 8}">
 			    	<li class="top border_right" id="m2"><a href="/ctn/nrlmber/ListPagingData.do" id="gnb_0" class="top_link">계정 관리</a></li>
 			         </c:if>

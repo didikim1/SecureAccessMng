@@ -248,6 +248,18 @@ input.userManagefix{
   border: 1px solid #eee;
   float: left;
 }
+#layout_content_popup_sub table.htable input.userManageshow{
+  width: 300px;
+  height: 40px;
+  margin-left:10px;
+  padding: 2px;
+  padding-left: 50px;
+  font-size: 15px;
+  color: c8c8c8;
+  border: 1px solid white;
+  background-color: white;
+  text-align: canter;
+}
 #layout_content_popup_sub table.htable input.userManageInput{
   width: 300px;
   height: 30px;

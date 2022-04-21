@@ -9,6 +9,7 @@
 		<table id="grid"></table>
 		<div id="pager"></div>
 
+		
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
@@ -37,6 +38,10 @@
 <!-- 						</tr> -->
 
 
+						<tr>
+						<th>현재 정보</th>
+							<td><input class="userManageshow"  value="${Info.mberNameDisplay }  &nbsp;&nbsp;/&nbsp;&nbsp; ${Info.moblphonNoDisplay}" disabled /></td>
+						</tr>
 						<tr>
 							<th scope="col" width="120px">소유자</th>
 							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="" /></td>
