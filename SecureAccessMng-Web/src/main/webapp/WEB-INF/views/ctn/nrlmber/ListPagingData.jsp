@@ -76,7 +76,7 @@
 							<th scope="col" width="7%">상태</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody style="cursor: pointer;">
 						<c:forEach var="board" items="${Data.list}" varStatus="status" >
 						<tr onclick ="fnOpenRegisterContentPage('${board.uniqId}')">
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
@@ -84,9 +84,9 @@
 <%-- 							<td>${board.positionName}</td>			<!-- 직위 --> --%>
 							<td>${board.frstRegisterPnttm}</td>			<!-- 처리일자 -->
 							<td>${board.uniqIdDisplay}</td>				<!-- 등록자-->
-							<td>${board.mberName}</td>					<!-- 소유자 -->
+							<td>${board.mberNameDisplay}</td>			<!-- 소유자 -->
 							<td>${board.emailAddress}</td>				<!-- 계정-->
-							<td>${board.moblphonNo}</td>				<!-- 전화번호-->
+							<td>${board.moblphonNoDisplay}</td>			<!-- 전화번호-->
 							<td>${board.name}</td>						<!-- 담당-->
 							<td>${board.roleName}</td>					<!-- 권한-->
 							<td>
@@ -104,7 +104,6 @@
 							</td>
 						</tr>
 					</c:forEach>
-
 					</tbody>
 
 				<c:if test="${Data.paginationInfo.totalRecordCount == 0 }">

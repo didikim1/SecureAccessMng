@@ -83,7 +83,7 @@ public class EqListAction
 		    MyMap            paramMap                       = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		
 		    BasicBean       resultBean                      = null;
-		    String          strFileName                     = "자산관리 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
+		    String          strFileName                     = "자산관리 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+")";
 		    String []       arrTitle                		= new String[] { "IDC명",  "서버명", "Port(SSH)", "IP", "등록일"};
 		    String []       arrExcelColum           		= new String[] {"idcName", "name", "svPort",  "svIp1",  "frstRegisterPnttm"};
 

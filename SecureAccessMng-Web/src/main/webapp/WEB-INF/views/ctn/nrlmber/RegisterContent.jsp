@@ -37,7 +37,7 @@
 <!-- 						</tr> -->
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberName}" /></td>
+							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberNameDisplay}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">전화번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNo}" /></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
@@ -177,21 +177,23 @@ $(document).ready(function(){
 		url:'/jqGrid/init',
 		colNames: [
 		           	 '정/부'
-		           	,'회원 SEQ'
-		           	,'이름'
+		           	,'소유자'
 		           	,'휴대폰번호'
 		           	,'담당'
 		           	,'권한'
 		           	,'상태'
+		           	,'처리자'
+		           	,'처리일'
 		           ],
 		colModel: [
 				 {name:'mberRatingName', 	index:'mberRatingName',			width:5,	align:'center', search:false,  sortable:true}
-				,{name:'nrlmberId', 		index:'nrlmberId',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'mberName', 		 	index:'mberName',				width:8,	align:'center', search:false,  sortable:true}
-				,{name:'moblphonNo', 		index:'moblphonNo',				width:13,	align:'center', search:false,  sortable:true}
+				,{name:'mberNameDisplay', 	index:'mberNameDisplay',		width:8,	align:'center', search:false,  sortable:true}
+				,{name:'moblphonNoDisplay', index:'moblphonNoDisplay',		width:13,	align:'center', search:false,  sortable:true}
 				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'roleName', 			index:'roleName',				width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberSttusName', 	index:'mberSttusName',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'frstRegisterId', 	index:'frstRegisterId',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'frstRegisterPnttm', index:'frstRegisterPnttm',		width:10,	align:'center', search:false,  sortable:true}
 		],
 
 		pager:"#pager",
@@ -204,12 +206,13 @@ $(document).ready(function(){
    			var rowval = $('#grid').jqGrid('getRowData', rowId);
    			console.log(rowval)
   			$("[name=mberRatingName]").val(rowval.mberRatingName);
-   			$("[name=nrlmberId]").val(rowval.nrlmberId);
-   			$("[name=mberName]").val(rowval.mberName);
-   			$("[name=moblphonNo]").val(rowval.moblphonNo);
+   			$("[name=mberNameDisplay]").val(rowval.mberNameDisplay);
+   			$("[name=moblphonNoDisplay]").val(rowval.moblphonNoDisplay);
    			$("[name=chargeName]").val(rowval.chargeName);
    			$("[name=roleName]").val(rowval.roleName);
    			$("[name=mberSttusName]").val(rowval.mberSttusName);
+   			$("[name=frstRegisterId]").val(rowval.frstRegisterId);
+   			$("[name=lastUpdusrPnttm]").val(rowval.lastUpdusrPnttm);
 
    		}
 	}))

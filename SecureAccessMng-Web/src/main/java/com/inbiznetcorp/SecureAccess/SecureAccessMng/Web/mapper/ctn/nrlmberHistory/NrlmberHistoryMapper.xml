@@ -56,11 +56,24 @@
 				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
 				,MBER_RATING
 				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
-				,MOBLPHON_NO			                                  		               		as moblphonNo			<!-- 휴대폰번호 -->
+				,MOBLPHON_NO			                                  		               		as	moblphonNo			<!-- 휴대폰번호 -->
 				,PROC_STTUS																			as  procSttus
 				,DATE_FORMAT(T1.PROC_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as  procPnttm 			<!-- 처리일자 -->
 				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            		as  frstRegisterPnttm 	<!-- 최초등록일 -->
+				,	(
+						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
+								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
+								ELSE
+								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
+						END
+				)  																							as mberNameDisplay  <!--  이름(마스킹) -->
+
+
+				,	(
+
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
+				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 		FROM
 			 CTN_NRLMBER_HISTORY T1
 		WHERE 1=1
@@ -83,11 +96,22 @@
 				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 						as  mberSttusName		<!-- 상태명 -->
 				,MBER_RATING
 				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as  mberRatingName		<!-- 정/부 -->
-				,MOBLPHON_NO			                                  		               		as moblphonNo			<!-- 휴대폰번호 -->
+				,MOBLPHON_NO			                                  		               		as 	moblphonNo			<!-- 휴대폰번호 -->
 				,PROC_STTUS																			as  procSttus
 				,DATE_FORMAT(T1.PROC_PNTTM, '%Y-%m-%d %H:%i:%s') 		            				as  procPnttm 			<!-- 처리일자 -->
 				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            		as  frstRegisterPnttm 	<!-- 최초등록일 -->
+				,	(
+						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
+								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
+								ELSE
+								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
+						END
+				)  																							as mberNameDisplay  <!--  이름(마스킹) -->
+				,	(
+
+						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
+				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 		FROM
 			 CTN_NRLMBER_HISTORY T1
 		WHERE 1=1

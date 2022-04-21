@@ -204,10 +204,9 @@ function fnProcExcel(){
 	var method = "get";
 	var inputs = '';
 
-	for (var k in data) {   // for 문 돌면서 hidden으로 jsp body `appendTo` body 안에  html그려서 submit(form을) 하고  remove 바로 지워버리는거징 무튼 하다보면 알게됭..ㅎ
+	for (var k in data) {   
 		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
     }
-	// /ctn/nrlmber/ListExcelData 여기로 form을 submit할거야
 	$('<form action="'+ "/eqlist/ListExcelData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
 
 }
