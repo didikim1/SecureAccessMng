@@ -17,7 +17,7 @@
 					<table class="wtable_sub">
 						<tr>
 							<td>
-								<div class="common_div left">처리일자</div>
+								<div class="common_div left">등록일</div>
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 

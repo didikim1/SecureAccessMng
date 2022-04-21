@@ -29,6 +29,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 
 import jxl.write.WriteException;
 
@@ -65,6 +66,11 @@ public class NrlmberAct
             BasicBean       resultBean  		= null;
     		BasicBean       roleList	 		= null;
     		BasicBean       chargeList  		= null;
+    		
+            if ("".equals(paramMap.getStr("sDate", ""))) {
+                paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
+                paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
+            }
 
             resultBean   = mBiz.ListPagingData( paramMap );
     		roleList  	 = mRoleBiz.ListPagingData(new MyMap());

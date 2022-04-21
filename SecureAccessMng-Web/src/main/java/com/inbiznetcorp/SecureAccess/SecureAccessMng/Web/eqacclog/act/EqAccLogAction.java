@@ -71,9 +71,9 @@ public class EqAccLogAction
 
         List<MyCamelMap> workTypeList	    = null;
 
-         if ("".equals(paramMap.getStr("sDate", ""))) {
-        	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
-        	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
+        if ("".equals(paramMap.getStr("sDate", ""))) {
+            paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
+            paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
         }
 
         resultBean = mBiz.ListPagingData( paramMap );
@@ -82,7 +82,7 @@ public class EqAccLogAction
         // 일부로 MIA 라고함.  맵 이름은 아무 상관없다라는걸 보여주고싶은거야
         // 걍 MyMap 으로 넘기면됨 변수명은 중요하지않아.
         MyMap miaMap = new MyMap();
-        miaMap.put("title", 				"WORK_TYPE");
+        miaMap.put("title", 		"WORK_TYPE");
         miaMap.put("type", 			"B");
 
         //  mCodeMapper.ListData(miaMap) 이 값이 어떻게 RETURN되는지 함보자..
@@ -90,11 +90,11 @@ public class EqAccLogAction
 
 
 
-        model.addAttribute("paramMap",        			   paramMap);
-        model.addAttribute("Data",              				   resultBean);
-        model.addAttribute("workInfoList",              	  workTypeList);
-        model.addAttribute("IdcInfoList",      					 idcInfoBean.getList());
-        model.addAttribute("refEqList",       					refEqListInfoBean.getList());
+        model.addAttribute("paramMap",        			   	paramMap);
+        model.addAttribute("Data",              			resultBean);
+        model.addAttribute("workInfoList",              	workTypeList);
+        model.addAttribute("IdcInfoList",      				idcInfoBean.getList());
+        model.addAttribute("refEqList",       				refEqListInfoBean.getList());
 
 
 

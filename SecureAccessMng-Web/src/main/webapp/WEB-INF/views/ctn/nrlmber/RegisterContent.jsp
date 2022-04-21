@@ -35,6 +35,9 @@
 <!-- 								</select> -->
 <!-- 							</td> -->
 <!-- 						</tr> -->
+
+	
+	
 						<tr>
 							<th scope="col" width="120px">소유자</th>
 							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberNameDisplay}" /></td>
@@ -44,13 +47,12 @@
 							<td><input type="text" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">전화번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay}" /></td>
+							<th scope="col" width="120px">휴대폰번호</th>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay} " /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<td>
-
 							<select class="common_select" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
@@ -60,7 +62,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">권한 ${Info.roleId}</th>
+							<th scope="col" width="120px">권한</th>
 							<td>
 								<select class="common_select" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
@@ -205,14 +207,12 @@ $(document).ready(function(){
    		onSelectRow:function(rowid, status,e){
    			var rowval = $('#grid').jqGrid('getRowData', rowId);
    			console.log(rowval)
-  			$("[name=mberRatingName]").val(rowval.mberRatingName);
-   			$("[name=mberNameDisplay]").val(rowval.mberNameDisplay);
-   			$("[name=moblphonNoDisplay]").val(rowval.moblphonNoDisplay);
-   			$("[name=chargeName]").val(rowval.chargeName);
-   			$("[name=roleName]").val(rowval.roleName);
-   			$("[name=mberSttusName]").val(rowval.mberSttusName);
-   			$("[name=frstRegisterId]").val(rowval.frstRegisterId);
-   			$("[name=lastUpdusrPnttm]").val(rowval.lastUpdusrPnttm);
+  			$("[name=mberRatingName]")		.val(rowval.mberRatingName);
+   			$("[name=mberNameDisplay]")		.val(rowval.mberNameDisplay);
+   			$("[name=moblphonNoDisplay]")	.val(rowval.moblphonNoDisplay);
+   			$("[name=chargeName]")			.val(rowval.chargeName);
+   			$("[name=roleName]")			.val(rowval.roleName);
+   			$("[name=mberSttusName]")		.val(rowval.mberSttusName);
 
    		}
 	}))
@@ -258,6 +258,5 @@ $(document).ready(function(){
 		});
 	}, 500);
 });
-
 
 </script>

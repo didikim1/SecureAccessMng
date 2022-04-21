@@ -16,7 +16,13 @@
 				</td>
 			</tr>
 			<!-- //장비정보 -->
-
+			<!-- 정/부 -->
+			<tr>
+				<th scope="col" width="120px">정부</th>
+				<td><input type="text" class="userManageInput" id="mberRating" name="mberRating" autocomplete="off" value="${paramMap.mberRating}" /></td>
+			</tr>
+			<!-- 정/부 -->
+			
 			<!-- 장비접속ID -->
 			<tr>
 				<th scope="col" width="120px">계정명</th>

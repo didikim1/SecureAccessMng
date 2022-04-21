@@ -31,7 +31,7 @@
 <!-- 						</tr> -->
 						<tr>
 							<th scope="col" width="120px">ID</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off" value="${Info.uniqId}" /></td>
+							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off"  value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">이름</th>
@@ -39,11 +39,12 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
-							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off"></td>
+							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off" ></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNo}"></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" 
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" value="${Info.moblphonNo}"></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">Email</th>
@@ -250,6 +251,7 @@ function fnProcRegisterData() {
 		}
 	});
 }
+
 
 function fnClose() {
 	$("#induacaAdd").dialog('destroy').remove();

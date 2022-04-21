@@ -39,10 +39,10 @@
 			<tr>
 				<th scope="col" width="120px">정/부</th>
 				<td>
-				<select class="common_select" name="mberRating">
-						<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
-						<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
-						<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
+				<select class="common_select" id="mberRating" name="mberRating">
+						<option value="" <c:if test="${info.mberRating eq ''}">selected</c:if> >선택</option>
+						<option value="M"  <c:if test="${info.mberRating eq 'M'}">selected</c:if>  >정</option>
+						<option value="D"  <c:if test="${info.mberRating eq 'D'}">selected</c:if>  >부</option>
 				</select>
 			</tr>
 			<!-- 담당책임 (정/부) -->
@@ -189,6 +189,7 @@ $(function(){
 
    			$("[name=seq]").val(rowval.seq);
    			$("[name=id]").val(rowval.id);
+   			$("[name=mberRating]").val(rowval.mberRating);
    			$("[name=mberRatingName]").val(rowval.mberRatingName);
    		}
 	}));
@@ -203,7 +204,7 @@ $(function(){
 			,postData:paramMap
 		   ,url:"/eqidpwd/ListData.do"
 		});
-	}, 1000);
+	}, 500);
 
 
 });

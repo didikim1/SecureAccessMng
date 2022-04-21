@@ -83,9 +83,9 @@
 		UPDATE EQ_IDC
 			 SET
 				LAST_UPDUSR_PNTTM  =  now()
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">   ,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">  		,IDC_NAME = #{idcName}    			</if>  	 <!-- 서버고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcAddr)"> 		,IDC_ADDR = #{idcAddr}  			</if>  	 <!-- 서버명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">   	,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">  			,IDC_NAME = #{idcName}    			</if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcAddr)"> 			,IDC_ADDR = #{idcAddr}  			</if>  	 <!-- 서버명 -->
 		WHERE SEQ = #{seq}
 	</update>
 

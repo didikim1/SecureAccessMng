@@ -69,7 +69,7 @@ public class EqListAction
 
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
-            paramMap.put("sDate", FrameworkUtils.aGoMonth(-2, "yyyy-MM-dd"));
+            paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
             paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
         }
 
