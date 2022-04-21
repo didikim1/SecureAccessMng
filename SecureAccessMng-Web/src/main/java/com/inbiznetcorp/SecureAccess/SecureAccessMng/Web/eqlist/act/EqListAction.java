@@ -26,6 +26,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamel
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper;
 
 import jxl.write.WriteException;
@@ -66,6 +67,12 @@ public class EqListAction
         BasicBean resultBean    = mBiz.ListPagingData(paramMap);
         BasicBean eqIdcBean     = mEqIdcBiz.ListData(new MyMap());
 
+
+        if ("".equals(paramMap.getStr("sDate", ""))) {
+            paramMap.put("sDate", FrameworkUtils.aGoMonth(-2, "yyyy-MM-dd"));
+            paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
+        }
+
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       eqIdcBean);
         model.addAttribute("paramMap",          paramMap);
@@ -81,7 +88,7 @@ public class EqListAction
     {
 		    List<MyCamelMap> resultS03Excel                 = null;
 		    MyMap            paramMap                       = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-		
+
 		    BasicBean       resultBean                      = null;
 		    String          strFileName                     = "자산관리 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+")";
 		    String []       arrTitle                		= new String[] { "IDC명",  "서버명", "Port(SSH)", "IP", "등록일"};

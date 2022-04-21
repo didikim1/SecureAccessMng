@@ -416,7 +416,7 @@ public class FrameworkUtils extends StringUtils{
 		return dayTime.format(new Date());
 	}
 
-	public static String aGoDate(int aGo, String strFormat)
+	public static String aGoHour(int aGo, String strFormat)
 	{
 		SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
 		Calendar cal = Calendar.getInstance();
@@ -425,6 +425,28 @@ public class FrameworkUtils extends StringUtils{
 		cal.add(Calendar.HOUR, aGo);
 
 		return sdformat.format(cal.getTime());
+	}
+
+	public static String aGoDate(int aGo, String strFormat)
+        {
+                SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
+                Calendar cal = Calendar.getInstance();
+
+                cal.setTime(new Date());
+                cal.add(Calendar.DATE, aGo);
+
+                return sdformat.format(cal.getTime());
+        }
+
+	public static String aGoMonth(int aGo, String strFormat)
+	{
+	    SimpleDateFormat sdformat = new SimpleDateFormat(strFormat);
+	    Calendar cal = Calendar.getInstance();
+
+	    cal.setTime(new Date());
+	    cal.add(Calendar.MONTH, aGo);
+
+	    return sdformat.format(cal.getTime());
 	}
 
 

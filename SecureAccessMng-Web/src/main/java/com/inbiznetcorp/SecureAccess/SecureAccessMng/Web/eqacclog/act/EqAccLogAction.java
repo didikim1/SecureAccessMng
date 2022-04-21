@@ -50,7 +50,7 @@ public class EqAccLogAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
 	 CodeMapper mCodeMapper;
 
@@ -60,62 +60,60 @@ public class EqAccLogAction
     @RequestMapping(value ={ "/ListPagingData.do" })
     public String ListPagingData(Model model)
     {
-        
+
     	MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-        
-        
-        
+
+
+
         BasicBean       resultBean  		= null;
         BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
-        
+
         List<MyCamelMap> workTypeList	    = null;
-        
+
          if ("".equals(paramMap.getStr("sDate", ""))) {
         	paramMap.put("sDate", FrameworkUtils.aGoDate(0, "yyyy-MM-01"));
         	paramMap.put("eDate", FrameworkUtils.aGoDate(0, "yyyy-MM-dd"));
         }
 
         resultBean = mBiz.ListPagingData( paramMap );
-        
-        
+
+
         // 일부로 MIA 라고함.  맵 이름은 아무 상관없다라는걸 보여주고싶은거야
-        // 걍 MyMap 으로 넘기면됨 변수명은 중요하지않아. 
+        // 걍 MyMap 으로 넘기면됨 변수명은 중요하지않아.
         MyMap miaMap = new MyMap();
         miaMap.put("title", 				"WORK_TYPE");
         miaMap.put("type", 			"B");
-        
+
         //  mCodeMapper.ListData(miaMap) 이 값이 어떻게 RETURN되는지 함보자..
         workTypeList = mCodeMapper.ListData(miaMap);
-        
-        
-        
+
+
+
         model.addAttribute("paramMap",        			   paramMap);
         model.addAttribute("Data",              				   resultBean);
         model.addAttribute("workInfoList",              	  workTypeList);
         model.addAttribute("IdcInfoList",      					 idcInfoBean.getList());
         model.addAttribute("refEqList",       					refEqListInfoBean.getList());
-        
-       
-        
-        
-        	
+
+
+
         //내가 한거겠지만...이게뭐징..ㅋㅋ
-        if ( paramMap.getInt("idcSeq", 0) > 0)
-        {
-            MyMap eqListParamMap = new MyMap();
+//        if ( paramMap.getInt("idcSeq", 0) > 0)
+//        {
+//            MyMap eqListParamMap = new MyMap();
+//
+//            eqListParamMap.put("rows",     10000);
+//            eqListParamMap.put("refEqIdc", paramMap.getInt("idcSeq"));
+//
+//
+//            model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
+//        }
 
-            eqListParamMap.put("rows",     10000);
-            eqListParamMap.put("refEqIdc", paramMap.getInt("idcSeq"));
-            
-
-            model.addAttribute("EqListInfoList",       mEqListBiz.ListPagingData(eqListParamMap).getList());
-        }
-        
 
         return pagePrefix + "/ListPagingData";
     }
-    
+
     @RequestMapping(value = {"/ListExcelData" })
 	public void ListExcelData(HttpServletRequest request, HttpServletResponse response, Model model)throws WriteException, IOException
 	{
@@ -129,7 +127,7 @@ public class EqAccLogAction
         resultS03Excel = mBiz.ListData(paramMap);
 
         mExcelWrite.selectExcelList(response, arrTitle, arrExcelColum, resultS03Excel, strFileName);
-        
+
 	}
 
     // IDC별 조회시
