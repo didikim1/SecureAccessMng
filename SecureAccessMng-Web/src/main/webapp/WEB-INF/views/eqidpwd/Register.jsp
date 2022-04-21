@@ -164,6 +164,7 @@ $(function(){
 		url:'/jqGrid/init',
 		colNames: [
 		           	 '고유ID'
+		           	,'담당책임'
 		           	,'아이디'
 		           	,'담당책임'
 		           	,'최종등록자'
@@ -171,6 +172,7 @@ $(function(){
 		           ],
 		colModel:[
 				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				,{name:'mberRating', 		index:'mberRating',			width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberRatingName', 	index:'mberRatingName',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
@@ -190,7 +192,7 @@ $(function(){
    			$("[name=seq]").val(rowval.seq);
    			$("[name=id]").val(rowval.id);
    			$("[name=mberRating]").val(rowval.mberRating);
-   			$("[name=mberRatingName]").val(rowval.mberRatingName);
+   			//$("[name=mberRatingName]").val(rowval.mberRatingName);
    		}
 	}));
 

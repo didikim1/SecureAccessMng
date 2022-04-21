@@ -43,7 +43,8 @@
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
-			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	as mberRatingName,  <!-- 정/부 -->
+			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' 
+				MBER_RATING =  '부' END ) 	as mberRatingName,  <!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,
@@ -69,7 +70,7 @@
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
-			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	as mberRatingName,	<!-- 정/부 -->
+			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' MBER_RATING =  '부' END ) 	as mberRatingName,	<!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,

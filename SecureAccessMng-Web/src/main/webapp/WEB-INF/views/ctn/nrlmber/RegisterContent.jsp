@@ -36,11 +36,10 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 
-	
-	
+
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberNameDisplay}" /></td>
+							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
@@ -48,7 +47,7 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay} " /></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>

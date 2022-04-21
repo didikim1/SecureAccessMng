@@ -54,7 +54,7 @@
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
 						<tr>
-							<th scope="col" width="8%"></th>
+							<th scope="col" width="8%">No</th>
 							<th scope="col" width="8%">IDC</th>
 							<th scope="col" width="8%">서버</th>
 							<th scope="col" width="7%">IP</th>
