@@ -47,13 +47,14 @@
 							<th scope="col" width="120px">소유자</th>
 							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="" /></td>
 						</tr>
-						<tr>
+<!-- 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
 							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" value="" /></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" 
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
@@ -129,42 +130,14 @@ function fnCallAuthPage() {
 	var mberRating 			= form.find("[name=mberRating]").val();
 
 
-	if( isNull( mberName) ){
-		$.fun.alert({
-			content : "소유자를 입력해주세요.",
-			action : function() {
-				$("[name=mberName]").focus();
-			}
-		});
- 	}else if( !fnRegExpChk(mberName, idRegExp_Kor) ){
+	if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
 		$.fun.alert({
 			content : "이름은 한글만 가능합니다.",
 			action : function() {
 				$("[name=mberName]").focus();
 			}
-		}); 
-	}else if( isNull( password) ){
-		$.fun.alert({
-			content : "비밀번호를 입력해주세요.",
-			action : function() {
-				$("[name=password]").focus();
-			}
 		});
-	}else if( !fnRegExpChk(password, pwsRegExp) ){
-		$.fun.alert({
-			content : "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.",
-			action : function() {
-				$("[name=password]").focus();
-			}
-		});
-	}else if( isNull( moblphonNo) ){
-		$.fun.alert({
-			content : "휴대폰번호를 입력해주세요.",
-			action : function() {
-				$("[name=moblphonNo]").focus();
-			}
-		});
-	}else if(  !fnRegExpChk(moblphonNo, phoneRegExp)){
+	}else if( isNotNull(moblphonNo) && ( !fnRegExpChk(moblphonNo, phoneRegExp))) {
 		$.fun.alert({
 			content : "입력된 휴대폰 번호를 확인 해 주세요.",
 			action : function() {

@@ -203,7 +203,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">   	,CHARGE_ID = #{chargeId} 				</if>    <!-- 직위ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(roleId)">   		,ROLE_ID = #{roleId}  	 				</if>  	 <!-- 권한ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">   		,UNIQ_ID = #{uniqId}  	 				</if>  	 <!-- 고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)">   	,PASSWORD = #password(#{password}) 		</if>  	 <!-- 비밀번호 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(password)">   	,PASSWORD = password(#{password}) 		</if>  	 <!-- 비밀번호 -->
 
 
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">   	,MBER_NAME = #{mberName}    	</if>  <!-- 이름 -->
