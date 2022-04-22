@@ -121,9 +121,9 @@
 				,UNIQ_ID				                                  		               as uniqId			<!-- 고유ID -->
 				,PASSWORD				                                  		               as password			<!-- 비밀번호 -->
 				,MBER_STTUS				                                  		               as mberSttus			<!-- 상태 -->
-				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 				   as  mberSttusName	<!-- 상태명 -->
+				,( 	CASE WHEN MBER_STTUS  = 'A' THEN '활성화' ELSE '해지' END ) 				   as mberSttusName		<!-- 상태명 -->
 				,MBER_RATING			                                  		               as mberRating		<!-- 담당책임(정/부)-->
-				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 					   as  mberRatingName	<!-- 정/부 -->
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 					   as mberRatingName	<!-- 정/부 -->
 				,MBER_NAME				                                  		               as mberName			<!-- 이름 -->
 				,MOBLPHON_NO			                                  		               as moblphonNo		<!-- 휴대폰번호 -->
 				,EMAIL_ADDRESS			                                  		               as emailAddress		<!-- Email 주소 -->

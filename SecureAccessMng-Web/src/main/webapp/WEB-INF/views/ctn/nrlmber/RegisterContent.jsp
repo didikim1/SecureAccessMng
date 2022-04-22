@@ -13,7 +13,8 @@
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
-				<input type="hidden" name=mberSttus 	value="${Info.mberSttus}" />
+				<input type="hidden" name="mberSttus" 	value="${Info.mberSttus}" />
+				<input type="hidden" name="uniqId" 		value="${Info.uniqId}" />
 				<div align="center"  >
 					<table class="htable" >
 <!-- 						<tr> -->
@@ -48,7 +49,7 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">비밀번호</th>
-							<td><input type="text" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
+							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
@@ -104,11 +105,94 @@
 </div>
 <script type="text/javascript">
 
+function fnRegExpChk(str, regExp) {
+    if(regExp.test(str)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function fnCallAuthPage() {
 
-//var authNumber = Math.floor(Math.random() * 98) +10 ;
- //document.write(authNumber);
+	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
+	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
+	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																					//	전화번호 체크 
 
+	var form = $("[name=FormComtngnrlmber]");
+	// jqeury  // isNull
+	var mberName 			= form.find("[name=mberName]").val();
+	var password 			= form.find("[name=password]").val();
+	var moblphonNo 			= form.find("[name=moblphonNo]").val();
+	var chargeId 			= form.find("[name=chargeId]").val();
+	var roleId 				= form.find("[name=roleId]").val();
+	var mberRating 			= form.find("[name=mberRating]").val();
+
+
+	if( isNull( mberName) ){
+		$.fun.alert({
+			content : "소유자를 입력해주세요.",
+			action : function() {
+				$("[name=mberName]").focus();
+			}
+		});
+ 	}else if( !fnRegExpChk(mberName, idRegExp_Kor) ){
+		$.fun.alert({
+			content : "이름은 한글만 가능합니다.",
+			action : function() {
+				$("[name=mberName]").focus();
+			}
+		}); 
+	}else if( isNull( password) ){
+		$.fun.alert({
+			content : "비밀번호를 입력해주세요.",
+			action : function() {
+				$("[name=password]").focus();
+			}
+		});
+	}else if( !fnRegExpChk(password, pwsRegExp) ){
+		$.fun.alert({
+			content : "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.",
+			action : function() {
+				$("[name=password]").focus();
+			}
+		});
+	}else if( isNull( moblphonNo) ){
+		$.fun.alert({
+			content : "휴대폰번호를 입력해주세요.",
+			action : function() {
+				$("[name=moblphonNo]").focus();
+			}
+		});
+	}else if(  !fnRegExpChk(moblphonNo, phoneRegExp)){
+		$.fun.alert({
+			content : "입력된 휴대폰 번호를 확인 해 주세요.",
+			action : function() {
+				$("[name=moblphonNo]").focus();
+			}
+		});
+	}else if( isNull( chargeId) ){
+		$.fun.alert({
+			content : "담당을 선택해주세요.",
+			action : function() {
+				$("[name=chargeId]").focus();
+			}
+		});
+	}else if( isNull( roleId) ){
+		$.fun.alert({
+			content : "권한을 선택해주세요.",
+			action : function() {
+				$("[name=roleId]").focus();
+			}
+		});
+	}else if( isNull( mberRating) ){
+		$.fun.alert({
+			content : "정/부 를 선택해주세요.",
+			action : function() {
+				$("[name=mberRating]").focus();
+			}
+		});
+	} else {
 	$.fun.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/CallAuthPage.do",
@@ -119,10 +203,10 @@ function fnCallAuthPage() {
 				"title":"ARS인증요청",
 				"width":475,
 				"buttons":{}
-			});
-		}
-	});
-
+				});
+			}
+		});
+	}
 }
 
 function fnProcRegisterData(){

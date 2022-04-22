@@ -132,7 +132,7 @@ function fnRegExpChk(str, regExp) {
 
 function fnProcUniqIdChk(){
 
-	var abcd = "가나다라fsfsf1234";
+//	var abcd = "가나다라fsfsf1234";
 
 // 	var ___arr = ["fsfsf1234", "가나다라", "hsjeon1224", "kdh1126"];
 
@@ -143,10 +143,12 @@ function fnProcUniqIdChk(){
 // 	console.log(arr);
 // 	console.log(zzz);
 
-	var idRegExp_EngNumber = /^[a-zA-z0-9]{4,12}$/;		// 영문 + 숫자체크
-	var idRegExp_Kor       = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    // 한글체크
-
-
+	var idRegExp_EngNumber 	= /^[a-zA-z0-9]{4,12}$/;																					// 	영문 + 숫자체크
+	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
+	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
+	var mailRegExp 			= /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;  					// 	이메일 체크 
+	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																				//	전화번호 체크 
+	
 	// search()
 // 	console.log(idRegExp.search(abcd));
 
@@ -156,14 +158,14 @@ function fnProcUniqIdChk(){
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
 	var uniqId 				= form.find("[name=uniqId]").val();
-	var mberName 		= form.find("[name=mberName]").val();
+	var mberName 			= form.find("[name=mberName]").val();
 	var password 			= form.find("[name=password]").val();
-	var moblphonNo 	= form.find("[name=moblphonNo]").val();
-	var emailAddress 	= form.find("[name=emailAddress]").val();
+	var moblphonNo 			= form.find("[name=moblphonNo]").val();
+	var emailAddress 		= form.find("[name=emailAddress]").val();
 	var chargeId 			= form.find("[name=chargeId]").val();
-	var roleId 					= form.find("[name=roleId]").val();
-	var mberRating 		= form.find("[name=mberRating]").val();
-	var mberSttus 		= form.find("[name=mberSttus]").val();
+	var roleId 				= form.find("[name=roleId]").val();
+	var mberRating 			= form.find("[name=mberRating]").val();
+	var mberSttus 			= form.find("[name=mberSttus]").val();
 
 
 	console.log("mberName : " + mberName)
@@ -182,16 +184,16 @@ function fnProcUniqIdChk(){
 				$("[name=uniqId]").focus();
 			}
 		});
-	}else if( !fnRegExpChk(mberName, idRegExp_Kor) ){
-		$.fun.alert({
-			content : "한글만 가능합ㅁ니다.",
-			action : function() {
-				$("[name=uniqId]").focus();
-			}
-		});
 	}else if( isNull( mberName) ){
 		$.fun.alert({
 			content : "이름을 입력해주세요.",
+			action : function() {
+				$("[name=mberName]").focus();
+			}
+		});
+	}else if( !fnRegExpChk(mberName, idRegExp_Kor) ){
+		$.fun.alert({
+			content : "이름은 한글만 가능합니다.",
 			action : function() {
 				$("[name=mberName]").focus();
 			}
@@ -203,6 +205,13 @@ function fnProcUniqIdChk(){
 				$("[name=password]").focus();
 			}
 		});
+	}else if( !fnRegExpChk(password, pwsRegExp) ){
+		$.fun.alert({
+			content : "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.",
+			action : function() {
+				$("[name=password]").focus();
+			}
+		});
 	}else if( isNull( moblphonNo) ){
 		$.fun.alert({
 			content : "휴대폰번호를 입력해주세요.",
@@ -210,9 +219,23 @@ function fnProcUniqIdChk(){
 				$("[name=moblphonNo]").focus();
 			}
 		});
+	}else if(  !fnRegExpChk(moblphonNo, phoneRegExp)){
+		$.fun.alert({
+			content : "입력된 휴대폰 번호를 확인 해 주세요.",
+			action : function() {
+				$("[name=moblphonNo]").focus();
+			}
+		});
 	}else if( isNull( emailAddress) ){
 		$.fun.alert({
 			content : "Email을 입력해주세요.",
+			action : function() {
+				$("[name=emailAddress]").focus();
+			}
+		});
+	}else if( !fnRegExpChk(emailAddress, mailRegExp) ){
+		$.fun.alert({
+			content : "Email을 형식에 맞게 입력해주세요.",
 			action : function() {
 				$("[name=emailAddress]").focus();
 			}

@@ -341,6 +341,7 @@ public class NrlmberAct
     	return pagePrefix + "/RegisterCallAuthPage";
     }
 
+    
 
     // 전화하는 컨트롤러
     @RequestMapping(value = { "/CallAuth.do" })
