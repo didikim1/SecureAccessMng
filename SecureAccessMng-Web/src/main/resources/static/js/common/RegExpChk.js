@@ -1,27 +1,35 @@
-/* 요건 내일~~
+/*
 jQuery.RegExpChk = {
-		checkSpecial : function(data){  // // 특수 문자 체크 
+	checkSpecial : function(data){
 		try{data = $.parseJSON(data.replace(/\&\#034\;/,'"').replace(/\'/gi,'"'));}catch (e) {data = {"result":0};}
 		return data;
-	},json_decode:function(data){
-		return $.toJSON(data);
+	},checkKor:function(str){
+		const regExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
+	    if(regExp.test(str)){
+	        return true;
+	    }else{
+	        return false;
+	    }
 	}
 }
 */
 
-// 특수 문자 체크 
-function checkSpecial(str) { 
+
+
+
+// 특수 문자 체크
+function checkSpecial(str) {
     const regExp = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g;
     if(regExp.test(str)) {
         return true;
     }else{
         return false;
-    } 
-} 
+    }
+}
 
 // 한글 체크
 function checkKor(str) {
-    const regExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g; 
+    const regExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
     if(regExp.test(str)){
         return true;
     }else{
@@ -61,10 +69,10 @@ function checkEngNum(str) {
 
 
 // 공백(스페이스 바) 체크
-function checkSpace(str) { 
+function checkSpace(str) {
     if(str.search(/\s/) !== -1) {
         return true; // 스페이스가 있는 경우
     }else{
         return false; // 스페이스 없는 경우
-    } 
+    }
 }

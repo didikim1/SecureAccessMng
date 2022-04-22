@@ -43,7 +43,7 @@
 						</tr>
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off" 
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off"
 							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" value="${Info.moblphonNo}"></td>
 						</tr>
 						<tr>
@@ -120,10 +120,39 @@
 </div>
 <script type="text/javascript">
 
+
+function fnRegExpChk(str, regExp) {
+    if(regExp.test(str)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 function fnProcUniqIdChk(){
 
+	var abcd = "가나다라fsfsf1234";
+
+// 	var ___arr = ["fsfsf1234", "가나다라", "hsjeon1224", "kdh1126"];
+
+// 	var arr = abcd.split(",");
+// 	var zzz = abcd.substr(0,3)
+
+// 	console.log(abcd);
+// 	console.log(arr);
+// 	console.log(zzz);
+
+	var idRegExp_EngNumber = /^[a-zA-z0-9]{4,12}$/;		// 영문 + 숫자체크
+	var idRegExp_Kor       = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    // 한글체크
+
+
+	// search()
+// 	console.log(idRegExp.search(abcd));
+
+
 	var idRegExp = /^[a-zA-z0-9]{4,12}$/;
-	
+
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
 	var uniqId 				= form.find("[name=uniqId]").val();
@@ -135,13 +164,27 @@ function fnProcUniqIdChk(){
 	var roleId 					= form.find("[name=roleId]").val();
 	var mberRating 		= form.find("[name=mberRating]").val();
 	var mberSttus 		= form.find("[name=mberSttus]").val();
-	 
+
 
 	console.log("mberName : " + mberName)
-	
-	if( isNull(uniqId) ){
+
+	if( isNull(uniqId)  ){
 		$.fun.alert({
 			content : "계정을 입력해 주세요.",
+			action : function() {
+				$("[name=uniqId]").focus();
+			}
+		});
+	}else if( !fnRegExpChk(uniqId, idRegExp) ){
+		$.fun.alert({
+			content : "아이디는 영문 숫자 조합으로 되어야 합니다.",
+			action : function() {
+				$("[name=uniqId]").focus();
+			}
+		});
+	}else if( !fnRegExpChk(mberName, idRegExp_Kor) ){
+		$.fun.alert({
+			content : "한글만 가능합ㅁ니다.",
 			action : function() {
 				$("[name=uniqId]").focus();
 			}
@@ -225,6 +268,7 @@ function fnProcUniqIdChk(){
 			}
 		});
 	}
+
 }
 
 
