@@ -68,6 +68,7 @@
 				,UNIQ_ID				                                                   	   				as uniqId			<!-- 권한ID -->
 				,ROLE_ID				                                                   	   				as roleId			<!-- 권한ID -->
 				,CHARGE_ID																	   				as chargeId    		<!-- 담당업무고유ID -->
+				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    			as chargeName  		<!-- 담당업무명 -->
 				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	    			as name   			<!-- 담당업무명 -->
 				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )								as roleName			<!-- 권한명 -->
 				,PASSWORD				                                  		               				as password			<!-- 비밀번호 -->
@@ -118,6 +119,8 @@
 				 SEQ				                                                       	   as seq				<!-- 회원ID -->
 				,ROLE_ID				                                                   	   as roleId			<!-- 권한ID -->
 				,CHARGE_ID																	   as chargeId   		<!-- 담당업무고유ID -->
+				,(SELECT NAME FROM CTN_CHARGE WHERE SEQ = T1.CHARGE_ID )		 		   	   as chargeName  		<!-- 담당업무명 -->
+				,(SELECT ROLE_NAME FROM CTN_ROLE WHERE ROLE_ID = T1.ROLE_ID )				   as roleName			<!-- 권한명 -->
 				,UNIQ_ID				                                  		               as uniqId			<!-- 고유ID -->
 				,PASSWORD				                                  		               as password			<!-- 비밀번호 -->
 				,MBER_STTUS				                                  		               as mberSttus			<!-- 상태 -->

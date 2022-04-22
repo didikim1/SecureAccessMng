@@ -93,15 +93,25 @@ table.wtable_sub td {
 table.htable {
 	width:100%;
 	text-align:center;
-	font-size: 14px;
+	font-size: 12px;
 	}
 
 table.htable th {
 	background-color:#a6a6a6;
-	line-height: 40px;
+	line-height: 20px;
 	padding:2px;
 	color:#fff;
 	border-bottom:solid 1px #e6e6e6;
+	width: 65px;
+	}
+	
+table.htable th.nowInfo {
+	background-color:white;
+	line-height: 20px;
+	padding:2px;
+	color:#e6e6e6;
+	border-bottom:solid 1px #e6e6e6;
+	width: 20px;
 	}
 
 table.htable td {
@@ -258,6 +268,30 @@ input.userManagefix{
   color: c8c8c8;
   border: 1px solid white;
   background-color: white;
+}
+#layout_content_popup_sub table.htable input.userManageInputNow{
+  width: 115px;
+  height: 30px;
+  line-height:24px;
+  margin-left:1px;
+  padding: 2px;
+  font-size: 12px;
+  color: #1b1b1b;
+  border: 1px solid white;
+  background-color:white;
+  float: left;
+}
+#layout_content_popup_sub table.htable input.userManageInputRev{
+  width: 220px;
+  height: 30px;
+  line-height:24px;
+  margin-left:5px;
+  margin-right: 2px;
+  padding: 2px;
+  font-size: 14px;
+  color: #1b1b1b;
+  border: 1px solid #eee;
+  float: right;
 }
 #layout_content_popup_sub table.htable input.userManageInput{
   width: 300px;

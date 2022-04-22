@@ -38,55 +38,51 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 
-
-						<tr>
-						<th>현재 정보</th>
-							<td><input class="userManageshow"  value="${Info.mberNameDisplay }  &nbsp;&nbsp;/&nbsp;&nbsp; ${Info.moblphonNoDisplay}" disabled /></td>
-						</tr>
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="" /></td>
+								<th class = "nowInfo"> 
+								<input type="text" class="userManageInputNow" id="mberName" name="mberName" autocomplete="off" value="${Info.mberNameDisplay}"disabled >
+								<input type="text" class="userManageInputRev" id="mberName" name="mberName" autocomplete="off" value="" />
+								</th>
 						</tr>
-<!-- 						<tr>
-							<th scope="col" width="120px">비밀번호</th>
-							<td><input type="password" class="userManageInput" id="password" name="password" autocomplete="off" value="" /></td>
-						</tr> -->
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" 
-							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" /></td>
+								<th class = "nowInfo">
+								<input type="text" class="userManageInputNow" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay}" disabled>
+								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo" 
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" /></th>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
-							<td>
-							<select class="common_select" name="chargeId">
+							<th class ="nowInfo"> 
+							<input type="text" class="userManageInputNow" id="chargeId" name="chargeId" autocomplete="off" value="${Info.chargeName}" disabled>
+							<select class="common_selectRev" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
 									</c:forEach>
 							</select>
-							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
-							<td>
-								<select class="common_select" name="roleId">
+							<th class ="nowInfo">
+							<input type="text" class="userManageInputNow" id="roleId" name="roleId" autocomplete="off" value="${Info.roleName}" disabled>
+								<select class="common_selectRev" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
 											<option value="${role.roleId}" <c:if test="${Info.roleId eq role.roleId}">selected</c:if> >${role.roleName}</option>
 									</c:forEach>
 								</select>
-							</td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">정/부</th>
-							<td>
-							<select class="common_select" name="mberRating">
+							<th class ="nowInfo">
+							<input type="text" class="userManageInputNow" id="chargeId" name="chargeId" autocomplete="off" value="${Info.mberRatingName}" disabled>
+							<select class="common_selectRev" name="mberRating">
 									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
 									<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
 									<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
 							</select>
-							</td>
 						</tr>
 					</table>
 				</div>

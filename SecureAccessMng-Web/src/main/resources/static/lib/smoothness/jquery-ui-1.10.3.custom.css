@@ -802,6 +802,14 @@ body .ui-tooltip {
     height: 30px;
     border-color: #eee;
 }
+.ui-widget .common_selectRev {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1em;
+	width: 220px;
+    height: 30px;
+    border-color: #eee;
+    margin-left: 1px;
+}
 .ui-widget-content {
 	border: 1px solid #aaaaaa;
 	background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
