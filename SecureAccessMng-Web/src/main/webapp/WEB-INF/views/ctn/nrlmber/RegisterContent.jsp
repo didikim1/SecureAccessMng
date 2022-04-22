@@ -9,7 +9,7 @@
 		<table id="grid"></table>
 		<div id="pager"></div>
 
-		
+
 			<form name="FormComtngnrlmber">
 				<input type="hidden" name="seq" 		value="${Info.seq}" />
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
@@ -53,8 +53,8 @@
 						</tr> -->
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" 
-							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" /></td>
+							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" maxlength="12" /></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
@@ -118,7 +118,7 @@ function fnCallAuthPage() {
 
 	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
 	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
-	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																					//	전화번호 체크 
+	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																					//	전화번호 체크
 
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull

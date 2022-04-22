@@ -44,7 +44,7 @@
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
 							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off"
-							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" value="${Info.moblphonNo}"></td>
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" value="${Info.moblphonNo}" maxlength="12"></td>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">Email</th>
@@ -146,9 +146,9 @@ function fnProcUniqIdChk(){
 	var idRegExp_EngNumber 	= /^[a-zA-z0-9]{4,12}$/;																					// 	영문 + 숫자체크
 	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
 	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
-	var mailRegExp 			= /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;  					// 	이메일 체크 
-	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																				//	전화번호 체크 
-	
+	var mailRegExp 			= /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;  					// 	이메일 체크
+	var phoneRegExp			= /^\d{2,3}\d{3,4}\d{4}$/;																				//	전화번호 체크
+
 	// search()
 // 	console.log(idRegExp.search(abcd));
 
