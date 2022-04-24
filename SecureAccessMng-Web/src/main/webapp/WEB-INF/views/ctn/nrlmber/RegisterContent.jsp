@@ -41,52 +41,47 @@
 						<tr>
 							<th scope="col" width="120px">소유자</th>
 								<th class = "nowInfo"> 
-								<input type="text" class="userManageInputNow" id="mberName" name="mberName" autocomplete="off" value="${Info.mberNameDisplay}"disabled >
-								<input type="text" class="userManageInputRev" id="mberName" name="mberName" autocomplete="off" value="" />
+								<input type="text" class="userManageInputNow"  value="${Info.mberNameDisplay}"disabled >
+								<input type="text" class="userManageInputRev" id="mberName" name="mberName" placeholder="변경할 소유자명을 입력하세요." autocomplete="off" value="" />
 								</th>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">휴대폰번호</th>
-<<<<<<< HEAD
 								<th class = "nowInfo">
-								<input type="text" class="userManageInputNow" id="moblphonNo" name="moblphonNo" autocomplete="off" value="${Info.moblphonNoDisplay}" disabled>
+								<input type="text" class="userManageInputNow" value="${Info.moblphonNoDisplay}" disabled>
 								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo" 
-								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" /></th>
-=======
-							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo"
-							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" autocomplete="off" value="" maxlength="12" /></td>
->>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="변경할 휴대폰번호를 입력하세요." autocomplete="off" value="" /></th>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
 							<th class ="nowInfo"> 
-							<input type="text" class="userManageInputNow" id="chargeId" name="chargeId" autocomplete="off" value="${Info.chargeName}" disabled>
+							<input type="text" class="userManageInputNow" value="${Info.chargeName}" disabled>
 							<select class="common_selectRev" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
-											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+											<option value="${charge.seq}" <c:if test="${Info.chargeId eq ''}">selected</c:if> >${charge.name}</option>
 									</c:forEach>
 							</select>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">권한</th>
 							<th class ="nowInfo">
-							<input type="text" class="userManageInputNow" id="roleId" name="roleId" autocomplete="off" value="${Info.roleName}" disabled>
+							<input type="text" class="userManageInputNow" value="${Info.roleName}" disabled>
 								<select class="common_selectRev" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
-											<option value="${role.roleId}" <c:if test="${Info.roleId eq role.roleId}">selected</c:if> >${role.roleName}</option>
+											<option value="${role.roleId}" <c:if test="${Info.roleId eq ''}">selected</c:if> >${role.roleName}</option>
 									</c:forEach>
 								</select>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">정/부</th>
 							<th class ="nowInfo">
-							<input type="text" class="userManageInputNow" id="chargeId" name="chargeId" autocomplete="off" value="${Info.mberRatingName}" disabled>
+							<input type="text" class="userManageInputNow"  value="${Info.mberRatingName}" disabled>
 							<select class="common_selectRev" name="mberRating">
-									<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
-									<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
-									<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
+									<option value="" <c:if test="${Info.mberRating eq '' }">selected</c:if> >선택</option>
+									<option value="M"  <c:if test="${Info.mberRating eq ''}">selected</c:if>  >정</option>
+									<option value="D"  <c:if test="${Info.mberRating eq ''}">selected</c:if>  >부</option>
 							</select>
 						</tr>
 					</table>
@@ -124,14 +119,16 @@ function fnCallAuthPage() {
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
 	var mberName 			= form.find("[name=mberName]").val();
-	var password 			= form.find("[name=password]").val();
 	var moblphonNo 			= form.find("[name=moblphonNo]").val();
 	var chargeId 			= form.find("[name=chargeId]").val();
 	var roleId 				= form.find("[name=roleId]").val();
 	var mberRating 			= form.find("[name=mberRating]").val();
 
-
-	if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
+ if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
+	$.fun.alert({
+		content : "수정 할 사항이 없습니다. ",
+	});
+ }else if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
 		$.fun.alert({
 			content : "이름은 한글만 가능합니다.",
 			action : function() {
@@ -145,21 +142,21 @@ function fnCallAuthPage() {
 				$("[name=moblphonNo]").focus();
 			}
 		});
-	}else if( isNull( chargeId) ){
+	}else if( isNotNull( chargeId) ){
 		$.fun.alert({
 			content : "담당을 선택해주세요.",
 			action : function() {
 				$("[name=chargeId]").focus();
 			}
 		});
-	}else if( isNull( roleId) ){
+	}else if( isNotNull( roleId) ){
 		$.fun.alert({
 			content : "권한을 선택해주세요.",
 			action : function() {
 				$("[name=roleId]").focus();
 			}
 		});
-	}else if( isNull( mberRating) ){
+	}else if( isNotNull( mberRating) ){
 		$.fun.alert({
 			content : "정/부 를 선택해주세요.",
 			action : function() {

@@ -804,11 +804,13 @@ body .ui-tooltip {
 }
 .ui-widget .common_selectRev {
 	font-family: Verdana,Arial,sans-serif;
-	font-size: 1em;
-	width: 220px;
+	font-size: 11px;
+	width: 195px;
     height: 30px;
     border-color: #eee;
     margin-left: 1px;
+    margin-right: 2px;
+    float: right;
 }
 .ui-widget-content {
 	border: 1px solid #aaaaaa;

@@ -10,11 +10,6 @@
 			AND DPAMENT_ID LIKE CONCAT('%',#{chargeId},'%')
 		</if>
 
-		<!--직위고유ID-->
-		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
-			AND POSITION_ID LIKE CONCAT('%',#{positionId},'%')
-		</if>
-
 		<!-- 고유ID -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(nrlmberId)">
 			AND NRLMBER_ID  = #{nrlmberId }
