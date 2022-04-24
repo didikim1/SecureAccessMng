@@ -216,6 +216,15 @@
 		AND	REF_NRLMBER = #{refNrlmber}
 	</update>
 
+	<update id="UpdateLogOutAccLogByRefNrlmber"  parameterType="MyMap">
+		UPDATE EQ_ACCLOG
+		SET
+			 STTUS = 'E'
+			,LAST_UPDUSR_PNTTM = now()
+		WHERE 1=1
+			AND	REF_NRLMBER = #{refNrlmber}
+	</update>
+
 	<!-- 수정 -->
 	<update id="ModifyData" parameterType="myMap">
 

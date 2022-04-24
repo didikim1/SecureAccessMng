@@ -85,6 +85,11 @@ public class EqAccLogBiz
         return mMapper.UpdateLogOutAccLogByRefNrlmberWithProcessid(paramMap);
     }
 
+    public int UpdateLogOutAccLogByRefNrlmber(MyMap paramMap)
+    {
+        return mMapper.UpdateLogOutAccLogByRefNrlmber(paramMap);
+    }
+
     /**
     * 삭제
     * @param paramMap

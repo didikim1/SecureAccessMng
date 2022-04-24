@@ -59,6 +59,8 @@ public interface EqAccLogMapper
 
 	public int UpdateLogOutAccLogByRefNrlmberWithProcessid(MyMap paramMap);
 
+	public int UpdateLogOutAccLogByRefNrlmber(MyMap paramMap);
+
 	/**
 	* 삭제
 	* @param paramMap

@@ -146,4 +146,25 @@ public class ApiV2ServerAccessAct
 
         return new ResultMessage(result_code, intRtnValue);
     }
+
+    @RequestMapping(value="/termination3.do", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody ResultMessage termination3(@RequestBody ServerAccessDTO dto)
+    {
+        String result_code = ResultCode.RESULT_NOT_FOUND;
+
+        int             intRtnValue     = 0;
+        MyMap           paramMap        = new MyMap();
+
+        paramMap.put("processid",   dto.getProcessID() );
+        paramMap.put("refNrlmber",  dto.getRefNrlmber() );
+
+        intRtnValue = mEqAccLogBiz.UpdateLogOutAccLogByRefNrlmber(paramMap);
+
+        if(intRtnValue > 0)
+        {
+            result_code = ResultCode.RESULT_OK;
+        }
+
+        return new ResultMessage(result_code, intRtnValue);
+    }
 }
