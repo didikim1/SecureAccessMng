@@ -32,7 +32,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(worktypecodeId)">
 			AND WORKTYPECODE_ID =  #{worktypecodeId}
 		</if>
-		
+
 
 	</sql>
 
@@ -43,7 +43,7 @@
 		FROM
 			EQ_ACCLOG
 		WHERE 1=1
-		
+
 		<include refid="addWhere"/>
 	</select>
 
@@ -69,9 +69,9 @@
 				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
 				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
-				
+
 				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
-				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->	
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->
 
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
@@ -79,6 +79,8 @@
 
 				,PROCESSID													as processid			<!-- 프로세스 ID -->
 				,STTUS														as sttus				<!-- 처리상태(A) -->
+				,( 	CASE WHEN STTUS  = 'A' THEN '로그인' ELSE '로그아웃' END ) 	 as  sttusName		<!-- 처리상태 -->
+
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
 		FROM
@@ -102,9 +104,9 @@
 					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 						as eqIdcName
 					,REF_EQ_LIST 																as refEqList
 					,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 					as eqListSvIp1
-					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 						as eqListName 
+					,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 						as eqListName
 					,REF_EQ_IDPWD 																as refEqIdpwd
-					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 						as eqIdpwdID 
+					,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 						as eqIdpwdID
 					,REF_NRLMBER 																as refNrlmber
 					,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) 				as ctnNrlmberName
 					,( SELECT UNIQ_ID FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) 				as ctnNrlmberUniqID
@@ -113,7 +115,7 @@
 					,( SELECT NAME FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) 					as eqAllowIpName
 					,PROCESSID as processid
 					,MBER_RATING				                                 				as mberRating			<!-- 담당책임(정/부)-->
-					,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 				as mberRatingName		<!-- 정/부 -->	
+					,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 				as mberRatingName		<!-- 정/부 -->
 					,STTUS as sttus
 					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') 					as frstRegisterPnttm
 					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') 						as lastUpdusrPnttm
@@ -145,7 +147,7 @@
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
 
 				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
-				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->	
+				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->
 
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
@@ -258,7 +260,7 @@
 				,REF_NRLMBER			as refNrlmber												<!-- 회원고유번호 SEQ -->
 				,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberName  	<!-- 회원이름 -->
 				,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = REF_NRLMBER ) as ctnNrlmberUniqID 	<!-- 회원ID -->
-				
+
 				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
 				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->
 
