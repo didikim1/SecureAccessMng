@@ -302,11 +302,11 @@ input[name="mberName"]::placeholder {
 	}
 
 #layout_content_popup_sub table.htable input.userManageInput{
-  width: 300px;
+  width: 350px;
   height: 30px;
   line-height:24px;
-  margin-left:10px;
   padding: 2px;
+  margin-left:10px;
   font-size: 14px;
   color: #1b1b1b;
   border: 1px solid #eee;
@@ -380,7 +380,7 @@ input[name="mberName"]::placeholder {
   height: 40px;
   min-height:40px;
   padding: 2px;
-  margin:5px auto 5px auto;
+  margin:0px auto 5px 15px;
   font-size: 14px;
   color: #fff;
   background-color:#263238;

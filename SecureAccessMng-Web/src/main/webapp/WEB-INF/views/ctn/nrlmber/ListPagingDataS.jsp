@@ -86,7 +86,7 @@ function fnProcDelete(mberId, uniqId, mberName){
 	var _mberId		= mberId;
 	var _uniqId		= uniqId;
 	var _mberName	= mberName;
-	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정을 삭제 하시겠습니까? "
+	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정의 상태를 변경 하시겠습니까? "
 	$.fun.alert({
 		content:_txt,
 		"buttons":{
@@ -95,7 +95,7 @@ function fnProcDelete(mberId, uniqId, mberName){
 				$.fun.ajax({
 					type:'get',
 					dataType:"JSON",
-					url:"./ProcDeleteData.do?mberId="+_mberId,
+					url:"./DeleteData.do?mberId="+_mberId,
 					success:function(data){
 						if( "200" == data.code ) {
 							$.fun.alert({content:"정상 처리되었습니다.", action:function(){

@@ -102,6 +102,21 @@
 </div>
 <script type="text/javascript">
 
+// Info
+var dataOjb = {};
+var origin_mberName 	= '${Info.mberName}';
+var origin_moblphonNo	= '${Info.moblphonNo}';
+var origin_chargeId 	= '${Info.chargeId}';
+var origin_roleId 		= '${Info.roleId}';
+var origin_mberRating 	= '${Info.mberRating}';
+
+console.log(origin_mberName)
+console.log(origin_moblphonNo)
+console.log(origin_chargeId)
+console.log(origin_roleId)
+console.log(origin_mberRating)
+
+
 function fnRegExpChk(str, regExp) {
     if(regExp.test(str)) {
         return true;
@@ -166,6 +181,7 @@ function fnCallAuthPage() {
 	} else {
 	$.fun.ajax({
 		type:'get',
+		data:dataOjb,
 		url:"/ctn/nrlmber/CallAuthPage.do",
 		success:function(data){
 			$.fun.layout({
@@ -180,10 +196,29 @@ function fnCallAuthPage() {
 	}
 }
 
-function fnProcRegisterData(){
+	function fnProcRegisterData(){
+		
+		var form = $("[name=FormComtngnrlmber]");
+		
+		 dataOjb.mberName   		= form.find("[name=mberName]").val();
+		 dataOjb.moblphonNo 		= form.find("[name=moblphonNo]").val();
+		 dataOjb.chargeId 			= form.find("[name=chargeId]").val();
+		 dataOjb.roleId 			= form.find("[name=roleId]").val();
+		 dataOjb.mberRating 		= form.find("[name=mberRating]").val();
+	
+	
+		 if( isNull( dataOjb.mberName) )     		{ dataOjb.mberName 		= origin_mberName; }
+		 if( isNull( dataOjb.moblphonNo) )   		{ dataOjb.moblphonNo 	= origin_moblphonNo; }
+		 if( isNull( dataOjb.chargeId) )  			{ dataOjb.chargeId 		= origin_chargeId; }
+		 if( isNull( dataOjb.roleId) )   			{ dataOjb.roleId 		= origin_roleId; }
+		 if( isNull( dataOjb.mberRating) )   		{ dataOjb.mberRating 	= origin_mberRating; }
+	
+		 console.log(dataOjb); // {mberName : '전효성', moblphonNo: '010...'}
+	
 	$.fun.ajax({
 		type:'post',
-		data:$( "[name=FormComtngnrlmber]" ).serialize(),
+		//data:$( "[name=FormComtngnrlmber]" ).serialize(),
+		data:dataOjb,
 		url:"/ctn/nrlmber/ProcRegisterData.do",
 		dataType:"JSON",
 		success:function(data){

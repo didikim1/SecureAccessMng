@@ -798,9 +798,10 @@ body .ui-tooltip {
 .ui-widget button {
 	font-family: Verdana,Arial,sans-serif;
 	font-size: 1em;
-	width: 300px;
+	width: 400px;
     height: 30px;
     border-color: #eee;
+    float: left;
 }
 .ui-widget .common_selectRev {
 	font-family: Verdana,Arial,sans-serif;
