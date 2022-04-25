@@ -40,7 +40,7 @@
 
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-								<th class = "nowInfo"> 
+								<th class = "nowInfo">
 								<input type="text" class="userManageInputNow"  value="${Info.mberNameDisplay}"disabled >
 								<input type="text" class="userManageInputRev" id="mberName" name="mberName" placeholder="변경할 소유자명을 입력하세요." autocomplete="off" value="" />
 								</th>
@@ -49,12 +49,12 @@
 							<th scope="col" width="120px">휴대폰번호</th>
 								<th class = "nowInfo">
 								<input type="text" class="userManageInputNow" value="${Info.moblphonNoDisplay}" disabled>
-								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo" 
+								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo"
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="변경할 휴대폰번호를 입력하세요." autocomplete="off" value="" /></th>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
-							<th class ="nowInfo"> 
+							<th class ="nowInfo">
 							<input type="text" class="userManageInputNow" value="${Info.chargeName}" disabled>
 							<select class="common_selectRev" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
@@ -102,6 +102,17 @@
 </div>
 <script type="text/javascript">
 
+// Info
+var dataOjb = {};
+var origin_mberName = '${Info.mberName}';
+var origin_moblphonNo = '${Info.moblphonNo}';
+
+
+
+
+
+console.log(origin_mberName);
+
 function fnRegExpChk(str, regExp) {
     if(regExp.test(str)) {
         return true;
@@ -111,6 +122,8 @@ function fnRegExpChk(str, regExp) {
 }
 
 function fnCallAuthPage() {
+
+
 
 	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
 	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
@@ -123,6 +136,7 @@ function fnCallAuthPage() {
 	var chargeId 			= form.find("[name=chargeId]").val();
 	var roleId 				= form.find("[name=roleId]").val();
 	var mberRating 			= form.find("[name=mberRating]").val();
+
 
  if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
 	$.fun.alert({
@@ -164,6 +178,9 @@ function fnCallAuthPage() {
 			}
 		});
 	} else {
+
+
+
 	$.fun.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/CallAuthPage.do",
@@ -181,9 +198,28 @@ function fnCallAuthPage() {
 }
 
 function fnProcRegisterData(){
+
+
+// 	var mberName 			= form.find("[name=mberName]").val();
+// 	var moblphonNo 			= form.find("[name=moblphonNo]").val();
+// 	var chargeId 			= form.find("[name=chargeId]").val();
+// 	var roleId 				= form.find("[name=roleId]").val();
+// 	var mberRating 			= form.find("[name=mberRating]").val();
+
+	// dataOjb["mberName"] = form.find("[name=mberName]").val();
+	dataOjb.mberName   = form.find("[name=mberName]").val();
+	dataOjb.moblphonNo = form.find("[name=moblphonNo]").val();
+
+
+	 if( isNull( dataOjb.mberName) )     { dataOjb.mberName = origin_mberName; }
+	 if( isNull( dataOjb.moblphonNo) )   { dataOjb.moblphonNo = origin_moblphonNo; }
+
+	 console.log(dataOjb); // {mberName : '전효성', moblphonNo: '010...'}
+
 	$.fun.ajax({
 		type:'post',
-		data:$( "[name=FormComtngnrlmber]" ).serialize(),
+//		data:$( "[name=FormComtngnrlmber]" ).serialize(),
+		data:dataOjb,
 		url:"/ctn/nrlmber/ProcRegisterData.do",
 		dataType:"JSON",
 		success:function(data){
