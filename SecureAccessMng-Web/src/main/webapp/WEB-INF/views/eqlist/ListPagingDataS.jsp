@@ -96,9 +96,8 @@ function fnDeleteData(seq, name){
 							}
 						}
 					});
-
-		} // action function
-	}) // alert
+			}	
+		}) // alert
 }
 
 // 계정등록
@@ -119,7 +118,7 @@ function fnAccountRegister(eqlistSeq){
 }
 
 
-// function fnProcDelete(mberId, uniqId, mberName){
+ // function fnProcDelete(mberId, uniqId, mberName){
 // 	var _mberId		= mberId;
 // 	var _uniqId		= uniqId;
 // 	var _mberName	= mberName;
