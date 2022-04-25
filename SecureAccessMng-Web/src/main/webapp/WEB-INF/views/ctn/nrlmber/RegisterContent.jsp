@@ -15,6 +15,7 @@
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
 				<input type="hidden" name="mberSttus" 	value="${Info.mberSttus}" />
 				<input type="hidden" name="uniqId" 		value="${Info.uniqId}" />
+				<input type="hidden" name="mberSttus" 	value="" />
 				<div align="center"  >
 					<table class="htable" >
 <!-- 						<tr> -->
@@ -49,12 +50,12 @@
 							<th scope="col" width="120px">휴대폰번호</th>
 								<th class = "nowInfo">
 								<input type="text" class="userManageInputNow" value="${Info.moblphonNoDisplay}" disabled>
-								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo" 
+								<input type="text" class="userManageInputRev" id="moblphonNo" name="moblphonNo"
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="변경할 휴대폰번호를 입력하세요." autocomplete="off" value="" /></th>
 						</tr>
 						<tr>
 							<th scope="col" width="120px">담당</th>
-							<th class ="nowInfo"> 
+							<th class ="nowInfo">
 							<input type="text" class="userManageInputNow" value="${Info.chargeName}" disabled>
 							<select class="common_selectRev" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
@@ -92,8 +93,8 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButtonRev" onclick="fnCallAuthPage()">수정</button>
-					<button type="button" class="userManageButtonRev" onclick="fnDeleteData()">해지</button>
+					<button type="button" class="userManageButtonRev" onclick="fnCallAuthPage('A')">수정</button>
+					<button type="button" class="userManageButtonRev" onclick="fnCallAuthPage('C')">해지</button>
 <!-- 					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button> -->
 				</c:when>
 			</c:choose>
@@ -105,6 +106,7 @@
 // Info
 var dataOjb = {};
 
+var origin_uniqId		= '${Info.uniqId}';
 var origin_seq			= '${Info.seq}';
 var origin_mberName 	= '${Info.mberName}';
 var origin_moblphonNo	= '${Info.moblphonNo}';
@@ -127,7 +129,7 @@ function fnRegExpChk(str, regExp) {
     }
 }
 
-function fnCallAuthPage() {
+function fnCallAuthPage(mberSttus) {
 
 	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
 	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
@@ -141,6 +143,8 @@ function fnCallAuthPage() {
 	var chargeId 			= form.find("[name=chargeId]").val();
 	var roleId 				= form.find("[name=roleId]").val();
 	var mberRating 			= form.find("[name=mberRating]").val();
+
+	form.find("[name=mberSttus]").val(mberSttus);
 
 	if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
 	$.fun.alert({
@@ -179,26 +183,28 @@ function fnCallAuthPage() {
 }
 
 	function fnProcRegisterData(){
-		
+
 		var form = $("[name=FormComtngnrlmber]");
-		
-			
+
+
 		dataOjb.seq				= origin_seq;
+		dataOjb.nrlmberId		= origin_seq;
+		dataOjb.mberSttus   	= form.find("[name=mberSttus]").val();
 		dataOjb.mberName   		= form.find("[name=mberName]").val();
 		dataOjb.moblphonNo 		= form.find("[name=moblphonNo]").val();
 		dataOjb.chargeId 		= form.find("[name=chargeId]").val();
 		dataOjb.roleId 			= form.find("[name=roleId]").val();
 		dataOjb.mberRating 		= form.find("[name=mberRating]").val();
-	
-	
+
+
 		 if( isNull( dataOjb.mberName) )     		{ dataOjb.mberName 		= origin_mberName; }
 		 if( isNull( dataOjb.moblphonNo) )   		{ dataOjb.moblphonNo 	= origin_moblphonNo; }
 		 if( isNull( dataOjb.chargeId) )  			{ dataOjb.chargeId 		= origin_chargeId; }
 		 if( isNull( dataOjb.roleId) )   			{ dataOjb.roleId 		= origin_roleId; }
 		 if( isNull( dataOjb.mberRating) )   		{ dataOjb.mberRating 	= origin_mberRating; }
-	
+
 		 console.log(dataOjb); // {mberName : '전효성', moblphonNo: '010...'}
-	
+
 	$.fun.ajax({
 		type:'post',
 		//data:$( "[name=FormComtngnrlmber]" ).serialize(),

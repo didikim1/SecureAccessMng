@@ -8,7 +8,7 @@
 		 <!--  부서고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">
 			AND CHARGE_ID = #{chargeId}
-		</if> 
+		</if>
 
 		<!--직위고유ID-->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(positionId)">
@@ -226,12 +226,12 @@
 			 SET
 				 LAST_UPDUSR_ID 	=  #{lastUpdusrId}
 				,LAST_UPDUSR_PNTTM  =  now()
-				
+
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(chargeId)">   	,CHARGE_ID = #{chargeId} 				</if>    <!-- 직위ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(roleId)">   		,ROLE_ID = #{roleId}  	 				</if>  	 <!-- 권한ID -->
-			
+
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">   	,MBER_NAME = #{mberName}    			</if>  <!-- 이름 -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">   	,MBER_STTUS = 'C'  						</if>  <!-- 상태 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">   	,MBER_STTUS = #{mberSttus}  						</if>  <!-- 상태 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)">   	,MBER_RATING = #{mberRating}  			</if>  <!-- 정/부 -->
 
 		WHERE SEQ = #{seq}
