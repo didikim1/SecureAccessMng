@@ -15,7 +15,6 @@
 				<input type="hidden" name="nrlmberId" 	value="${Info.seq}" />
 				<input type="hidden" name="mberSttus" 	value="${Info.mberSttus}" />
 				<input type="hidden" name="uniqId" 		value="${Info.uniqId}" />
-				<input type="hidden" name="mberSttus" 	value="" />
 				<div align="center"  >
 					<table class="htable" >
 <!-- 						<tr> -->
@@ -130,6 +129,7 @@ function fnRegExpChk(str, regExp) {
 }
 
 function fnCallAuthPage(mberSttus) {
+	// mberSttus = A
 
 	var idRegExp_Kor       	= /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;	    																					// 	한글체크
 	var pwsRegExp		  	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호 체크 (숫자, 소문자, 대문자, 특수문자)
@@ -146,40 +146,60 @@ function fnCallAuthPage(mberSttus) {
 
 	form.find("[name=mberSttus]").val(mberSttus);
 
-	if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
-	$.fun.alert({
-		content : "수정 할 사항이 없습니다. ",
-	});
-	 }else if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
-		$.fun.alert({
-			content : "이름은 한글만 가능합니다.",
-			action : function() {
-				$("[name=mberName]").focus();
-			}
+	console.log("==============")
+	console.log("============== >>> :: " + mberSttus )
+	console.log("==============")
+
+	if( "C" == mberSttus ){
+		$.fun.ajax({
+			type:'get',
+			data:dataOjb,
+			url:"/ctn/nrlmber/CallAuthPage.do",
+			success:function(data){
+				$.fun.layout({
+					id:"CallAuthPage",
+					"content":data,
+					"title":"ARS인증요청",
+					"width":475,
+					"buttons":{}
+					});
+				}
 		});
-	}else if( isNotNull(moblphonNo) && ( !fnRegExpChk(moblphonNo, phoneRegExp))) {
+	}else if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
 		$.fun.alert({
-			content : "입력된 휴대폰 번호를 확인 해 주세요.",
-			action : function() {
-				$("[name=moblphonNo]").focus();
-			}
+			content : "수정 할 사항이 없습니다. ",
 		});
+		 }else if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
+			$.fun.alert({
+				content : "이름은 한글만 가능합니다.",
+				action : function() {
+					$("[name=mberName]").focus();
+				}
+			});
+		}else if( isNotNull(moblphonNo) && ( !fnRegExpChk(moblphonNo, phoneRegExp))) {
+			$.fun.alert({
+				content : "입력된 휴대폰 번호를 확인 해 주세요.",
+				action : function() {
+					$("[name=moblphonNo]").focus();
+				}
+			});
 	} else {
-	$.fun.ajax({
-		type:'get',
-		data:dataOjb,
-		url:"/ctn/nrlmber/CallAuthPage.do",
-		success:function(data){
-			$.fun.layout({
-				id:"CallAuthPage",
-				"content":data,
-				"title":"ARS인증요청",
-				"width":475,
-				"buttons":{}
-				});
-			}
-		});
+		$.fun.ajax({
+			type:'get',
+			data:dataOjb,
+			url:"/ctn/nrlmber/CallAuthPage.do",
+			success:function(data){
+				$.fun.layout({
+					id:"CallAuthPage",
+					"content":data,
+					"title":"ARS인증요청",
+					"width":475,
+					"buttons":{}
+					});
+				}
+			});
 	}
+
 }
 
 	function fnProcRegisterData(){
