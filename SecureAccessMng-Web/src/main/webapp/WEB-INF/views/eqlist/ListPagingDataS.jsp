@@ -2,8 +2,6 @@
 
 <script type="text/javascript">
 
-
-
 $(function(){
 
 
@@ -70,36 +68,69 @@ function fnEquipRegister(registType)
 	});
 }
 
+ /* $(document).ready(function () {
+	  $(document).on("click", "button[name='ServerDelete']", function () {
+		  fnDeleteData
+	  });
+	}); */
+
 
 // 자산 삭제
 function fnDeleteData(seq, name){
 
-	var title = "["+name+"][삭제] 하시겠습니까?"
-	$.fun.alert({
-		content:title,
-		action:function(){
-
-					$.fun.ajax({
-						type:'get',
-						dataType:"JSON",
-						url:"/eqlist/DeleteData.do?seq="+seq,
-						success:function(data){
-
-							if( "200" == data.code ) {
-								$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-									location.reload();
-								}});
-							} else {
-								$.fun.alert({content:"Error!!!!!", action:function(){
-									location.reload();
-								}});
-							} 
+/* $.fun.ajax({
+	id:"induacaAdd",
+	type:'get',
+	dataType:"JSON",
+	url:"/eqlist/DeleteData.do?seq="+seq,
+	success:function(data){
+		console.log(data);
+		if( "200" == data.code ) {
+			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+				location.reload();
+			}});
+		}else {
+			$.fun.alert({content:"Error!!!!!", action:function(){
+				location.reload();
+			}});
+		}
+	}
+}); */
+	var title = "["+name+"] 서버를 삭제 하시겠습니까?"
+		
+		
+ 	$.fun.layout({
+		id:"induacaAdd",
+		"content":title,
+		"title":"서버 삭제",
+		"width":400,
+		"buttons":{
+			"확인": function() {
+				$.fun.ajax({
+					type:'get',
+					dataType:"JSON",
+					url:"/eqlist/DeleteData.do?seq="+seq,
+					success:function(data){
+						if( "200" == data.code ) {
+							$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+								location.reload();
+							}});
+						} else {
+							$.fun.alert({content:"Error!!!!!", action:function(){
+								location.reload();
+							}});
 						}
-					});
-			}	
-		}) // alert
-}
-
+					}
+				});// ajax
+			}, 
+			"닫기": function() {
+				$(this).dialog('destroy').remove();
+			}
+		} //button
+	}); 
+} 
+	
+	
 // 계정등록
 function fnAccountRegister(eqlistSeq){
 	$.fun.ajax({
@@ -118,39 +149,39 @@ function fnAccountRegister(eqlistSeq){
 }
 
 
- // function fnProcDelete(mberId, uniqId, mberName){
-// 	var _mberId		= mberId;
-// 	var _uniqId		= uniqId;
-// 	var _mberName	= mberName;
-// 	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정을 삭제 하시겠습니까? "
-// 	$.fun.alert({
-// 		content:_txt,
-// 		"buttons":{
-// 			"확인": function() {
-// 				$(this).dialog('destroy').remove();
-// 				$.fun.ajax({
-// 					type:'get',
-// 					dataType:"JSON",
-// 					url:"./ProcDeleteData.do?mberId="+_mberId,
-// 					success:function(data){
-// 						if( "200" == data.code ) {
-// 							$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-// 								location.reload();
-// 							}});
-// 						} else {
-// 							$.fun.alert({content:"Error!!!!!", action:function(){
-// 								location.reload();
-// 							}});
-// 						}
-// 					}
-// 				});
-// 			},
-// 			"닫기": function() {
-// 				$(this).dialog('destroy').remove();
-// 			}
-// 		}
-// 	});
-// }
+/* function fnProcDelete(mberId, uniqId, mberName){
+	var _mberId		= mberId;
+	var _uniqId		= uniqId;
+	var _mberName	= mberName;
+	var _txt		= _mberName+"( " + _uniqId + " ) 의 계정을 삭제 하시겠습니까? "
+	$.fun.alert({
+		content:_txt,
+		"buttons":{
+			"확인": function() {
+				$(this).dialog('destroy').remove();
+				$.fun.ajax({
+					type:'get',
+					dataType:"JSON",
+					url:"./ProcDeleteData.do?mberId="+_mberId,
+					success:function(data){
+						if( "200" == data.code ) {
+							$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+								location.reload();
+							}});
+						} else {
+							$.fun.alert({content:"Error!!!!!", action:function(){
+								location.reload();
+							}});
+						}
+					}
+				});
+			},
+			"닫기": function() {
+				$(this).dialog('destroy').remove();
+			}
+		}
+	});
+} */
 
 
 
@@ -194,9 +225,6 @@ function serializeObject(form){
 
 function fnProcExcel(){
 
-	// javascript 로 html form 을 구성해서  submit하는거지
-	//원래는 jsp를 서버로 응닫받는건데 엑셀은 파일스트림을 응답다아서 엑셀이 써지는거
-	//`FormSearchGnrlmber`  폼 에 있는 엘레멘트 항목
 	var data   = null;
 
 	var data   = serializeObject($("[name=FormSearchEqList]"));

@@ -109,7 +109,7 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnProcUniqIdChk()">등록</button>
+					<button type="button" class="userManageButtonAddAcount" onclick="fnProcUniqIdChk()">등록</button>
 				</c:when>
 			</c:choose>
 		</div>

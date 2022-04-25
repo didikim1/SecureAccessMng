@@ -23,21 +23,21 @@
 
 			<!-- IDC 명칭 -->
 			<tr>
-				<th scope="col" width="120px">IDC</th>
+				<th scope="col" width="120px" class = "MainInfo">IDC</th>
 				<td>${infoMap.idcName}</td>
 			</tr>
 			<!-- //IDC 명칭 -->
 
 			<!-- 서버 IP -->
 			<tr>
-				<th scope="col" width="120px">서버 IP</th>
+				<th scope="col" width="120px" class = "MainInfo">서버 IP</th>
 				<td>${infoMap.svIp1}</td>
 			</tr>
 			<!-- //서버 IP -->
 			
 			<!-- 담당책임 (정/부) -->
 			<tr>
-				<th scope="col" width="120px">정/부</th>
+				<th scope="col" width="120px" class = "MainInfo">정/부</th>
 				<td>
 				<select class="common_select" id="mberRating" name="mberRating">
 						<option value="" <c:if test="${info.mberRating eq ''}">selected</c:if> >선택</option>
@@ -49,14 +49,14 @@
 
 			<!-- 장비접속ID -->
 			<tr>
-				<th scope="col" width="120px">계정명</th>
+				<th scope="col" width="120px" class = "MainInfo">계정명</th>
 				<td><input type="text" class="userManageInput" id="id" name="id" autocomplete="off" value="" /></td>
 			</tr>
 			<!-- //장비접속ID -->
 
 			<!-- 장비접속패스워드-->
 			<tr>
-				<th scope="col" width="120px">패스워드</th>
+				<th scope="col" width="120px" class = "MainInfo">패스워드</th>
 				<td><input type="password" class="userManageInput" id="pwd" name="pwd" autocomplete="off" value="" /></td>
 			</tr>
 			<!-- //장비접속패스워드 -->
@@ -66,9 +66,9 @@
 
 
 <div class="border margin_l7">
-	<button type="button" class="eqlistButton" id="btnRegisterData" onclick="">추가</button>
-	<button type="button" class="eqlistButton" id="btnModifyData"   onclick="">수정</button>
-	<button type="button" class="eqlistButton" id="btnDeleteData"   onclick="">삭제</button>
+	<button type="button" class="eqlistButtonAccount" id="btnRegisterData" onclick="">추가</button>
+	<button type="button" class="eqlistButtonAccount" id="btnModifyData"   onclick="">수정</button>
+ 	<button type="button" class="eqlistButtonAccount" id="btnDeleteData"   onclick="">삭제</button> 
 </div>
 
 </div>
@@ -132,7 +132,7 @@ $(function(){
 
 	$("#btnDeleteData").click(function(){
 		var title = "["+$("[name=id]").val()+"][삭제] 하시겠습니까?"
-
+				
 				$.fun.alert({
 					content:title,
 					action:function(){

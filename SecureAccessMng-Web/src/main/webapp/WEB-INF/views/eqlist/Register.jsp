@@ -31,8 +31,8 @@
 <%-- 				</c:otherwise> --%>
 <%-- 			</c:choose> --%>
 
-			<button type="button" class="userManageButton" onclick="fnProcRegisterData()">등록하기</button>
-			<button type="button" class="userManageButton" onclick="fnClose()">닫기</button>
+			<button type="button" class="userManageButtonServer" onclick="fnProcRegisterData()">등록하기</button>
+			<button type="button" class="userManageButtonServer" onclick="fnClose()">닫기</button>
 		</div>
 
 	</div>

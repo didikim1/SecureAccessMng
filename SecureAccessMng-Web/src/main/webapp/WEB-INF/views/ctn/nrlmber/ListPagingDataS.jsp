@@ -33,7 +33,7 @@ function fnProcSearch(){
 }
 
 function fnOpenRegisterPage(uniqId){
-	// 엑셀은 ajax가 아니라 따로 파일 스트림을 응답받는거라 
+	// 엑셀은 ajax가 아니라 따로 파일 스트림을 응답받음
 	$.fun.ajax({
 		type:'get',
 		url:"/ctn/nrlmber/RegisterData.do?uniqId="+uniqId,

@@ -30,7 +30,7 @@
 
 			<!-- 서버명 -->
 			 <tr>
-				<th scope="col" width="120px">서버명</th>
+				<th scope="col" width="120px" class = "MainInfo">서버명</th>
 				<td><input type="text" class="userManageInput" id="svName" name="svName" autocomplete="off" value="${Info.svName}" /></td>
 			</tr> 
 			<!-- 서버명 -->
@@ -126,7 +126,7 @@
 			
 			<!-- IP #1 -->
  			<tr>
-				<th scope="col" width="120px">IP #1</th>
+				<th scope="col" width="120px" class = "MainInfo">IP #1</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
 			</tr> 
 			<!-- //IP #1 -->
@@ -154,7 +154,7 @@
 
 			<!-- port -->
 			<tr>
-				<th scope="col" width="120px">PORT</th>
+				<th scope="col" width="120px" class = "MainInfo">PORT</th>
 				<td><input type="text" class="userManageInput" id="svPort" name="svPort" autocomplete="off" value="${Info.svPort}" /></td>
 			</tr> 
 			<!-- //port -->
@@ -178,7 +178,7 @@
 
 			<!-- IDC -->
  			<tr>
-				<th scope="col" width="120px">IDC</th>
+				<th scope="col" width="120px" class = "MainInfo">IDC</th>
 				<td>
 					<select class="userManageInput" name="idcSeq">
 						<option value="">선택</option>

@@ -336,19 +336,6 @@ $(document).ready(function(){
 		}
 	});
 	*/
-	/*
-	저기 ajax data랑  paramMap["refEqList"] 		= '${infoMap.seq}'; 랑 같은거야
-	javascript 로 {} 표시는 object 를 의미하고
-	infoMap.seq 는 뭐야 잘했네 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-	다했네  (취소!!!!!!!!!!!)
-	내가 저번에 말한것처럼  서버에 값을 보낼땐 키 가 있어야대
-	{refEqList : infoMap.seq} 이거면  refEqList 키의 값을 infoMap.seq(계정고유값) 으로 한다는건데....
-	// 인터셉터를 보면  refEqList 라는 키는 넘어갔는데 `infoMap.seq}` 가 빈값이네.. 그러면 이 페이지를 호추할때  `RegisterContent.jsp` 할때 `infoMap.seq` 값이 노내주는 확인해야겠네
-	zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz아 왜 infoMap이였지..? 저거  원래 저거 그냥 그대로였나보넹
-
-			// /ctn/nrlmber/history/ListPagingData.do
-
-	*/
 
 	setTimeout(function(){
 		var paramMap = {};

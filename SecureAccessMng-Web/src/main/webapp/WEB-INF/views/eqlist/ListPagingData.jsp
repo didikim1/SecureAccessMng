@@ -74,7 +74,7 @@
 							<td>${board.svPort}</td>				<!-- Port(SSH) -->
 							<td>${board.frstRegisterPnttm}</td>		<!-- 등록일 -->
 							<td><input type="button" class="btn_it01" value="등록" onclick="fnAccountRegister('${board.seq}')"/></td>
-							<td><input type="button" class="btn_it01" value="삭제" onclick="fnDeleteData('${board.seq}', '${board.name}')"/></td>
+							<td><input type="button" class="btn_it01"  value="삭제" onclick="fnDeleteData ('${board.seq}', '${board.name}')"/></td>
 						</tr>
 					</c:forEach>
 					</tbody>
