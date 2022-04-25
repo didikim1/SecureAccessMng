@@ -124,11 +124,11 @@ function fnCallAuthPage() {
 	var roleId 				= form.find("[name=roleId]").val();
 	var mberRating 			= form.find("[name=mberRating]").val();
 
- if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
+	if( isNull( mberName) && isNull( moblphonNo) &&  isNull( chargeId) &&  isNull( roleId) &&  isNull( mberRating) ){
 	$.fun.alert({
 		content : "수정 할 사항이 없습니다. ",
 	});
- }else if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
+	 }else if( isNotNull(mberName) && ( !fnRegExpChk(mberName, idRegExp_Kor) ) ){
 		$.fun.alert({
 			content : "이름은 한글만 가능합니다.",
 			action : function() {
