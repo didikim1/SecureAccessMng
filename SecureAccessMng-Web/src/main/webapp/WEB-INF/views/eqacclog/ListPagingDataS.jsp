@@ -129,7 +129,7 @@ function fnPopSelectOneData(seq){
 				id:"induacaAdd",
 				"content":data,
 				"title":"상세정보",
-				"width":475,
+				"width":400,
 				"buttons":{
 		 			"닫기": function() {
 	 					$(this).dialog('destroy').remove();

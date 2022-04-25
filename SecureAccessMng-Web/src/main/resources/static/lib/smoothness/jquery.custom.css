@@ -16,6 +16,7 @@ div.ui-datepicker{ font-size:13px; }
 
 .SYWORKS_POP_LAYOUT.ui-dialog .ui-dialog-buttonset .ui-button .ui-button-text{color: #FFF;background: #A6A6A6;}
 .SYWORKS_POP_LAYOUT.ui-dialog .ui-dialog-buttonset .ui-button .ui-button-text{color: #FFF;background: #A6A6A6;}
+.SYWORKS_POP_LAYOUT.ui-dialog .ui-dialog-buttonset .ui-button.induacaAdd .ui-button-text{color: #FFF;background: #A6A6A6;}
 
 .SYWORKS_POP_LAYOUT.ui-dialog .ui-dialog-content .COMMON_ZIP_CODE .idCheckForm_adDesign input { margin-right: 5px; padding: 0 5px; height: 35px; width: 220px;font-size: 14px; border: 1px solid #dbdbdb;}
 .SYWORKS_POP_LAYOUT.ui-dialog .ui-dialog-content .COMMON_ZIP_CODE .idCheckForm_adDesign span a {padding: 0 14px 0 12px; font-size: 14px; }

@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <c:set var="_url" value="${pageContext.request.contextPath == '/' ? '' : pageContext.request.contextPath }" scope="application"/>
-
 <tag:layout>
+
       	<div id="layout_content">
 		<div class="content">
 

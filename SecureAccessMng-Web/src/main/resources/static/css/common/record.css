@@ -116,14 +116,15 @@ table.htable th.MainInfo {
 table.htable th.AccountMain{
 	line-height: 20px;
 	padding:2px;
-	border-bottom:solid 1px #e6e6e6;
+	border-bottom:solid 0.3px #e6e6e6;
 	width: 20px;
 }
 table.htable th.LogPart{
 	line-height: 20px;
 	padding:2px;
-	border-bottom:solid 1px #e6e6e6;
-	width: 90px;
+	border-bottom:solid 0.3px #e6e6e6;
+	 width: 80px;
+    font-size: 12px;
 }
 
 table.htable th.nowInfo {
@@ -131,7 +132,7 @@ table.htable th.nowInfo {
 	line-height: 20px;
 	padding:2px;
 	color:#e6e6e6;
-	border-bottom:solid 1px #e6e6e6;
+	border-bottom:solid 0.3px #e6e6e6;
 	width: 20px;
 	}
 
@@ -139,7 +140,7 @@ table.htable td {
 	font-size: 13px;
 	padding:3px;
 	line-height: 40px;
-	border-bottom:solid 1px #e6e6e6;
+	border-bottom:solid 0.3px #e6e6e6;
 	color:#404040;
 	}
 
