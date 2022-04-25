@@ -40,7 +40,7 @@
 
 						<tr>
 							<th scope="col" width="120px">소유자</th>
-								<th class = "nowInfo"> 
+								<th class = "nowInfo">
 								<input type="text" class="userManageInputNow"  value="${Info.mberNameDisplay}"disabled >
 								<input type="text" class="userManageInputRev" id="mberName" name="mberName" placeholder="변경할 소유자명을 입력하세요." autocomplete="off" value="" />
 								</th>
