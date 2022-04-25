@@ -92,8 +92,8 @@
 		<div class="border margin_l7">
 			<c:choose>
  				<c:when test="${Info.mberId != '' || Info.mberId ne null}">
-					<button type="button" class="userManageButton" onclick="fnCallAuthPage()">수정</button>
-					<button type="button" class="userManageButton" onclick="fnDeleteData()">해지</button>
+					<button type="button" class="userManageButtonRev" onclick="fnCallAuthPage()">수정</button>
+					<button type="button" class="userManageButtonRev" onclick="fnDeleteData()">해지</button>
 <!-- 					<button type="button" class="userManageButton" onclick="fnCallAuthPage()" name ="fnCallAuthPage">ARS</button> -->
 				</c:when>
 			</c:choose>
@@ -104,6 +104,8 @@
 
 // Info
 var dataOjb = {};
+
+var origin_seq			= '${Info.seq}';
 var origin_mberName 	= '${Info.mberName}';
 var origin_moblphonNo	= '${Info.moblphonNo}';
 var origin_chargeId 	= '${Info.chargeId}';
@@ -133,6 +135,7 @@ function fnCallAuthPage() {
 
 	var form = $("[name=FormComtngnrlmber]");
 	// jqeury  // isNull
+	var seq					= seq;
 	var mberName 			= form.find("[name=mberName]").val();
 	var moblphonNo 			= form.find("[name=moblphonNo]").val();
 	var chargeId 			= form.find("[name=chargeId]").val();
@@ -157,27 +160,6 @@ function fnCallAuthPage() {
 				$("[name=moblphonNo]").focus();
 			}
 		});
-	}else if( isNotNull( chargeId) ){
-		$.fun.alert({
-			content : "담당을 선택해주세요.",
-			action : function() {
-				$("[name=chargeId]").focus();
-			}
-		});
-	}else if( isNotNull( roleId) ){
-		$.fun.alert({
-			content : "권한을 선택해주세요.",
-			action : function() {
-				$("[name=roleId]").focus();
-			}
-		});
-	}else if( isNotNull( mberRating) ){
-		$.fun.alert({
-			content : "정/부 를 선택해주세요.",
-			action : function() {
-				$("[name=mberRating]").focus();
-			}
-		});
 	} else {
 	$.fun.ajax({
 		type:'get',
@@ -200,11 +182,13 @@ function fnCallAuthPage() {
 		
 		var form = $("[name=FormComtngnrlmber]");
 		
-		 dataOjb.mberName   		= form.find("[name=mberName]").val();
-		 dataOjb.moblphonNo 		= form.find("[name=moblphonNo]").val();
-		 dataOjb.chargeId 			= form.find("[name=chargeId]").val();
-		 dataOjb.roleId 			= form.find("[name=roleId]").val();
-		 dataOjb.mberRating 		= form.find("[name=mberRating]").val();
+			
+		dataOjb.seq				= origin_seq;
+		dataOjb.mberName   		= form.find("[name=mberName]").val();
+		dataOjb.moblphonNo 		= form.find("[name=moblphonNo]").val();
+		dataOjb.chargeId 		= form.find("[name=chargeId]").val();
+		dataOjb.roleId 			= form.find("[name=roleId]").val();
+		dataOjb.mberRating 		= form.find("[name=mberRating]").val();
 	
 	
 		 if( isNull( dataOjb.mberName) )     		{ dataOjb.mberName 		= origin_mberName; }

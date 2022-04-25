@@ -94,12 +94,13 @@ public class NrlmberBiz
     */
     public int DeleteData(MyMap paramMap)
     {
-    	if (mMapper.DeleteData(paramMap) > 0 )
-    	{
-    		paramMap.put("procSttus", "D");
-    		paramMap.put("mberSttus", "C");
-    		return mHistoryMapper.DeleteData(paramMap);
-    	}
-        return 0;
+    	
+//    	if (mMapper.DeleteData(paramMap) > 0 )
+//    	{
+//    		paramMap.put("procSttus", "D");
+//    		paramMap.put("mberSttus", "C");
+//    		return mHistoryMapper.DeleteData(paramMap);
+//    	}
+    	return mMapper.DeleteData(paramMap);
     }
 }

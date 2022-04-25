@@ -180,7 +180,7 @@
 
 
 	<!-- 삭제 -->
-	<update id="DeleteData" parameterType="myMap">
+	<update id="DeleteData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true">
 		INSERT INTO CTN_NRLMBER_HISTORY
 			(
 				 ROLE_ID					<!-- 부서고유ID -->
@@ -201,8 +201,8 @@
 				,#{nrlmberId}			<!-- 회원SEQ -->
 				,#{mberName}			<!-- 이름 -->
 				,#{mberRating}			<!-- 담당책임(정/부)-->
-				,#{mberSttus}			<!-- 상태 -->
-				,"C"					<!-- 처리상태 -->
+				,'C'					<!-- 상태 -->
+				,#{procSttus}			<!-- 처리상태 -->
 				,now()					<!-- 처리일자 -->
 				,#{frstRegisterId}		<!-- 최초등록ID -->
 				,now()					<!-- 최초등록일 -->

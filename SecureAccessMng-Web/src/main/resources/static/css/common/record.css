@@ -102,9 +102,24 @@ table.htable th {
 	padding:2px;
 	color:#fff;
 	border-bottom:solid 1px #e6e6e6;
-	width: 45px;
+	width : 40px;
+	}
+table.htable th.MainInfo {
+	background-color:#cfcfcf;
+	line-height: 20px;
+	padding:2px;
+	color:#fff;
+	border-bottom:solid 1px #e6e6e6;
+	width : 75px;
 	}
 	
+table.htable th.AccountMain{
+	line-height: 20px;
+	padding:2px;
+	border-bottom:solid 1px #e6e6e6;
+	width: 20px;
+}
+
 table.htable th.nowInfo {
 	background-color:white;
 	line-height: 20px;
@@ -301,6 +316,17 @@ input[name="mberName"]::placeholder {
 	font-size: 12px;
 	}
 
+#layout_content_popup_sub table.htable input.userManageInputMain{
+  width: 350px;
+  height: 30px;
+  line-height:24px;
+  padding: 2px;
+  margin-left:10px;
+  font-size: 14px;
+  color: #1b1b1b;
+  border: 1px solid #eee;
+  float: left;
+}
 #layout_content_popup_sub table.htable input.userManageInput{
   width: 350px;
   height: 30px;
@@ -324,6 +350,17 @@ input[name="mberName"]::placeholder {
   float: left;
 }
 #layout_content_popup_sub table.htable select.userManageInput{
+  width: 300px;
+  height: 30px;
+  line-height:24px;
+  margin-left:10px;
+  padding: 2px;
+  font-size: 14px;
+  color: #1b1b1b;
+  border: 1px solid #eee;
+  float: left;
+}
+#layout_content_popup_sub table.htable select.userManageInputMain{
   width: 300px;
   height: 30px;
   line-height:24px;
@@ -380,7 +417,19 @@ input[name="mberName"]::placeholder {
   height: 40px;
   min-height:40px;
   padding: 2px;
-  margin:0px auto 5px 15px;
+  margin: 8px 120px;
+  font-size: 14px;
+  color: #fff;
+  background-color:#263238;
+  border: 1px solid transparent;
+  cursor:pointer;
+}
+#layout_content_popup_sub button.userManageButtonRev{
+  width: 175px;
+  height: 40px;
+  min-height:40px;
+  padding: 2px;
+  margin: 5px 6px 8px 30px;
   font-size: 14px;
   color: #fff;
   background-color:#263238;

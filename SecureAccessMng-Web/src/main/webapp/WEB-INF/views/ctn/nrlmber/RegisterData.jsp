@@ -30,27 +30,27 @@
 <!-- 							</td> -->
 <!-- 						</tr> -->
 						<tr>
-							<th scope="col" width="120px">ID</th>
-							<td><input type="text" class="userManageInput" id="uniqId" name="uniqId" autocomplete="off"  value="${Info.uniqId}" /></td>
+							<th scope="col" width="120px" class = "MainInfo" >ID</th>
+							<td><input type="text" class="userManageInputMain" id="uniqId" name="uniqId" autocomplete="off"  value="${Info.uniqId}" /></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">이름</th>
+							<th scope="col" width="120px"class = "MainInfo">이름</th>
 							<td><input type="text" class="userManageInput" id="mberName" name="mberName" autocomplete="off" value="${Info.mberName}" /></td>
 						</tr>
 
 						<tr>
-							<th scope="col" width="120px">휴대폰번호</th>
+							<th scope="col" width="120px"class = "MainInfo">휴대폰번호</th>
 							<td><input type="text" class="userManageInput" id="moblphonNo" name="moblphonNo" autocomplete="off"
 							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="숫자만입력" value="${Info.moblphonNo}" maxlength="12"></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">Email</th>
+							<th scope="col" width="120px"class = "MainInfo">Email</th>
 							<td><input type="text" class="userManageInput" id="emailAddress" name="emailAddress" autocomplete="off" value="${Info.emailAddress}"></td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">담당</th>
+							<th scope="col" width="120px"class = "MainInfo">담당</th>
 							<td>
-							<select class="common_select" name="chargeId">
+							<select class="common_selectMain" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
@@ -59,9 +59,9 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">권한</th>
+							<th scope="col" width="120px"class="AccountMain">권한</th>
 							<td>
-								<select class="common_select" name="roleId">
+								<select class="common_selectMain" name="roleId">
 									<option value="" <c:if test="${Info.roleId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="role" items="${RoleList}" varStatus="status">
 											<option value="${role.roleId}" <c:if test="${Info.roleId eq role.roleId}">selected</c:if> >${role.roleName}</option>
@@ -70,9 +70,9 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">정/부</th>
+							<th scope="col" width="120px"class="AccountMain">정/부</th>
 							<td>
-							<select class="common_select" name="mberRating">
+							<select class="common_selectMain" name="mberRating">
 										<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
 										<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
 										<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
@@ -80,9 +80,9 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="col" width="120px">상태</th>
+							<th scope="col" width="120px"class="AccountMain">상태</th>
 							<td>
-								<select class="common_select" name="mberSttus">
+								<select class="common_selectMain" name="mberSttus">
 										<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
 										<option value="A"  <c:if test="${Info.mberRating eq 'A'}">selected</c:if>  >활성화</option>
 										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >중지</option>
