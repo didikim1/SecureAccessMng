@@ -93,7 +93,7 @@ function fnDeleteData(seq, name){
 								$.fun.alert({content:"Error!!!!!", action:function(){
 									location.reload();
 								}});
-							}
+							} 
 						}
 					});
 			}	
