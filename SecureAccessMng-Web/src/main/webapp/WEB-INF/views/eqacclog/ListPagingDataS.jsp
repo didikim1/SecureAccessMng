@@ -103,13 +103,13 @@ $(function(){
 
 
 function fnProcSearch(){
-	$("[name=FormSearchEqAcclog]").submit();
+	$("[name=FormSearchGnrlmber]").submit();
 }
 
 function fnProcExcel(){
 	var data   = null;
 
-	var data   = serializeObject($("[name=FormSearchEqAcclog]"));
+	var data   = serializeObject($("[name=FormSearchGnrlmber]"));
 	var method = "get";
 	var inputs = '';
 

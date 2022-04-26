@@ -19,6 +19,10 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
 			AND UNIQ_ID = #{uniqId}
 		</if>
+		<!-- 고유ID -->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(uniqId)">
+			AND UNIQ_ID LIKE CONCAT('%',#{uniqId},'%')
+		</if>
 
 		<!-- 이름 -->
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">
@@ -92,14 +96,6 @@
 				)  																							as mberNameDisplay  <!--  이름(마스킹) -->
 
 				,	(
-						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
-								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-5, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
-								ELSE
-								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
-						END
-				)  																							as uniqIdDisplay  <!-- 고유ID (마스킹)  -->
-
-				,	(
 
 						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
 				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
@@ -142,14 +138,6 @@
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
 						END
 				)  																							as mberNameDisplay <!-- 이름(마스킹) -->
-
-				,	(
-						CASE WHEN CHAR_LENGTH(UNIQ_ID)  > 4
-								THEN CONCAT(SUBSTRING(UNIQ_ID, 1,  1), LPAD('', CHAR_LENGTH(UNIQ_ID)-2, '*') , SUBSTRING(UNIQ_ID, CHAR_LENGTH(UNIQ_ID) ,  1))
-								ELSE
-								 REPLACE(UNIQ_ID,SUBSTRING(UNIQ_ID,2,1),'*')
-						END
-				)  																							as uniqIdDisplay  <!-- 고유ID(마스킹)  -->
 
 				,	(
 						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
@@ -231,7 +219,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(roleId)">   		,ROLE_ID = #{roleId}  	 				</if>  	 <!-- 권한ID -->
 
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberName)">   	,MBER_NAME = #{mberName}    			</if>  <!-- 이름 -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">   	,MBER_STTUS = #{mberSttus}  						</if>  <!-- 상태 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberSttus)">   	,MBER_STTUS = #{mberSttus}  			</if>  <!-- 상태 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)">   	,MBER_RATING = #{mberRating}  			</if>  <!-- 정/부 -->
 
 		WHERE SEQ = #{seq}

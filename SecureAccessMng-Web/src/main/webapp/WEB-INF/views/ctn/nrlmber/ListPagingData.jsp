@@ -22,8 +22,8 @@
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
 
-								<div class="common_div left margin_l2">소유자</div>
-								<input type="text" class="common_input2 right" name="mberName" id="mberName" placeholder="소유자명" value="${paramMap.mberName}" autocomplete="off"/>
+								<div class="common_div left margin_l2">ID</div>
+								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="ID" value="${paramMap.mberName}" autocomplete="off"/>
 
 								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="chargeId">
@@ -66,7 +66,7 @@
 <!-- 							<th scope="col" width="8%">부서</th> -->
 <!-- 							<th scope="col" width="8%">직위</th> -->
 							<th scope="col" width="7%">처리일자</th>
-							<th scope="col" width="7%">등록자</th>
+							<th scope="col" width="7%">ID</th>
 							<th scope="col" width="7%">소유자</th>
 							<th scope="col" width="7%">Email</th>
 							<th scope="col" width="7%">전화번호</th>
@@ -83,7 +83,7 @@
 <%-- 							<td>${board.dpamentName}</td>			<!-- 부서 --> --%>
 <%-- 							<td>${board.positionName}</td>			<!-- 직위 --> --%>
 							<td>${board.frstRegisterPnttm}</td>			<!-- 처리일자 -->
-							<td>${board.uniqIdDisplay}</td>				<!-- 등록자-->
+							<td>${board.uniqId}</td>				<!-- 등록자-->
 							<td>${board.mberNameDisplay}</td>			<!-- 소유자 -->
 							<td>${board.emailAddress}</td>				<!-- 계정-->
 							<td>${board.moblphonNoDisplay}</td>			<!-- 전화번호-->

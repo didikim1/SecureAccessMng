@@ -57,7 +57,7 @@
 							<th class ="nowInfo">
 							<input type="text" class="userManageInputNow" value="${Info.chargeName}" disabled>
 							<select class="common_selectRev" name="chargeId">
-								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
+								<option value="" <c:if test="${Info.chargeId eq ''}" >selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq ''}">selected</c:if> >${charge.name}</option>
 									</c:forEach>

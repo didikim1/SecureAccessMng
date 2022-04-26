@@ -81,6 +81,20 @@ function fnOpenRegisterContentPage(uniqId){
 	});
 }
 
+function fnProcExcel(){
+	var data   = null;
+
+	var data   = serializeObject($("[name=FormSearchEqAcclog]"));
+	var method = "get";
+	var inputs = '';
+
+	for (var k in data) {
+		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
+    }
+	$('<form action="'+ "/eqacclog/ListExcelData" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
+	
+}
+
 
 function fnProcDelete(mberId, uniqId, mberName){
 	var _mberId		= mberId;

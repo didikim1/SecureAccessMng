@@ -98,7 +98,6 @@ public class EqAccLogAction
 
 
 
-        //내가 한거겠지만...이게뭐징..ㅋㅋ
 //        if ( paramMap.getInt("idcSeq", 0) > 0)
 //        {
 //            MyMap eqListParamMap = new MyMap();
