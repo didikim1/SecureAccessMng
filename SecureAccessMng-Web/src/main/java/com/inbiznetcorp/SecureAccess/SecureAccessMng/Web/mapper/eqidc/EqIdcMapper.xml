@@ -8,7 +8,7 @@
 			AND SEQ 	=  #{seq}
 		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">
-			AND IDC_NAME 	= CONCAT('%',#{idcName},'%')
+			AND NAME 	= CONCAT('%',#{idcName},'%')
 		</if>
 	</sql>
 
@@ -60,8 +60,8 @@
 	<update id="RegisterData" parameterType="myMap" >
 		INSERT INTO EQ_IDC
 			(
-				 IDC_NAME 								<!-- IDC명			-->
-				,IDC_ADDR 								<!-- IDC주소		-->
+				 NAME 									<!-- IDC명			-->
+				,ADDR 									<!-- IDC주소		-->
 				,FRST_REGISTER_ID 						<!-- 최초등록 ID	-->
 				,LAST_UPDUSR_ID 						<!-- 최종등록일 ID	-->
 				,FRST_REGISTER_PNTTM 					<!-- 최초등록일 	-->
@@ -84,8 +84,8 @@
 			 SET
 				LAST_UPDUSR_PNTTM  =  now()
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(lastUpdusrId)">   	,LAST_UPDUSR_ID = #{lastUpdusrId}   </if>  	 <!-- 서버고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">  			,IDC_NAME = #{idcName}    			</if>  	 <!-- 서버고유ID -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcAddr)"> 			,IDC_ADDR = #{idcAddr}  			</if>  	 <!-- 서버명 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcName)">  			,NAME 			= #{idcName}    	</if>  	 <!-- 서버고유ID -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcAddr)"> 			,ADDR 			= #{idcAddr}  		</if>  	 <!-- 서버명 -->
 		WHERE SEQ = #{seq}
 	</update>
 

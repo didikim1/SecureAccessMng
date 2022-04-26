@@ -115,6 +115,12 @@ function fnLogin(){
 
 function fnCallAuthPage() {
 	var _uniqId 	= $("[name=uniqId]").val();
+
+	if ( isNull(_uniqId) ){
+		alert("아이디 를 입력해주세요.");
+		$("[name=uniqId]").focus();
+		return true;
+	} else {
 		$.fun.ajax({
 			type:'get',
 			url:"/login/CallAuthPage.do?uniqId="+_uniqId,
@@ -128,24 +134,22 @@ function fnCallAuthPage() {
 				});
 			}
 		});
-
 	}
+	return true;
+}
 
 $(document).ready(function(){
 
-	$("input[name=mberId]").keydown(function (key) {
-        if(key.keyCode == 13){
-        	fnLogin();
+	$(document).keydown(function (event ) {
+		if(event.keyCode == 13){
+			event.preventDefault();
+			fnCallAuthPage();
         }
-    });
-	$("input[name=password]").keydown(function (key) {
-        if(key.keyCode == 13){
-        	fnLogin();
-        }
-    });
+		return true;
+	});
 	$("#btnLogin").click(function(){
 		fnCallAuthPage();
-	}); 
+	});
 
 
 });

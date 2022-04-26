@@ -68,7 +68,7 @@ function fnProcRegisterData()
  		$.fun.alert({content:"서버명을 입력하세요."});
  		$("[name=svName]").focus();
 	}
-	
+
 // 	if(!$("[name=entrprsmberSeq]").val())
 // 	{
 // 		$.fun.alert({content:"관리자를 선택하세요."});
@@ -86,33 +86,30 @@ function fnProcRegisterData()
 				location.reload();
 			}});
 		}
-	}); 
+	});
 }
- 
- // IDC 등록
- function fnProcRegisterIdcData()
-{
-	// 관리자, IDC 선택하지 않은 경우 체크.
- 	 if(!$("[name=svName]").val())
- 	{
- 		$.fun.alert({content:"준비중입니다."});
- 		$("[name=svName]").focus();
-	}
-	
 
-	// IDC 등록
-	$.fun.ajax({
-		type:'get',
-		url:"/eqlist/RegisterData.do",
-		data:$("form[name=FormEqList]").serialize(),
-		success:function(data){
-			$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-				location.reload();
-			}});
-		}
-	}); 
+ // IDC 등록
+function fnProcRegisterIdcData(){
+ 	if( isNull( $("[name=formIdcinfo]").find("[name=idcName]").val() ) ) {
+		$.fun.alert({ content : "IDC 명칭을 입력해주세요.", action : function() { $("[name=formIdcinfo]").find("[name=idcName]").focus(); } });
+	} else if( isNull( $("[name=formIdcinfo]").find("[name=idcAddr]").val() ) ) {
+		$.fun.alert({ content : "IDC 주소를 입력해주세요.", action : function() { $("[name=formIdcinfo]").find("[name=idcAddr]").focus(); } });
+	} else {
+		// IDC 등록
+		$.fun.ajax({
+			type:'post',
+			url:"/idcinfo/RegisterData.do",
+			data:$("form[name=formIdcinfo]").serialize(),
+			success:function(data){
+				$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+					location.reload();
+				}});
+			}
+		});
+	}
 }
- 
+
 function fnProcRegisterAccountData()
 {
 	var inputText = $("form[name=FormEqList] input[type=text]");
@@ -154,7 +151,7 @@ function fnOpenRegisterEquipCodePage(title,inputName){
 			});
 		}
 	});
-} 
+}
 
 // 계정등록
 function fnOpenRegisterAccountPage(title,inputName){
