@@ -23,7 +23,7 @@
 
 
 								<div class="common_div left margin_l2">ID</div>
-								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="ID" value="${paramMap.mberName}" autocomplete="off"/>
+								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="ID" value="${paramMap.uniqId}" autocomplete="off"/>
 
 								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="chargeId">

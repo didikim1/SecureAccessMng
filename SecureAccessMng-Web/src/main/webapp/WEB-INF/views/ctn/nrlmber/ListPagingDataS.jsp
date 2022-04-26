@@ -82,16 +82,17 @@ function fnOpenRegisterContentPage(uniqId){
 }
 
 function fnProcExcel(){
+	
 	var data   = null;
 
-	var data   = serializeObject($("[name=FormSearchEqAcclog]"));
+	var data   = serializeObject($("[name=FormSearchGnrlmber]"));
 	var method = "get";
 	var inputs = '';
 
-	for (var k in data) {
+	for (var k in data) {  
 		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
     }
-	$('<form action="'+ "/eqacclog/ListExcelData" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
+	$('<form action="'+ "/ctn/nrlmber/ListExcelData.do" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
 	
 }
 

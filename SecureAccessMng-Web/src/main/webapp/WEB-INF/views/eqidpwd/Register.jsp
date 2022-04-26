@@ -78,6 +78,25 @@ $(function(){
 	$("#btnRegisterData").click(function(){
 		var title = "["+$("[name=id]").val()+"][등록] 하시겠습니까?"
 
+		if( isNull( mberRating) && isNull( id) &&  isNull( pwd) ){
+		$.fun.alert({
+			content : "등록 할 사항이 없습니다. ",
+		});
+		 }else if( isNull(id) ){
+			$.fun.alert({
+				content : "계정을 입력해 주세요.",
+				action : function() {
+					$("[name=id]").focus();
+				}
+			});
+		}else if( isNull(pwd)) {
+			$.fun.alert({
+				content : "패스워드를 입력해 주세요.",
+				action : function() {
+					$("[name=pwd]").focus();
+				}
+			});
+		}else {
 		$.fun.alert({
 			content:title,
 			action:function(){
@@ -98,11 +117,51 @@ $(function(){
 								}
 							}
 						});
-				} // action function
-			}) // alert
-	});
-
-	$("#btnModifyData").click(function(){
+					}, 
+					"취소": function() {
+						$(this).dialog('destroy').remove();
+					}
+				}) // alert
+			};
+		})
+	})
+		
+		
+/* 		var title = "["+name+"] 서버를 삭제 하시겠습니까?"
+		
+	 	$.fun.layout({
+			id:"induacaAdd",
+			"content":title,
+			"title":"서버 삭제",
+			"width":400,
+			"buttons":{
+				"삭제하기": function() {
+					$.fun.ajax({
+						type:'get',
+						dataType:"JSON",
+						url:"/eqlist/DeleteData.do?seq="+seq,
+						success:function(data){
+							if( "200" == data.code ) {
+								$.fun.alert({content:"정상 처리되었습니다.", action:function(){
+									location.reload();
+								}});
+							} else {
+								$.fun.alert({content:"Error!!!!!", action:function(){
+									location.reload();
+								}});
+							}
+						}
+					});// ajax
+				}, 
+				"취소": function() {
+					$(this).dialog('destroy').remove();
+				}
+			} //button
+		}); 
+	}  */
+		
+		
+ 	$("#btnModifyData").click(function(){
 		var title = "["+$("[name=id]").val()+"][수정] 하시겠습니까?"
 		$.fun.alert({
 			content:title,
@@ -127,7 +186,7 @@ $(function(){
 			} // action function
 		}) // alert
 
-	});
+	}); 
 
 
 	$("#btnDeleteData").click(function(){
@@ -209,5 +268,4 @@ $(function(){
 	}, 500);
 
 
-});
 </script>

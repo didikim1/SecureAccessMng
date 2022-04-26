@@ -91,7 +91,7 @@ $(function(){
 
 	setTimeout(function(){
 		fnEqListAsk();
-	}, 1000);
+	}, 500);
 
 	 $.datepicker.setDefaults({
 	        dateFormat: 'yy-mm-dd',

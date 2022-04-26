@@ -289,8 +289,26 @@ public class NrlmberAct
 
         BasicBean       resultBean 	 			= null;
         String      	strFileName      		= "계정상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-		String [] 		arrTitle           		= new String[] {"처리자", 	"소유자",		"계정",			"전화번호",		"담당",		"권한",	 "담당책임",		"상태"};
-		String [] 		arrExcelColum         	= new String[] {"uniqId",	"mberName",	"emailAddress",	"moblphonNo",	"name",	"roleName","mberRatingName",	"mberSttusName"};
+		String [] 		arrTitle           		= new String[] 
+																{
+																"ID"
+																,"소유자"
+																,"이메일"
+																,"전화번호"
+																,"담당"
+																,"권한"
+																,"담당책임"
+																,"상태"};
+		
+		String [] 		arrExcelColum         	= new String[] 
+																{"uniqId"
+																,"mberNameDisplay"
+																,"emailAddress"
+																,"moblphonNoDisplay"
+																,"name"
+																,"roleName"
+																,"mberRatingName"
+																,"mberSttusName"};
 
 		paramMap.put("rows",1000000);
 		resultBean = mBiz.ListPagingData( paramMap );
