@@ -340,39 +340,39 @@ public class LoginAct {
 		 * System.out.println("mberSttus:" + nrlmber.getStr("mberSttus"));
 		 */
 
-		MyMap resultMap = mBiz.SelectOneData(paramMap);
+//		MyMap resultMap = mBiz.SelectOneData(paramMap);
+//
+//		FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
+//		FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
+//		FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
+//		FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
+//		FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
+//		FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
+//		FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
+//		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
+//		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
 
-		FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
-		FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
-		FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
-		FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
-		FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
-		FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
-		FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
-		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
-		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
+		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
+		String callResult = (String) rtrn.get("result");
 
-//		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
-//		String callResult = (String) rtrn.get("result");
-//
-//		if (callResult.equals("00")) {
-//			resultCode = ResultCode.RESULT_OK;
-//
-//			MyMap resultMap = mBiz.SelectOneData(paramMap);
-//
-//			FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
-//			FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
-//			FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
-//			FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
-//			FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
-//			FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
-//			FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
-//			FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
-//			FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
-//
-//		} else {
-//			resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
-//		}
+		if (callResult.equals("00")) {
+			resultCode = ResultCode.RESULT_OK;
+
+			MyMap resultMap = mBiz.SelectOneData(paramMap);
+
+			FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
+			FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
+			FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
+			FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
+			FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
+			FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
+			FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
+			FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
+			FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
+
+		} else {
+			resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+		}
 
 		return new ResultMessage(resultCode, rtrn);
 	}
