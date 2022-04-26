@@ -11,7 +11,18 @@
 			AND REF_EQ_LIST 	=  #{refEqList}
 		</if>
 	</sql>
-
+	
+	<!-- ID중복체크 -->
+	<select id="SelectOneIDCheck" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			EQ_IDPWD
+		WHERE 1=1
+		AND 	REF_EQ_LIST = #{refEqList}   <!--  장비(SERVER)접속ID 고유값-->
+		AND	ID		= #{id} <!-- 서버 접속계정 -->
+	</select>
+	
 	<!-- 페이징 갯수 -->
 	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
 		SELECT

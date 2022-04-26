@@ -62,7 +62,7 @@ public class NrlmberAct
 	@RequestMapping(value = { "/ListPagingData.do" })
 	public String ListPagingDatas(Model model)
 	{
-			MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+			MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter(); // jsp 에서 검색된 값들은 paramMap 에 담기는거징 ㅇㅋ??넹
             BasicBean       resultBean  		= null;
     		BasicBean       roleList	 		= null;
     		BasicBean       chargeList  		= null;
@@ -76,7 +76,7 @@ public class NrlmberAct
     		roleList  	 = mRoleBiz.ListPagingData(new MyMap());
     		chargeList	 = mChargeBiz.ListPagingData(new MyMap());
 
-            model.addAttribute("paramMap",      paramMap);
+            model.addAttribute("paramMap",      paramMap); // paramMap 을 그대로 `paramMap` 키로그대로 화면에 다시 보내지??넹 
             model.addAttribute("Data",          resultBean);
    		 	model.addAttribute("RoleList",      roleList.getList());
    		 	model.addAttribute("ChargeList",    chargeList.getList());

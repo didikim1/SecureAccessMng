@@ -1,7 +1,10 @@
 package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework;
 
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
@@ -34,7 +37,7 @@ public class ManagerPWAES256
 
         Cipher c = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
-        c.init(Cipher.ENCRYPT_MODE, secureKey);
+        c.init(Cipher.ENCRYPT_MODE, secureKey);  
         byte[] encrypted = c.doFinal(str.getBytes("UTF-8"));
 
         return DatatypeConverter.printHexBinary(encrypted);

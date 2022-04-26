@@ -17,34 +17,35 @@
 					<table class="wtable_sub">
 						<tr>
 							<td>
-								<div class="common_div left">등록일</div>
+								<div class="common_div left">등록일</div> <!--  paramMap  아마 날짜는 그대로 유지 되었을거야  서버에서 내가 본값을 paramMap 이란느 키로 주고있거든  ㅇㅋ??네네-->
 								<input type="text" class="common_input2 pointer"  name="sDate" id="sDate" style="border-right:none;" autocomplete="off" placeholder="시작일" value="${paramMap.sDate}" readonly="readonly"/>
 								<input type="text" class="common_input2 right pointer" name="eDate" id="eDate" autocomplete="off" placeholder="종료일" value="${paramMap.eDate}" readonly="readonly"/>
 
 
 								<div class="common_div left margin_l2">ID</div>
 								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="ID" value="${paramMap.uniqId}" autocomplete="off"/>
-
+								<!-- chargeId=9&mberRating=M&mberSttus=A -->
+								
 								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="chargeId">
-									<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
+									<option value="" <c:if test="${paramMap.chargeId eq ''}">selected</c:if> >선택</option>
 										<c:forEach var="charge" items="${ChargeList}" varStatus="status" >
-											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+											<option value="${charge.seq}" <c:if test="${paramMap.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
 										</c:forEach>
 								</select>
 
 								<div class="common_div left margin_l2">정/부</div>
 								<select class="common_select" name="mberRating">
-										<option value="" <c:if test="${Info.mberRating eq ''}">selected</c:if> >선택</option>
-										<option value="M"  <c:if test="${Info.mberRating eq 'M'}">selected</c:if>  >정</option>
-										<option value="D"  <c:if test="${Info.mberRating eq 'D'}">selected</c:if>  >부</option>
+										<option value="" <c:if test="${paramMap.mberRating eq ''}">selected</c:if> >선택</option>
+										<option value="M"  <c:if test="${paramMap.mberRating eq 'M'}">selected</c:if>  >정</option>
+										<option value="D"  <c:if test="${paramMap.mberRating eq 'D'}">selected</c:if>  >부</option>
 								</select>
 
 								<div class="common_div left margin_l2">상태</div>
 								<select class="common_select" name="mberSttus">
-										<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
-										<option value="A"  <c:if test="${Info.mberRating eq 'A'}">selected</c:if>  >활성화</option>
-										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >중지</option>
+										<option value="" <c:if test="${paramMap.mberSttus eq ''}">selected</c:if> >선택</option>
+										<option value="A"  <c:if test="${paramMap.mberSttus eq 'A'}">selected</c:if>  >활성화</option>
+										<option value="C"  <c:if test="${paramMap.mberSttus eq 'C'}">selected</c:if>  >해지</option>
 								</select>
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>

@@ -74,58 +74,104 @@
 </div>
 <script type="text/javascript">
 $(function(){
-
+	
 	$("#btnRegisterData").click(function(){
-		var title = "["+$("[name=id]").val()+"][등록] 하시겠습니까?"
-
-		if( isNull( mberRating) && isNull( id) &&  isNull( pwd) ){
-		$.fun.alert({
-			content : "등록 할 사항이 없습니다. ",
-		});
-		 }else if( isNull(id) ){
-			$.fun.alert({
-				content : "계정을 입력해 주세요.",
-				action : function() {
-					$("[name=id]").focus();
-				}
-			});
-		}else if( isNull(pwd)) {
-			$.fun.alert({
-				content : "패스워드를 입력해 주세요.",
-				action : function() {
-					$("[name=pwd]").focus();
-				}
-			});
-		}else {
-		$.fun.alert({
-			content:title,
-			action:function(){
-						$.fun.ajax({
-							type:'post',
-							data:$("[name=FormEqList]").serialize(),
-							dataType:"JSON",
-							url:"/eqidpwd/RegisterData.do",
-							success:function(data){
-								if( "200" == data.code ) {
-									$.fun.alert({content:"정상 처리되었습니다.", action:function(){
-										location.reload();
-									}});
-								} else {
-									$.fun.alert({content:"Error!!!!!", action:function(){
-										location.reload();
-									}});
-								}
-							}
-						});
-					}, 
-					"취소": function() {
-						$(this).dialog('destroy').remove();
+		 var title = "["+$("[name=id]").val()+"] 계정을 등록 하시겠습니까?";  
+		 
+		 
+		 var mberRating = $("[name=mberRating]").val();
+		 var id					   = $("[name=id]").val();
+		 var pwd			   = $("[name=pwd]").val();
+		 
+		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
+				$.fun.alert({
+					content : "등록 할 사항이 없습니다. ",
+				});
+			 }else if( isNull(id) ){
+				$.fun.alert({
+					content : "계정을 입력해 주세요.",
+					action : function() {
+						$("[name=id]").focus();
 					}
-				}) // alert
-			};
-		})
-	})
+				});
+			}else if( isNull(pwd)) {
+				$.fun.alert({
+					content : "패스워드를 입력해 주세요.",
+					action : function() {
+						$("[name=pwd]").focus();
+					}
+				});
+			}else if( isNull(mberRating)) {
+				$.fun.alert({
+					content : "정/부 를 선택해주세요.",
+					action : function() {
+						$("[name=pwd]").focus();
+					}
+				});
+			}else {
+				$.fun.layout({
+					id:"RegisterEqIdPwd",
+					"content":title,
+					"title":"계정등록",
+					"width":400,
+					"buttons":{
+						"확인": function() {
+							$.fun.ajax({
+								type:'post',
+								data:$("[name=FormEqList]").serialize(),
+								dataType:"JSON",
+								url:"/eqidpwd/RegisterData.do",
+								success:function(data){
+									//  무조건 등록성이 아닐수가잇지 이제
+									// 어떤값이이 return되나 함 보자~~
+									console.log(data);
+									if(data.code == "200"){
+										$.fun.alert({
+											content : "등록되었습니다.",
+											action : function() {
+												location.reload();
+											}
+										});
+									} else if(data.code == "101"){
+										$.fun.alert({
+											content : "해당 ID는 중복 입니다..",
+											action : function() {
+												$("#RegisterEqIdPwd").dialog('destroy').remove();
+											}
+										});
+									} else {
+										$.fun.alert({
+											content : "죄송합니다.. 잠시 후 다시 이용해주세요.("+data.code +")",
+											action : function() {
+												location.reload();
+											}
+										});
+									}
+									/*
+									$.fun.alert({
+										content : "등록되었습니다.",
+										action : function() {
+											location.reload();
+										}
+									});
+									*/
+								}
+							});// ajax
+						}, 
+						"닫기": function() {
+							$(this).dialog('destroy').remove();
+						}
+					} //button
+				});
+				
+				
+				
+				 
+			}
 		
+		 
+	});
+
 		
 /* 		var title = "["+name+"] 서버를 삭제 하시겠습니까?"
 		
@@ -163,6 +209,37 @@ $(function(){
 		
  	$("#btnModifyData").click(function(){
 		var title = "["+$("[name=id]").val()+"][수정] 하시겠습니까?"
+				
+		 var mberRating = $("[name=mberRating]").val();
+		 var id					   = $("[name=id]").val();
+		 var pwd			   = $("[name=pwd]").val();
+				
+		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
+				$.fun.alert({
+					content : "수정 사항이 없습니다. ",
+				});
+			 }else if( isNull(id) ){
+				$.fun.alert({
+					content : "계정을 입력해 주세요.",
+					action : function() {
+						$("[name=id]").focus();
+					}
+				});
+			}else if( isNull(pwd)) {
+				$.fun.alert({
+					content : "패스워드를 입력해 주세요.",
+					action : function() {
+						$("[name=pwd]").focus();
+					}
+				});
+			}else if( isNull(mberRating)) {
+				$.fun.alert({
+					content : "정/부 를 선택해주세요.",
+					action : function() {
+						$("[name=pwd]").focus();
+					}
+				});
+			}else {
 		$.fun.alert({
 			content:title,
 			action:function(){
@@ -177,19 +254,21 @@ $(function(){
 										location.reload();
 									}});
 								} else {
-									$.fun.alert({content:"Error!!!!!", action:function(){
+									$.fun.alert({content:"수정할 내용이 없습니다.", action:function(){
 										location.reload();
 									}});
 								}
 							}
 						});
 			} // action function
-		}) // alert
-
+		}); // alert
+	}; 	
 	}); 
 
 
 	$("#btnDeleteData").click(function(){
+		
+		
 		var title = "["+$("[name=id]").val()+"][삭제] 하시겠습니까?"
 				
 				$.fun.alert({
@@ -206,7 +285,7 @@ $(function(){
 												location.reload();
 											}});
 										} else {
-											$.fun.alert({content:"Error!!!!!", action:function(){
+											$.fun.alert({content:"삭제할 항목을 선택하세요.", action:function(){
 												location.reload();
 											}});
 										}
@@ -214,8 +293,8 @@ $(function(){
 								});
 					} // action function
 				}) // alert
-	});
-
+		});
+})
 
 
 	$("#grid").jqGrid(jqGridUtils.fn_JQGridOption({

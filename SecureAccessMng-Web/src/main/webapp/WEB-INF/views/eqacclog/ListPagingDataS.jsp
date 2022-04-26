@@ -16,7 +16,7 @@ function fnEqListAsk(){
 			dataType:"JSON",
 			url:"/eqacclog/EqList/ListData.do?idcSeq="+idcSeq,
 			success:function(data){
-
+			   console.log(data);
 				$("select[name=eQListSeq]").empty();
 				$('#eQListSeq').empty();
 				$('#eQListSeq').children('option').remove();
@@ -28,9 +28,12 @@ function fnEqListAsk(){
 	 	        $('select[name=eQListSeq]').append(option);
 
 	 	       for(var i=0;i < data.result.list.length; i++){
-	 	    	  var option = $("<option value="+data.result.list[i].seq+">"+data.result.list[i].name+"</option>");
+	 	    	  var tag_selected = "";
+	 	    	  if( data.result.list[i].seq == eQListSeq ){
+	 	    		 tag_selected = "selected";
+	 	    	   }
+	 	    	   var option = $("<option value="+data.result.list[i].seq+"   "+tag_selected+"   >"+data.result.list[i].name+"</option>");
 	 	            $('select[name=eQListSeq]').append(option);
-
 	 	        }
 			}
 		});
@@ -88,11 +91,12 @@ $(function(){
 			}
 		});
 	});
-
+	fnEqListAsk();
+	/*
 	setTimeout(function(){
 		fnEqListAsk();
-	}, 500);
-
+	}, 300);
+	*/
 	 $.datepicker.setDefaults({
 	        dateFormat: 'yy-mm-dd',
 	        firstDay: 0,

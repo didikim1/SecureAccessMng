@@ -87,7 +87,7 @@
 								<select class="common_selectMain" name="mberSttus">
 										<option value="" <c:if test="${Info.mberSttus eq ''}">selected</c:if> >선택</option>
 										<option value="A"  <c:if test="${Info.mberRating eq 'A'}">selected</c:if>  >활성화</option>
-										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >중지</option>
+										<option value="C"  <c:if test="${Info.mberRating eq 'C'}">selected</c:if>  >해지</option>
 								</select>
 							</td>
 						</tr>

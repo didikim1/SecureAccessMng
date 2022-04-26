@@ -20,7 +20,7 @@ public class ResultMessage {
 
 	private String code;
 	private String message;
-	private String referenceUrl = "";
+	private String referenceUrl = "http://inbiznetcorp.com";
 	private Object result;
 
 	public String getCode() {
