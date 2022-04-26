@@ -352,7 +352,12 @@ public class LoginAct {
 //		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
 //		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
 
-		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
+//		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
+		String intro1 = "안녕하세요. 로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
+		String intro2 = "로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
+
+		rtrn = mCommonBiz.authCallDynamicSender(paramMap.getStr("moblphonNo"), authNumber, intro1, intro2);
+
 		String callResult = (String) rtrn.get("result");
 
 		if (callResult.equals("00")) {

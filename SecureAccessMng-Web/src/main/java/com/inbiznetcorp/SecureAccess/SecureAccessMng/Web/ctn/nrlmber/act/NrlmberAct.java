@@ -66,7 +66,7 @@ public class NrlmberAct
             BasicBean       resultBean  		= null;
     		BasicBean       roleList	 		= null;
     		BasicBean       chargeList  		= null;
-    		
+
             if ("".equals(paramMap.getStr("sDate", ""))) {
                 paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
                 paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
@@ -335,7 +335,7 @@ public class NrlmberAct
     	return pagePrefix + "/RegisterCallAuthPage";
     }
 
-    
+
 
     // 전화하는 컨트롤러
     @RequestMapping(value = { "/CallAuth.do" })
@@ -366,7 +366,13 @@ public class NrlmberAct
         System.out.println("mberSttus:"+nrlmber.getStr("mberSttus"));
 
 
-         rtrn =  mCommonBiz.authCallSender(nrlmber.getStr("moblphonNo"), authNumber);
+//         rtrn =  mCommonBiz.authCallSender(nrlmber.getStr("moblphonNo"), authNumber);
+
+        String intro1 = "안녕하세요. 정보 변경을 위해 화면에 보이는 인증번호를 눌러주세요.";
+        String intro2 = "정보 변경을 위해 화면에 보이는 인증번호를 눌러주세요.";
+
+        rtrn = mCommonBiz.authCallDynamicSender(nrlmber.getStr("moblphonNo"), authNumber, intro1, intro2);
+
          String callResult = (String) rtrn.get("result");
 
          if( callResult.equals("00")  )
