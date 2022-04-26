@@ -4,6 +4,41 @@
 
 
 
+function fnEqListAsk(){
+	var idcSeq = $("select[name=idcSeq]").val();
+	var eQListSeq = '${paramMap.eQListSeq}';
+
+	console.log(eQListSeq);
+
+	if( idcSeq > 0 ){
+		$.fun.ajax({
+			type:'get',
+			dataType:"JSON",
+			url:"/eqacclog/EqList/ListData.do?idcSeq="+idcSeq,
+			success:function(data){
+
+				$("select[name=eQListSeq]").empty();
+				$('#eQListSeq').empty();
+				$('#eQListSeq').children('option').remove();
+				$("select[name='eQListSeq'] option").remove();
+				$("#eQListSeq").find("option").remove();
+
+
+				var option = $("<option value=''>선택</option>");
+	 	        $('select[name=eQListSeq]').append(option);
+
+	 	       for(var i=0;i < data.result.list.length; i++){
+	 	    	  var option = $("<option value="+data.result.list[i].seq+">"+data.result.list[i].name+"</option>");
+	 	            $('select[name=eQListSeq]').append(option);
+
+	 	        }
+			}
+		});
+	}
+
+}
+
+
 $(function(){
 
 
@@ -52,8 +87,11 @@ $(function(){
 	 	        }
 			}
 		});
-
 	});
+
+	setTimeout(function(){
+		fnEqListAsk();
+	}, 1000);
 
 	 $.datepicker.setDefaults({
 	        dateFormat: 'yy-mm-dd',
@@ -84,7 +122,7 @@ $(function(){
 		$('#Date').datepicker();
 
 });
- 
+
  function serializeObject(form){
 	 var o = {};
      var a = form.serializeArray();
@@ -117,7 +155,7 @@ function fnProcExcel(){
 		inputs+='<input type="hidden" name="'+ k +'" value="'+ data[k]+'" />';
     }
 	$('<form action="'+ "/eqacclog/ListExcelData" +'" method="'+ (method||'post') +'">'+inputs+'</form>').appendTo('body').submit().remove();
-	
+
 }
 
 function fnPopSelectOneData(seq){

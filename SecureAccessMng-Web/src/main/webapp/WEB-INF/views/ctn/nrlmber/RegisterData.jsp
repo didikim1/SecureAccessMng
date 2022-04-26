@@ -51,9 +51,11 @@
 							<th scope="col" width="120px"class = "MainInfo">담당</th>
 							<td>
 							<select class="common_selectMain" name="chargeId">
-								<option value="" <c:if test="${Info.chargeId eq ''} && ${Info.chargeId eq '1' }">selected</c:if> >선택</option>
+								<option value="" <c:if test="${Info.chargeId eq ''}">selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
+										<c:if test="${charge.seq ne '1' }">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+										</c:if>
 									</c:forEach>
 							</select>
 							</td>

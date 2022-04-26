@@ -10,7 +10,7 @@
 
 			<div class="border">
 				<h1 class="tit01">검색조건</h1>
-				<form name="FormSearchEqAcclog" action="/eqacclog/ListPagingData.do" method="get">
+				<form name="FormSearchGnrlmber" action="/eqacclog/ListPagingData.do" method="get">
 					<input type="hidden" name="page"/>
 					<table class="wtable_sub">
 						<tr>
@@ -31,9 +31,9 @@
 								<div class="common_div left margin_l2">서버</div>
 								<select class="common_select" id="eQListSeq" name="eQListSeq" style="width: 170px;">
 									<option value="" <c:if test="${paramMap.eQListSeq  != '' || paramMap.eQListSeq  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${refEqList}" varStatus="status">
-										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}"></c:if> >${data.eqListSvIp1}</option>
-									</c:forEach>
+<%-- 									<c:forEach var="data" items="${refEqList}" varStatus="status"> --%>
+<%-- 										<option value="${data.seq}" <c:if test="${paramMap.eQListSeq eq data.seq}"></c:if> >${data.eqListSvIp1}</option> --%>
+<%-- 									</c:forEach> --%>
 								</select>
 									<div class="common_div left margin_l2">업무</div>
 								<select class="common_select" id="worktypecodeId"   name="worktypecodeId">

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,9 @@ public class LoginAct {
 
 	@Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz")
 	ChargeBiz mChargeBiz;
+
+	 @Value("${spring.profiles.active}")
+	 public String active;
 
 	@RequestMapping(value = { "/", "/index.do" })
 	public String index(Model model) {
@@ -353,12 +357,21 @@ public class LoginAct {
 //		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
 
 //		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
-		String intro1 = "안녕하세요. 로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
-		String intro2 = "로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
 
-		rtrn = mCommonBiz.authCallDynamicSender(paramMap.getStr("moblphonNo"), authNumber, intro1, intro2);
+		String callResult = "99";
+		if("LOCAL".equals(active.toUpperCase()))
+		{
+		    callResult =  "00";
+		}
+		else
+		{
+		    String intro1 = "안녕하세요. 로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
+		    String intro2 = "로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
 
-		String callResult = (String) rtrn.get("result");
+		    rtrn = mCommonBiz.authCallDynamicSender(paramMap.getStr("moblphonNo"), authNumber, intro1, intro2);
+
+		    callResult = (String) rtrn.get("result");
+		}
 
 		if (callResult.equals("00")) {
 			resultCode = ResultCode.RESULT_OK;
