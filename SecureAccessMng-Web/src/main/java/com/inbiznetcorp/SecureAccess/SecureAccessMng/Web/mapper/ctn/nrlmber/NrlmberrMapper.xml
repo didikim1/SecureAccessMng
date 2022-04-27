@@ -97,7 +97,7 @@
 
 				,	(
 
-						CONCAT	(LEFT(MOBLPHON_NO,-3),REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4),'****') , RIGHT(MOBLPHON_NO,CHAR_LENGTH(MOBLPHON_NO)-7))
+						CONCAT(LPAD(MOBLPHON_NO,0,3), RPAD(MOBLPHON_NO,7,3),'****')
 				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 
 
@@ -140,7 +140,7 @@
 				)  																							as mberNameDisplay <!-- 이름(마스킹) -->
 
 				,	(
-						CONCAT	(LEFT(MOBLPHON_NO,-3),REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4),'****') , RIGHT(MOBLPHON_NO,CHAR_LENGTH(MOBLPHON_NO)-7))
+						CONCAT(LPAD(MOBLPHON_NO,0,3), RPAD(MOBLPHON_NO,7,3),'****')
 				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 
 
