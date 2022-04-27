@@ -121,6 +121,31 @@ function fnCallAuthPage() {
 		$("[name=uniqId]").focus();
 		return true;
 	} else {
+
+		$.fun.ajax({
+			type:'get',
+			url:"/login/CallAuthPage.do?uniqId="+_uniqId, // id가 체크여부
+			success:function(data){
+				if(data.code == "200"){
+					$.fun.ajax({
+						type:'get',
+						url:"/login/CallAuthPage.do?uniqId="+_uniqId,
+						success:function(data){
+							$.fun.layout({
+								id:"CallAuthPage",
+								"content":data,
+								"title":"ARS인증요청",
+								"width":475,
+								"buttons":{}
+							});
+						}
+					});
+				} else if (data.code == "404"){
+
+				}
+			}
+		});
+		/*
 		$.fun.ajax({
 			type:'get',
 			url:"/login/CallAuthPage.do?uniqId="+_uniqId,
@@ -134,6 +159,7 @@ function fnCallAuthPage() {
 				});
 			}
 		});
+		*/
 	}
 	return true;
 }
