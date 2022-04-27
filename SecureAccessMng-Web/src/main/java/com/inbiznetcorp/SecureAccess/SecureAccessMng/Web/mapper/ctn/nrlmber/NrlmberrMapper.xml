@@ -97,7 +97,17 @@
 
 				,	(
 
-						CONCAT(LPAD(MOBLPHON_NO,0,3), RPAD(MOBLPHON_NO,7,3),'****')
+					CASE WHEN CHAR_LENGTH('050512345678')  = 11 
+						THEN CONCAT(LEFT('050512345678', 3) , '****',  SUBSTRING('050512345678',7,4)  )
+					WHEN CHAR_LENGTH('050512345678')  = 10 
+					   THEN CONCAT(LEFT('050512345678', 3) , '***',  SUBSTRING('050512345678',6,4)  )  
+					WHEN CHAR_LENGTH('050512345678')  = 9 
+					   THEN CONCAT(LEFT('050512345678', 2) , '***',  SUBSTRING('050512345678',6,4)  )   
+					WHEN CHAR_LENGTH('050512345678')  = 12 
+					   THEN CONCAT(LEFT('050512345678', 4) , '****',  SUBSTRING('050512345678',8,4)  ) 		 
+					ELSE
+				 	  '-'
+					END
 				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 
 
@@ -140,7 +150,17 @@
 				)  																							as mberNameDisplay <!-- 이름(마스킹) -->
 
 				,	(
-						CONCAT(LPAD(MOBLPHON_NO,0,3), RPAD(MOBLPHON_NO,7,3),'****')
+					CASE WHEN CHAR_LENGTH('050512345678')  = 11 
+						THEN CONCAT(LEFT('050512345678', 3) , '****',  SUBSTRING('050512345678',7,4)  )
+					WHEN CHAR_LENGTH('050512345678')  = 10 
+					   THEN CONCAT(LEFT('050512345678', 3) , '***',  SUBSTRING('050512345678',6,4)  )  
+					WHEN CHAR_LENGTH('050512345678')  = 9 
+					   THEN CONCAT(LEFT('050512345678', 2) , '***',  SUBSTRING('050512345678',6,4)  )   
+					WHEN CHAR_LENGTH('050512345678')  = 12 
+					   THEN CONCAT(LEFT('050512345678', 4) , '****',  SUBSTRING('050512345678',8,4)  ) 		 
+					ELSE
+				 	  '-'
+					END
 				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 
 
