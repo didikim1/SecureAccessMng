@@ -28,10 +28,10 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(moblphonNo)">
 			AND MOBLPHON_NO = #{moblphonNo}
 		</if>
-	
-	
+
+
 	</sql>
-	
+
 	<!-- ID체크 -->
 	<select id="SelectOneIDCheck" parameterType="myMap" resultType="int">
 		SELECT
@@ -39,8 +39,7 @@
 		FROM
 			CTN_NRLMBER
 		WHERE 1=1
-		AND 	UNIQ_ID = #{uniqId} 
-			<include refid="addWhere"/>
+		AND 	UNIQ_ID = #{uniqId}
 	</select>
 
 	<!-- 페이징 갯수 -->
