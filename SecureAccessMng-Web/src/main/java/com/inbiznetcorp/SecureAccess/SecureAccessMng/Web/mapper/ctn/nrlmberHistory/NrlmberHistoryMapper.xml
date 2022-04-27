@@ -57,7 +57,7 @@
 				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            		as  frstRegisterPnttm 	<!-- 최초등록일 -->
 				,	(
-						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
+						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 3
 								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
 								ELSE
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
@@ -106,7 +106,7 @@
 				,FRST_REGISTER_ID																	as  frstRegisterId		<!-- 최초등록ID  -->
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 		            		as  frstRegisterPnttm 	<!-- 최초등록일 -->
 				,	(
-						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 4
+						CASE WHEN CHAR_LENGTH(MBER_NAME)  > 3
 								THEN CONCAT(SUBSTRING(MBER_NAME, 1,  1), LPAD('', CHAR_LENGTH(MBER_NAME)-2, '*') , SUBSTRING(MBER_NAME, CHAR_LENGTH(MBER_NAME) ,  1))
 								ELSE
 								 REPLACE(MBER_NAME,SUBSTRING(MBER_NAME,2,1),'*')
