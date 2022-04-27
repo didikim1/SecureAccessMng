@@ -142,7 +142,7 @@ function fnCallAuthPage() {
 					});
 				} else if (data.code == "404"){
 					$.fun.alert({
-						content : "ID를 확인해 주세요.",
+						content : "등록된 ID가 없습니다.",
 						action : function() {
 							 $("[name=uniqId]").val("");
 							 $("[name=uniqId]").focus();

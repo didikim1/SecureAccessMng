@@ -97,6 +97,7 @@
 
 				,	(
 
+<<<<<<< HEAD
 					CASE WHEN CHAR_LENGTH('050512345678')  = 11
 						THEN CONCAT(LEFT('050512345678', 3) , '****',  SUBSTRING('050512345678',7,4)  )
 					WHEN CHAR_LENGTH('050512345678')  = 10
@@ -105,6 +106,16 @@
 					   THEN CONCAT(LEFT('050512345678', 2) , '***',  SUBSTRING('050512345678',6,4)  )
 					WHEN CHAR_LENGTH('050512345678')  = 12
 					   THEN CONCAT(LEFT('050512345678', 4) , '****',  SUBSTRING('050512345678',8,4)  )
+=======
+					CASE WHEN CHAR_LENGTH(MOBLPHON_NO)  = 11 
+						THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '****',  SUBSTRING(MOBLPHON_NO,7,4)  )
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 10 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )  
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 9 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 2) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )   
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 12 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 4) , '****',  SUBSTRING(MOBLPHON_NO,8,4)  ) 		 
+>>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 					ELSE
 				 	  '-'
 					END
@@ -150,6 +161,7 @@
 				)  																							as mberNameDisplay <!-- 이름(마스킹) -->
 
 				,	(
+<<<<<<< HEAD
 					CASE WHEN CHAR_LENGTH('050512345678')  = 11
 						THEN CONCAT(LEFT('050512345678', 3) , '****',  SUBSTRING('050512345678',7,4)  )
 					WHEN CHAR_LENGTH('050512345678')  = 10
@@ -158,6 +170,16 @@
 					   THEN CONCAT(LEFT('050512345678', 2) , '***',  SUBSTRING('050512345678',6,4)  )
 					WHEN CHAR_LENGTH('050512345678')  = 12
 					   THEN CONCAT(LEFT('050512345678', 4) , '****',  SUBSTRING('050512345678',8,4)  )
+=======
+					CASE WHEN CHAR_LENGTH(MOBLPHON_NO)  = 11 
+						THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '****',  SUBSTRING(MOBLPHON_NO,7,4)  )
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 10 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )  
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 9 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 2) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )   
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 12 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 4) , '****',  SUBSTRING(MOBLPHON_NO,8,4)  ) 		 
+>>>>>>> branch 'master' of http://dev01.ring2pay.com:3000/SecureAccess/SecureAccessMng-Web.git
 					ELSE
 				 	  '-'
 					END
