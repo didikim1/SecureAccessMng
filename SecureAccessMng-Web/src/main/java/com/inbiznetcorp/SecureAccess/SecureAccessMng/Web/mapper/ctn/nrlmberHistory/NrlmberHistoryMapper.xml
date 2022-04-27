@@ -66,9 +66,18 @@
 
 
 				,	(
-
-						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
-				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
+					CASE WHEN CHAR_LENGTH(MOBLPHON_NO)  = 11 
+						THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '****',  SUBSTRING(MOBLPHON_NO,7,4)  )
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 10 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )  
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 9 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 2) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )   
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 12 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 4) , '****',  SUBSTRING(MOBLPHON_NO,8,4)  ) 		 
+					ELSE
+				 	  '-'
+					END
+				)																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 		FROM
 			 CTN_NRLMBER_HISTORY T1
 		WHERE 1=1
@@ -104,9 +113,18 @@
 						END
 				)  																							as mberNameDisplay  <!--  이름(마스킹) -->
 				,	(
-
-						REPLACE(MOBLPHON_NO,SUBSTRING(MOBLPHON_NO,4,4),'****')
-				)  																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
+					CASE WHEN CHAR_LENGTH(MOBLPHON_NO)  = 11 
+						THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '****',  SUBSTRING(MOBLPHON_NO,7,4)  )
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 10 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 3) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )  
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 9 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 2) , '***',  SUBSTRING(MOBLPHON_NO,6,4)  )   
+					WHEN CHAR_LENGTH(MOBLPHON_NO)  = 12 
+					   THEN CONCAT(LEFT(MOBLPHON_NO, 4) , '****',  SUBSTRING(MOBLPHON_NO,8,4)  ) 		 
+					ELSE
+				 	  '-'
+					END
+				)																							as moblphonNoDisplay  <!-- 휴대폰번호(마스킹)  -->
 		FROM
 			 CTN_NRLMBER_HISTORY T1
 		WHERE 1=1
