@@ -80,8 +80,8 @@ $(function(){
 		 
 		 
 		 var mberRating = $("[name=mberRating]").val();
-		 var id					   = $("[name=id]").val();
-		 var pwd			   = $("[name=pwd]").val();
+		 var id			= $("[name=id]").val();
+		 var pwd		= $("[name=pwd]").val();
 		 
 		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
 				$.fun.alert({
@@ -122,8 +122,6 @@ $(function(){
 								dataType:"JSON",
 								url:"/eqidpwd/RegisterData.do",
 								success:function(data){
-									//  무조건 등록성이 아닐수가잇지 이제
-									// 어떤값이이 return되나 함 보자~~
 									console.log(data);
 									if(data.code == "200"){
 										$.fun.alert({
@@ -134,14 +132,14 @@ $(function(){
 										});
 									} else if(data.code == "101"){
 										$.fun.alert({
-											content : "해당 ID는 중복 입니다..",
+											content : "해당 ID는 중복 입니다.",
 											action : function() {
 												$("#RegisterEqIdPwd").dialog('destroy').remove();
 											}
 										});
 									} else {
 										$.fun.alert({
-											content : "죄송합니다.. 잠시 후 다시 이용해주세요.("+data.code +")",
+											content : "죄송합니다. 잠시 후 다시 이용해주세요.("+data.code +")",
 											action : function() {
 												location.reload();
 											}
