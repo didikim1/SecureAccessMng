@@ -23,9 +23,9 @@
 
 
 								<div class="common_div left margin_l2">ID</div>
-								<input type="text" class="common_input2 right" name="uniqId" id="uniqId" placeholder="ID" value="${paramMap.uniqId}" autocomplete="off"/>
+								<input type="text" class="common_input2 right" name="searchUniqId" id="searchUniqId" placeholder="ID" value="${paramMap.searchUniqId}" autocomplete="off"/>
 								<!-- chargeId=9&mberRating=M&mberSttus=A -->
-								
+
 								<div class="common_div left margin_l2">담당</div>
 								<select class="common_select" name="chargeId">
 									<option value="" <c:if test="${paramMap.chargeId eq ''}">selected</c:if> >선택</option>
