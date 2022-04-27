@@ -121,10 +121,9 @@ function fnCallAuthPage() {
 		$("[name=uniqId]").focus();
 		return true;
 	} else {
-
 		$.fun.ajax({
 			type:'get',
-			url:"/login/CallAuthPage.do?uniqId="+_uniqId, // id가 체크여부
+			url:'/login/RegisterData.do', // id 체크여부
 			success:function(data){
 				if(data.code == "200"){
 					$.fun.ajax({
@@ -140,11 +139,25 @@ function fnCallAuthPage() {
 							});
 						}
 					});
-				} else if (data.code == "404"){
-
+				} else if (data.code == "100"){
+					$.fun.alert({
+						content : "ID를 확인해 주세요.",
+						action : function() {
+							$(this).dialog('destroy').remove();
+						}
+					});
+				} else {
+					$.fun.alert({
+						content : "죄송합니다. 잠시 후 다시 이용해주세요.",
+						action : function() {
+							location.reload();
+						}
+					});
 				}
 			}
-		});
+		})
+	};
+
 		/*
 		$.fun.ajax({
 			type:'get',
@@ -160,7 +173,7 @@ function fnCallAuthPage() {
 			}
 		});
 		*/
-	}
+	
 	return true;
 }
 

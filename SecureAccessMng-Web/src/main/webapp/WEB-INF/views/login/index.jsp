@@ -30,16 +30,16 @@
 								</p>
 					    			<div class="login_div_sub">
 					    				<div class="login_div">아이디</div>
-										<input type="text" name="uniqId" id="uniqId" class="loginInput" placeholder="아이디" autocomplete="off"/>
+										<input type="text" name="uniqId" id="uniqId" class="loginInput" placeholder="아이디" autocomplete="off" onkeypress="JavaScript:press(this.form)"/>
 										<!-- <div class="login_div">비밀번호</div>
 										<input type="password" name="password" id="password" class="loginInput" placeholder="비밀번호" autocomplete="off"/> -->
 									</div>
+
+									<button class="btnLogin" type="button" id="btnLogin" name="submitBtn">
+										<b>로그인</b>
+									</button>
+									
 								</form>
-
-								<button class="btnLogin" type="button" id="btnLogin">
-									<b>로그인</b>
-								</button>
-
 								<p class="main_text3">
 									<span class="glyphicon glyphicon-exclamation-sign"></span>
 									본 사이트는 승인 받은 관리자의 PC에서만 접속 가능합니다.<br/> Chrome (1920x1080)에 최적화되어 있습니다.

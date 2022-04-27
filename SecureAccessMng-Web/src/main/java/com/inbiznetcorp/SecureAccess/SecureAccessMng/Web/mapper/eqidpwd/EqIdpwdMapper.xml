@@ -19,8 +19,8 @@
 		FROM
 			EQ_IDPWD
 		WHERE 1=1
-		AND 	REF_EQ_LIST = #{refEqList}   <!--  장비(SERVER)접속ID 고유값-->
-		AND	ID		= #{id} <!-- 서버 접속계정 -->
+		AND 	REF_EQ_LIST = #{refEqList}  	<!--  장비(SERVER)접속ID 고유값-->
+		AND	ID				= #{id} 			<!-- 서버 접속계정 -->
 	</select>
 	
 	<!-- 페이징 갯수 -->

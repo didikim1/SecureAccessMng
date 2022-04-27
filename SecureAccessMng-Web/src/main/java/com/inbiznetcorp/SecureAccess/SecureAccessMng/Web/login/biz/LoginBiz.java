@@ -18,6 +18,16 @@ public class LoginBiz
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.login.LoginMapper")
     LoginMapper mMapper;
 
+    
+	/**
+	 * ID체크 ( 0보다 크면 중복) 
+	 * @param paramMap
+	 * @return
+	 */
+	public int SelectOneIDCheck(MyMap paramMap) {
+		return mMapper.SelectOneIDCheck(paramMap);
+	}
+    
     /**
     * 페이징 데이터
     * @param paramMap

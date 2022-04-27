@@ -31,6 +31,17 @@
 	
 	
 	</sql>
+	
+	<!-- ID체크 -->
+	<select id="SelectOneIDCheck" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			CTN_NRLMBER
+		WHERE 1=1
+		AND 	UNIQ_ID = #{uniqId} 
+			<include refid="addWhere"/>
+	</select>
 
 	<!-- 페이징 갯수 -->
 	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">

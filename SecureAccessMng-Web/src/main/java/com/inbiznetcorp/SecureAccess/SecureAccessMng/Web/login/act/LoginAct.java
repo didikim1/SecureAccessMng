@@ -17,6 +17,7 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.common.biz.CommonBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.charge.biz.ChargeBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.act.NrlmberAct;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.nrlmber.biz.NrlmberBiz;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.ManagerPWAES256;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
@@ -52,6 +53,63 @@ public class LoginAct {
 	public String index(Model model) {
 		return pagePrefix + "/index";
 	}
+	
+    @SuppressWarnings("static-access")
+	@RequestMapping(value = { "/RegisterData.do" })
+    public @ResponseBody ResultMessage RegisterData(Model model)
+    {
+
+
+        MyMap paramMap  = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        int   iRtnValue = 0;
+
+        String uniqId	 = null; // 고유ID
+
+        String strPWD	 = null;
+        String strEncPWD = null;
+
+
+        /*중복체크 서버 계정ID*/
+
+        if( mBiz.SelectOneIDCheck(paramMap)  > 0 )		// 중복이아니고
+        {
+        	strPWD    = paramMap.getStr("pwd");
+            try
+            {
+    			strEncPWD = ManagerPWAES256.getInstance().AES_Encode( strPWD );
+    			paramMap.put("pwd", strEncPWD);
+    			// 계정 등록
+    			iRtnValue = mBiz.RegisterData(paramMap);
+
+    			if ( iRtnValue > 0 )
+    			{
+    				return new ResultMessage(ResultCode.RESULT_OK, null);
+    			}
+    			else
+    			{
+    				return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
+    			}
+    		}
+            catch (Exception e)
+            {
+            	e.printStackTrace();
+            	 return new ResultMessage(ResultCode.RESULT_INTERNAL_SERVER_ERROR, null);
+    		}
+        }
+        else
+        {
+
+        	MyMap duplicate  = new MyMap();
+
+        	duplicate.put("rtrtrt", "값입니다..");
+
+        	return new ResultMessage(ResultCode.RESULT_NOT_EMPTY, "중복 된 데이터입니다. ", duplicate);
+        }
+
+
+
+
+    }
 
 	@RequestMapping(value = { "/ListPagingData.do" })
 	public String ListPagingData(Model model) {

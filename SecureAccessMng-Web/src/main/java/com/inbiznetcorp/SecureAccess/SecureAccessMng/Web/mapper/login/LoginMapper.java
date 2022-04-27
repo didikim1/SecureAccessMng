@@ -10,6 +10,14 @@ import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 @Repository("com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.login.LoginMapper")
 public interface LoginMapper
 {
+	
+	/**
+	 * ID 체크
+	 * @param paramMap
+	 * @return
+	 */
+	public int SelectOneIDCheck(MyMap paramMap);
+	
 	/**
 	* 페이징 갯수
 	* @param paramMap
