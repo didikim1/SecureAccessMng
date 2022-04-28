@@ -56,10 +56,10 @@ public class NrlmberBiz
     */
     public int RegisterData(MyMap paramMap)
     {
-    	if( mMapper.RegisterData(paramMap) > 0 )
+    	if( mMapper.RegisterData(paramMap)  >0 )
     	{
     		paramMap.put("procSttus", "I");
-    		return mHistoryMapper.RegisterData(paramMap);
+    		return mHistoryMapper.ModifyData(paramMap);
     	}
     	
     	return 0;

@@ -32,6 +32,10 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(worktypecodeId)">
 			AND WORKTYPECODE_ID =  #{worktypecodeId}
 		</if>
+				<!-- 현재상태-->
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sttus)">
+			AND STTUS LIKE CONCAT('%',#{sttus},'%')
+		</if>
 
 
 	</sql>
