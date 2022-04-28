@@ -32,7 +32,7 @@ function fnEqListAsk(){
 	 	    	  if( data.result.list[i].seq == eQListSeq ){
 	 	    		 tag_selected = "selected";
 	 	    	   }
-	 	    	   var option = $("<option value="+data.result.list[i].seq+"   "+tag_selected+"   >"+data.result.list[i].name+"</option>");
+	 	    	   var option = $("<option value="+data.result.list[i].seq+"   "+tag_selected+"   >"+data.result.list[i].svIp1+"</option>");
 	 	            $('select[name=eQListSeq]').append(option);
 	 	        }
 			}
@@ -84,7 +84,7 @@ $(function(){
 	 	        $('select[name=eQListSeq]').append(option);
 
 	 	       for(var i=0;i < data.result.list.length; i++){
-	 	    	  var option = $("<option value="+data.result.list[i].seq+">"+data.result.list[i].name+"</option>");
+	 	    	  var option = $("<option value="+data.result.list[i].seq+">"+data.result.list[i].svIp1+"</option>");
 	 	            $('select[name=eQListSeq]').append(option);
 
 	 	        }

@@ -103,7 +103,7 @@
 
 			<c:if test="${Data.paginationInfo.totalRecordCount > 0 }">
 				<div class="border">
-					<tag:Page formName="FormSearchEqAcclog" pageing="${Data.paginationInfo}"/>
+					<tag:Page formName="FormSearchGnrlmber" pageing="${Data.paginationInfo}"/>
 				</div>
 			</c:if>
 		</div>
