@@ -20,7 +20,7 @@
 				    	<div class="login_box block">
 				    		<div class="login_text_box block">
 				    			<p class="main_text1"><b>인비즈넷 개인정보처리 서버</b></p>
-								<p class="main_text2"><b>접속관리 페이지</b></p>
+								<p class="main_text2"><b>권한관리 페이지</b></p>
 				    		</div>
 
 				    		<div class="login_input_box block">

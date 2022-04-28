@@ -67,7 +67,7 @@
 <%-- 		         <img src="${_resource}/static/images/logo/hyundai_ci2.png" style="height: 40px; width: auto;" /> --%>
 		   </div>
 		    <div class="rbtn">
-		  	    <font class="rbtn_font2"> ${mberName}</font>
+		  	    <font class="rbtn_font2"> ${mberName} ${uniqId} </font>
 		  	    <button type="button" class="header_button" onclick="btnLogout();">로그아웃</button>
 		    </div>
 

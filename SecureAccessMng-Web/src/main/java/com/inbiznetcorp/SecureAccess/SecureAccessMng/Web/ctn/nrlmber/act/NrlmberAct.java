@@ -76,7 +76,7 @@ public class NrlmberAct
     		roleList  	 = mRoleBiz.ListPagingData(new MyMap());
     		chargeList	 = mChargeBiz.ListPagingData(new MyMap());
 
-            model.addAttribute("paramMap",      paramMap); // paramMap 을 그대로 `paramMap` 키로그대로 화면에 다시 보내지??넹 
+            model.addAttribute("paramMap",      paramMap); 
             model.addAttribute("Data",          resultBean);
    		 	model.addAttribute("RoleList",      roleList.getList());
    		 	model.addAttribute("ChargeList",    chargeList.getList());
@@ -339,7 +339,6 @@ public class NrlmberAct
     {
     	MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-    	// 랜덤 숫자 두자리를 생성 전달 `https://offbyone.tistory.com/237`
 //            String phoneNumber = paramMap.getStr("phoneNumber");  //  해당 컨트롤러
     	int authNumber  = 0;
 

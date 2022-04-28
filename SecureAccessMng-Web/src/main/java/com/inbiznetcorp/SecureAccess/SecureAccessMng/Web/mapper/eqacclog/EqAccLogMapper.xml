@@ -50,7 +50,7 @@
 	<!-- 페이징 목록    -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 	 SEQ														as seq				    <!--서버고유ID-->
+			 	 SEQ															as seq				<!--서버고유ID-->
 
 			 	,WORKTYPECODE_ID 												as worktypecodeId	<!-- 업무코드 ID -->
 				,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName <!-- 업무명칭 -->
@@ -79,7 +79,7 @@
 
 				,PROCESSID													as processid			<!-- 프로세스 ID -->
 				,STTUS														as sttus				<!-- 처리상태(A) -->
-				,( 	CASE WHEN STTUS  = 'A' THEN '로그인' ELSE '로그아웃' END ) 	 as  sttusName		<!-- 처리상태 -->
+				,( 	CASE WHEN STTUS  = 'A' THEN '로그인' ELSE '로그아웃' END ) 	 as  sttusName			<!-- 처리상태 -->
 
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->

@@ -30,7 +30,7 @@
 								<select class="common_select" name="chargeId">
 									<option value="" <c:if test="${paramMap.chargeId eq ''}">selected</c:if> >선택</option>
 										<c:forEach var="charge" items="${ChargeList}" varStatus="status" >
-											<option value="${charge.seq}" <c:if test="${paramMap.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
+												<option value="${charge.seq}" <c:if test="${paramMap.chargeId eq charge.seq}">selected</c:if> >${charge.name}</option>
 										</c:forEach>
 								</select>
 

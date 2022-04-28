@@ -39,7 +39,7 @@
 			T1.SEQ as seq ,																	<!--서버고유ID-->
 			T1.REF_EQ_IDC as refEqIdc ,						 								<!--IDC 고유ID-->
 			T2.NAME as idcName,																<!-- IDC NAME -->
-			T1.NAME as name ,																<!--서버명-->
+		 	T1.NAME as name ,																<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
@@ -66,7 +66,7 @@
 			T1.SEQ as seq ,																	<!--서버고유ID-->
 			T1.REF_EQ_IDC as refEqIdc ,						 								<!--IDC 고유ID-->
 			T2.NAME as idcName,																<!-- IDC NAME -->
-			T1.NAME as name ,																<!--서버명-->
+			T1.NAME as name , 	 															<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
