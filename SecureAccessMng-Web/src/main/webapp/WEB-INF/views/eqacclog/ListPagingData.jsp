@@ -42,12 +42,16 @@
 										<option value="${data.codeSeq}" <c:if test="${paramMap.worktypecodeId eq data.codeSeq}">selected</c:if> >${data.name}</option>
 									</c:forEach>
 								</select>
-
-								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
+									<div class="common_div left margin_l2">현재상태</div>
+								<select class="common_select" name="sttus">
+										<option value="" <c:if test="${paramMap.sttus eq ''}">selected</c:if> >선택</option>
+										<option value="A"  <c:if test="${paramMap.sttus eq 'A'}">selected</c:if>  >로그인</option>
+										<option value="E"  <c:if test="${paramMap.sttus eq 'E'}">selected</c:if>  >로그아웃</option>
+										<option value="Z"  <c:if test="${paramMap.sttus eq 'Z'}">selected</c:if>  >강제종료</option>
+								</select>
 								<button type="button"  style="width: 120px;" class="common_button2 margin_l2" onclick="fnProcExcel();">&nbsp;엑셀다운로드</button>
-
+								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 							</td>
-
 						</tr>
 					</table>
 				</form>
@@ -56,13 +60,13 @@
 			<table id="myTable" class="wtable tablesorter-blackice border table-hover">
 				<thead>
 					<tr>
-						<th scope="col" width="2%"></th>
+						<th scope="col" width="2%">No</th>
 						<th scope="col" width="8%">IDC</th>
+						<th scope="col" width="7%">접속자</th>
 						<th scope="col" width="12%">서버</th>
 						<th scope="col" width="5%">업무</th>
 						<th scope="col" width="7%">접속ID</th>
 						<th scope="col" width="7%">접속IP</th>
-						<th scope="col" width="7%">접속자</th>
 						<th scope="col" width="3%">정/부</th>
 						<th scope="col" width="7%">프로세스ID</th>
 						<th scope="col" width="5%">현재상태</th>
@@ -75,11 +79,11 @@
 						<tr onclick="fnPopSelectOneData('${board.seq}')"  style="cursor: pointer;">
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
 							<td>${board.eqIdcName}</td>											<!-- IDC -->
+							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
 							<td>${board.eqListName}</td>										<!-- 서버 -->
 							<td><b>${board.worktypecodeName}</b></td>							<!-- 업무 -->
 							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>					<!-- 접속ID -->
 							<td>${board.eqAllowIpName}(${board.eqAllowIpAdd})</td>				<!-- 접속IP -->
-							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
 							<td>${board.mberRatingName}</td>									<!-- 담당책임 (정/부) -->
 							<td>${board.processid}</td>											<!-- 프로세스ID -->
 							<td>																<!-- 현재상태 -->

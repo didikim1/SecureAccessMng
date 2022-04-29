@@ -59,7 +59,9 @@
 							<select class="common_selectRev" name="chargeId">
 								<option value="" <c:if test="${Info.chargeId eq ''}" >selected</c:if> >선택</option>
 									<c:forEach var="charge" items="${ChargeList}" varStatus="status">
+										<c:if test="${charge.seq ne '1' }">
 											<option value="${charge.seq}" <c:if test="${Info.chargeId eq ''}">selected</c:if> >${charge.name}</option>
+										</c:if>
 									</c:forEach>
 							</select>
 						</tr>
@@ -292,14 +294,14 @@ $(document).ready(function(){
 		           	,'처리일'
 		           ],
 		colModel: [
-				 {name:'mberRatingName', 	index:'mberRatingName',			width:5,	align:'center', search:false,  sortable:true}
-				,{name:'mberNameDisplay', 	index:'mberNameDisplay',		width:8,	align:'center', search:false,  sortable:true}
+				 {name:'mberRatingName', 	index:'mberRatingName',			width:10,	align:'center', search:false,  sortable:true}
+				,{name:'mberNameDisplay', 	index:'mberNameDisplay',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'moblphonNoDisplay', index:'moblphonNoDisplay',		width:13,	align:'center', search:false,  sortable:true}
 				,{name:'chargeName', 		index:'chargeName',				width:10,	align:'center', search:false,  sortable:true}
-				,{name:'roleName', 			index:'roleName',				width:10,	align:'center', search:false,  sortable:true}
+				,{name:'roleName', 			index:'roleName',				width:15,	align:'center', search:false,  sortable:true}
 				,{name:'mberSttusName', 	index:'mberSttusName',			width:10,	align:'center', search:false,  sortable:true}
 				,{name:'frstRegisterId', 	index:'frstRegisterId',			width:10,	align:'center', search:false,  sortable:true}
-				,{name:'frstRegisterPnttm', index:'frstRegisterPnttm',		width:10,	align:'center', search:false,  sortable:true}
+				,{name:'frstRegisterPnttm', index:'frstRegisterPnttm',		width:15,	align:'center', search:false,  sortable:true}
 		],
 
 		pager:"#pager",
@@ -340,7 +342,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		var paramMap = {};
 		console.log('${Info.seq}');
-		paramMap["nrlmberId"] 		= '${Info.seq}';  // => 이게 {nrlmberId: ;47'} 이지
+		paramMap["nrlmberId"] 		= '${Info.seq}';  // 
 		console.log("paramMap : " + paramMap);
 		jqGridUtils.searchProc({
 		     gridId:"#grid"
