@@ -103,6 +103,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
     	request.setAttribute("roleId",     FrameworkBeans.findSessionBean().roleId);
     	request.setAttribute("chargeId",   FrameworkBeans.findSessionBean().chargeId);
     	request.setAttribute("mberName",   FrameworkBeans.findSessionBean().mberName);
+    	request.setAttribute("uniqId",     FrameworkBeans.findSessionBean().uniqId);
     }
 
     @Override
