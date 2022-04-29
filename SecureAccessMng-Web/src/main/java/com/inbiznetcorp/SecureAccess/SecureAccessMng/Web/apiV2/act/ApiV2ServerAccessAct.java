@@ -55,6 +55,12 @@ public class ApiV2ServerAccessAct
     private String kKey_reason          = "reason";
 
 
+    /**
+     * 상태값
+     */
+    private String kKey_sttus          = "sttus";
+
+
     @RequestMapping(value="/accLogs.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage list(@RequestParam(value="rows", defaultValue="10") int rows)
     {
@@ -92,6 +98,37 @@ public class ApiV2ServerAccessAct
         paramMap.put(kKey_reason,               dto.getReason());
 
         intRtnValue = mEqAccLogBiz.RegisterData(paramMap);
+
+        if(intRtnValue > 0)
+        {
+            result_code = ResultCode.RESULT_OK;
+        }
+
+        return new ResultMessage(result_code, intRtnValue);
+    }
+
+
+    @RequestMapping(value="/processAllTermination.do", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody ResultMessage processAllTermination(@RequestBody ServerAccessDTO dto)
+    {
+        String result_code = ResultCode.RESULT_NOT_FOUND;
+
+        int             intRtnValue     = 0;
+        MyMap           paramMap        = new MyMap();
+
+        paramMap.put(kKey_refNrlmber,           dto.getRefNrlmber());
+        paramMap.put(kKey_sttus,                dto.getSttus());
+
+        List<MyCamelMap> list = mEqAccLogBiz.ListData(paramMap);
+
+        System.out.println("size : " + list.size());
+
+        for (MyCamelMap info : list)
+        {;
+            paramMap        = new MyMap();
+            paramMap.put("processid",  info.getStr("processid") );
+            intRtnValue += mEqAccLogBiz.UpdateLogOutAccLog(paramMap);
+        }
 
         if(intRtnValue > 0)
         {

@@ -23,6 +23,8 @@ public class ServerAccessDTO
     /** SSH Client 프로세스 ID */
     private String processID    = null;
 
+    private String sttus        = null;
+
     /** 서버 접근 사유 */
     private String reason       = null;
 
@@ -89,5 +91,13 @@ public class ServerAccessDTO
     public void setReason(String reason)
     {
         this.reason = reason;
+    }
+    public String getSttus()
+    {
+        return sttus;
+    }
+    public void setSttus(String sttus)
+    {
+        this.sttus = sttus;
     }
 }

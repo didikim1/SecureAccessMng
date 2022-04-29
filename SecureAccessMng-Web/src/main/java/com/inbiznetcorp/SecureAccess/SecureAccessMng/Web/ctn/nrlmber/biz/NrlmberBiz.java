@@ -18,7 +18,7 @@ public class NrlmberBiz
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmber.NrlmberrMapper")
     NrlmberrMapper mMapper;
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.nrlmberHistory.NrlmberHistoryMapper")
     NrlmberHistoryMapper mHistoryMapper;
 
@@ -56,12 +56,19 @@ public class NrlmberBiz
     */
     public int RegisterData(MyMap paramMap)
     {
+        System.out.println("==================inset 전 ================");
+        System.out.println(paramMap);
+        System.out.println("==================//inset 전 ================");
     	if( mMapper.RegisterData(paramMap)  >0 )
     	{
+    	 System.out.println("==================inset 후 ================");
+         System.out.println(paramMap);
+         System.out.println("==================//inset 후 ================");
+                paramMap.put("nrlmberId", paramMap.getInt("seq"));
     		paramMap.put("procSttus", "I");
     		return mHistoryMapper.ModifyData(paramMap);
     	}
-    	
+
     	return 0;
     }
 
@@ -77,7 +84,7 @@ public class NrlmberBiz
         {
     		paramMap.put("procSttus", "U");
         	return mHistoryMapper.ModifyData(paramMap);
-        	
+
         }
         return 0;
     }
@@ -89,7 +96,7 @@ public class NrlmberBiz
     */
     public int DeleteData(MyMap paramMap)
     {
-    	
+
 //    	if (mMapper.DeleteData(paramMap) > 0 )
 //    	{
 //    		paramMap.put("procSttus", "D");
