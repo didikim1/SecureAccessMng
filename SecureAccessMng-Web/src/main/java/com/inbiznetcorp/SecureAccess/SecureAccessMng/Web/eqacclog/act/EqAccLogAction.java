@@ -79,13 +79,10 @@ public class EqAccLogAction
         resultBean = mBiz.ListPagingData( paramMap );
 
 
-        // 일부로 MIA 라고함.  맵 이름은 아무 상관없다라는걸 보여주고싶은거야
-        // 걍 MyMap 으로 넘기면됨 변수명은 중요하지않아.
         MyMap miaMap = new MyMap();
         miaMap.put("title", 		"WORK_TYPE");
         miaMap.put("type", 			"B");
 
-        //  mCodeMapper.ListData(miaMap) 이 값이 어떻게 RETURN되는지 함보자..
         workTypeList = mCodeMapper.ListData(miaMap);
 
 

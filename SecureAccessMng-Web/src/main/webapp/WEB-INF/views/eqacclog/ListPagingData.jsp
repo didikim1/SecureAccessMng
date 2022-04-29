@@ -44,13 +44,13 @@
 								</select>
 									<div class="common_div left margin_l2">현재상태</div>
 								<select class="common_select" name="sttus">
-										<option value="" <c:if test="${Info.sttus eq ''}">selected</c:if> >선택</option>
-										<option value="A"  <c:if test="${Info.sttus eq 'A'}">selected</c:if>  >로그인</option>
-										<option value="E"  <c:if test="${Info.sttus eq 'C'}">selected</c:if>  >로그아웃</option>
-										<option value="Z"  <c:if test="${Info.sttus eq 'Z'}">selected</c:if>  >강제종료</option>
+										<option value="" <c:if test="${paramMap.sttus eq ''}">selected</c:if> >선택</option>
+										<option value="A"  <c:if test="${paramMap.sttus eq 'A'}">selected</c:if>  >로그인</option>
+										<option value="E"  <c:if test="${paramMap.sttus eq 'E'}">selected</c:if>  >로그아웃</option>
+										<option value="Z"  <c:if test="${paramMap.sttus eq 'Z'}">selected</c:if>  >강제종료</option>
 								</select>
-								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 								<button type="button"  style="width: 120px;" class="common_button2 margin_l2" onclick="fnProcExcel();">&nbsp;엑셀다운로드</button>
+								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 							</td>
 						</tr>
 					</table>
