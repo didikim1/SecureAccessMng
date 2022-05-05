@@ -119,6 +119,9 @@ public class ApiV2ServerAccessAct
         paramMap.put(kKey_refNrlmber,           dto.getRefNrlmber());
         paramMap.put(kKey_sttus,                dto.getSttus());
 
+
+        System.out.println("  => " + paramMap.toString() );
+
         List<MyCamelMap> list = mEqAccLogBiz.ListData(paramMap);
 
         System.out.println("size : " + list.size());
