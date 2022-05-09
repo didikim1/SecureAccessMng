@@ -46,6 +46,9 @@
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
 			T1.PURPOSE_USE as purposeUse,													<!--사용용도-->
+			( 	CASE WHEN PURPOSE_USE  = '37' THEN '일반' 
+			WHEN PURPOSE_USE =  '38' THEN '녹취'
+			WHEN PURPOSE_USE =  '39' THEN 'DB' END ) 	as purposeUseName,  <!--사용용도이름-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
 			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' 
 				WHEN MBER_RATING =  'D' THEN '부' END ) 	as mberRatingName,  				<!-- 정/부 -->

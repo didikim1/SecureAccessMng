@@ -166,8 +166,15 @@ public class EqAccLogAction
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
         MyMap rtnMap   = mBiz.SelectOneData(paramMap);
+        List<MyCamelMap> purposeInfoList        = null;
 
+        MyMap purposeMap = new MyMap();
+        purposeMap.put("title",                 "PURPOSE_USE");
+        purposeMap.put("type",                  "B");
+        purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
+        
         model.addAttribute("info",          rtnMap);
+        model.addAttribute("purposeUseInfoList",    purposeInfoList);
 
         return pagePrefix + "/pop/SelectOneData";
     }

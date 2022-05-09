@@ -16,6 +16,7 @@
 				</td>
 			</tr>
 			<!-- //장비정보 -->
+			
 			<!-- 정/부 -->
 			<tr>
 				<th scope="col" width="120px"class = "MainInfo">정부</th>

@@ -52,8 +52,8 @@
 									<div class="common_div left margin_l3">서버종류</div>
 								<select class="common_select" id="purposeUse"   name="purposeUse">
 									<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${purposeUseInfoList}" varStatus="status">
-										<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.purposeUseName}</option>
+									<c:forEach var="data" items="${purposeInfoList}" varStatus="status">
+										<option value="${data.codeSeq}" <c:if test="${paramMap.codeSeq eq data.codeSeq}">selected</c:if> >${data.name}</option>
 									</c:forEach>
 								</select>
 								<button type="button"  style="width: 120px;" class="common_button2 margin_l3" onclick="fnProcExcel();">&nbsp;엑셀다운로드</button>

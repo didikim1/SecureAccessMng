@@ -35,6 +35,20 @@
 			</tr>
 			<!-- //서버 IP -->
 			
+			<!-- 서버종류 -->
+ 			<tr>
+				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
+				<td>
+					<select class="common_select"  id="purposeUse"name="purposeUse">
+						<option value="" <c:if test="${info.purposeUse eq ''}">selected</c:if> >선택</option>
+						<option value="37"  <c:if test="${info.purposeUse eq '37'}">selected</c:if>  >일반</option>
+						<option value="38"  <c:if test="${info.purposeUse eq '38'}">selected</c:if>  >녹취</option>
+						<option value="39"  <c:if test="${info.purposeUse eq '39'}">selected</c:if>  >DB</option>
+					</select>
+				</td>
+			</tr>
+			<!-- //서버종류 -->
+			
 			<!-- 담당책임 (정/부) -->
 			<tr>
 				<th scope="col" width="120px" class = "MainInfo">정/부</th>
@@ -303,6 +317,7 @@ $(function(){
 		           	,'담당책임'
 		           	,'아이디'
 		           	,'담당책임'
+		           	,'서버종류'
 		           	,'최종등록자'
 		           	,'최종등록일'
 		           ],
@@ -311,6 +326,7 @@ $(function(){
 				,{name:'mberRating', 		index:'mberRating',			width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberRatingName', 	index:'mberRatingName',		width:10,	align:'center', search:false,  sortable:true}
+				,{name:'purposeUseName', 	index:'purposeUseName',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrId', 		index:'LAST_UPDUSR_ID',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'lastUpdusrPnttm', 	index:'LAST_UPDUSR_PNTTM',	width:10,	align:'center', search:false,  sortable:true}
 		],

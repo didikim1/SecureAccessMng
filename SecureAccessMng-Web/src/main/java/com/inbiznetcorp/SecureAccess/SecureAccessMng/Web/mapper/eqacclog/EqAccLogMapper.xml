@@ -103,6 +103,8 @@
 					,WORKTYPECODE_ID 															as worktypecodeId
 					,REASON																		as reason
 					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) 			as worktypecodeName
+					,PURPOSE_USE 																			as purposeUse
+					,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )								as purposeUseName
 					,REF_EQ_IDC	 																as refEqIdc
 					,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 						as eqIdcName
 					,REF_EQ_LIST 																as refEqList
@@ -152,6 +154,9 @@
 
 				,MBER_RATING				                                 as mberRating			<!-- 담당책임(정/부)-->
 				,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 	 as mberRatingName		<!-- 정/부 -->
+				
+				,PURPOSE_USE 																			as purposeUse    <!-- 서버종류 -->
+				,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )								as purposeUseName<!-- 서버종류 -->
 
 				,REF_ALLOW_IP			as refAllowIp												<!-- 허용IP SEQ -->
 				,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP ) as eqAllowIpAdd  	 	<!-- 허용IP -->
@@ -173,6 +178,7 @@
 		INSERT INTO EQ_ACCLOG
 			(
 				 WORKTYPECODE_ID 		<!-- 업무코드 ID -->
+				 ,PURPOSE_USE			<!-- 서버종류 -->
 				,REF_EQ_IDC 			<!-- IDC고유 SEQ -->
 				,REF_EQ_LIST 			<!-- 서버고유SEQ -->
 				,REF_EQ_IDPWD 			<!-- 모듈고유SEQ -->
@@ -181,12 +187,14 @@
 				,MBER_RATING			<!-- 담당책임(정/부)-->
 				,PROCESSID				<!-- 프로세스 ID -->
 				,STTUS					<!-- 처리상태(A) -->
+				
 				,REASON					<!-- 사유 -->
 				,FRST_REGISTER_PNTTM	<!-- 로그인일자 -->
 			)
 			VALUES
 			(
 				 #{worktypecodeId} 		<!-- 업무코드 ID -->
+				 ,#{purposeUse}				<!-- 서버종류 -->
 				,#{refEqIdc} 			<!-- IDC고유 SEQ -->
 				,#{refEqList} 			<!-- 서버고유SEQ -->
 				,#{refEqIdpwd} 			<!-- 모듈고유SEQ -->
@@ -258,6 +266,9 @@
 
 			 	,WORKTYPECODE_ID 												as worktypecodeId	<!-- 업무코드 ID -->
 				,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID ) as worktypecodeName <!-- 업무명칭 -->
+				
+				,PURPOSE_USE 																			as purposeUse    <!-- 서버종류 -->
+				,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )								as purposeUseName<!-- 서버종류 -->
 
 				,REF_EQ_IDC 									  			as refEqIdc				<!-- IDC고유 SEQ -->
 			    ,( SELECT NAME FROM EQ_IDC WHERE SEQ = REF_EQ_IDC ) 		as eqIdcName  			<!-- IDC 명칭 -->
@@ -265,6 +276,7 @@
 				,REF_EQ_LIST 										  		as refEqList			<!-- 서버고유SEQ -->
 				,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 	as eqListSvIp1  		<!-- 서버명칭 -->
 				,( SELECT NAME FROM EQ_LIST WHERE SEQ = REF_EQ_LIST ) 		as eqListName  			<!-- 서버명칭 -->
+				
 
 				,REF_EQ_IDPWD 										  		as refEqIdpwd			<!-- 계정 SEQ -->
 				,( SELECT ID FROM EQ_IDPWD WHERE SEQ = REF_EQ_IDPWD ) 		as eqIdpwdID  			<!-- 계정 ID -->

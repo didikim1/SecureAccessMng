@@ -30,7 +30,9 @@ public class EqAccLogBiz
         BasicBean resultBean = null;
 
         FrameworkPagingUtils.pagingRange(paramMap, paramMap.getInt("rows", 10));
-        resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10), mMapper.SelectOnePagingCount(paramMap), mMapper.ListPagingData(paramMap));
+        resultBean = FrameworkPagingUtils.pagingData(paramMap, paramMap.getInt("rows", 10),
+        		mMapper.SelectOnePagingCount(paramMap), 
+        		mMapper.ListPagingData(paramMap));
 
         return resultBean;
     }
