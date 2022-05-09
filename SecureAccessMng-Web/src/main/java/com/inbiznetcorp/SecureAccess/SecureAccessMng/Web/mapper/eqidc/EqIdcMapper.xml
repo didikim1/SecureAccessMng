@@ -60,7 +60,7 @@
 	<update id="RegisterData" parameterType="myMap" >
 		INSERT INTO EQ_IDC
 			(
-				 NAME 									<!-- IDC명			-->
+				 NAME 									<!-- IDC명		-->
 				,ADDR 									<!-- IDC주소		-->
 				,FRST_REGISTER_ID 						<!-- 최초등록 ID	-->
 				,LAST_UPDUSR_ID 						<!-- 최종등록일 ID	-->

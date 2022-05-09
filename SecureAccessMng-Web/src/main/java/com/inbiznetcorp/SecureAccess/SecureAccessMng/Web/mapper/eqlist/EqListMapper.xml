@@ -10,6 +10,9 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refEqIdc)">
 			AND T1.REF_EQ_IDC 	=  #{refEqIdc}
 		</if>
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(purposeUse)">
+			AND T1.PURPOSE_USE 	=  #{purposeUse}
+		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(svIp1)">
 			AND T1.SV_IP1 	LIKE CONCAT('%',#{svIp1},'%')
 		</if>
@@ -42,9 +45,10 @@
 		 	T1.NAME as name ,																<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			T1.PURPOSE_USE as purposeUse,													<!--사용용도-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
 			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' 
-				WHEN MBER_RATING =  'D' THEN '부' END ) 	as mberRatingName,  <!-- 정/부 -->
+				WHEN MBER_RATING =  'D' THEN '부' END ) 	as mberRatingName,  				<!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,
@@ -69,9 +73,10 @@
 			T1.NAME as name , 	 															<!--서버명-->
 			T1.SV_IP1 as svIp1 ,															<!--서버 IP-->
 			T1.SV_PORT as svPort ,															<!--서버 SSH PORT-->
+			T1.PURPOSE_USE as purposeUse,													<!--사용용도-->
 			T1.MBER_RATING as mberRating , 													<!-- 담당책임 (정/부) -->
 			( 	CASE WHEN MBER_RATING  = 'M' THEN '정' 
-			WHEN MBER_RATING =  'D' THEN '부' END ) 	as mberRatingName,	<!-- 정/부 -->
+			WHEN MBER_RATING =  'D' THEN '부' END ) 	as mberRatingName,						<!-- 정/부 -->
 			DATE_FORMAT(T1.RECEIVING_PNTTM, '%Y-%m-%d') as receivingPnttm , 				<!--입고일-->
 			T1.FRST_REGISTER_ID as frstRegisterId ,
 			T1.LAST_UPDUSR_ID as lastUpdusrId ,
@@ -98,6 +103,7 @@
 				,STTUS 												 	   	 		<!--상태-->
 				,PROPERTY_NAME														<!-- 자산명 -->
 				,PROPERTY_NUM														<!-- 자산번호 -->
+				,PURPOSE_USE														<!--사용용도-->
 				,SEPEC_CPU															<!-- 스펙 씨피유 -->
 				,SEPEC_MM														    <!-- 스펙 메모리 -->
 				,SEPEC_DISK															<!-- 스펙 디스크 -->
@@ -127,6 +133,7 @@
 				,#{svSttus}	 	    	<!--상태-->
 				,#{propertyName}		<!-- 자산명 -->
 				,#{propertyNum}		    <!-- 자산번호 -->
+				,#{purposeUse}			<!-- 사용용도 -->
 				,#{svSepecCpuName}		<!-- 스펙 씨피유 -->
 				,#{svSepecMmName}		<!-- 스펙 메모리 -->
 				,#{svSepecDiskName}		<!-- 스펙 디스크 -->
@@ -161,6 +168,8 @@
 
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyName)"> 	,PROPERTY_NAME = #{propertyName}        </if>  <!-- 자산명 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(propertyNum)">  	,PROPERTY_NUM = #{propertyNum}  	    </if>   <!-- 자산번호 -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(purposeUse)">  	,PURPOSE_USE = #{purposeUse}  	   		</if>   <!-- 사용용도 -->
+			
 
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecCpu)">     	,PROPERTY_NUM = #{sepecCpu}  		    </if>  	 <!-- 스펙 씨피유 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sepecMm)">   	,SEPEC_MM = #{sepecMm}  			    </if>  	 <!-- 스펙 메모리 -->

@@ -176,6 +176,20 @@
 <!-- 			</tr> -->
 			<!-- //서버상태 -->
 
+			<!-- 사용용도 -->
+ 			<tr>
+				<th scope="col" width="120px" class = "MainInfo">사용용도</th>
+				<td>
+					<select class="userManageInput" name="purposeUse">
+						<option value="">선택</option>
+							<option value="D"  <c:if test="${Info.purposeUse eq 'D'}">selected</c:if>  >DB</option>
+							<option value="S"  <c:if test="${Info.purposeUse eq 'S'}">selected</c:if>  >녹취</option>
+							<option value="N"  <c:if test="${Info.purposeUse eq 'N'}">selected</c:if>  >일반</option>
+					</select>
+				</td>
+			</tr> 
+			<!-- //사용용도 -->
+			
 			<!-- IDC -->
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">IDC</th>
