@@ -51,8 +51,8 @@ public class EqListAction
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.entrprsmber.biz.EntrprsmberBiz")
     EntrprsmberBiz mEntrprsmberBiz;
 
-    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
-    CodeMapper mCodeMapper;
+//    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
+//    CodeMapper mCodeMapper;
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
@@ -66,20 +66,19 @@ public class EqListAction
 
         BasicBean resultBean    		= mBiz.ListPagingData(paramMap);
         BasicBean eqIdcBean     		= mEqIdcBiz.ListData(new MyMap());
-        
-        
+
+
         List<MyCamelMap> purposeInfoList	= null;
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
             paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
             paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
         }
-        
+
         MyMap purposeMap = new MyMap();
         purposeMap.put("title", 		"PURPOSE_USE");
         purposeMap.put("type", 			"B");
-        purposeInfoList = mCodeMapper.ListData(purposeMap);
-
+        purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
 
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       eqIdcBean);
@@ -123,7 +122,8 @@ public class EqListAction
     { "/Register.do" }, method = RequestMethod.GET)
     public String Register(Model model)
     {
-        MyMap paramMap  = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        MyMap            paramMap               = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+        List<MyCamelMap> purposeInfoList        = null;
 //        MyMap resultMap = null;
 //
 //        if (FrameworkUtils.isNotNull(paramMap.getStr("svId", "")))
@@ -137,13 +137,17 @@ public class EqListAction
 
         BasicBean entrprsmberBean       = mEntrprsmberBiz.ListData(new MyMap());        // 관리자 List
         BasicBean idcInfoBean           = mEqIdcBiz.ListData(new MyMap());              // IDC List
-        BasicBean purposeUseInfoBean    = mBiz.ListData(new MyMap());              // IDC List
+
+        MyMap purposeMap = new MyMap();
+        purposeMap.put("title",                 "PURPOSE_USE");
+        purposeMap.put("type",                  "B");
+        purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
 
         model.addAttribute("paramMap",         	 	paramMap);
         model.addAttribute("EntrprsmberList",   	entrprsmberBean.getList());
         model.addAttribute("IdcInfoList",       	idcInfoBean.getList());
-        model.addAttribute("purposeUseInfoList",    purposeUseInfoBean.getList());
-        
+        model.addAttribute("purposeUseInfoList",        purposeInfoList);
+
         return pagePrefix + "/Register";
     }
 

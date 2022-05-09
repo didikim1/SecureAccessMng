@@ -69,8 +69,8 @@ public class EqAccLogAction
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
 
         List<MyCamelMap> workTypeList	    = null;
-        
-        
+
+
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
             paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
@@ -82,11 +82,9 @@ public class EqAccLogAction
 
         MyMap miaMap = new MyMap();
         miaMap.put("title", 		"WORK_TYPE");
-        miaMap.put("type", 			"B");
+        miaMap.put("type", 		"B");
 
         workTypeList = mCodeMapper.ListData(miaMap);
-        
-
 
         model.addAttribute("paramMap",        			   	paramMap);
         model.addAttribute("Data",              			resultBean);

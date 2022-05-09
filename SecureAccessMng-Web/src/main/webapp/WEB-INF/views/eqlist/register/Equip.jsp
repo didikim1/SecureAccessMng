@@ -32,9 +32,9 @@
 			 <tr>
 				<th scope="col" width="120px" class = "MainInfo">서버명</th>
 				<td><input type="text" class="userManageInput" id="svName" name="svName" autocomplete="off" value="${Info.svName}" /></td>
-			</tr> 
+			</tr>
 			<!-- 서버명 -->
-			
+
 			<!-- 명칭 -->
 <!-- 			<tr>
 				<th scope="col" width="120px">명칭</th>
@@ -116,19 +116,19 @@
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
 			</tr>  -->
 			<!-- 주소 -->
-			
+
 			<!-- 상세주소-->
 <!--			<tr>
 				<th scope="col" width="120px">상세주소</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
 			</tr> -->
 			<!-- 상세주소 -->
-			
+
 			<!-- IP #1 -->
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">IP #1</th>
 				<td><input type="text" class="userManageInput" id="svIp1" name="svIp1" autocomplete="off" value="${Info.svIp1}" /></td>
-			</tr> 
+			</tr>
 			<!-- //IP #1 -->
 
 			<!-- IP #2 -->
@@ -156,7 +156,7 @@
 			<tr>
 				<th scope="col" width="120px" class = "MainInfo">PORT</th>
 				<td><input type="text" class="userManageInput" id="svPort" name="svPort" autocomplete="off" value="${Info.svPort}" /></td>
-			</tr> 
+			</tr>
 			<!-- //port -->
 
 			<!-- OSType -->
@@ -183,13 +183,13 @@
 					<select class="userManageInput" name="purposeUse">
 						<option value="">선택</option>
 						<c:forEach items="${purposeUseInfoList}" var="purposeUseInfoList">
-							<option value="${purposeUseInfoList.purposeUse}">${purposeUseInfoList.purposeUse}</option>
+							<option value="${purposeUseInfoList.codeSeq}">${purposeUseInfoList.name}</option>
 						</c:forEach>
 					</select>
 				</td>
-			</tr> 
+			</tr>
 			<!-- //사용용도 -->
-			
+
 			<!-- IDC -->
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">IDC</th>
@@ -201,7 +201,7 @@
 						</c:forEach>
 					</select>
 				</td>
-			</tr> 
+			</tr>
 			<!-- //IDC -->
 
 			<!-- 상면 -->

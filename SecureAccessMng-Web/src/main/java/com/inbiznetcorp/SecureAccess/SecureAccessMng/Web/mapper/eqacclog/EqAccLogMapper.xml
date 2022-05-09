@@ -6,12 +6,12 @@
 	<sql id="addWhere">
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
-	 		 <![CDATA[AND DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]> 
+	 		 <![CDATA[AND DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]>
 		</if>
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
 			<![CDATA[AND DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
-		</if>  
+		</if>
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcSeq)">
 			AND T1.REF_EQ_IDC 	=  #{idcSeq}
