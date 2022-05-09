@@ -4,13 +4,13 @@
 <mapper namespace="com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.eqacclog.EqAccLogMapper">
 
 	<sql id="addWhere">
-	
-<!-- 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
-	 		 <![CDATA[AND DATE_FORMAT(FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]> 
+
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
+	 		 <![CDATA[AND DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]> 
 		</if>
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
-			<![CDATA[AND DATE_FORMAT(LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	>= #{eDate}]]>
-		</if>  -->
+			<![CDATA[AND DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	>= #{eDate}]]>
+		</if>  
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcSeq)">
 			AND T1.REF_EQ_IDC 	=  #{idcSeq}
@@ -47,7 +47,7 @@
 		SELECT
 			COUNT(0)
 		FROM
-			EQ_ACCLOG
+			EQ_ACCLOG T1
 		WHERE 1=1
 
 		<include refid="addWhere"/>

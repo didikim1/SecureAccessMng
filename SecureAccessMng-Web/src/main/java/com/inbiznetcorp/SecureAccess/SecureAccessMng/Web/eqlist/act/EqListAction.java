@@ -76,7 +76,7 @@ public class EqListAction
 
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       eqIdcBean);
-        model.addAttribute("UseInfoList",       useBean);
+        model.addAttribute("purposeUseList",    useBean);
         model.addAttribute("paramMap",          paramMap);
 
 //		model.addAttribute("IdcInfoList", mIdcInfoBiz.ListData(new MyMap()));
@@ -130,10 +130,12 @@ public class EqListAction
 
         BasicBean entrprsmberBean       = mEntrprsmberBiz.ListData(new MyMap());        // 관리자 List
         BasicBean idcInfoBean           = mEqIdcBiz.ListData(new MyMap());              // IDC List
+        BasicBean purposeUseInfoBean   	= mBiz.ListData(new MyMap());              		// IDC List
 
         model.addAttribute("paramMap",          paramMap);
         model.addAttribute("EntrprsmberList",   entrprsmberBean.getList());
         model.addAttribute("IdcInfoList",       idcInfoBean.getList());
+        model.addAttribute("purposeUseList",    purposeUseInfoBean.getList());
 
         return pagePrefix + "/Register";
     }

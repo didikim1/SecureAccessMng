@@ -180,11 +180,11 @@
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">사용용도</th>
 				<td>
-					<select class="userManageInput" name="purposeUse">
+					<select class="userManageInput" name="purposeUseList">
 						<option value="">선택</option>
-							<option value="D"  <c:if test="${Info.purposeUse eq 'D'}">selected</c:if>  >DB</option>
-							<option value="S"  <c:if test="${Info.purposeUse eq 'S'}">selected</c:if>  >녹취</option>
-							<option value="N"  <c:if test="${Info.purposeUse eq 'N'}">selected</c:if>  >일반</option>
+						<c:forEach items="${purposeUseList}" var="UseInfo">
+							<option value="${purposeUseList.purposeUse}">${purposeUseList.purposeUse}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr> 
