@@ -52,7 +52,7 @@
 									<div class="common_div left margin_l3">서버종류</div>
 								<select class="common_select" id="purposeUse"   name="purposeUse">
 									<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
-									<c:forEach var="data" items="${purposeUseList}" varStatus="status">
+									<c:forEach var="data" items="${purposeUseInfoList}" varStatus="status">
 										<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.purposeUseName}</option>
 									</c:forEach>
 								</select>
@@ -89,7 +89,7 @@
 							<td>${board.eqIdcName}</td>											<!-- IDC -->
 							<td>${board.ctnNrlmberName}(${board.ctnNrlmberUniqID})</td>			<!-- 접속자 -->
 							<td>${board.eqListName}</td>										<!-- 서버 -->
-							<td>${board.purposeUse}</td>										<!-- 서버종류 -->
+							<td>${board.purposeUse}(${board.purposeUseName })</td>				<!-- 서버종류 -->
 							<td><b>${board.worktypecodeName}</b></td>							<!-- 업무 -->
 							<td>${board.eqIdpwdID}(${board.eqListSvIp1})</td>					<!-- 접속ID -->
 							<td>${board.eqAllowIpName}(${board.eqAllowIpAdd})</td>				<!-- 접속IP -->

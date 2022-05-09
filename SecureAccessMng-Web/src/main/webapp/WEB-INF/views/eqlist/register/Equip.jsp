@@ -178,7 +178,7 @@
 
 			<!-- 사용용도 -->
  			<tr>
-				<th scope="col" width="120px" class = "MainInfo">사용용도</th>
+				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
 				<td>
 					<select class="userManageInput" name="purposeUse">
 						<option value="">선택</option>

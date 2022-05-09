@@ -56,6 +56,9 @@ public class EqListAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.excel.ExcelWrite")
     ExcelWrite mExcelWrite;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
+    EqListBiz mEqListBiz;
 
 
     @RequestMapping(value =
@@ -66,7 +69,6 @@ public class EqListAction
 
         BasicBean resultBean    		= mBiz.ListPagingData(paramMap);
         BasicBean eqIdcBean     		= mEqIdcBiz.ListData(new MyMap());
-
 
         List<MyCamelMap> purposeInfoList	= null;
 
@@ -146,7 +148,7 @@ public class EqListAction
         model.addAttribute("paramMap",         	 	paramMap);
         model.addAttribute("EntrprsmberList",   	entrprsmberBean.getList());
         model.addAttribute("IdcInfoList",       	idcInfoBean.getList());
-        model.addAttribute("purposeUseInfoList",        purposeInfoList);
+        model.addAttribute("purposeUseInfoList",    purposeInfoList);
 
         return pagePrefix + "/Register";
     }

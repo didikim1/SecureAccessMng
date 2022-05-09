@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.biz.CtnCodeBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqacclog.biz.EqAccLogBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidc.service.EqIdcBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.biz.EqListBiz;
@@ -54,6 +55,9 @@ public class EqAccLogAction
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.mapper.ctn.code.CodeMapper")
 	 CodeMapper mCodeMapper;
 
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
+    CtnCodeBiz mCtnCodeBiz;
+    
     @Value("${spring.profiles.active}")
     String active;
 
@@ -65,11 +69,10 @@ public class EqAccLogAction
 
         BasicBean       resultBean  		= null;
         BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
-        BasicBean       purposeInfoBean 	= mEqListBiz.ListData(new MyMap());              // IDC List
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
 
         List<MyCamelMap> workTypeList	    = null;
-
+        List<MyCamelMap> purposeInfoList	= null;
 
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
@@ -82,14 +85,20 @@ public class EqAccLogAction
 
         MyMap miaMap = new MyMap();
         miaMap.put("title", 		"WORK_TYPE");
-        miaMap.put("type", 		"B");
+        miaMap.put("type", 			"B");
 
         workTypeList = mCodeMapper.ListData(miaMap);
+        
+        MyMap purposeMap = new MyMap();
+        purposeMap.put("title", 		"PURPOSE_USE");
+        purposeMap.put("type", 			"B");
+        
+        purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
 
         model.addAttribute("paramMap",        			   	paramMap);
         model.addAttribute("Data",              			resultBean);
         model.addAttribute("workInfoList",              	workTypeList);
-        model.addAttribute("purposeInfoList",             	purposeInfoBean.getList());
+        model.addAttribute("purposeInfoList",             	purposeInfoList);
         model.addAttribute("IdcInfoList",      				idcInfoBean.getList());
         model.addAttribute("refEqList",       				refEqListInfoBean.getList());
 
