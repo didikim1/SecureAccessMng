@@ -28,6 +28,10 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sttus)">
 			AND T1.STTUS 	=  #{sttus}
 		</if>
+		
+		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(purposeUse)">
+			AND T2.PURPOSE_USE 	=  #{purposeUse}
+		</if>
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(refNrlmber)">
 			AND T1.REF_NRLMBER =  #{refNrlmber}
@@ -49,6 +53,8 @@
 			COUNT(0)
 		FROM
 			EQ_ACCLOG T1
+				INNER JOIN EQ_LIST AS T2
+				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE 1=1
 
 		<include refid="addWhere"/>
@@ -60,7 +66,7 @@
 		T1.SEQ																					as seq
 		,WORKTYPECODE_ID 																		as worktypecodeId
 		,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID )							as worktypecodeName
-		,PURPOSE_USE 																			as purposeUse
+		,T2.PURPOSE_USE 																			as purposeUse
 		,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )								as purposeUseName
 		,T1.REF_EQ_IDC
 		,( SELECT NAME FROM EQ_IDC WHERE SEQ = T1.REF_EQ_IDC ) 									as eqIdcName
