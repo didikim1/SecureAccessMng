@@ -182,8 +182,8 @@
 				<td>
 					<select class="userManageInput" name="purposeUse">
 						<option value="">선택</option>
-						<c:forEach items="${purposeSelectList}" var="purposeSelectList">
-							<option value="${purposeSelectList.purposeUse}">${purposeSelectList.purposeUse}</option>
+						<c:forEach items="${purposeUseInfoList}" var="purposeUseInfoList">
+							<option value="${purposeUseInfoList.purposeUse}">${purposeUseInfoList.purposeUse}</option>
 						</c:forEach>
 					</select>
 				</td>
