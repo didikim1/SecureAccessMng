@@ -180,10 +180,10 @@
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">사용용도</th>
 				<td>
-					<select class="userManageInput" name="purposeUseList">
+					<select class="userManageInput" name="purposeUse">
 						<option value="">선택</option>
-						<c:forEach items="${purposeUseList}" var="UseInfo">
-							<option value="${purposeUseList.purposeUse}">${purposeUseList.purposeUse}</option>
+						<c:forEach items="${purposeSelectList}" var="purposeSelectList">
+							<option value="${purposeSelectList.purposeUse}">${purposeSelectList.purposeUse}</option>
 						</c:forEach>
 					</select>
 				</td>

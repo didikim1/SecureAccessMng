@@ -63,13 +63,14 @@ public class EqAccLogAction
 
     	MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-
-
         BasicBean       resultBean  		= null;
         BasicBean       idcInfoBean 		= mEqIdcBiz.ListData(new MyMap());              // IDC List
+        BasicBean       purposeInfoBean 	= mEqListBiz.ListData(new MyMap());              // IDC List
         BasicBean       refEqListInfoBean 	= mEqIdcBiz.ListData(new MyMap());              // 서버 List
 
         List<MyCamelMap> workTypeList	    = null;
+        
+        
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
             paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
@@ -84,12 +85,13 @@ public class EqAccLogAction
         miaMap.put("type", 			"B");
 
         workTypeList = mCodeMapper.ListData(miaMap);
-
+        
 
 
         model.addAttribute("paramMap",        			   	paramMap);
         model.addAttribute("Data",              			resultBean);
         model.addAttribute("workInfoList",              	workTypeList);
+        model.addAttribute("purposeInfoList",             	purposeInfoBean.getList());
         model.addAttribute("IdcInfoList",      				idcInfoBean.getList());
         model.addAttribute("refEqList",       				refEqListInfoBean.getList());
 

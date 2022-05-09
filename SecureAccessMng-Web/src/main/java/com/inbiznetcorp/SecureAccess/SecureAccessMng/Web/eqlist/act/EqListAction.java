@@ -64,19 +64,26 @@ public class EqListAction
     {
         MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-        BasicBean resultBean    = mBiz.ListPagingData(paramMap);
-        BasicBean useBean    	= mBiz.ListData(new MyMap());
-        BasicBean eqIdcBean     = mEqIdcBiz.ListData(new MyMap());
-
+        BasicBean resultBean    		= mBiz.ListPagingData(paramMap);
+        BasicBean eqIdcBean     		= mEqIdcBiz.ListData(new MyMap());
+        
+        
+        List<MyCamelMap> purposeInfoList	= null;
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
             paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
             paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
         }
+        
+        MyMap purposeMap = new MyMap();
+        purposeMap.put("title", 		"PURPOSE_USE");
+        purposeMap.put("type", 			"B");
+        purposeInfoList = mCodeMapper.ListData(purposeMap);
+
 
         model.addAttribute("Data",              resultBean);
         model.addAttribute("IdcInfoList",       eqIdcBean);
-        model.addAttribute("purposeUseList",    useBean);
+        model.addAttribute("purposeUseList",    purposeInfoList);
         model.addAttribute("paramMap",          paramMap);
 
 //		model.addAttribute("IdcInfoList", mIdcInfoBiz.ListData(new MyMap()));
@@ -130,13 +137,13 @@ public class EqListAction
 
         BasicBean entrprsmberBean       = mEntrprsmberBiz.ListData(new MyMap());        // 관리자 List
         BasicBean idcInfoBean           = mEqIdcBiz.ListData(new MyMap());              // IDC List
-        BasicBean purposeUseInfoBean   	= mBiz.ListData(new MyMap());              		// IDC List
+        BasicBean purposeUseInfoBean    = mBiz.ListData(new MyMap());              // IDC List
 
-        model.addAttribute("paramMap",          paramMap);
-        model.addAttribute("EntrprsmberList",   entrprsmberBean.getList());
-        model.addAttribute("IdcInfoList",       idcInfoBean.getList());
-        model.addAttribute("purposeUseList",    purposeUseInfoBean.getList());
-
+        model.addAttribute("paramMap",         	 	paramMap);
+        model.addAttribute("EntrprsmberList",   	entrprsmberBean.getList());
+        model.addAttribute("IdcInfoList",       	idcInfoBean.getList());
+        model.addAttribute("purposeUseInfoList",    purposeUseInfoBean.getList());
+        
         return pagePrefix + "/Register";
     }
 

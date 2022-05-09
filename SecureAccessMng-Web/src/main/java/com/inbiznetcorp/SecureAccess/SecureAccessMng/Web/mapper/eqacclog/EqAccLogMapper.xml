@@ -8,8 +8,9 @@
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(sDate)">
 	 		 <![CDATA[AND DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d') 	>= #{sDate}]]> 
 		</if>
+
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
-			<![CDATA[AND DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	>= #{eDate}]]>
+			<![CDATA[AND DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
 		</if>  
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcSeq)">
@@ -56,42 +57,43 @@
 	<!-- 페이징 목록    -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 	SELECT
-		T1.SEQ																					as seq		
-		,WORKTYPECODE_ID 																		as worktypecodeId	
-		,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID )							as worktypecodeName 
-		,T1.REF_EQ_IDC 									 
-		,( SELECT NAME FROM EQ_IDC WHERE SEQ = T1.REF_EQ_IDC ) 									as eqIdcName  	
-		,T1.REF_EQ_LIST 									
-		,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = T1.REF_EQ_LIST ) 								as eqListSvIp1  
-		,( SELECT NAME FROM EQ_LIST WHERE SEQ = T1.REF_EQ_LIST ) 								as eqListName  	
-		,T1.REF_EQ_IDPWD 										  								as refEqIdpwd			
-		,( SELECT ID FROM EQ_IDPWD WHERE SEQ = T1.REF_EQ_IDPWD ) 								as eqIdpwdID  			
-		,T1.REF_NRLMBER			as refNrlmber							
-		,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = T1.REF_NRLMBER )						as ctnNrlmberName  	
-		,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = T1.REF_NRLMBER )						as ctnNrlmberUniqID 	
-		,T1.MBER_RATING																			as mberRating	
-		,( 	CASE WHEN T1.MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as mberRatingName	
-		
-		,T1.REF_ALLOW_IP																		as refAllowIp						
-		,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP )							as eqAllowIpAdd  	 	
-		,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP )							as eqAllowIpName  	 	
-		,T1.PROCESSID																			as processid			
-		,T1.STTUS																				as sttus			
-		,( 	CASE WHEN T1.STTUS  = 'A' THEN '로그인' ELSE '로그아웃' END ) 							as sttusName			
-		,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 								as frstRegisterPnttm 	
-		,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 								as lastUpdusrPnttm 	
-		
+		T1.SEQ																					as seq
+		,WORKTYPECODE_ID 																		as worktypecodeId
+		,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = WORKTYPECODE_ID )							as worktypecodeName
+		,PURPOSE_USE 																			as purposeUse
+		,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )								as purposeUseName
+		,T1.REF_EQ_IDC
+		,( SELECT NAME FROM EQ_IDC WHERE SEQ = T1.REF_EQ_IDC ) 									as eqIdcName
+		,T1.REF_EQ_LIST
+		,( SELECT SV_IP1 FROM EQ_LIST WHERE SEQ = T1.REF_EQ_LIST ) 								as eqListSvIp1
+		,( SELECT NAME FROM EQ_LIST WHERE SEQ = T1.REF_EQ_LIST ) 								as eqListName
+		,T1.REF_EQ_IDPWD 										  								as refEqIdpwd
+		,( SELECT ID FROM EQ_IDPWD WHERE SEQ = T1.REF_EQ_IDPWD ) 								as eqIdpwdID
+		,T1.REF_NRLMBER			as refNrlmber
+		,( SELECT MBER_NAME FROM CTN_NRLMBER WHERE SEQ = T1.REF_NRLMBER )						as ctnNrlmberName
+		,( SELECT UNIQ_ID   FROM CTN_NRLMBER WHERE SEQ = T1.REF_NRLMBER )						as ctnNrlmberUniqID
+		,T1.MBER_RATING																			as mberRating
+		,( 	CASE WHEN T1.MBER_RATING  = 'M' THEN '정' ELSE '부' END ) 							as mberRatingName
+
+		,T1.REF_ALLOW_IP																		as refAllowIp
+		,( SELECT ADDR   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP )							as eqAllowIpAdd
+		,( SELECT NAME   FROM EQ_ALLOW_IP WHERE SEQ = REF_ALLOW_IP )							as eqAllowIpName
+		,T1.PROCESSID																			as processid
+		,T1.STTUS																				as sttus
+		,( 	CASE WHEN T1.STTUS  = 'A' THEN '로그인' ELSE '로그아웃' END ) 							as sttusName
+		,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 								as frstRegisterPnttm
+		,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 								as lastUpdusrPnttm
 		FROM
 			EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2 
+				INNER JOIN EQ_LIST AS T2
 				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE
-			1=1 
+			1=1
 		<include refid="addWhere"/>
 		ORDER BY
-			STTUS ASC,	
+			STTUS ASC,
 			T1.FRST_REGISTER_PNTTM DESC LIMIT 0, 10
-			
+
 	</select>
 
 	<!-- 상세 -->
@@ -124,7 +126,7 @@
 			 EQ_ACCLOG T1
 		WHERE 1=1
 			<include refid="addWhere"/>
-			
+
 	</select>
 
 	<!-- 전체 목록 -->

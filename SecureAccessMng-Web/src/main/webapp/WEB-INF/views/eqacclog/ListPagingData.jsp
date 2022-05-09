@@ -50,11 +50,11 @@
 										<option value="Z"  <c:if test="${paramMap.sttus eq 'Z'}">selected</c:if>  >강제종료</option>
 								</select>
 									<div class="common_div left margin_l3">서버종류</div>
-								<select class="common_select" name="purposeUse">
-										<option value="" <c:if test="${paramMap.purposeUse eq ''}">selected</c:if> >선택</option>
-										<option value="D"  <c:if test="${paramMap.purposeUse eq 'D'}">selected</c:if>  >DB</option>
-										<option value="S"  <c:if test="${paramMap.purposeUse eq 'S'}">selected</c:if>  >녹취</option>
-										<option value="N"  <c:if test="${paramMap.purposeUse eq 'N'}">selected</c:if>  >일반</option>
+								<select class="common_select" id="purposeUse"   name="purposeUse">
+									<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${purposeUseList}" varStatus="status">
+										<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.purposeUseName}</option>
+									</c:forEach>
 								</select>
 								<button type="button"  style="width: 120px;" class="common_button2 margin_l3" onclick="fnProcExcel();">&nbsp;엑셀다운로드</button>
 								<button type="button" class="common_button2 margin_l3" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
