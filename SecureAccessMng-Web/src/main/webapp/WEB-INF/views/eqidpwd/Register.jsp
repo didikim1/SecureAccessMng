@@ -40,9 +40,9 @@
 				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
 				<td>
 					<select class="common_select"  id="purposeUse"name="purposeUse">
-						<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
-						<c:forEach var="data" items="${purposeInfoList}" varStatus="status">
-							<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.name}</option>
+						<option value="">선택</option>
+						<c:forEach items="${purposeInfoList}" var="purposeInfoList">
+							<option value="${purposeInfoList.codeSeq}">${purposeInfoList.name}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -93,6 +93,7 @@ $(function(){
 		 var title = "["+$("[name=id]").val()+"] 계정을 등록 하시겠습니까?";  
 		 
 		 
+		 var purposeUse = $("[name=purposeUse]").val();
 		 var mberRating = $("[name=mberRating]").val();
 		 var id			= $("[name=id]").val();
 		 var pwd		= $("[name=pwd]").val();
@@ -115,11 +116,18 @@ $(function(){
 						$("[name=pwd]").focus();
 					}
 				});
+			}else if( isNull(purposeUse)) {
+				$.fun.alert({
+					content : "서버종류를 선택해 주세요.",
+					action : function() {
+						$("[name=purposeUse]").focus();
+					}
+				});
 			}else if( isNull(mberRating)) {
 				$.fun.alert({
 					content : "정/부 를 선택해주세요.",
 					action : function() {
-						$("[name=pwd]").focus();
+						$("[name=mberRating]").focus();
 					}
 				});
 			}else {
@@ -315,6 +323,7 @@ $(function(){
 		colNames: [
 		           	 '고유ID'
 		           	,'담당책임'
+		           	,'서버종류'
 		           	,'아이디'
 		           	,'담당책임'
 		           	,'서버종류'
@@ -324,6 +333,7 @@ $(function(){
 		colModel:[
 				 {name:'seq', 				index:'SEQ',				width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'mberRating', 		index:'mberRating',			width:10,	align:'center', search:false,  sortable:true, hidden:true}
+				,{name:'purposeUse', 		index:'purposeUse',			width:10,	align:'center', search:false,  sortable:true, hidden:true}
 				,{name:'id', 				index:'ID',					width:10,	align:'center', search:false,  sortable:true}
 				,{name:'mberRatingName', 	index:'mberRatingName',		width:10,	align:'center', search:false,  sortable:true}
 				,{name:'purposeUseName', 	index:'purposeUseName',		width:10,	align:'center', search:false,  sortable:true}
@@ -344,6 +354,7 @@ $(function(){
    			$("[name=seq]").val(rowval.seq);
    			$("[name=id]").val(rowval.id);
    			$("[name=mberRating]").val(rowval.mberRating);
+   			$("[name=purposeUse]").val(rowval.purposeUse);
    			//$("[name=mberRatingName]").val(rowval.mberRatingName);
    		}
 	}));

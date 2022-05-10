@@ -2,6 +2,7 @@ package com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.act;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctn.code.biz.CtnCodeBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqidpwd.service.EqIdpwdBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.eqlist.biz.EqListBiz;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.ManagerPWAES256;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.BasicBean;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.beans.FrameworkBeans;
+import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.mymap.MyMap;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultCode;
 import com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.result.ResultMessage;
@@ -33,6 +36,9 @@ public class EqIdpwdAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
     EqListBiz mEqListBiz;
+    
+    @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
+    CtnCodeBiz mCtnCodeBiz;
 
     @RequestMapping(value = { "/", "/ListPagingData.do" })
     public String ListPagingData(Model model)
@@ -74,11 +80,18 @@ public class EqIdpwdAction
         String receivingPnttm = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         paramMap.put("receivingPnttm", receivingPnttm);
 
-
+        List<MyCamelMap> purposeInfoList	= null;
+        
+        MyMap purposeMap = new MyMap();
+        purposeMap.put("title", 		"PURPOSE_USE");
+        purposeMap.put("type", 			"B");
+        
+        purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
         infoMap = mEqListBiz.SelectOneData(paramMap);
 
         model.addAttribute("paramMap",          paramMap);
         model.addAttribute("infoMap",           infoMap);
+        model.addAttribute("purposeInfoList",     purposeInfoList);
 
         return "eqidpwd/Register";
     }
@@ -93,11 +106,11 @@ public class EqIdpwdAction
         int   iRtnValue = 0;
 
         String refEqList = null;  // 서버고유키값
-        String id			      = null; // 서버ID
+        String id		 = null; // 서버ID
 
         String strPWD	 = null;
         String strEncPWD = null;
-
+        
 
         /*중복체크 서버 계정ID*/
 

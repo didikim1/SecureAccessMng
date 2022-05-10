@@ -38,6 +38,17 @@
 								<div class="common_div left margin_l2">IP</div>
 								<input type="text" class="common_input2 right" name="svIp1" id="svIp1" placeholder="자산명" value="${paramMap.svIp1}" autocomplete="off"/>
 								<!-- //자산명 -->
+								
+								<!-- 서버종류 -->
+								<div class="common_div left margin_l2">서버종류</div>
+								<select class="common_select"  id="purposeUse"name="purposeUse">
+									<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
+									<c:forEach var="data" items="${purposeUseList}" varStatus="status">
+										<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.name}</option>
+									</c:forEach>
+								</select>
+								
+								<!-- //서버종류 -->
 
 								<button type="button" class="common_button2 margin_l2" onclick="fnProcSearch();"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;검색</button>
 							</td>
@@ -58,6 +69,7 @@
 							<th scope="col" width="8%">No</th>
 							<th scope="col" width="8%">IDC</th>
 							<th scope="col" width="8%">서버</th>
+							<th scope="col" width="8%">서버종류</th>
 							<th scope="col" width="7%">IP</th>
 							<th scope="col" width="7%">Port(SSH)</th>
 							<th scope="col" width="7%">등록일</th>
@@ -69,11 +81,12 @@
 						<c:forEach var="board" items="${Data.list}" varStatus="status">
 						<tr>
 							<td>${Data.paginationInfo.totalRecordCount -((Data.paginationInfo.currentPageNo -1) * Data.paginationInfo.recordCountPerPage) - status.index}</td>	<!-- 번호 -->
-							<td>${board.idcName}</td>				<!-- IDC -->
-							<td>${board.name}</td>					<!-- 서버 -->
-							<td>${board.svIp1}</td>					<!-- IP -->
-							<td>${board.svPort}</td>				<!-- Port(SSH) -->
-							<td>${board.frstRegisterPnttm}</td>		<!-- 등록일 -->
+							<td>${board.idcName}</td>																															<!-- IDC -->
+							<td>${board.name}</td>																																<!-- 서버 -->
+							<td>${board.purposeUseName}</td>																													<!-- 서버종류 -->
+							<td>${board.svIp1}</td>																																<!-- IP -->
+							<td>${board.svPort}</td>																															<!-- Port(SSH) -->
+							<td>${board.frstRegisterPnttm}</td>																													<!-- 등록일 -->
 							<td><input type="button" class="btn_it01" value="등록" onclick="fnAccountRegister('${board.seq}')"/></td>
 							<td><input type="button" class="btn_it01"  value="삭제" onclick="fnDeleteData ('${board.seq}', '${board.name}')"/></td>
 						</tr>

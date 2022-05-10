@@ -17,7 +17,9 @@
 		SELECT
 			COUNT(0)
 		FROM
-			EQ_IDPWD
+			EQ_IDPWD T1
+			 	INNER JOIN EQ_LIST AS T2
+				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE 1=1
 		AND 	REF_EQ_LIST = #{refEqList}  	<!--  장비(SERVER)접속ID 고유값-->
 		AND	ID				= #{id} 			<!-- 서버 접속계정 -->
@@ -28,7 +30,9 @@
 		SELECT
 			COUNT(0)
 		FROM
-			EQ_IDPWD
+			EQ_IDPWD T1
+			 	INNER JOIN EQ_LIST AS T2
+				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE 1=1
 		<include refid="addWhere"/>
 	</select>
@@ -36,19 +40,25 @@
 	<!-- 페이징 목록 -->
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 SEQ 														as seq	 					<!--장비접속ID 고유값-->
-			,REF_EQ_LIST 			                                    as refEqList 				<!--EQ_LIST 고유값-->
-			,NAME 														as name	 					<!--명칭 -->
-			,ID 														as id	 					<!--장비접속ID -->
-			,PWD 														as pwd	 					<!--장비접속패스워드 -->
-			,MBER_RATING 												as mberRating				<!--담당책임(정/부) -->
-			,( 	 	CASE WHEN MBER_RATING  = 'M' THEN '정' WHEN MBER_RATING = 'D' THEN  '부' END  ) 	as mberRatingName  			<!-- 정/부 -->
-			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
-			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
-			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
-			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+			 T1.SEQ 																					as seq	 					<!--장비접속ID 고유값-->
+			,T1.REF_EQ_LIST 			                                    							as refEqList 				<!--EQ_LIST 고유값-->
+			,T1.NAME 																					as name	 					<!--명칭 -->
+			,T1.ID 																						as id	 					<!--장비접속ID -->
+			,T1.PWD 																					as pwd	 					<!--장비접속패스워드 -->
+			,T1.MBER_RATING 																			as mberRating				<!--담당책임(정/부) -->
+			,( 	 	CASE WHEN T1.MBER_RATING  = 'M' THEN '정' 
+					WHEN T1.MBER_RATING = 'D' THEN  '부' END  ) 											as mberRatingName  			<!-- 정/부 -->
+					
+			,T2.PURPOSE_USE 																			as purposeUse				<!-- 서버종류 -->
+			,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )									as purposeUseName
+			,T1.FRST_REGISTER_ID 			                               								as frstRegisterId 			<!--최초등록 ID-->
+			,T1.LAST_UPDUSR_ID 			                               									as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 									as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 									as  lastUpdusrPnttm 		<!--최종등록일-->
 		FROM
 			 EQ_IDPWD T1
+			 	INNER JOIN EQ_LIST AS T2
+				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE 1=1
 			<include refid="addWhere"/>
 		ORDER BY T1.LAST_UPDUSR_PNTTM DESC
@@ -58,19 +68,25 @@
 	<!-- 상세 -->
 	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 SEQ 														as seq	 					<!--장비접속ID 고유값-->
-			,REF_EQ_LIST 			                                    as refEqList 				<!--EQ_LIST 고유값-->
-			,NAME 														as name	 					<!--명칭 -->
-			,ID 														as id	 					<!--장비접속ID -->
-			,PWD 														as pwd	 					<!--장비접속패스워드 -->
-			,MBER_RATING 												as mberRating				<!--담당책임(정/부) -->
-			,( 	CASE WHEN MBER_RATING  = 'M' THEN '정' WHEN MBER_RATING = 'D' THEN  '부' END ) 	as mberRatingName  			<!-- 정/부 -->
-			,FRST_REGISTER_ID 			                                as frstRegisterId 			<!--최초등록 ID-->
-			,LAST_UPDUSR_ID 			                                as lastUpdusrId 			<!--최종등록일 ID-->
-			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  frstRegisterPnttm 		<!--최초등록일-->
-			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as  lastUpdusrPnttm 		<!--최종등록일-->
+			 T1.SEQ 																						as seq	 					<!--장비접속ID 고유값-->
+			,T1.REF_EQ_LIST 			                                    								as refEqList 				<!--EQ_LIST 고유값-->
+			,T1.NAME 																						as name	 					<!--명칭 -->
+			,T1.ID 																							as id	 					<!--장비접속ID -->
+			,T1.PWD 																						as pwd	 					<!--장비접속패스워드 -->
+			,T1.MBER_RATING 																				as mberRating				<!--담당책임(정/부) -->
+			,( 	CASE WHEN T1.MBER_RATING  = 'M' THEN '정' 
+					WHEN T1.MBER_RATING = 'D' THEN  '부' END ) 												as mberRatingName  			<!-- 정/부 -->
+					
+			,T2.PURPOSE_USE 																				as purposeUse				<!-- 서버종류 -->
+			,( SELECT NAME FROM CTN_CODE WHERE CODE_SEQ = PURPOSE_USE )										as purposeUseName
+			,T1.FRST_REGISTER_ID 			                                								as frstRegisterId 			<!--최초등록 ID-->
+			,T1.LAST_UPDUSR_ID 			                                									as lastUpdusrId 			<!--최종등록일 ID-->
+			,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 										as  frstRegisterPnttm 		<!--최초등록일-->
+			,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 										as  lastUpdusrPnttm 		<!--최종등록일-->
 		FROM
-			 EQ_IDPWD T1
+			EQ_IDPWD T1
+			 	INNER JOIN EQ_LIST AS T2
+				ON T1.REF_EQ_LIST = T2.SEQ
 		WHERE 1=1
 			<include refid="addWhere"/>
 	</select>
@@ -112,7 +128,7 @@
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(id)">  			,NAME = #{id}    					</if>  	 <!-- 서버고유ID -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(id)"> 			,ID = #{id}  						</if>  	 <!-- 서버명 -->
 			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(pwd)"> 			,PWD = #{pwd}  						</if>  	 <!-- 서버명 -->
-			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)"> 			,MBER_RATING = #{mberRating}  		</if>  	 <!-- 담당책임(정/부) -->
+			<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(mberRating)"> 	,MBER_RATING = #{mberRating}  		</if>  	 <!-- 담당책임(정/부) -->
 		WHERE SEQ = #{seq}
 	</update>
 
