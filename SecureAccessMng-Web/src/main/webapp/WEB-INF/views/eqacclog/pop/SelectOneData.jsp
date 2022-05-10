@@ -20,6 +20,13 @@
 				<td>${info.eqListName}</td>
 			</tr>
 			<!-- //서버 -->
+			
+			<!-- 서버종류 -->
+			<tr>
+				<th scope="col" width="120px" class="LogPart">서버종류</th>
+				<td>${info.purposeUseName}</td>
+			</tr>
+			<!-- //서버종류 -->
 
 			<!-- 접속ID-->
 			<tr>

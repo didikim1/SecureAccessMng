@@ -40,10 +40,10 @@
 				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
 				<td>
 					<select class="common_select"  id="purposeUse"name="purposeUse">
-						<option value="" <c:if test="${info.purposeUse eq ''}">selected</c:if> >선택</option>
-						<option value="37"  <c:if test="${info.purposeUse eq '37'}">selected</c:if>  >일반</option>
-						<option value="38"  <c:if test="${info.purposeUse eq '38'}">selected</c:if>  >녹취</option>
-						<option value="39"  <c:if test="${info.purposeUse eq '39'}">selected</c:if>  >DB</option>
+						<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >선택</option>
+						<c:forEach var="data" items="${purposeInfoList}" varStatus="status">
+							<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.name}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>
