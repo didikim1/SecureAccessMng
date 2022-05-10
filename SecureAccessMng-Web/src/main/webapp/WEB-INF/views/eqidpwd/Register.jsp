@@ -230,10 +230,11 @@ $(function(){
  	$("#btnModifyData").click(function(){
 		var title = "["+$("[name=id]").val()+"][수정] 하시겠습니까?"
 				
+		 var purposeUse = $("[name=purposeUse]").val();
 		 var mberRating = $("[name=mberRating]").val();
 		 var id			= $("[name=id]").val();
 				
-		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
+		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) && isNull(purposeUse)){
 				$.fun.alert({
 					content : "수정 사항이 없습니다. ",
 				});
@@ -242,6 +243,13 @@ $(function(){
 					content : "계정을 입력해 주세요.",
 					action : function() {
 						$("[name=id]").focus();
+					}
+				});
+			 }else if( isNull(purposeUse) ){
+				$.fun.alert({
+					content : "서버종류를 선택해 주세요.",
+					action : function() {
+						$("[name=purposeUse]").focus();
 					}
 				});
 			}else if( isNull(mberRating)) {
