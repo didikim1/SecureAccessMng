@@ -36,7 +36,7 @@ public class EqIdpwdAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.svinfo.biz.EqListBiz")
     EqListBiz mEqListBiz;
-    
+
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
     CtnCodeBiz mCtnCodeBiz;
 
@@ -81,11 +81,11 @@ public class EqIdpwdAction
         paramMap.put("receivingPnttm", receivingPnttm);
 
         List<MyCamelMap> purposeInfoList	= null;
-        
+
         MyMap purposeMap = new MyMap();
         purposeMap.put("title", 		"PURPOSE_USE");
         purposeMap.put("type", 			"B");
-        
+
         purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
         infoMap = mEqListBiz.SelectOneData(paramMap);
 
@@ -110,7 +110,7 @@ public class EqIdpwdAction
 
         String strPWD	 = null;
         String strEncPWD = null;
-        
+
 
         /*중복체크 서버 계정ID*/
 
@@ -161,6 +161,12 @@ public class EqIdpwdAction
         int   iRtnValue = 0;
         // 계정 수정
         iRtnValue = mBiz.ModifyData(paramMap);
+
+
+        MyMap eqListUpdate = new MyMap();
+        eqListUpdate.put("seq", paramMap.getInt("refEqList"));
+        eqListUpdate.put("purposeUse", paramMap.getInt("purposeUse"));
+        mEqListBiz.ModifyData(paramMap);
 
         if ( iRtnValue > 0 )
         {
