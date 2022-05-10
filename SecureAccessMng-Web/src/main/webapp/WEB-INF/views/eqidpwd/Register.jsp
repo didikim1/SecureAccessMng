@@ -40,9 +40,9 @@
 				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
 				<td>
 					<select class="common_select"  id="purposeUse"name="purposeUse">
-						<option value="">선택</option>
-						<c:forEach items="${purposeInfoList}" var="purposeInfoList">
-							<option value="${purposeInfoList.codeSeq}">${purposeInfoList.name}</option>
+						<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >${infoMap.purposeUseName}</option>
+						<c:forEach var="data" items="${purposeInfoList}" varStatus="status">
+							<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.name}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -231,8 +231,7 @@ $(function(){
 		var title = "["+$("[name=id]").val()+"][수정] 하시겠습니까?"
 				
 		 var mberRating = $("[name=mberRating]").val();
-		 var id					   = $("[name=id]").val();
-		 var pwd			   = $("[name=pwd]").val();
+		 var id			= $("[name=id]").val();
 				
 		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
 				$.fun.alert({
@@ -243,13 +242,6 @@ $(function(){
 					content : "계정을 입력해 주세요.",
 					action : function() {
 						$("[name=id]").focus();
-					}
-				});
-			}else if( isNull(pwd)) {
-				$.fun.alert({
-					content : "패스워드를 입력해 주세요.",
-					action : function() {
-						$("[name=pwd]").focus();
 					}
 				});
 			}else if( isNull(mberRating)) {
