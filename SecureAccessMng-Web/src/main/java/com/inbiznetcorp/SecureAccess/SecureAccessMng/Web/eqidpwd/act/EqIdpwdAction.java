@@ -166,7 +166,7 @@ public class EqIdpwdAction
         MyMap eqListUpdate = new MyMap();
         eqListUpdate.put("seq", paramMap.getInt("refEqList"));
         eqListUpdate.put("purposeUse", paramMap.getInt("purposeUse"));
-        mEqListBiz.ModifyData(paramMap);
+        mEqListBiz.ModifyData(eqListUpdate);
 
         if ( iRtnValue > 0 )
         {
