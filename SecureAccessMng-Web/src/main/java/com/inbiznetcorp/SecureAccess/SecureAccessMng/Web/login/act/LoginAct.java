@@ -337,45 +337,6 @@ public class LoginAct {
 
 		String resultCode = ResultCode.RESULT_OK;
 
-//		MyMap charge_seachMap = new MyMap();
-//
-//		  charge_seachMap.put("name", "책임자"); charge_seachMap.put("name", "관리자");
-//		  charge_seachMap.put("name", "운영팀"); charge_seachMap.put("name", "정산팀");
-//		  charge_seachMap.put("name", "CS팀");
-
-
-		  //MyCamelMap charge = mChargeBiz.SelectOneData(charge_seachMap); //
-		  //System.out.println("charge : " + charge);
-
-
-		// 2. CTN_CHARGE.SEQ 값으로 CTN_NRLMBER 테이블에서 `CTN_CHARGE.SEQ`값을 이용해서 책임자의 회원을 찾기
-
-		// charge_seachMap.put("chargeId", "1");
-
-		/*
-		 * MyCamelMap nrlmber = mBiz.SelectOneData(charge_seachMap);
-		 *
-		 * System.out.println("nrlmber : " + nrlmber);
-		 *
-		 * System.out.println("moblphonNo:" + nrlmber.getStr("moblphonNo"));
-		 * System.out.println("uniqId:" + nrlmber.getStr("uniqId"));
-		 * System.out.println("mberSttus:" + nrlmber.getStr("mberSttus"));
-		 */
-
-//		MyMap resultMap = mBiz.SelectOneData(paramMap);
-//
-//		FrameworkBeans.findSessionBean().mberSeq = resultMap.getStr("seq");
-//		FrameworkBeans.findSessionBean().dpamentId = resultMap.getStr("dpamentId");
-//		FrameworkBeans.findSessionBean().positionId = resultMap.getStr("positionId");
-//		FrameworkBeans.findSessionBean().uniqId = resultMap.getStr("uniqId");
-//		FrameworkBeans.findSessionBean().mberName = resultMap.getStr("mberName");
-//		FrameworkBeans.findSessionBean().mberSttus = resultMap.getStr("mberSttus");
-//		FrameworkBeans.findSessionBean().moblphonNo = resultMap.getStr("moblphonNo");
-//		FrameworkBeans.findSessionBean().emailAddress = resultMap.getStr("emailAddress");
-//		FrameworkBeans.findSessionBean().chargeId = resultMap.getStr("chargeId");
-
-//		rtrn = mCommonBiz.authCallSender(paramMap.getStr("moblphonNo"), authNumber);
-
 		String callResult = "99";
 		if("LOCAL".equals(active.toUpperCase()))
 		{

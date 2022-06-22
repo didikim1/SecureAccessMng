@@ -127,7 +127,7 @@ public class ApiV2ServerAccessAct
         System.out.println("size : " + list.size());
 
         for (MyCamelMap info : list)
-        {;
+        {
             paramMap        = new MyMap();
             paramMap.put("processid",  info.getStr("processid") );
             intRtnValue += mEqAccLogBiz.UpdateLogOutAccLog(paramMap);
@@ -138,7 +138,8 @@ public class ApiV2ServerAccessAct
             result_code = ResultCode.RESULT_OK;
         }
 
-        return new ResultMessage(result_code, intRtnValue);
+        System.out.println("list : " + list);
+        return new ResultMessage(result_code, list);
     }
 
     /**

@@ -62,13 +62,13 @@ public class NrlmberAct
 	@RequestMapping(value = { "/ListPagingData.do" })
 	public String ListPagingDatas(Model model)
 	{
-			MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter(); // jsp 에서 검색된 값들은 paramMap 에 담기는거징 ㅇㅋ??넹
+			MyMap           paramMap    		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
             BasicBean       resultBean  		= null;
     		BasicBean       roleList	 		= null;
     		BasicBean       chargeList  		= null;
 
             if ("".equals(paramMap.getStr("sDate", ""))) {
-                paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
+                paramMap.put("sDate", FrameworkUtils.aGoMonth(-36, "yyyy-MM-dd"));
                 paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
             }
 
@@ -76,7 +76,13 @@ public class NrlmberAct
     		roleList  	 = mRoleBiz.ListPagingData(new MyMap());
     		chargeList	 = mChargeBiz.ListPagingData(new MyMap());
 
-            model.addAttribute("paramMap",      paramMap); 
+
+    		for (MyCamelMap info : resultBean.getList())
+                {
+                       System.out.println(info);
+                }
+
+            model.addAttribute("paramMap",      paramMap);
             model.addAttribute("Data",          resultBean);
    		 	model.addAttribute("RoleList",      roleList.getList());
    		 	model.addAttribute("ChargeList",    chargeList.getList());
@@ -289,7 +295,7 @@ public class NrlmberAct
 
         BasicBean       resultBean 	 			= null;
         String      	strFileName      		= "계정상세자료 ("+paramMap.getStr("sDate")+"~"+paramMap.getStr("eDate")+").xlsx";
-		String [] 		arrTitle           		= new String[] 
+		String [] 		arrTitle           		= new String[]
 																{
 																"ID"
 																,"소유자"
@@ -299,8 +305,8 @@ public class NrlmberAct
 																,"권한"
 																,"담당책임"
 																,"상태"};
-		
-		String [] 		arrExcelColum         	= new String[] 
+
+		String [] 		arrExcelColum         	= new String[]
 																{"uniqId"
 																,"mberNameDisplay"
 																,"emailAddress"

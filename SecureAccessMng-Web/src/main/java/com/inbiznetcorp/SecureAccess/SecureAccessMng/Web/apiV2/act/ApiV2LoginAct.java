@@ -46,23 +46,38 @@ public class ApiV2LoginAct
     CommonBiz mCommonBiz;
 
 
-//    @RequestMapping(value="/chkAllowMacAddress.do", method=RequestMethod.GET)
-//    public @ResponseBody ResultMessage chkAllowMacAddress(@RequestParam("macaddress") String macaddress)
-//    {
-//        String result_code = ResultCode.RESULT_NOT_FOUND;
-//
-//        MyMap           returnMap      = null;
-//        MyMap           paramMap       = new MyMap();
-//        paramMap.put("addr",  macaddress);
-//        returnMap = mEqAllowIPMapper.SelectOneData( paramMap );
-//
-//        if(returnMap != null)
-//        {
-//            result_code = ResultCode.RESULT_OK;
-//        }
-//
-//        return new ResultMessage(result_code, returnMap);
-//    }
+    @RequestMapping(value="/ars_auth.do", method=RequestMethod.GET)
+    public @ResponseBody ResultMessage chkAllowMacAddress(@RequestParam("authNumber") String authNumber, @RequestParam("moblphonNo") String moblphonNo)
+    {
+        String result_code = ResultCode.RESULT_NOT_FOUND;
+
+        MyMap           returnMap      = null;
+        MyMap           paramMap       = new MyMap();
+        JSONObject      rtrn           = null;
+        String          callResult     = null;
+
+
+        String intro1 = "안녕하세요. 로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
+        String intro2 = "로그인을 위해 화면에 보이는 인증번호를 눌러주세요.";
+
+        System.out.println("authNumber : " + authNumber);
+        System.out.println("moblphonNo : " + moblphonNo);
+
+        result_code = ResultCode.RESULT_OK;
+        /*
+        rtrn = mCommonBiz.authCallDynamicSender(moblphonNo, authNumber, intro1, intro2);
+
+        callResult = (String) rtrn.get("result");
+
+        if (callResult.equals("00")) {
+            resultCode = ResultCode.RESULT_OK;
+
+        } else {
+                resultCode = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
+        }
+        */
+        return new ResultMessage(result_code, returnMap);
+    }
 
     @RequestMapping(value="/chkAllowIP.do", method=RequestMethod.GET)
     public @ResponseBody ResultMessage chkAllowIP(@RequestParam("ip") String ip)

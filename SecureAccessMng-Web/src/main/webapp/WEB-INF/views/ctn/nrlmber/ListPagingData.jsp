@@ -88,7 +88,7 @@
 							<td>${board.mberNameDisplay}</td>			<!-- 소유자 -->
 							<td>${board.emailAddress}</td>				<!-- 계정-->
 							<td>${board.moblphonNoDisplay}</td>			<!-- 전화번호-->
-							<td>${board.name}</td>						<!-- 담당-->
+							<td>${board.chargeName}</td>						<!-- 담당-->
 							<td>${board.roleName}</td>					<!-- 권한-->
 							<td>
 																		<!-- 정/부 -->
