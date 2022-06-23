@@ -10,7 +10,7 @@
 		</if>
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(eDate)">
-			<![CDATA[AND DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
+			<![CDATA[AND DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d') 	<= #{eDate}]]>
 		</if>
 
 		<if test="@com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.framework.config.mybatis.Utily@isNotEmpty(idcSeq)">
@@ -90,9 +90,8 @@
 		,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 								as frstRegisterPnttm
 		,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 								as lastUpdusrPnttm
 		FROM
-			EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2
-				ON T1.REF_EQ_LIST = T2.SEQ
+		        EQ_ACCLOG T1,
+        		EQ_LIST T2
 		WHERE
 			1=1
 		<include refid="addWhere"/>
