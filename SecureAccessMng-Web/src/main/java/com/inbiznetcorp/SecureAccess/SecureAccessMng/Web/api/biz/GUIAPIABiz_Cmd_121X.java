@@ -30,6 +30,7 @@ public class GUIAPIABiz_Cmd_121X
         JSONObject      responseMessage          = new JSONObject();
 
         paramMap.put("uniqid",                  requestMessage.getOrDefault("uniqid", ""));
+        paramMap.put("uniqId",                  requestMessage.getOrDefault("uniqid", ""));
         paramMap.put("password",                requestMessage.getOrDefault("password", ""));
 
 
