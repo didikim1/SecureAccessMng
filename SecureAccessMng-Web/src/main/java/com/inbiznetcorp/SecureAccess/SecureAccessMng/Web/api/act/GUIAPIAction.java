@@ -53,6 +53,8 @@ public class GUIAPIAction
         requestCmd              = cmd;
         jsonReqMessage          = FrameworkUtils.getBody(request);
 
+        System.out.println("jsonReqMessage : "+ jsonReqMessage);
+
         switch (requestCmd)
         {
                 case GUIAPIConfig.Cmd.Cmd_1110:                                                                           break;       // 허용 IP  등록
