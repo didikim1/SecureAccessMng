@@ -34,12 +34,12 @@
 				<td>${infoMap.svIp1}</td>
 			</tr>
 			<!-- //서버 IP -->
-			
+
 			<!-- 서버종류 -->
  			<tr>
 				<th scope="col" width="120px" class = "MainInfo">서버종류</th>
 				<td>
-					<select class="common_select"  id="purposeUse"name="purposeUse">
+					<select class="common_select"  id="purposeUse" name="purposeUse">
 						<option value="" <c:if test="${paramMap.purposeUse  != '' || paramMap.purposeUse  ne null}">selected</c:if> >${infoMap.purposeUseName}</option>
 						<c:forEach var="data" items="${purposeInfoList}" varStatus="status">
 							<option value="${data.codeSeq}" <c:if test="${paramMap.purposeUse eq data.codeSeq}">selected</c:if> >${data.name}</option>
@@ -48,7 +48,7 @@
 				</td>
 			</tr>
 			<!-- //서버종류 -->
-			
+
 			<!-- 담당책임 (정/부) -->
 			<tr>
 				<th scope="col" width="120px" class = "MainInfo">정/부</th>
@@ -82,22 +82,22 @@
 <div class="border margin_l7">
 	<button type="button" class="eqlistButtonAccount" id="btnRegisterData" onclick="">추가</button>
 	<button type="button" class="eqlistButtonAccount" id="btnModifyData"   onclick="">수정</button>
- 	<button type="button" class="eqlistButtonAccount" id="btnDeleteData"   onclick="">삭제</button> 
+ 	<button type="button" class="eqlistButtonAccount" id="btnDeleteData"   onclick="">삭제</button>
 </div>
 
 </div>
 <script type="text/javascript">
 $(function(){
-	
+
 	$("#btnRegisterData").click(function(){
-		 var title = "["+$("[name=id]").val()+"] 계정을 등록 하시겠습니까?";  
-		 
-		 
+		 var title = "["+$("[name=id]").val()+"] 계정을 등록 하시겠습니까?";
+
+
 		 var purposeUse = $("[name=purposeUse]").val();
 		 var mberRating = $("[name=mberRating]").val();
 		 var id			= $("[name=id]").val();
 		 var pwd		= $("[name=pwd]").val();
-		 
+
 		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) ){
 				$.fun.alert({
 					content : "등록 할 사항이 없습니다. ",
@@ -116,13 +116,13 @@ $(function(){
 						$("[name=pwd]").focus();
 					}
 				});
-			}else if( isNull(purposeUse)) {
-				$.fun.alert({
-					content : "서버종류를 선택해 주세요.",
-					action : function() {
-						$("[name=purposeUse]").focus();
-					}
-				});
+// 			}else if( isNull(purposeUse)) {
+// 				$.fun.alert({
+// 					content : "서버종류를 선택해 주세요.",
+// 					action : function() {
+// 						$("[name=purposeUse]").focus();
+// 					}
+// 				});
 			}else if( isNull(mberRating)) {
 				$.fun.alert({
 					content : "정/부 를 선택해주세요.",
@@ -177,24 +177,24 @@ $(function(){
 									*/
 								}
 							});// ajax
-						}, 
+						},
 						"닫기": function() {
 							$(this).dialog('destroy').remove();
 						}
 					} //button
 				});
-				
-				
-				
-				 
+
+
+
+
 			}
-		
-		 
+
+
 	});
 
-		
+
 /* 		var title = "["+name+"] 서버를 삭제 하시겠습니까?"
-		
+
 	 	$.fun.layout({
 			id:"induacaAdd",
 			"content":title,
@@ -218,22 +218,22 @@ $(function(){
 							}
 						}
 					});// ajax
-				}, 
+				},
 				"취소": function() {
 					$(this).dialog('destroy').remove();
 				}
 			} //button
-		}); 
+		});
 	}  */
-		
-		
+
+
  	$("#btnModifyData").click(function(){
 		var title = "["+$("[name=id]").val()+"][수정] 하시겠습니까?"
-				
+
 		 var purposeUse = $("[name=purposeUse]").val();
 		 var mberRating = $("[name=mberRating]").val();
 		 var id			= $("[name=id]").val();
-				
+
 		 if( isNull( mberRating)  &&  isNull( id)  &&  isNull( pwd) && isNull(purposeUse)){
 				$.fun.alert({
 					content : "수정 사항이 없습니다. ",
@@ -245,13 +245,13 @@ $(function(){
 						$("[name=id]").focus();
 					}
 				});
-			 }else if( isNull(purposeUse) ){
-				$.fun.alert({
-					content : "서버종류를 선택해 주세요.",
-					action : function() {
-						$("[name=purposeUse]").focus();
-					}
-				});
+// 			 }else if( isNull(purposeUse) ){
+// 				$.fun.alert({
+// 					content : "서버종류를 선택해 주세요.",
+// 					action : function() {
+// 						$("[name=purposeUse]").focus();
+// 					}
+// 				});
 			}else if( isNull(mberRating)) {
 				$.fun.alert({
 					content : "정/부 를 선택해주세요.",
@@ -282,15 +282,15 @@ $(function(){
 						});
 			} // action function
 		}); // alert
-	}; 	
-	}); 
+	};
+	});
 
 
 	$("#btnDeleteData").click(function(){
-		
-		
+
+
 		var title = "["+$("[name=id]").val()+"][삭제] 하시겠습니까?"
-				
+
 				$.fun.alert({
 					content:title,
 					action:function(){
