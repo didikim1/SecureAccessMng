@@ -57,7 +57,7 @@ public class EqAccLogAction
 
     @Resource(name = "com.inbiznetcorp.SecureAccess.SecureAccessMng.Web.ctncode.biz.CtnCodeBiz")
     CtnCodeBiz mCtnCodeBiz;
-    
+
     @Value("${spring.profiles.active}")
     String active;
 
@@ -76,7 +76,7 @@ public class EqAccLogAction
 
 
         if ("".equals(paramMap.getStr("sDate", ""))) {
-            paramMap.put("sDate", FrameworkUtils.aGoMonth(-12, "yyyy-MM-dd"));
+            paramMap.put("sDate", FrameworkUtils.aGoDate(-30, "yyyy-MM-dd"));
             paramMap.put("eDate", FrameworkUtils.aGoDate(0,   "yyyy-MM-dd"));
         }
 
@@ -88,11 +88,11 @@ public class EqAccLogAction
         miaMap.put("type", 			"B");
 
         workTypeList = mCodeMapper.ListData(miaMap);
-        
+
         MyMap purposeMap = new MyMap();
         purposeMap.put("title", 		"PURPOSE_USE");
         purposeMap.put("type", 			"B");
-        
+
         purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
 
         model.addAttribute("paramMap",        			   	paramMap);
@@ -172,7 +172,7 @@ public class EqAccLogAction
         purposeMap.put("title",                 "PURPOSE_USE");
         purposeMap.put("type",                  "B");
         purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
-        
+
         model.addAttribute("info",          rtnMap);
         model.addAttribute("purposeUseInfoList",    purposeInfoList);
 

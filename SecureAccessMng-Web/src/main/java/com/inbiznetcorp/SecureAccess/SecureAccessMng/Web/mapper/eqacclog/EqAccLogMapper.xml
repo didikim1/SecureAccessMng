@@ -52,10 +52,11 @@
 		SELECT
 			COUNT(0)
 		FROM
-			EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2
-				ON T1.REF_EQ_LIST = T2.SEQ
-		WHERE 1=1
+			EQ_ACCLOG T1,
+			EQ_LIST T2
+		WHERE
+			1=1
+			AND T1.REF_EQ_LIST = T2.SEQ
 
 		<include refid="addWhere"/>
 	</select>
@@ -90,10 +91,11 @@
 		,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 								as frstRegisterPnttm
 		,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 								as lastUpdusrPnttm
 		FROM
-		        EQ_ACCLOG T1,
-        		EQ_LIST T2
+			EQ_ACCLOG T1,
+			EQ_LIST T2
 		WHERE
 			1=1
+			AND T1.REF_EQ_LIST = T2.SEQ
 		<include refid="addWhere"/>
 		ORDER BY
 			STTUS ASC,
@@ -130,10 +132,11 @@
 					,DATE_FORMAT(T1.FRST_REGISTER_PNTTM,'%Y-%m-%d %H:%i:%s') 					as frstRegisterPnttm
 					,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM,'%Y-%m-%d %H:%i:%s') 						as lastUpdusrPnttm
 		FROM
- 			EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2
-				ON T1.REF_EQ_LIST = T2.SEQ
-		WHERE 1=1
+			EQ_ACCLOG T1,
+			EQ_LIST T2
+		WHERE
+			1=1
+			AND T1.REF_EQ_LIST = T2.SEQ
 			<include refid="addWhere"/>
 
 	</select>
@@ -174,10 +177,11 @@
 				,DATE_FORMAT(T1.FRST_REGISTER_PNTTM, '%Y-%m-%d %H:%i:%s') 	as frstRegisterPnttm 	<!--로그인일자-->
 				,DATE_FORMAT(T1.LAST_UPDUSR_PNTTM, '%Y-%m-%d %H:%i:%s') 	as lastUpdusrPnttm 		<!--로그아웃일자-->
 		FROM
- 			EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2
-				ON T1.REF_EQ_LIST = T2.SEQ
-		WHERE 1=1
+			EQ_ACCLOG T1,
+			EQ_LIST T2
+		WHERE
+			1=1
+			AND T1.REF_EQ_LIST = T2.SEQ
 			<include refid="addWhere"/>
 		ORDER BY T1.FRST_REGISTER_PNTTM DESC, STTUS ASC
 	</select>
@@ -263,10 +267,11 @@
 		SELECT
 			COUNT(0)
 		FROM
-			 EQ_ACCLOG T1
-				INNER JOIN EQ_LIST AS T2
-				ON T1.REF_EQ_LIST = T2.SEQ
-		WHERE 1=1
+			EQ_ACCLOG T1,
+			EQ_LIST T2
+		WHERE
+			1=1
+			AND T1.REF_EQ_LIST = T2.SEQ
 		<include refid="addWhere"/>
 	</select>
 
