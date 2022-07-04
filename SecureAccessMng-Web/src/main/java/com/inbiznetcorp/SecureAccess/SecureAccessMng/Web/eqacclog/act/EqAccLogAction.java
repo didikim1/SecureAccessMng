@@ -82,7 +82,7 @@ public class EqAccLogAction
 
         resultBean = mBiz.ListPagingData( paramMap );
 
-
+        /*
         MyMap miaMap = new MyMap();
         miaMap.put("title", 		"WORK_TYPE");
         miaMap.put("type", 			"B");
@@ -94,14 +94,16 @@ public class EqAccLogAction
         purposeMap.put("type", 			"B");
 
         purposeInfoList = mCtnCodeBiz.ListData(purposeMap).getList();
-
+        */
         model.addAttribute("paramMap",        			   	paramMap);
         model.addAttribute("Data",              			resultBean);
+
+        /*
         model.addAttribute("workInfoList",              	workTypeList);
         model.addAttribute("purposeInfoList",             	purposeInfoList);
         model.addAttribute("IdcInfoList",      				idcInfoBean.getList());
         model.addAttribute("refEqList",       				refEqListInfoBean.getList());
-
+        */
 
 
 //        if ( paramMap.getInt("idcSeq", 0) > 0)

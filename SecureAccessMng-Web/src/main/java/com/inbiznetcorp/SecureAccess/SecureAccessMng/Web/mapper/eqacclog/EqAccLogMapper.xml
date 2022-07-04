@@ -99,7 +99,7 @@
 		<include refid="addWhere"/>
 		ORDER BY
 			STTUS ASC,
-			T1.FRST_REGISTER_PNTTM DESC LIMIT 0, 10
+			T1.FRST_REGISTER_PNTTM DESC LIMIT #{start}, #{end}
 
 	</select>
 
